@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary>=2.9.10
+google-generativeai
+pydantic
+pydantic-settings
+python-multipart
+python-dotenv
+supabase
+httpx==0.25.2
