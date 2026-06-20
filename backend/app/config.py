@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     SUPABASE_KEY: str = Field("", env="SUPABASE_KEY")
     GEMINI_API_KEY: str = Field("", env="GEMINI_API_KEY")
     GOOGLE_CLIENT_ID: str = Field("", env="GOOGLE_CLIENT_ID")
+    ADMIN_EMAILS: str = Field("remitarjohnlydrick@gmail.com,johnlydrick@gmail.com,johnlydrick27@gmail.com", env="ADMIN_EMAILS")
     
     class Config:
         env_file = ".env"

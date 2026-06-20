@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowLeftRight, Volume2, Trash2, Clock, Sparkles } from "lucide-react";
 
 const MOCK_TRANSLATIONS: Record<string, string> = {
-  "maayong buntag": "Good morning",
-  "good morning": "Maayong buntag",
-  "maayong hapon": "Good afternoon",
-  "good afternoon": "Maayong hapon",
+  "madiyaw nga hinaat": "Good morning",
+  "good morning": "Madiyaw nga hinaat",
+  "madiyaw nga hapun": "Good afternoon",
+  "good afternoon": "Madiyaw nga hapun",
   "kumusta ka": "How are you?",
   "how are you": "Kumusta ka?",
   "salamat": "Thank you",
@@ -14,8 +14,8 @@ const MOCK_TRANSLATIONS: Record<string, string> = {
   "please": "Palihug",
   "oo": "Yes",
   "yes": "Oo",
-  "dili": "No",
-  "no": "Dili",
+  "dii": "No",
+  "no": "Dii",
   "gugma": "Love",
   "love": "Gugma",
   "balay": "House",
@@ -24,8 +24,8 @@ const MOCK_TRANSLATIONS: Record<string, string> = {
   "land": "Daga",
   "tubig": "Water",
   "water": "Tubig",
-  "adlaw": "Sun / Day",
-  "sun": "Adlaw",
+  "suwang": "Sun",
+  "sun": "Suwang",
   "tawo": "Person / People",
   "person": "Tawo",
   "pamilya": "Family",
@@ -43,11 +43,44 @@ interface Translation {
 }
 
 function speakText(text: string, lang = "fil-PH") {
-  if ("speechSynthesis" in window) {
+  if (!("speechSynthesis" in window)) return;
+
+  // Cancel any active speech
+  window.speechSynthesis.cancel();
+
+  const speak = () => {
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = lang;
-    utt.rate = 0.85;
+    utt.rate = 0.78; // Slowed down for clear articulation, easy for users to mimic
+
+    // Search and select neural/premium voices matching the target language prefix (e.g., "fil", "tl", "en")
+    const voices = window.speechSynthesis.getVoices();
+    const isTargetLang = (voiceLang: string) => {
+      const vl = voiceLang.toLowerCase();
+      const tl = lang.toLowerCase().slice(0, 2); // Match first two chars (e.g., "fi", "tl", "en")
+      return vl.startsWith(tl) || 
+             (tl === "fi" && vl.startsWith("tl")) || 
+             (tl === "tl" && vl.startsWith("fi"));
+    };
+
+    const targetVoices = voices.filter(v => isTargetLang(v.lang));
+    if (targetVoices.length > 0) {
+      const premiumVoice = targetVoices.find(v => {
+        const name = v.name.toLowerCase();
+        return name.includes("natural") || name.includes("google") || name.includes("neural") || name.includes("premium");
+      });
+      utt.voice = premiumVoice || targetVoices[0];
+    }
     window.speechSynthesis.speak(utt);
+  };
+
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      speak();
+      window.speechSynthesis.onvoiceschanged = null;
+    };
+  } else {
+    speak();
   }
 }
 
@@ -136,7 +169,7 @@ export function TranslatePage() {
       id: 1,
       from: "Butuanon",
       to: "English",
-      sourceText: "Maayong buntag",
+      sourceText: "Madiyaw nga hinaat",
       result: "Good morning",
       direction: "but-en",
       timestamp: new Date(Date.now() - 120000),

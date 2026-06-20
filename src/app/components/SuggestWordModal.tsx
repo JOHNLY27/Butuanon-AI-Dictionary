@@ -262,8 +262,10 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Butuanon Word */}
               <div className="space-y-1">
-                <label style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Butuanon Word <span className="text-[#C4622D]">*</span></label>
+                <label htmlFor="suggest-butuanon" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Butuanon Word <span className="text-[#C4622D]">*</span></label>
                 <input
+                  id="suggest-butuanon"
+                  name="butuanon"
                   type="text"
                   required
                   value={butuanon}
@@ -276,8 +278,10 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
 
               {/* English Meaning */}
               <div className="space-y-1">
-                <label style={{ color: "#1C2B4A" }} className="text-xs font-semibold">English Meaning <span className="text-[#C4622D]">*</span></label>
+                <label htmlFor="suggest-english" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">English Meaning <span className="text-[#C4622D]">*</span></label>
                 <input
+                  id="suggest-english"
+                  name="english"
                   type="text"
                   required
                   value={english}
@@ -292,8 +296,10 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Part of Speech */}
               <div className="space-y-1">
-                <label style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Part of Speech</label>
+                <label htmlFor="suggest-pos" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Part of Speech</label>
                 <select
+                  id="suggest-pos"
+                  name="pos"
                   value={pos}
                   onChange={(e) => setPos(e.target.value)}
                   style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
@@ -309,8 +315,10 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
 
               {/* Pronunciation */}
               <div className="space-y-1">
-                <label style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Pronunciation Guide</label>
+                <label htmlFor="suggest-pronunciation" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Pronunciation Guide</label>
                 <input
+                  id="suggest-pronunciation"
+                  name="pronunciation"
                   type="text"
                   value={pronunciation}
                   onChange={(e) => setPronunciation(e.target.value)}
@@ -323,8 +331,10 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
 
             {/* Definition */}
             <div className="space-y-1">
-              <label style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Definition <span className="text-[#C4622D]">*</span></label>
+              <label htmlFor="suggest-definition" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Definition <span className="text-[#C4622D]">*</span></label>
               <textarea
+                id="suggest-definition"
+                name="definition"
                 required
                 value={definition}
                 onChange={(e) => setDefinition(e.target.value)}
@@ -340,6 +350,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
               <p style={{ color: "#1C2B4A" }} className="text-xs font-bold uppercase tracking-wider">Example Usage (Optional)</p>
               <div className="space-y-2">
                 <input
+                  id="suggest-example-butuanon"
+                  name="exampleButuanon"
                   type="text"
                   value={exampleButuanon}
                   onChange={(e) => setExampleButuanon(e.target.value)}
@@ -348,6 +360,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   className="w-full text-sm px-3.5 py-2 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
                 />
                 <input
+                  id="suggest-example-english"
+                  name="exampleEnglish"
                   type="text"
                   value={exampleEnglish}
                   onChange={(e) => setExampleEnglish(e.target.value)}

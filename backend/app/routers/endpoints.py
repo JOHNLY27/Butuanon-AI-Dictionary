@@ -4,7 +4,7 @@ from typing import Optional, List
 import random
 from ..database import get_db
 from ..models import DictionaryEntry, Contribution
-from ..services.gemini import translate_text
+from ..services.gemini import translate_text, evaluate_pronunciation
 from ..services.storage import upload_audio_to_supabase
 from pydantic import BaseModel
 
@@ -164,12 +164,14 @@ class QuizQuestion(BaseModel):
     butuanonWord: str
     correctAnswer: str
     options: List[str]
-    type: str  # 'but-en' or 'en-but'
+    type: str  # 'but-en', 'en-but', or 'pronounce'
     prompt: str
+    audio: Optional[str] = None
 
 @router.get("/quiz", response_model=List[QuizQuestion])
 def get_quiz(
     rank: int = Query(0),
+    mode: str = Query("mixed"),
     db: Session = Depends(get_db)
 ):
     entries = db.query(DictionaryEntry).all()
@@ -177,50 +179,112 @@ def get_quiz(
     if len(entries) < min_required_entries:
         raise HTTPException(status_code=400, detail="Not enough entries in dictionary to generate a quiz")
 
-    # Generate 10 questions
-    random_entries = random.sample(entries, min(10, len(entries)))
+    # Generate 20 questions for Vocabulary Quiz mode, 10 for Speaking / Mixed
+    num_questions = 20 if mode == "quiz" else 10
+    random_entries = random.sample(entries, min(num_questions, len(entries)))
     questions = []
 
     for entry in random_entries:
-        quiz_type = "but-en" if random.random() > 0.5 else "en-but"
-        correct_answer = entry.english if quiz_type == "but-en" else entry.butuanon
+        if mode == "speaking":
+            quiz_type = "pronounce"
+        elif mode == "quiz":
+            quiz_type = "but-en" if random.random() > 0.5 else "en-but"
+        else:
+            # 40% chance of but-en, 40% chance of en-but, 20% chance of pronounce
+            r = random.random()
+            if r < 0.4:
+                quiz_type = "but-en"
+            elif r < 0.8:
+                quiz_type = "en-but"
+            else:
+                quiz_type = "pronounce"
 
-        # Select unique distractors that don't match the correct answer
-        correct_norm = correct_answer.strip().lower()
-        candidate_distractors = []
-        for e in entries:
-            val = e.english if quiz_type == "but-en" else e.butuanon
-            if val.strip().lower() != correct_norm:
-                candidate_distractors.append(val.strip())
-        
-        # Deduplicate candidates case-insensitively
-        seen = set()
-        unique_candidates = []
-        for c in candidate_distractors:
-            c_norm = c.lower()
-            if c_norm not in seen:
-                seen.add(c_norm)
-                unique_candidates.append(c)
+        if quiz_type == "pronounce":
+            target_text = entry.example_butuanon if entry.example_butuanon else entry.butuanon
+            correct_answer = target_text
+            options = []
+            prompt = (
+                f'Listen and repeat this Butuanon sentence: "{target_text}"'
+                if entry.example_butuanon
+                else f'Listen and repeat this Butuanon word: "{target_text}"'
+            )
+        else:
+            correct_answer = entry.english if quiz_type == "but-en" else entry.butuanon
 
-        # Scale options based on rank (level)
-        num_distractors = 4 if rank >= 7 else 3
-        distractors = random.sample(unique_candidates, min(num_distractors, len(unique_candidates)))
+            # Select unique distractors that don't match the correct answer
+            correct_norm = correct_answer.strip().lower()
+            candidate_distractors = []
+            for e in entries:
+                val = e.english if quiz_type == "but-en" else e.butuanon
+                if val.strip().lower() != correct_norm:
+                    candidate_distractors.append(val.strip())
+            
+            # Deduplicate candidates case-insensitively
+            seen = set()
+            unique_candidates = []
+            for c in candidate_distractors:
+                c_norm = c.lower()
+                if c_norm not in seen:
+                    seen.add(c_norm)
+                    unique_candidates.append(c)
 
-        options = [correct_answer] + distractors
-        random.shuffle(options)
+            # Scale options based on rank (level)
+            num_distractors = 4 if rank >= 7 else 3
+            distractors = random.sample(unique_candidates, min(num_distractors, len(unique_candidates)))
 
-        prompt = (
-            f'What is the English meaning of the Butuanon word "{entry.butuanon}"?'
-            if quiz_type == "but-en"
-            else f'What is the Butuanon word for the English term "{entry.english}"?'
-        )
+            options = [correct_answer] + distractors
+            random.shuffle(options)
+
+            prompt = (
+                f'What is the English meaning of the Butuanon word "{entry.butuanon}"?'
+                if quiz_type == "but-en"
+                else f'What is the Butuanon word for the English term "{entry.english}"?'
+            )
 
         questions.append(QuizQuestion(
-            butuanonWord=entry.butuanon,
+            butuanonWord=correct_answer if quiz_type == "pronounce" else entry.butuanon,
             correctAnswer=correct_answer,
             options=options,
             type=quiz_type,
-            prompt=prompt
+            prompt=prompt,
+            audio=entry.audio_url
         ))
 
     return questions
+
+
+# 5. Speech Pronunciation Evaluation
+class PronunciationResponse(BaseModel):
+    score: int
+    isCorrect: bool
+    feedback: str
+    transcript: str
+
+@router.post("/quiz/pronounce", response_model=PronunciationResponse)
+async def evaluate_user_pronunciation(
+    word: str = Form(...),
+    audio: UploadFile = File(...)
+):
+    """
+    Endpoint that accepts an audio recording of a user's speech
+    and evaluates it using Gemini API for pronunciation correctness.
+    """
+    if not audio:
+        raise HTTPException(status_code=400, detail="No audio file provided")
+    
+    # Read audio bytes
+    audio_bytes = await audio.read()
+    
+    # Determine mime type from audio file metadata or default to webm
+    mime_type = audio.content_type or "audio/webm"
+    
+    # Evaluate pronunciation
+    evaluation = evaluate_pronunciation(audio_bytes, mime_type, word)
+    
+    return PronunciationResponse(
+        score=evaluation.get("score", 0),
+        isCorrect=evaluation.get("isCorrect", False),
+        feedback=evaluation.get("feedback", "No feedback generated."),
+        transcript=evaluation.get("transcript", "")
+    )
+

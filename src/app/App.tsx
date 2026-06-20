@@ -7,9 +7,10 @@ import { TranslatePage } from "./components/TranslatePage";
 import { AboutPage } from "./components/AboutPage";
 import { QuizPage } from "./components/QuizPage";
 import { AuthModal } from "./components/AuthModal";
+import { AdminPage } from "./components/AdminPage";
 import "../styles/fonts.css";
 
-type Page = "home" | "dictionary" | "translate" | "quiz" | "about";
+type Page = "home" | "dictionary" | "translate" | "quiz" | "about" | "admin";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
@@ -18,6 +19,16 @@ export default function App() {
 
   // Load user session on mount
   useEffect(() => {
+    const guest = localStorage.getItem("guest_user");
+    if (guest) {
+      try {
+        setUser(JSON.parse(guest));
+        return;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
     const token = localStorage.getItem("auth_token");
     if (token) {
       fetch("http://localhost:8000/api/auth/me", {
@@ -47,6 +58,7 @@ export default function App() {
   }, []);
 
   const handleLoginSuccess = (userData: any, token: string) => {
+    localStorage.removeItem("guest_user");
     setUser(userData);
     localStorage.setItem("auth_token", token);
     localStorage.setItem("auth_user", JSON.stringify(userData));
@@ -56,15 +68,27 @@ export default function App() {
     setUser(null);
     localStorage.removeItem("auth_token");
     localStorage.removeItem("auth_user");
+    localStorage.removeItem("guest_user");
     navigate("home");
   };
 
   const handleUpdateUserXp = (points: number) => {
-    setUser((u: any) => u ? { ...u, xp_points: u.xp_points + points } : null);
+    setUser((u: any) => {
+      if (!u) return null;
+      const updated = { ...u, xp_points: u.xp_points + points };
+      if (u.is_guest) {
+        localStorage.setItem("guest_user", JSON.stringify(updated));
+      }
+      return updated;
+    });
   };
 
   function navigate(page: string) {
-    setCurrentPage(page as Page);
+    if (page === "admin" && !user?.isAdmin) {
+      setCurrentPage("home");
+    } else {
+      setCurrentPage(page as Page);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -90,6 +114,13 @@ export default function App() {
           />
         )}
         {currentPage === "about" && <AboutPage />}
+        {currentPage === "admin" && (
+          user?.isAdmin ? (
+            <AdminPage user={user} />
+          ) : (
+            <HomePage onNavigate={navigate} />
+          )
+        )}
       </main>
 
       <Footer />

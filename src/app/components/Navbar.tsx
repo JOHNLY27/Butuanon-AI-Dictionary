@@ -20,6 +20,10 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
     { id: "about", label: "About" },
   ];
 
+  if (user?.isAdmin) {
+    links.push({ id: "admin", label: "Admin Panel" });
+  }
+
   return (
     <nav
       style={{ backgroundColor: "#1C2B4A" }}
@@ -121,6 +125,8 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
           <button
             className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle navigation menu"
+            title="Toggle navigation menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>

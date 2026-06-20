@@ -6,28 +6,58 @@ interface HomePageProps {
 }
 
 const wordOfTheDay = {
-  butuanon: "Maayong buntag",
+  butuanon: "Madiyaw nga hinaat",
   english: "Good morning",
   partOfSpeech: "phrase",
-  pronunciation: "mah-AH-yong BOON-tag",
-  example: "Maayong buntag, amigo! — Good morning, friend!",
+  pronunciation: "mah-dee-YAWNG hee-nah-AT",
+  example: "Madiyaw nga hinaat, kaiban! — Good morning, friend!",
 };
 
 const featuredWords = [
   { butuanon: "Daga", english: "Land / Earth", pos: "noun" },
   { butuanon: "Gugma", english: "Love", pos: "noun" },
   { butuanon: "Tubig", english: "Water", pos: "noun" },
-  { butuanon: "Adlaw", english: "Sun / Day", pos: "noun" },
+  { butuanon: "Suwang", english: "Sun", pos: "noun" },
   { butuanon: "Balay", english: "House / Home", pos: "noun" },
   { butuanon: "Tawo", english: "Person / People", pos: "noun" },
 ];
 
 function speakText(text: string) {
-  if ("speechSynthesis" in window) {
+  if (!("speechSynthesis" in window)) return;
+
+  // Cancel any active speech
+  window.speechSynthesis.cancel();
+
+  const speak = () => {
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = "fil-PH";
-    utt.rate = 0.85;
+    utt.rate = 0.78; // Slowed down for clear articulation, easy for users to mimic
+
+    // Search and select neural/premium Filipino/Tagalog voices
+    const voices = window.speechSynthesis.getVoices();
+    const isTargetLang = (voiceLang: string) => {
+      const vl = voiceLang.toLowerCase();
+      return vl.startsWith("fil") || vl.startsWith("tl");
+    };
+
+    const targetVoices = voices.filter(v => isTargetLang(v.lang));
+    if (targetVoices.length > 0) {
+      const premiumVoice = targetVoices.find(v => {
+        const name = v.name.toLowerCase();
+        return name.includes("natural") || name.includes("google") || name.includes("neural") || name.includes("premium");
+      });
+      utt.voice = premiumVoice || targetVoices[0];
+    }
     window.speechSynthesis.speak(utt);
+  };
+
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      speak();
+      window.speechSynthesis.onvoiceschanged = null;
+    };
+  } else {
+    speak();
   }
 }
 
@@ -167,7 +197,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </form>
           <div className="flex flex-wrap justify-center gap-2 mt-6">
-            {["Maayong buntag", "Gugma", "Daga", "Balay"].map((word) => (
+            {["Madiyaw nga hinaat", "Gugma", "Daga", "Balay"].map((word) => (
               <button
                 key={word}
                 onClick={() => { setSearchQuery(word); onNavigate("dictionary"); }}

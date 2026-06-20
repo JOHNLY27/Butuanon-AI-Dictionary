@@ -9,13 +9,13 @@ type VerifiedTag = "native-speaker" | "academic" | "community" | "pending" | nul
 export const dictionaryEntries = [
   {
     id: 1,
-    butuanon: "Adlaw",
-    english: "Sun; Day",
+    butuanon: "Suwang",
+    english: "Sun",
     pos: "noun",
-    pronunciation: "AD-law",
-    definition: "The celestial body that provides light and warmth; also used to refer to a full day.",
-    exampleButuanon: "Mainit ang adlaw karon.",
-    exampleEnglish: "The sun is hot today.",
+    pronunciation: "soo-WANG",
+    definition: "The star around which the earth orbits; the sun.",
+    exampleButuanon: "Aslag ug mainit ang suwang kuman.",
+    exampleEnglish: "The sun is big and hot now.",
     verified: "native-speaker" as VerifiedTag,
     rating: 5,
   },
@@ -38,19 +38,19 @@ export const dictionaryEntries = [
     pos: "noun",
     pronunciation: "BAH-lay",
     definition: "A structure serving as a dwelling place; the place where one lives.",
-    exampleButuanon: "Dako ang among balay sa bukid.",
+    exampleButuanon: "Aslag ang among balay sa bukid.",
     exampleEnglish: "Our house in the mountains is big.",
     verified: "native-speaker" as VerifiedTag,
     rating: 5,
   },
   {
     id: 4,
-    butuanon: "Buntag",
+    butuanon: "Hinaat",
     english: "Morning",
     pos: "noun",
-    pronunciation: "BOON-tag",
+    pronunciation: "hee-nah-AT",
     definition: "The period of time from sunrise to noon.",
-    exampleButuanon: "Maayo ang buntag diri sa Butuan.",
+    exampleButuanon: "Madiyaw ang hinaat disani sa Butuan.",
     exampleEnglish: "The morning is beautiful here in Butuan.",
     verified: "academic" as VerifiedTag,
     rating: 5,
@@ -62,8 +62,8 @@ export const dictionaryEntries = [
     pos: "noun",
     pronunciation: "DAH-gah",
     definition: "The solid surface of the earth; territory or homeland.",
-    exampleButuanon: "Ang daga sa Butuan maayo ug tabunok.",
-    exampleEnglish: "The land in Butuan is good and fertile.",
+    exampleButuanon: "Ang daga hong Butuan madiyaw ug tabunok.",
+    exampleEnglish: "The land of Butuan is good and fertile.",
     verified: "native-speaker" as VerifiedTag,
     rating: 5,
   },
@@ -74,7 +74,7 @@ export const dictionaryEntries = [
     pos: "noun",
     pronunciation: "GOOG-mah",
     definition: "A deep feeling of affection and care for another person or thing.",
-    exampleButuanon: "Dako ang akong gugma sa akong pamilya.",
+    exampleButuanon: "Aslag ang akong gugma hong akong pamilya.",
     exampleEnglish: "My love for my family is great.",
     verified: "academic" as VerifiedTag,
     rating: 5,
@@ -86,8 +86,8 @@ export const dictionaryEntries = [
     pos: "noun",
     pronunciation: "KAH-hoy",
     definition: "A tall plant with a trunk; also refers to timber or wood material.",
-    exampleButuanon: "Ang kahoy sa bukid taas kaayo.",
-    exampleEnglish: "The trees in the mountains are very tall.",
+    exampleButuanon: "Ang kahoy sa bukid taas.",
+    exampleEnglish: "The tree in the mountain is tall.",
     verified: "community" as VerifiedTag,
     rating: 4,
   },
@@ -105,12 +105,12 @@ export const dictionaryEntries = [
   },
   {
     id: 9,
-    butuanon: "Maayong buntag",
+    butuanon: "Madiyaw nga hinaat",
     english: "Good morning",
     pos: "phrase",
-    pronunciation: "mah-AH-yong BOON-tag",
+    pronunciation: "mah-dee-YAWNG hee-nah-AT",
     definition: "A greeting used in the morning hours, expressing good wishes.",
-    exampleButuanon: "Maayong buntag, amigo! Kumusta ka?",
+    exampleButuanon: "Madiyaw nga hinaat, kaiban! Kumusta ka?",
     exampleEnglish: "Good morning, friend! How are you?",
     verified: "native-speaker" as VerifiedTag,
     rating: 5,
@@ -134,7 +134,7 @@ export const dictionaryEntries = [
     pos: "noun",
     pronunciation: "TAH-wo",
     definition: "A human being; an individual member of the human species.",
-    exampleButuanon: "Maayong tawo si Juan.",
+    exampleButuanon: "Madiyaw nga tawo si Juan.",
     exampleEnglish: "Juan is a good person.",
     verified: "native-speaker" as VerifiedTag,
     rating: 5,
@@ -146,8 +146,8 @@ export const dictionaryEntries = [
     pos: "noun",
     pronunciation: "TOO-big",
     definition: "A clear, colorless liquid that forms rivers, seas, and rain; essential for life.",
-    exampleButuanon: "Coldog ang tubig sa suba.",
-    exampleEnglish: "The water in the river is cold.",
+    exampleButuanon: "Bugnaw ang tubig hong suba.",
+    exampleEnglish: "The water of the river is cold.",
     verified: "community" as VerifiedTag,
     rating: 4,
   },
@@ -211,11 +211,41 @@ function VerifiedBadge({ tag, rating }: { tag: VerifiedTag; rating: number }) {
 }
 
 function speakText(text: string) {
-  if ("speechSynthesis" in window) {
+  if (!("speechSynthesis" in window)) return;
+
+  // Cancel any active speech
+  window.speechSynthesis.cancel();
+
+  const speak = () => {
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = "fil-PH";
-    utt.rate = 0.85;
+    utt.rate = 0.78; // Slowed down for clear articulation, easy for users to mimic
+
+    // Search and select neural/premium Filipino/Tagalog voices
+    const voices = window.speechSynthesis.getVoices();
+    const isTargetLang = (voiceLang: string) => {
+      const vl = voiceLang.toLowerCase();
+      return vl.startsWith("fil") || vl.startsWith("tl");
+    };
+
+    const targetVoices = voices.filter(v => isTargetLang(v.lang));
+    if (targetVoices.length > 0) {
+      const premiumVoice = targetVoices.find(v => {
+        const name = v.name.toLowerCase();
+        return name.includes("natural") || name.includes("google") || name.includes("neural") || name.includes("premium");
+      });
+      utt.voice = premiumVoice || targetVoices[0];
+    }
     window.speechSynthesis.speak(utt);
+  };
+
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      speak();
+      window.speechSynthesis.onvoiceschanged = null;
+    };
+  } else {
+    speak();
   }
 }
 
@@ -472,8 +502,16 @@ export function DictionaryPage() {
                   }}
                   className="rounded-2xl border overflow-hidden transition-all"
                 >
-                  <button
-                    className="w-full text-left p-5 flex items-center gap-4 hover:bg-[#F7F2EB]/50 transition-colors"
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setExpandedId(isExpanded ? null : entry.id);
+                      }
+                    }}
+                    className="w-full text-left p-5 flex items-center gap-4 hover:bg-[#F7F2EB]/50 transition-colors cursor-pointer outline-none"
                     onClick={() => setExpandedId(isExpanded ? null : entry.id)}
                   >
                     <div className="flex-1 min-w-0">
@@ -519,7 +557,7 @@ export function DictionaryPage() {
                         )}
                       </div>
                     </div>
-                  </button>
+                  </div>
 
                   {isExpanded && (
                     <div
@@ -603,7 +641,6 @@ export function DictionaryPage() {
         onClose={() => setIsModalOpen(false)}
         onSubmitSuccess={() => {
           setIsModalOpen(false);
-          loadContributions();
         }}
       />
     </div>

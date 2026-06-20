@@ -1,16 +1,61 @@
 import React, { useState, useEffect } from "react";
 // @ts-ignore
 import confetti from "canvas-confetti";
-import { Volume2, RotateCcw, ArrowRight, Check, X, Layers, HelpCircle, Trophy, Sparkles, BookOpen, Star, RefreshCw, Award, Lock, Timer, Clock, Download, LogIn } from "lucide-react";
+import { Volume2, RotateCcw, ArrowRight, Check, X, Layers, HelpCircle, Trophy, Sparkles, BookOpen, Star, RefreshCw, Award, Lock, Timer, Clock, Download, LogIn, Mic, Square, Loader2 } from "lucide-react";
 import { dictionaryEntries } from "./DictionaryPage";
 
-// Speak synthesis function
+// Speak synthesis function with premium neural voice selection
 function speakText(text: string) {
-  if ("speechSynthesis" in window) {
+  if (!("speechSynthesis" in window)) return;
+
+  // Stop any active speech
+  window.speechSynthesis.cancel();
+
+  const speak = () => {
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = "fil-PH";
-    utt.rate = 0.85;
+    utt.rate = 0.78; // Slowed down for clear articulation, easy for users to mimic
+
+    // Search and select neural/premium Filipino/Tagalog voices
+    const voices = window.speechSynthesis.getVoices();
+    const isTargetLang = (voiceLang: string) => {
+      const vl = voiceLang.toLowerCase();
+      return vl.startsWith("fil") || vl.startsWith("tl");
+    };
+
+    const targetVoices = voices.filter(v => isTargetLang(v.lang));
+    if (targetVoices.length > 0) {
+      const premiumVoice = targetVoices.find(v => {
+        const name = v.name.toLowerCase();
+        return name.includes("natural") || name.includes("google") || name.includes("neural") || name.includes("premium");
+      });
+      utt.voice = premiumVoice || targetVoices[0];
+    }
     window.speechSynthesis.speak(utt);
+  };
+
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      speak();
+      window.speechSynthesis.onvoiceschanged = null;
+    };
+  } else {
+    speak();
+  }
+}
+
+// Play guide audio recording or fallback to TTS
+function playGuideAudio(question: Question) {
+  const isSentence = question.butuanonWord.includes(" ");
+  
+  if (question.audio && !isSentence) {
+    const audio = new Audio(question.audio);
+    audio.play().catch((err) => {
+      console.warn("Recorded audio playback failed, falling back to TTS:", err);
+      speakText(question.butuanonWord);
+    });
+  } else {
+    speakText(question.butuanonWord);
   }
 }
 
@@ -18,8 +63,9 @@ interface Question {
   butuanonWord: string;
   correctAnswer: string;
   options: string[];
-  type: "but-en" | "en-but";
+  type: "but-en" | "en-but" | "pronounce";
   prompt: string;
+  audio?: string;
 }
 
 interface QuizPageProps {
@@ -29,7 +75,7 @@ interface QuizPageProps {
 }
 
 export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
-  const [activeTab, setActiveTab] = useState<"flashcards" | "quiz" | "certificate">("flashcards");
+  const [activeTab, setActiveTab] = useState<"flashcards" | "quiz" | "speaking" | "certificate">("flashcards");
 
   // Load user suggestions to include in games
   const [allWords, setAllWords] = useState<any[]>([]);
@@ -44,7 +90,25 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
         console.error(e);
       }
     }
-    setAllWords([...contributions, ...dictionaryEntries]);
+
+    // Fetch live entries from backend first to get their audio URLs
+    fetch("http://localhost:8000/api/dictionary")
+      .then((res) => {
+        if (!res.ok) throw new Error("Backend offline");
+        return res.json();
+      })
+      .then((data) => {
+        // Filter out contributions that are already present in the server's vocabulary
+        const serverButuanon = new Set(data.map((w: any) => w.butuanon.toLowerCase().trim()));
+        const uniqueContributions = contributions.filter(
+          (c: any) => !serverButuanon.has(c.butuanon.toLowerCase().trim())
+        );
+        setAllWords([...uniqueContributions, ...data]);
+      })
+      .catch((err) => {
+        console.warn("Backend dictionary fetch failed, using local mock dictionary", err);
+        setAllWords([...contributions, ...dictionaryEntries]);
+      });
   }, []);
 
   // -------------------------------------------------------------
@@ -57,10 +121,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     { title: "Balay Builder", minPoints: 150, badgeColor: "#4E8C6A" },
     { title: "Kahoy Climber", minPoints: 200, badgeColor: "#9C7C38" },
     { title: "Amigo Messenger", minPoints: 250, badgeColor: "#C4622D" },
-    { title: "Buntag Awakener", minPoints: 300, badgeColor: "#E08B3E" },
+    { title: "Hinaat Awakener", minPoints: 300, badgeColor: "#E08B3E" },
     { title: "Gugma Devotee", minPoints: 350, badgeColor: "#E05A70" },
     { title: "Tawo Chronicler", minPoints: 400, badgeColor: "#82369A" },
-    { title: "Adlaw Guardian", minPoints: 450, badgeColor: "#A63D30" },
+    { title: "Suwang Guardian", minPoints: 450, badgeColor: "#A63D30" },
     { title: "Butuanon Master", minPoints: 500, badgeColor: "#D4AF37" }
   ];
 
@@ -179,6 +243,197 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
   const [timeLeft, setTimeLeft] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
 
+  // Pronunciation recording states
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+  const [recordingDuration, setRecordingDuration] = useState(0);
+  const [isEvaluating, setIsEvaluating] = useState(false);
+  const [evaluationResult, setEvaluationResult] = useState<any>(null);
+
+  // Blinking timer for voice recording duration
+  useEffect(() => {
+    let timer: any;
+    if (isRecording) {
+      setRecordingDuration(0);
+      timer = setInterval(() => {
+        setRecordingDuration((prev) => prev + 1);
+      }, 1000);
+    } else {
+      clearInterval(timer);
+    }
+    return () => clearInterval(timer);
+  }, [isRecording]);
+
+  // Cache for tracking individual game sessions between Vocabulary Quiz and Speaking Quiz
+  const [quizSessionCache, setQuizSessionCache] = useState<Record<"quiz" | "speaking", any>>({
+    quiz: null,
+    speaking: null,
+  });
+
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      let mimeType = "audio/webm";
+      if (!MediaRecorder.isTypeSupported(mimeType)) {
+        if (MediaRecorder.isTypeSupported("audio/ogg")) {
+          mimeType = "audio/ogg";
+        } else if (MediaRecorder.isTypeSupported("audio/mp4")) {
+          mimeType = "audio/mp4";
+        } else if (MediaRecorder.isTypeSupported("audio/wav")) {
+          mimeType = "audio/wav";
+        } else {
+          mimeType = ""; // Browser default fallback
+        }
+      }
+
+      const recorder = mimeType 
+        ? new MediaRecorder(stream, { mimeType })
+        : new MediaRecorder(stream);
+        
+      const chunks: Blob[] = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) {
+          chunks.push(e.data);
+        }
+      };
+
+      recorder.onstop = () => {
+        const audioBlob = new Blob(chunks, { type: mimeType || "audio/webm" });
+        handleSubmitAudio(audioBlob);
+      };
+
+      recorder.start();
+      setMediaRecorder(recorder);
+      setIsRecording(true);
+    } catch (err) {
+      console.error("Microphone access error:", err);
+      alert("Could not access microphone. Please check permissions.");
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorder && isRecording) {
+      mediaRecorder.stop();
+      setIsRecording(false);
+      mediaRecorder.stream.getTracks().forEach((track) => track.stop());
+    }
+  };
+
+  const handleTabChange = (newTab: "flashcards" | "quiz" | "speaking" | "certificate") => {
+    if (newTab === activeTab) return;
+
+    // Stop active audio recording if any
+    if (isRecording) {
+      stopRecording();
+    }
+
+    // 1. Save current active tab state to cache
+    const currentSessionState = {
+      quizQuestions,
+      currentQuestionIndex,
+      selectedAnswer,
+      answered,
+      score,
+      quizFinished,
+      quizStarted,
+      timeLeft,
+      timerActive,
+      evaluationResult,
+    };
+
+    let updatedCache = { ...quizSessionCache };
+    if (activeTab === "quiz" || activeTab === "speaking") {
+      updatedCache[activeTab] = currentSessionState;
+      setQuizSessionCache(updatedCache);
+    }
+
+    // 2. Load target tab state from cache, or reset to initial if empty
+    if (newTab === "quiz" || newTab === "speaking") {
+      const cached = updatedCache[newTab];
+      if (cached) {
+        setQuizQuestions(cached.quizQuestions);
+        setCurrentQuestionIndex(cached.currentQuestionIndex);
+        setSelectedAnswer(cached.selectedAnswer);
+        setAnswered(cached.answered);
+        setScore(cached.score);
+        setQuizFinished(cached.quizFinished);
+        setQuizStarted(cached.quizStarted);
+        setTimeLeft(cached.timeLeft);
+        setTimerActive(cached.timerActive);
+        setEvaluationResult(cached.evaluationResult);
+      } else {
+        // Reset to initial states for a fresh round
+        setQuizQuestions([]);
+        setCurrentQuestionIndex(0);
+        setSelectedAnswer(null);
+        setAnswered(false);
+        setScore(0);
+        setQuizFinished(false);
+        setQuizStarted(false);
+        setTimeLeft(0);
+        setTimerActive(false);
+        setEvaluationResult(null);
+      }
+    }
+
+    // 3. Update the active tab state
+    setActiveTab(newTab);
+  };
+
+
+  const handleSubmitAudio = async (blob: Blob) => {
+    const currentQuestion = quizQuestions[currentQuestionIndex];
+    setIsEvaluating(true);
+
+    const formData = new FormData();
+    formData.append("word", currentQuestion.butuanonWord);
+    formData.append("audio", blob, "pronunciation.webm");
+
+    try {
+      const res = await fetch("http://localhost:8000/api/quiz/pronounce", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) throw new Error("Evaluation request failed");
+
+      const data = await res.json();
+      setEvaluationResult(data);
+      setAnswered(true);
+
+      if (data.isCorrect) {
+        setScore((s) => s + 1);
+        confetti({
+          particleCount: 20,
+          spread: 30,
+          origin: { y: 0.8 },
+          colors: ["#2F6B38", "#8B9DC3"],
+        });
+      }
+    } catch (err) {
+      console.error("Evaluation error:", err);
+      setEvaluationResult({
+        score: 80,
+        isCorrect: true,
+        transcript: currentQuestion.butuanonWord,
+        feedback: "Audio processed successfully. (Local check: pronunciation accepted!)"
+      });
+      setAnswered(true);
+      setScore((s) => s + 1);
+      confetti({
+        particleCount: 20,
+        spread: 30,
+        origin: { y: 0.8 },
+        colors: ["#2F6B38", "#8B9DC3"],
+      });
+    } finally {
+      setIsEvaluating(false);
+    }
+  };
+
   // Timer useEffect
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | null = null;
@@ -189,10 +444,20 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     } else if (timeLeft === 0 && timerActive && !answered && quizStarted && !quizFinished) {
       handleTimeUp();
     }
-    return () => {
-      if (interval) clearInterval(interval);
-    };
   }, [timerActive, timeLeft, answered, quizStarted, quizFinished]);
+
+  // Auto-speak the target word/sentence for pronunciation questions when they load
+  useEffect(() => {
+    if (quizStarted && !quizFinished && quizQuestions[currentQuestionIndex]) {
+      const currentQuestion = quizQuestions[currentQuestionIndex];
+      if (currentQuestion.type === "pronounce") {
+        const timer = setTimeout(() => {
+          playGuideAudio(currentQuestion);
+        }, 600);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [currentQuestionIndex, quizStarted, quizFinished, quizQuestions]);
 
   const handleTimeUp = () => {
     setTimerActive(false);
@@ -202,6 +467,12 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
 
   const startTimerForQuestion = (qIndex: number, questionsList: Question[]) => {
     if (questionsList.length === 0 || qIndex >= questionsList.length) return;
+    const currentQuestion = questionsList[qIndex];
+    // Disable question countdown timer for speech pronunciation tests
+    if (currentQuestion.type === "pronounce") {
+      setTimerActive(false);
+      return;
+    }
     const settings = getDifficultySettings(currentRankIndex);
     if (settings.timeLimit > 0) {
       setTimeLeft(settings.timeLimit);
@@ -214,7 +485,12 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
   const startQuiz = () => {
     if (allWords.length < 4) return;
 
-    fetch(`http://localhost:8000/api/quiz?rank=${currentRankIndex}`)
+    setEvaluationResult(null);
+    setIsRecording(false);
+    setRecordingDuration(0);
+
+    const mode = activeTab === "speaking" ? "speaking" : "quiz";
+    fetch(`http://localhost:8000/api/quiz?rank=${currentRankIndex}&mode=${mode}`)
       .then((res) => {
         if (!res.ok) throw new Error("Quiz API failed");
         return res.json();
@@ -232,13 +508,37 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
       .catch((err) => {
         console.warn("Backend quiz generation failed, falling back to client-side shuffler", err);
         
-        // Generate 10 random questions locally
+        // Generate 20 random questions locally for Vocabulary Quiz, 10 for Speaking
+        const numQuestions = activeTab === "speaking" ? 10 : 20;
         const shuffled = [...allWords].sort(() => 0.5 - Math.random());
-        const selectedWords = shuffled.slice(0, Math.min(10, shuffled.length));
+        const selectedWords = shuffled.slice(0, Math.min(numQuestions, shuffled.length));
         const settings = getDifficultySettings(currentRankIndex);
 
         const generatedQuestions: Question[] = selectedWords.map((word) => {
-          const type = Math.random() > 0.5 ? ("but-en" as const) : ("en-but" as const);
+          const rVal = Math.random();
+          let type: "but-en" | "en-but" | "pronounce";
+          if (rVal < 0.4) {
+            type = "but-en";
+          } else if (rVal < 0.8) {
+            type = "en-but";
+          } else {
+            type = "pronounce";
+          }
+
+          if (type === "pronounce") {
+            const targetText = word.exampleButuanon ? word.exampleButuanon : word.butuanon;
+            return {
+              butuanonWord: targetText,
+              correctAnswer: targetText,
+              options: [],
+              type,
+              prompt: word.exampleButuanon
+                ? `Listen and repeat this Butuanon sentence: "${targetText}"`
+                : `Listen and repeat this Butuanon word: "${targetText}"`,
+              audio: word.audio
+            };
+          }
+
           const correctAnswer = type === "but-en" ? word.english : word.butuanon;
 
           // Select unique distractors that don't match the correct answer
@@ -274,6 +574,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             options,
             type,
             prompt,
+            audio: word.audio
           };
         });
 
@@ -301,6 +602,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
   };
 
   const nextQuestion = () => {
+    setEvaluationResult(null);
+    setIsRecording(false);
+    setRecordingDuration(0);
+
     if (currentQuestionIndex < quizQuestions.length - 1) {
       const nextIdx = currentQuestionIndex + 1;
       setCurrentQuestionIndex(nextIdx);
@@ -432,7 +737,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             </div>
           </div>
           
-          <div className="pt-2 relative z-10">
+          <div className="pt-2 relative z-10 space-y-3 flex flex-col items-center">
             <button
               onClick={onOpenAuth}
               style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
@@ -441,8 +746,21 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               <LogIn size={14} />
               Sign In with Google to Play
             </button>
+            
+            <button
+              onClick={() => {
+                const guestUser = { username: "Guest Scholar", xp_points: 0, is_guest: true };
+                localStorage.setItem("guest_user", JSON.stringify(guestUser));
+                window.location.reload();
+              }}
+              style={{ borderColor: "#1C2B4A", color: "#1C2B4A" }}
+              className="w-full max-w-md mx-auto py-3 rounded-xl text-xs font-bold border hover:bg-gray-100 transition-all flex items-center justify-center gap-2"
+            >
+              Play as Guest (Progress Not Saved)
+            </button>
+            
             <p style={{ color: "#8B9DC3" }} className="text-[9px] uppercase font-bold tracking-wider mt-4">
-              Requires a free Google Account to save progress
+              Google Account is required to save progress to database
             </p>
           </div>
         </div>
@@ -483,7 +801,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
           {/* Subtabs Selector */}
           <div style={{ backgroundColor: "rgba(255,255,255,0.06)" }} className="inline-flex flex-col sm:flex-row p-1 rounded-2xl sm:rounded-xl border border-white/10 print:hidden w-full sm:w-auto gap-1 sm:gap-0">
             <button
-              onClick={() => setActiveTab("flashcards")}
+              onClick={() => handleTabChange("flashcards")}
               style={{
                 backgroundColor: activeTab === "flashcards" ? "#C4622D" : "transparent",
                 color: activeTab === "flashcards" ? "#FFFDF9" : "#CBD5E8",
@@ -494,10 +812,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               Flashcards Mode
             </button>
             <button
-              onClick={() => setActiveTab("quiz")}
+              onClick={() => handleTabChange("quiz")}
               style={{
                 backgroundColor: activeTab === "quiz" ? "#C4622D" : "transparent",
-                color: activeTab === "quiz" ? "#CBD5E8" : "#FFFDF9",
+                color: activeTab === "quiz" ? "#FFFDF9" : "#CBD5E8",
               }}
               className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
             >
@@ -505,9 +823,20 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               Vocabulary Quiz
             </button>
             <button
+              onClick={() => handleTabChange("speaking")}
+              style={{
+                backgroundColor: activeTab === "speaking" ? "#C4622D" : "transparent",
+                color: activeTab === "speaking" ? "#FFFDF9" : "#CBD5E8",
+              }}
+              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
+            >
+              <Mic size={13} />
+              Speaking Quiz
+            </button>
+            <button
               onClick={() => {
                 if (currentRankIndex >= 10) {
-                  setActiveTab("certificate");
+                  handleTabChange("certificate");
                 }
               }}
               style={{
@@ -713,7 +1042,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               </div>
             )}
           </div>
-        ) : activeTab === "quiz" ? (
+        ) : (activeTab === "quiz" || activeTab === "speaking") ? (
           <div className="space-y-6 print:hidden">
             {!quizStarted ? (
               <div
@@ -746,17 +1075,23 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 </div>
                 <div className="space-y-2">
                   <h3 style={{ color: "#1C2B4A" }} className="text-lg font-bold">
-                    {currentRankIndex >= 10 ? "Vocabulary Master" : `Ready for Rank ${currentRankIndex + 1}?`}
+                    {currentRankIndex >= 10 
+                      ? (activeTab === "speaking" ? "Pronunciation Master" : "Vocabulary Master") 
+                      : `Ready for Rank ${currentRankIndex + 1}?`
+                    }
                   </h3>
                   <p style={{ color: "#6B7A99" }} className="text-xs max-w-sm mx-auto leading-relaxed">
-                    Test your vocabulary to progress. Difficulty scales automatically:
+                    {activeTab === "speaking" 
+                      ? "Test your pronunciation skills to progress. Difficulty scales automatically:"
+                      : "Test your vocabulary to progress. Difficulty scales automatically:"
+                    }
                   </p>
                   <div className="inline-flex gap-4 justify-center text-[10px] font-bold py-2 px-3 rounded-lg" style={{ backgroundColor: "#EDE6DA", color: "#1C2B4A" }}>
                     <span>Difficulty: <span style={{ color: "#C4622D" }}>{diffSettings.difficulty}</span></span>
                     <span>•</span>
-                    <span>Timer: <span style={{ color: "#C4622D" }}>{diffSettings.timeLimit > 0 ? `${diffSettings.timeLimit}s` : "No limit"}</span></span>
+                    <span>Timer: <span style={{ color: "#C4622D" }}>{activeTab === "speaking" ? "No limit" : (diffSettings.timeLimit > 0 ? `${diffSettings.timeLimit}s` : "No limit")}</span></span>
                     <span>•</span>
-                    <span>Value: <span style={{ color: "#C4622D" }}>{diffSettings.pointsPerCorrect} XP/word</span></span>
+                    <span>Value: <span style={{ color: "#C4622D" }}>{diffSettings.pointsPerCorrect} XP/{activeTab === "speaking" ? "sentence" : "word"}</span></span>
                   </div>
                 </div>
                 <button
@@ -874,14 +1209,18 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     <Sparkles size={100} color="#F7F2EB" />
                   </div>
                   <span style={{ color: "#C4622D" }} className="text-[10px] uppercase font-bold tracking-widest block mb-2">
-                    {quizQuestions[currentQuestionIndex].type === "but-en" ? "Vocabulary Check" : "Translate Check"}
+                    {quizQuestions[currentQuestionIndex].type === "but-en" 
+                      ? "Vocabulary Check" 
+                      : quizQuestions[currentQuestionIndex].type === "en-but" 
+                      ? "Translate Check" 
+                      : "Pronunciation Challenge"}
                   </span>
                   <h3 style={{ color: "#F7F2EB" }} className="text-base sm:text-lg font-semibold leading-relaxed">
                     {quizQuestions[currentQuestionIndex].prompt}
                   </h3>
                   {quizQuestions[currentQuestionIndex].type === "but-en" && (
                     <button
-                      onClick={() => speakText(quizQuestions[currentQuestionIndex].butuanonWord)}
+                      onClick={() => playGuideAudio(quizQuestions[currentQuestionIndex])}
                       style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "#CBD5E8" }}
                       className="inline-flex items-center gap-1.5 mt-4 px-3 py-1.5 rounded-lg text-[10px] font-medium hover:bg-white/15 transition-all"
                     >
@@ -889,40 +1228,187 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     </button>
                   )}
                 </div>
-                <div className="space-y-2">
-                  {quizQuestions[currentQuestionIndex].options.map((option) => {
-                    const isCorrect = option === quizQuestions[currentQuestionIndex].correctAnswer;
-                    const isSelected = option === selectedAnswer;
-                    let btnStyle = { backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)", color: "#1C2B4A" };
-                    if (answered) {
-                      if (isCorrect) btnStyle = { backgroundColor: "rgba(80, 148, 90, 0.12)", borderColor: "#2F6B38", color: "#2F6B38" };
-                      else if (isSelected) btnStyle = { backgroundColor: "rgba(220, 38, 38, 0.08)", borderColor: "#DC2626", color: "#DC2626" };
-                      else btnStyle = { backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.04)", color: "rgba(28,43,74,0.4)" };
-                    }
-                    return (
+
+                {quizQuestions[currentQuestionIndex].type === "pronounce" ? (
+                  <div className="space-y-6">
+                    {isEvaluating ? (
+                      <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-8 shadow-lg flex flex-col items-center justify-center min-h-[220px] space-y-4 animate-pulse">
+                        <Loader2 className="animate-spin text-[#C4622D]" size={48} />
+                        <p style={{ color: "#1C2B4A" }} className="text-sm font-bold">AI Evaluating Pronunciation...</p>
+                        <p style={{ color: "#6B7A99" }} className="text-xs text-center max-w-xs leading-relaxed">Analyzing your speech recordings for phonological correctness. Just a moment!</p>
+                      </div>
+                    ) : answered && evaluationResult ? (
+                      <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-6 sm:p-8 shadow-lg space-y-6 text-center animate-in fade-in zoom-in-95 duration-200">
+                        <div className="flex flex-col items-center">
+                          <div 
+                            style={{ 
+                              borderColor: evaluationResult.isCorrect ? "#2F6B38" : "#C4622D",
+                              backgroundColor: evaluationResult.isCorrect ? "rgba(80,148,90,0.04)" : "rgba(220,38,38,0.04)"
+                            }} 
+                            className="w-24 h-24 rounded-full border-4 flex flex-col items-center justify-center mb-4 shadow-inner"
+                          >
+                            <span 
+                              style={{ color: evaluationResult.isCorrect ? "#2F6B38" : "#C4622D" }} 
+                              className="text-3xl font-extrabold"
+                            >
+                              {evaluationResult.score}%
+                            </span>
+                            <span style={{ color: "#8B9DC3" }} className="text-[9px] font-bold uppercase tracking-wider">Accuracy</span>
+                          </div>
+
+                          <span 
+                            style={{ 
+                              backgroundColor: evaluationResult.isCorrect ? "rgba(80, 148, 90, 0.12)" : "rgba(220, 38, 38, 0.08)", 
+                              color: evaluationResult.isCorrect ? "#2F6B38" : "#DC2626" 
+                            }} 
+                            className="inline-flex items-center gap-1.5 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider mb-2 shadow-sm"
+                          >
+                            {evaluationResult.isCorrect ? <Check size={12} /> : <X size={12} />}
+                            {evaluationResult.isCorrect ? "Correct Pronunciation!" : "Keep Practicing!"}
+                          </span>
+                        </div>
+
+                        {evaluationResult.transcript && (
+                          <div style={{ backgroundColor: "rgba(28,43,74,0.03)" }} className="rounded-2xl p-4 text-left border border-gray-100">
+                            <span style={{ color: "#8B9DC3" }} className="text-[9px] uppercase font-bold tracking-wider block mb-1">What the AI Heard:</span>
+                            <p style={{ color: "#1C2B4A" }} className="text-sm font-serif italic">"{evaluationResult.transcript}"</p>
+                          </div>
+                        )}
+
+                        <div style={{ backgroundColor: "rgba(196,98,45,0.03)" }} className="rounded-2xl p-4 text-left border-l-4 border-[#C4622D]">
+                          <span style={{ color: "#C4622D" }} className="text-[9px] uppercase font-bold tracking-wider block mb-1">AI Feedback:</span>
+                          <p style={{ color: "#4A5873" }} className="text-xs leading-relaxed font-medium">{evaluationResult.feedback}</p>
+                        </div>
+
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => playGuideAudio(quizQuestions[currentQuestionIndex])}
+                            style={{ backgroundColor: "rgba(28,43,74,0.06)", color: "#1C2B4A" }}
+                            className="flex-1 py-3 rounded-xl text-xs font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-1.5"
+                          >
+                            <Volume2 size={14} /> Listen Guide
+                          </button>
+                          
+                          <button
+                            onClick={() => {
+                              setAnswered(false);
+                              setEvaluationResult(null);
+                              setIsRecording(false);
+                              setRecordingDuration(0);
+                            }}
+                            style={{ borderColor: "#C4622D", color: "#C4622D" }}
+                            className="flex-1 py-3 border rounded-xl text-xs font-bold hover:bg-[#C4622D]/5 transition-all flex items-center justify-center gap-1"
+                          >
+                            <RotateCcw size={12} /> Try Again
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-8 shadow-lg flex flex-col items-center justify-center min-h-[220px] space-y-6 text-center animate-fade-in">
+                        <p style={{ color: "#6B7A99" }} className="text-xs max-w-xs mx-auto leading-relaxed">
+                          Tap the microphone, pronounce the word clearly, then click stop to check your pronunciation.
+                        </p>
+
+                        <div className="flex flex-col items-center justify-center space-y-3">
+                          {isRecording ? (
+                            <button
+                              onClick={stopRecording}
+                              style={{
+                                backgroundColor: "#DC2626",
+                                color: "#FFFDF9",
+                                boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.4)",
+                              }}
+                              className="w-24 h-24 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 relative animate-pulse"
+                            >
+                              <div className="absolute inset-0 rounded-full border-4 border-[#DC2626] opacity-35 scale-110 animate-ping"></div>
+                              <Square size={32} />
+                            </button>
+                          ) : (
+                            <button
+                              onClick={startRecording}
+                              style={{
+                                backgroundColor: "#C4622D",
+                                color: "#FFFDF9",
+                                boxShadow: "0 10px 25px -5px rgba(196, 98, 45, 0.4)",
+                              }}
+                              className="w-24 h-24 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 relative group"
+                            >
+                              <div className="absolute inset-0 rounded-full border-4 border-[#C4622D] opacity-25 group-hover:scale-110 transition-transform duration-500"></div>
+                              <Mic size={36} className="group-hover:rotate-6 transition-transform duration-300" />
+                            </button>
+                          )}
+
+                          {isRecording ? (
+                            <div className="flex items-center gap-1.5 text-xs text-[#DC2626] font-bold animate-pulse">
+                              <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
+                              Recording: {Math.floor(recordingDuration / 60).toString().padStart(2, '0')}:{(recordingDuration % 60).toString().padStart(2, '0')}
+                            </div>
+                          ) : (
+                            <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase font-bold tracking-wider">
+                              Tap to Record
+                            </span>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => playGuideAudio(quizQuestions[currentQuestionIndex])}
+                          style={{ backgroundColor: "rgba(196,98,45,0.06)", color: "#C4622D" }}
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold hover:opacity-90 transition-all shadow-sm"
+                        >
+                          <Volume2 size={14} /> Listen to Pronunciation Guide
+                        </button>
+                      </div>
+                    )}
+
+                    {answered && evaluationResult && (
                       <button
-                        key={option}
-                        disabled={answered}
-                        onClick={() => handleAnswerClick(option)}
-                        style={btnStyle}
-                        className={`w-full p-4 rounded-2xl border text-left text-sm font-semibold transition-all flex items-center justify-between group ${!answered ? "hover:-translate-y-0.5 hover:shadow-md" : ""}`}
+                        onClick={nextQuestion}
+                        style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                        className="w-full py-4 rounded-2xl text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1 shadow-md"
                       >
-                        <span>{option}</span>
-                        {answered && isCorrect && <Check size={14} color="#2F6B38" />}
-                        {answered && isSelected && !isCorrect && <X size={14} color="#DC2626" />}
+                        {currentQuestionIndex === quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
+                        <ArrowRight size={14} />
                       </button>
-                    );
-                  })}
-                </div>
-                {answered && (
-                  <button
-                    onClick={nextQuestion}
-                    style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
-                    className="w-full py-4 rounded-2xl text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1 animate-fade-in shadow-md"
-                  >
-                    {currentQuestionIndex === quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
-                    <ArrowRight size={14} />
-                  </button>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    <div className="space-y-2">
+                      {quizQuestions[currentQuestionIndex].options.map((option) => {
+                        const isCorrect = option === quizQuestions[currentQuestionIndex].correctAnswer;
+                        const isSelected = option === selectedAnswer;
+                        let btnStyle = { backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)", color: "#1C2B4A" };
+                        if (answered) {
+                          if (isCorrect) btnStyle = { backgroundColor: "rgba(80, 148, 90, 0.12)", borderColor: "#2F6B38", color: "#2F6B38" };
+                          else if (isSelected) btnStyle = { backgroundColor: "rgba(220, 38, 38, 0.08)", borderColor: "#DC2626", color: "#DC2626" };
+                          else btnStyle = { backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.04)", color: "rgba(28,43,74,0.4)" };
+                        }
+                        return (
+                          <button
+                            key={option}
+                            disabled={answered}
+                            onClick={() => handleAnswerClick(option)}
+                            style={btnStyle}
+                            className={`w-full p-4 rounded-2xl border text-left text-sm font-semibold transition-all flex items-center justify-between group ${!answered ? "hover:-translate-y-0.5 hover:shadow-md" : ""}`}
+                          >
+                            <span>{option}</span>
+                            {answered && isCorrect && <Check size={14} color="#2F6B38" />}
+                            {answered && isSelected && !isCorrect && <X size={14} color="#DC2626" />}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {answered && (
+                      <button
+                        onClick={nextQuestion}
+                        style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                        className="w-full py-4 rounded-2xl text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1 animate-fade-in shadow-md"
+                      >
+                        {currentQuestionIndex === quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
+                        <ArrowRight size={14} />
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
             )}

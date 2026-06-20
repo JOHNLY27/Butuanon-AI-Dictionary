@@ -40,6 +40,21 @@ def get_current_user(authorization: Optional[str] = Header(None), db: Session = 
         )
     return user
 
+def is_user_admin(email: str) -> bool:
+    if not email:
+        return False
+    admin_list = [e.strip().lower() for e in settings.ADMIN_EMAILS.split(",") if e.strip()]
+    return email.lower() in admin_list
+
+def get_current_admin(user: User = Depends(get_current_user)) -> User:
+    if not is_user_admin(user.email):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied. Administrator privileges required."
+        )
+    return user
+
+
 @router.post("/google")
 async def google_auth(request: GoogleLoginRequest, db: Session = Depends(get_db)):
     # 1. Verify token with Google
@@ -106,7 +121,8 @@ async def google_auth(request: GoogleLoginRequest, db: Session = Depends(get_db)
             "username": user.username,
             "email": user.email,
             "profile_pic": user.profile_pic,
-            "xp_points": user.xp_points
+            "xp_points": user.xp_points,
+            "isAdmin": is_user_admin(user.email)
         }
     }
 
@@ -117,7 +133,8 @@ def get_me(user: User = Depends(get_current_user)):
         "username": user.username,
         "email": user.email,
         "profile_pic": user.profile_pic,
-        "xp_points": user.xp_points
+        "xp_points": user.xp_points,
+        "isAdmin": is_user_admin(user.email)
     }
 
 @router.post("/xp")
