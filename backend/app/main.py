@@ -17,15 +17,21 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configure CORS so Vite frontend (port 5173) can access endpoints
+# Configure CORS so Vite frontend can access endpoints
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
 
+import os
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS")
+if allowed_origins_env:
+    origins.extend([o.strip() for o in allowed_origins_env.split(",") if o.strip()])
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",  # Matches all Vercel deployment URLs
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
