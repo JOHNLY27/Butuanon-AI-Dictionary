@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowLeftRight, Volume2, Trash2, Clock, Sparkles } from "lucide-react";
+import { dictionaryEntries } from "./DictionaryPage";
+import { API_BASE_URL } from "../config";
 
 const MOCK_TRANSLATIONS: Record<string, string> = {
   "madiyaw nga hinaat": "Good morning",
@@ -157,6 +159,25 @@ function TranslatingAnimation({ direction }: { direction: "but-en" | "en-but" })
   );
 }
 
+function findAudioForButuanon(text: string, entries: any[]): string | null {
+  if (!text) return null;
+  const cleanQuery = text.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"'’]/g, "");
+  if (!cleanQuery) return null;
+
+  // 1. Try exact match (case-insensitive, preserving accents)
+  let match = entries.find(e => e.butuanon.trim().toLowerCase() === cleanQuery);
+  if (match && match.audio) return match.audio;
+
+  // 2. Try match after removing diacritics (accents)
+  const stripDiacritics = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const queryNoDiacritics = stripDiacritics(cleanQuery);
+  
+  match = entries.find(e => stripDiacritics(e.butuanon.trim().toLowerCase()) === queryNoDiacritics);
+  if (match && match.audio) return match.audio;
+
+  return null;
+}
+
 export function TranslatePage() {
   const [direction, setDirection] = useState<"but-en" | "en-but">("but-en");
   const [sourceText, setSourceText] = useState("");
@@ -164,6 +185,23 @@ export function TranslatePage() {
   const [loading, setLoading] = useState(false);
   const [playingSource, setPlayingSource] = useState(false);
   const [playingResult, setPlayingResult] = useState(false);
+  const [dictionary, setDictionary] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/dictionary`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Backend offline");
+        return res.json();
+      })
+      .then((data) => {
+        setDictionary(data);
+      })
+      .catch((err) => {
+        console.warn("TranslatePage: Backend connection failed, falling back to local dictionaryEntries.", err);
+        setDictionary(dictionaryEntries);
+      });
+  }, []);
+
   const [history, setHistory] = useState<Translation[]>([
     {
       id: 1,
@@ -195,7 +233,7 @@ export function TranslatePage() {
     if (!sourceText.trim()) return;
     setLoading(true);
 
-    fetch("http://localhost:8000/api/translate", {
+    fetch(`${API_BASE_URL}/api/translate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -245,12 +283,48 @@ export function TranslatePage() {
   }
 
   function handleSourceAudio() {
+    if (direction === "but-en") {
+      const audioUrl = findAudioForButuanon(sourceText, dictionary);
+      if (audioUrl) {
+        setPlayingSource(true);
+        const audio = new Audio(audioUrl);
+        audio.play()
+          .then(() => {
+            audio.onended = () => setPlayingSource(false);
+          })
+          .catch((err) => {
+            console.error("Source audio play error, falling back to TTS:", err);
+            speakText(sourceText, "fil-PH");
+            setTimeout(() => setPlayingSource(false), 1500);
+          });
+        return;
+      }
+    }
+
     setPlayingSource(true);
     speakText(sourceText, direction === "but-en" ? "fil-PH" : "en-US");
     setTimeout(() => setPlayingSource(false), 1500);
   }
 
   function handleResultAudio() {
+    if (direction === "en-but") {
+      const audioUrl = findAudioForButuanon(result, dictionary);
+      if (audioUrl) {
+        setPlayingResult(true);
+        const audio = new Audio(audioUrl);
+        audio.play()
+          .then(() => {
+            audio.onended = () => setPlayingResult(false);
+          })
+          .catch((err) => {
+            console.error("Result audio play error, falling back to TTS:", err);
+            speakText(result, "fil-PH");
+            setTimeout(() => setPlayingResult(false), 1500);
+          });
+        return;
+      }
+    }
+
     setPlayingResult(true);
     speakText(result, direction === "but-en" ? "en-US" : "fil-PH");
     setTimeout(() => setPlayingResult(false), 1500);

@@ -26,14 +26,21 @@ def get_translation_context(db: Session, text: str, direction: str) -> str:
                 clauses.append(DictionaryEntry.english.ilike(f"%{w}%"))
         
         if clauses:
-            related_entries = db.query(DictionaryEntry).filter(or_(*clauses)).limit(10).all()
+            try:
+                related_entries = db.query(DictionaryEntry).filter(or_(*clauses)).limit(10).all()
+            except Exception as e:
+                print(f"Database query error during translation context lookup: {e}")
+                related_entries = []
         
     # If query matched few words, fallback to general entries for formatting context
     if len(related_entries) < 3:
-        fallbacks = db.query(DictionaryEntry).limit(6).all()
-        for f in fallbacks:
-            if f not in related_entries:
-                related_entries.append(f)
+        try:
+            fallbacks = db.query(DictionaryEntry).limit(6).all()
+            for f in fallbacks:
+                if f not in related_entries:
+                    related_entries.append(f)
+        except Exception as e:
+            print(f"Database query error during fallback context lookup: {e}")
                 
     context_lines = []
     for entry in related_entries:
@@ -45,6 +52,7 @@ def get_translation_context(db: Session, text: str, direction: str) -> str:
             f"------------------------------------------------"
         )
     return "\n".join(context_lines)
+
 
 def db_dictionary_lookup(db: Session, text: str, direction: str) -> str:
     cleaned = text.strip().lower()
@@ -92,7 +100,12 @@ def db_dictionary_lookup(db: Session, text: str, direction: str) -> str:
         return text
 
     # Read all entries from database once for speed
-    all_entries = db.query(DictionaryEntry).all()
+    try:
+        all_entries = db.query(DictionaryEntry).all()
+    except Exception as e:
+        print(f"Database query error during fallback dictionary lookup: {e}")
+        all_entries = []
+
     
     EN_TO_BUT_MAP = {
         "friend": "kaiban", "friends": "kaiban",
@@ -244,6 +257,28 @@ def db_dictionary_lookup(db: Session, text: str, direction: str) -> str:
     return text
 
 def translate_text(db: Session, text: str, direction: str) -> str:
+    cleaned = text.strip()
+    if cleaned:
+        # Check if the text matches exactly in the dictionary database (highest priority)
+        try:
+            if direction == "but-en":
+                exact = db.query(DictionaryEntry).filter(DictionaryEntry.butuanon.ilike(cleaned)).first()
+                if exact:
+                    return exact.english
+            else:
+                exact = db.query(DictionaryEntry).filter(DictionaryEntry.english.ilike(cleaned)).first()
+                if exact:
+                    return exact.butuanon
+                
+                # Check if it matches any split meanings (e.g. if database is "Carabao / Cow" and input is "carabao")
+                all_entries = db.query(DictionaryEntry).all()
+                for entry in all_entries:
+                    meanings = [m.strip().lower() for m in re.split(r'[;,\/]', entry.english)]
+                    if cleaned.lower() in meanings:
+                        return entry.butuanon
+        except Exception as e:
+            print(f"Database query error during early exact match lookup: {e}")
+
     # Try using Gemini first if client is available
     if genai_client:
         try:
@@ -310,7 +345,7 @@ Translation Guidelines:
 2. DO NOT include any introductions ("Here is your translation:"), explanations, formatting, markdown bold/quotes, or warnings. Return the raw string only.
 """
             response = genai_client.models.generate_content(
-                model='gemini-2.0-flash',
+                model='gemini-2.5-flash',
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     temperature=0.1,
@@ -357,7 +392,7 @@ Instructions:
 6. Provide concise, friendly, and constructive feedback in English (max 2-3 sentences) detailing what they pronounced well and how they can improve. If the audio is silent or unintelligible, give a score of 0 and note this in the feedback.
 """
         response = genai_client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='gemini-2.5-flash',
             contents=[
                 types.Part.from_bytes(
                     data=audio_bytes,

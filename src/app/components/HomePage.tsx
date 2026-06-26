@@ -257,7 +257,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 <p style={{ color: "#6B7A99" }} className="text-xs mb-2 uppercase tracking-widest">
                   Butuanon
                 </p>
-                <h3 style={{ color: "#F7F2EB" }} className="text-5xl sm:text-6xl font-bold mb-3 leading-none">
+                <h3 style={{ color: "#F7F2EB" }} className="text-3xl sm:text-5xl font-bold mb-3 leading-tight">
                   {wordOfTheDay.butuanon}
                 </h3>
                 <p style={{ color: "#8B9DC3" }} className="text-sm mb-6">

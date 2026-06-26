@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 import { Volume2, RotateCcw, ArrowRight, Check, X, Layers, HelpCircle, Trophy, Sparkles, BookOpen, Star, RefreshCw, Award, Lock, Timer, Clock, Download, LogIn, Mic, Square, Loader2 } from "lucide-react";
 import { dictionaryEntries } from "./DictionaryPage";
+import { API_BASE_URL } from "../config";
 
 // Speak synthesis function with premium neural voice selection
 function speakText(text: string) {
@@ -92,7 +93,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     }
 
     // Fetch live entries from backend first to get their audio URLs
-    fetch("http://localhost:8000/api/dictionary")
+    fetch(`${API_BASE_URL}/api/dictionary`)
       .then((res) => {
         if (!res.ok) throw new Error("Backend offline");
         return res.json();
@@ -114,19 +115,41 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
   // -------------------------------------------------------------
   // GAMIFICATION & PROGRESSION DEFINITIONS
   // -------------------------------------------------------------
-  const RANKS = [
-    { title: "Lungsod Explorer", minPoints: 0, badgeColor: "#8B9DC3" },
-    { title: "Daga Scout", minPoints: 50, badgeColor: "#A05A2C" },
-    { title: "Tubig Navigator", minPoints: 100, badgeColor: "#3D7A9E" },
-    { title: "Balay Builder", minPoints: 150, badgeColor: "#4E8C6A" },
-    { title: "Kahoy Climber", minPoints: 200, badgeColor: "#9C7C38" },
-    { title: "Amigo Messenger", minPoints: 250, badgeColor: "#C4622D" },
-    { title: "Hinaat Awakener", minPoints: 300, badgeColor: "#E08B3E" },
-    { title: "Gugma Devotee", minPoints: 350, badgeColor: "#E05A70" },
-    { title: "Tawo Chronicler", minPoints: 400, badgeColor: "#82369A" },
-    { title: "Suwang Guardian", minPoints: 450, badgeColor: "#A63D30" },
-    { title: "Butuanon Master", minPoints: 500, badgeColor: "#D4AF37" }
+  const BASE_RANKS = [
+    { title: "Lungsod Explorer", badgeColor: "#8B9DC3" },     // 0-9
+    { title: "Daga Scout", badgeColor: "#A05A2C" },          // 10-19
+    { title: "Tubig Navigator", badgeColor: "#3D7A9E" },     // 20-29
+    { title: "Balay Builder", badgeColor: "#4E8C6A" },       // 30-39
+    { title: "Kahoy Climber", badgeColor: "#9C7C38" },       // 40-49
+    { title: "Amigo Messenger", badgeColor: "#C4622D" },     // 50-59
+    { title: "Hinaat Awakener", badgeColor: "#E08B3E" },     // 60-69
+    { title: "Gugma Devotee", badgeColor: "#E05A70" },       // 70-79
+    { title: "Tawo Chronicler", badgeColor: "#82369A" },     // 80-89
+    { title: "Suwang Guardian", badgeColor: "#A63D30" },     // 90-99
+    { title: "Butuanon Master", badgeColor: "#D4AF37" }       // 100
   ];
+
+  const getRankInfo = (rankIndex: number) => {
+    const idx = Math.min(10, Math.floor(rankIndex / 10));
+    const base = BASE_RANKS[idx];
+    if (rankIndex === 100) {
+      return {
+        title: "Butuanon Supreme Master",
+        minPoints: 5000,
+        badgeColor: "#D4AF37"
+      };
+    }
+    const level = (rankIndex % 10) + 1; // 1 to 10
+    const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+    const levelRoman = romanNumerals[level - 1] || level.toString();
+    return {
+      title: `${base.title} ${levelRoman}`,
+      minPoints: rankIndex * 50,
+      badgeColor: base.badgeColor
+    };
+  };
+
+  const RANKS = Array.from({ length: 101 }, (_, i) => getRankInfo(i));
 
   const [totalPoints, setTotalPoints] = useState(0);
   const [showLevelUpModal, setShowLevelUpModal] = useState(false);
@@ -155,18 +178,18 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
   }, [userName]);
 
   const getRankIndex = (points: number) => {
-    return Math.min(10, Math.floor(points / 50));
+    return Math.min(100, Math.floor(points / 50));
   };
 
   const currentRankIndex = getRankIndex(totalPoints);
   const currentRank = RANKS[currentRankIndex];
 
   const getDifficultySettings = (rankIdx: number) => {
-    if (rankIdx <= 3) {
+    if (rankIdx <= 30) {
       return { difficulty: "Easy", timeLimit: 0, pointsPerCorrect: 5, optionsCount: 4 };
-    } else if (rankIdx <= 6) {
+    } else if (rankIdx <= 60) {
       return { difficulty: "Medium", timeLimit: 15, pointsPerCorrect: 10, optionsCount: 4 };
-    } else if (rankIdx <= 9) {
+    } else if (rankIdx <= 90) {
       return { difficulty: "Hard", timeLimit: 10, pointsPerCorrect: 15, optionsCount: 5 };
     } else {
       return { difficulty: "Expert", timeLimit: 7, pointsPerCorrect: 20, optionsCount: 5 };
@@ -393,7 +416,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     formData.append("audio", blob, "pronunciation.webm");
 
     try {
-      const res = await fetch("http://localhost:8000/api/quiz/pronounce", {
+      const res = await fetch(`${API_BASE_URL}/api/quiz/pronounce`, {
         method: "POST",
         body: formData
       });
@@ -490,7 +513,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     setRecordingDuration(0);
 
     const mode = activeTab === "speaking" ? "speaking" : "quiz";
-    fetch(`http://localhost:8000/api/quiz?rank=${currentRankIndex}&mode=${mode}`)
+    fetch(`${API_BASE_URL}/api/quiz?rank=${currentRankIndex}&mode=${mode}`)
       .then((res) => {
         if (!res.ok) throw new Error("Quiz API failed");
         return res.json();
@@ -618,7 +641,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
 
       // Points calculation
       const settings = getDifficultySettings(currentRankIndex);
-      const sessionPoints = score * settings.pointsPerCorrect;
+      const multiplier = activeTab === "speaking" ? 3 : 1;
+      const sessionPoints = score * settings.pointsPerCorrect * multiplier;
       setPointsEarnedThisSession(sessionPoints);
 
       const newTotal = totalPoints + sessionPoints;
@@ -629,7 +653,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
 
       const token = localStorage.getItem("auth_token");
       if (token) {
-        fetch("http://localhost:8000/api/auth/xp", {
+        fetch(`${API_BASE_URL}/api/auth/xp`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -673,10 +697,32 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     }
   };
 
+  // Auto-advance to next question if answered and correct
+  useEffect(() => {
+    if (answered && !quizFinished && quizStarted && quizQuestions[currentQuestionIndex]) {
+      const currentQuestion = quizQuestions[currentQuestionIndex];
+      let isCorrect = false;
+
+      if (currentQuestion.type === "pronounce") {
+        isCorrect = evaluationResult?.isCorrect || false;
+      } else {
+        isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+      }
+
+      if (isCorrect) {
+        const timer = setTimeout(() => {
+          nextQuestion();
+        }, currentQuestion.type === "pronounce" ? 1800 : 1200);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [answered, evaluationResult, selectedAnswer, currentQuestionIndex, quizFinished, quizStarted]);
+
   if (!user) {
     return (
       <div style={{ backgroundColor: "#F7F2EB", minHeight: "80vh", fontFamily: "Poppins, sans-serif" }} className="flex flex-col items-center justify-center py-12 px-4 sm:px-6">
-        <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="max-w-xl w-full rounded-3xl border p-8 sm:p-12 text-center shadow-xl space-y-8 relative overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="max-w-xl w-full rounded-3xl border p-6 sm:p-12 text-center shadow-xl space-y-8 relative overflow-hidden animate-in fade-in zoom-in duration-300">
           {/* Decorative background lights */}
           <div className="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-[#C4622D]/10 blur-3xl"></div>
           <div className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-[#1C2B4A]/10 blur-3xl"></div>
@@ -721,8 +767,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <Check size={12} />
               </div>
               <div>
-                <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Level Up through 10 Ranks</h4>
-                <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Progress from "Lungsod Explorer" up to "Butuanon Master" at 500 XP.</p>
+                <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Level Up through 100 Ranks</h4>
+                <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Progress from "Lungsod Explorer I" up to "Butuanon Supreme Master" at 5000 XP.</p>
               </div>
             </div>
 
@@ -732,7 +778,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               </div>
               <div>
                 <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Earn an Official Certificate</h4>
-                <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Unlock a downloadable, printable Certificate of Mastery at Rank 10.</p>
+                <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Unlock a downloadable, printable Certificate of Mastery at Rank 100.</p>
               </div>
             </div>
           </div>
@@ -835,19 +881,19 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             </button>
             <button
               onClick={() => {
-                if (currentRankIndex >= 10) {
+                if (currentRankIndex >= 100) {
                   handleTabChange("certificate");
                 }
               }}
               style={{
                 backgroundColor: activeTab === "certificate" ? "#C4622D" : "transparent",
-                color: currentRankIndex >= 10 ? (activeTab === "certificate" ? "#FFFDF9" : "#CBD5E8") : "rgba(203,213,232,0.4)",
-                cursor: currentRankIndex >= 10 ? "pointer" : "not-allowed",
+                color: currentRankIndex >= 100 ? (activeTab === "certificate" ? "#FFFDF9" : "#CBD5E8") : "rgba(203,213,232,0.4)",
+                cursor: currentRankIndex >= 100 ? "pointer" : "not-allowed",
               }}
               className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
-              disabled={currentRankIndex < 10}
+              disabled={currentRankIndex < 100}
             >
-              {currentRankIndex >= 10 ? <Award size={13} /> : <Lock size={13} />}
+              {currentRankIndex >= 100 ? <Award size={13} /> : <Lock size={13} />}
               Certificate of Mastery
             </button>
           </div>
@@ -905,7 +951,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                         backgroundColor: "#FFFDF9",
                         borderColor: masteredIds.includes(currentCard.id) ? "#80945A" : "rgba(28,43,74,0.08)",
                       }}
-                      className="absolute inset-0 w-full h-full rounded-3xl border shadow-lg flex flex-col items-center justify-center p-8 backface-hidden"
+                      className="absolute inset-0 w-full h-full rounded-3xl border shadow-lg flex flex-col items-center justify-center p-6 sm:p-8 backface-hidden"
                     >
                       {masteredIds.includes(currentCard.id) && (
                         <span
@@ -918,7 +964,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                       <span style={{ color: "#8B9DC3" }} className="text-xs uppercase tracking-widest mb-2 font-medium">
                         Butuanon
                       </span>
-                      <h2 style={{ color: "#1C2B4A" }} className="text-4xl sm:text-5xl font-bold text-center mb-2 tracking-tight">
+                      <h2 style={{ color: "#1C2B4A" }} className="text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-2 tracking-tight leading-tight">
                         {currentCard.butuanon}
                       </h2>
                       <p style={{ color: "#6B7A99" }} className="text-sm mb-6 font-mono">
@@ -955,7 +1001,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                         backgroundColor: "#1C2B4A",
                         borderColor: "rgba(28,43,74,0.08)",
                       }}
-                      className="absolute inset-0 w-full h-full rounded-3xl border shadow-lg flex flex-col justify-between p-8 rotate-y-180 backface-hidden"
+                      className="absolute inset-0 w-full h-full rounded-3xl border shadow-lg flex flex-col justify-between p-6 sm:p-8 rotate-y-180 backface-hidden"
                     >
                       <div>
                         <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
@@ -1047,7 +1093,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             {!quizStarted ? (
               <div
                 style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
-                className="rounded-3xl border p-8 text-center shadow-lg space-y-6"
+                className="rounded-3xl border p-6 sm:p-8 text-center shadow-lg space-y-6"
               >
                 <div style={{ backgroundColor: "#1C2B4A" }} className="rounded-2xl p-5 text-white flex items-center gap-4 text-left shadow-md">
                   <div style={{ backgroundColor: currentRank.badgeColor }} className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg border border-white/20 flex-shrink-0">
@@ -1059,13 +1105,13 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     <div className="mt-2 space-y-1">
                       <div className="flex justify-between text-[9px] text-gray-300 font-semibold">
                         <span>XP Progress</span>
-                        <span>{totalPoints} / {currentRankIndex >= 10 ? "500+" : (currentRankIndex + 1) * 50} XP</span>
+                        <span>{totalPoints} / {currentRankIndex >= 100 ? "5000+" : (currentRankIndex + 1) * 50} XP</span>
                       </div>
                       <div className="w-full h-1.5 rounded-full overflow-hidden bg-white/25">
                         <div
                           style={{
                             backgroundColor: "#D4AF37",
-                            width: `${currentRankIndex >= 10 ? 100 : ((totalPoints % 50) / 50) * 100}%`,
+                            width: `${currentRankIndex >= 100 ? 100 : ((totalPoints % 50) / 50) * 100}%`,
                           }}
                           className="h-full rounded-full transition-all duration-500"
                         />
@@ -1075,7 +1121,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 </div>
                 <div className="space-y-2">
                   <h3 style={{ color: "#1C2B4A" }} className="text-lg font-bold">
-                    {currentRankIndex >= 10 
+                    {currentRankIndex >= 100 
                       ? (activeTab === "speaking" ? "Pronunciation Master" : "Vocabulary Master") 
                       : `Ready for Rank ${currentRankIndex + 1}?`
                     }
@@ -1105,7 +1151,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             ) : quizFinished ? (
               <div
                 style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
-                className="rounded-3xl border p-8 text-center shadow-lg"
+                className="rounded-3xl border p-6 sm:p-8 text-center shadow-lg"
               >
                 <div style={{ backgroundColor: "rgba(196,98,45,0.1)", color: "#C4622D" }} className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Trophy size={40} className="animate-bounce" />
@@ -1133,19 +1179,19 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <div className="max-w-xs mx-auto mb-6 text-left space-y-1.5">
                   <div className="flex justify-between text-[11px] font-bold text-gray-500">
                     <span>Rank Progression</span>
-                    <span>{totalPoints} / {currentRankIndex >= 10 ? "500+" : (currentRankIndex + 1) * 50} XP</span>
+                    <span>{totalPoints} / {currentRankIndex >= 100 ? "5000+" : (currentRankIndex + 1) * 50} XP</span>
                   </div>
                   <div style={{ backgroundColor: "#EDE6DA" }} className="w-full h-2 rounded-full overflow-hidden">
                     <div
                       style={{
                         backgroundColor: "#C4622D",
-                        width: `${currentRankIndex >= 10 ? 100 : ((totalPoints % 50) / 50) * 100}%`,
+                        width: `${currentRankIndex >= 100 ? 100 : ((totalPoints % 50) / 50) * 100}%`,
                       }}
                       className="h-full rounded-full transition-all duration-1000 ease-out"
                     />
                   </div>
                   <p className="text-[10px] text-gray-400 text-center">
-                    {currentRankIndex >= 10 
+                    {currentRankIndex >= 100 
                       ? "🏆 You have reached the Maximum Rank! Certificate unlocked!"
                       : `Get ${50 - (totalPoints % 50)} more points to unlock Rank ${currentRankIndex + 1}: ${RANKS[currentRankIndex + 1]?.title}`
                     }
@@ -1464,7 +1510,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                   {userName || "Your Name"}
                 </h3>
                 <p style={{ color: "#4A5873" }} className="text-xs max-w-md mx-auto leading-relaxed font-serif px-2">
-                  for successfully mastering the Butuanon language lexicon, accumulating 500+ proficiency points, and completing the Rank 10 Vocabulary Quiz challenge.
+                  for successfully mastering the Butuanon language lexicon, accumulating 5000+ proficiency points, and completing the Rank 100 Vocabulary Quiz challenge.
                 </p>
                 <div className="pt-8 grid grid-cols-2 gap-4 max-w-sm mx-auto items-end">
                   <div className="flex flex-col items-center justify-center relative col-span-2 sm:col-span-1 py-4">

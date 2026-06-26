@@ -8,6 +8,7 @@ import { AboutPage } from "./components/AboutPage";
 import { QuizPage } from "./components/QuizPage";
 import { AuthModal } from "./components/AuthModal";
 import { AdminPage } from "./components/AdminPage";
+import { API_BASE_URL } from "./config";
 import "../styles/fonts.css";
 
 type Page = "home" | "dictionary" | "translate" | "quiz" | "about" | "admin";
@@ -31,7 +32,7 @@ export default function App() {
 
     const token = localStorage.getItem("auth_token");
     if (token) {
-      fetch("http://localhost:8000/api/auth/me", {
+      fetch(`${API_BASE_URL}/api/auth/me`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }

@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
+import { API_BASE_URL } from "../config";
 
 interface SuggestWordModalProps {
   isOpen: boolean;
@@ -160,7 +161,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
         formData.append("audio", audioBlob, "pronunciation.webm");
       }
 
-      const res = await fetch("http://localhost:8000/api/suggest", {
+      const res = await fetch(`${API_BASE_URL}/api/suggest`, {
         method: "POST",
         body: formData,
       });

@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import Optional, List
 from ..database import get_db
 from ..models import DictionaryEntry, Contribution, User
 from .auth_router import get_current_admin
+from ..services.storage import upload_audio_to_supabase
 
 router = APIRouter(prefix="/api/admin", tags=["Admin Portal"])
 
@@ -218,3 +219,21 @@ def delete_dictionary_entry(
     db.delete(entry)
     db.commit()
     return {"message": "Dictionary entry deleted successfully.", "id": id}
+
+@router.post("/upload-audio")
+async def admin_upload_audio(
+    audio: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    """
+    Upload an audio file directly to Supabase storage pronunciations bucket.
+    """
+    try:
+        file_bytes = await audio.read()
+        audio_url = upload_audio_to_supabase(file_bytes, audio.filename or "pronunciation.webm")
+        if not audio_url:
+            raise HTTPException(status_code=500, detail="Could not upload audio to Supabase Storage.")
+        return {"audio_url": audio_url}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Audio upload error: {str(e)}")

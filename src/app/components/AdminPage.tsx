@@ -17,9 +17,13 @@ import {
   Activity, 
   Sparkles,
   CheckCircle,
-  FileText
+  FileText,
+  Mic,
+  Square,
+  UploadCloud
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
+import { API_BASE_URL } from "../config";
 
 interface AdminPageProps {
   user: any;
@@ -65,6 +69,222 @@ export function AdminPage({ user }: AdminPageProps) {
 
   const token = localStorage.getItem("auth_token");
 
+  // Audio recording states
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingTime, setRecordingTime] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [recordedAudioUrl, setRecordedAudioUrl] = useState<string | null>(null);
+  const [isPlayingRecording, setIsPlayingRecording] = useState(false);
+  
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const recordingPlaybackRef = useRef<HTMLAudioElement | null>(null);
+
+  // Clean up recording timers on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      if (recordingPlaybackRef.current) {
+        recordingPlaybackRef.current.pause();
+        recordingPlaybackRef.current = null;
+      }
+    };
+  }, []);
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+        const url = URL.createObjectURL(audioBlob);
+        setRecordedAudioUrl(url);
+        stream.getTracks().forEach((track) => track.stop());
+      };
+
+      mediaRecorder.start();
+      setIsRecording(true);
+      setRecordedAudioUrl(null);
+      setRecordingTime(0);
+
+      timerRef.current = setInterval(() => {
+        setRecordingTime((t) => t + 1);
+      }, 1000);
+    } catch (err) {
+      console.error("Microphone access denied or error:", err);
+      toast.error("Could not access microphone. Please enable permissions.");
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      if (timerRef.current) clearInterval(timerRef.current);
+    }
+  };
+
+  const toggleRecordingPlayback = () => {
+    if (!recordedAudioUrl) return;
+
+    if (!recordingPlaybackRef.current) {
+      recordingPlaybackRef.current = new Audio(recordedAudioUrl);
+      recordingPlaybackRef.current.onended = () => setIsPlayingRecording(false);
+    }
+
+    if (isPlayingRecording) {
+      recordingPlaybackRef.current.pause();
+      setIsPlayingRecording(false);
+    } else {
+      recordingPlaybackRef.current.play();
+      setIsPlayingRecording(true);
+    }
+  };
+
+  const deleteRecording = () => {
+    if (recordingPlaybackRef.current) {
+      recordingPlaybackRef.current.pause();
+      recordingPlaybackRef.current = null;
+    }
+    setRecordedAudioUrl(null);
+    setIsPlayingRecording(false);
+    setRecordingTime(0);
+  };
+
+  const uploadRecording = async (target: "add" | "edit" | "review") => {
+    if (!recordedAudioUrl || !token) return;
+    setIsUploading(true);
+    try {
+      const audioResponse = await fetch(recordedAudioUrl);
+      const audioBlob = await audioResponse.blob();
+      const formData = new FormData();
+      formData.append("audio", audioBlob, "pronunciation.webm");
+
+      const res = await fetch(`${API_BASE_URL}/api/admin/upload-audio`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (!res.ok) throw new Error("Audio upload failed");
+      const data = await res.json();
+      const uploadedUrl = data.audio_url;
+
+      if (target === "add") {
+        setNewAudioUrl(uploadedUrl);
+        toast.success("Voice recording uploaded and attached to new word!");
+      } else if (target === "edit" && editItem) {
+        setEditItem({ ...editItem, audio: uploadedUrl });
+        toast.success("Voice recording uploaded and attached to dictionary entry!");
+      } else if (target === "review" && reviewItem) {
+        setReviewItem({ ...reviewItem, audio_url: uploadedUrl });
+        toast.success("Voice recording uploaded and attached to contribution!");
+      }
+      
+      // Clean up the recording state after successful upload
+      deleteRecording();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to upload recording to Supabase Storage.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
+  const renderVoiceRecorder = (target: "add" | "edit" | "review") => {
+    return (
+      <div style={{ backgroundColor: "#F7F2EB" }} className="rounded-2xl p-4 border border-[rgba(28,43,74,0.06)] mt-2">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <span style={{ color: "#1C2B4A" }} className="text-xs font-bold uppercase tracking-wider block">Record Native Voice Pronunciation</span>
+          {isRecording && (
+            <span className="text-xs font-bold text-red-500 animate-pulse flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              Recording: {formatTime(recordingTime)}
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3 mt-3 flex-wrap">
+          {!isRecording && !recordedAudioUrl && (
+            <button
+              type="button"
+              onClick={startRecording}
+              style={{ backgroundColor: "rgba(196,98,45,0.08)", color: "#C4622D" }}
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-all"
+            >
+              <Mic size={14} />
+              Start Recording
+            </button>
+          )}
+
+          {isRecording && (
+            <button
+              type="button"
+              onClick={stopRecording}
+              className="flex items-center gap-1.5 bg-red-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-all"
+            >
+              <Square size={14} fill="#fff" />
+              Stop Recording
+            </button>
+          )}
+
+          {recordedAudioUrl && (
+            <>
+              <button
+                type="button"
+                onClick={toggleRecordingPlayback}
+                style={{ backgroundColor: isPlayingRecording ? "#C4622D" : "rgba(28,43,74,0.08)", color: isPlayingRecording ? "#FFFDF9" : "#1C2B4A" }}
+                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-all"
+              >
+                {isPlayingRecording ? <Pause size={14} fill={isPlayingRecording ? "#FFFDF9" : "#1C2B4A"} /> : <Play size={14} fill="#1C2B4A" />}
+                {isPlayingRecording ? "Pause Preview" : "Play Preview"}
+              </button>
+
+              <button
+                type="button"
+                onClick={deleteRecording}
+                style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.2)" }}
+                className="flex items-center justify-center p-2.5 rounded-xl hover:bg-red-50 transition-all"
+                title="Delete recording"
+              >
+                <Trash2 size={14} />
+              </button>
+
+              <button
+                type="button"
+                disabled={isUploading}
+                onClick={() => uploadRecording(target)}
+                style={{ backgroundColor: "#1C2B4A" }}
+                className="flex items-center gap-1.5 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-all disabled:opacity-50"
+              >
+                <UploadCloud size={14} />
+                {isUploading ? "Uploading..." : "Upload & Attach"}
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   // Fetch admin resources on mount and tab change
   useEffect(() => {
     fetchContributions();
@@ -78,7 +298,7 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!token) return;
     setLoadingContribs(true);
     try {
-      const res = await fetch("http://localhost:8000/api/admin/contributions", {
+      const res = await fetch(`${API_BASE_URL}/api/admin/contributions`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -100,7 +320,7 @@ export function AdminPage({ user }: AdminPageProps) {
   const fetchDictionary = async () => {
     setLoadingDict(true);
     try {
-      const res = await fetch("http://localhost:8000/api/dictionary");
+      const res = await fetch(`${API_BASE_URL}/api/dictionary`);
       if (res.ok) {
         const data = await res.json();
         // Filter out the 'pending' contributions that endpoints.py merges in
@@ -162,7 +382,7 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!reviewItem || !token) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/contributions/${reviewItem.id}/approve`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${reviewItem.id}/approve`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -200,7 +420,7 @@ export function AdminPage({ user }: AdminPageProps) {
   const handleReject = async (id: number) => {
     if (!token) return;
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/contributions/${id}/reject`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${id}/reject`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -225,7 +445,7 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!newButuanon.trim() || !newEnglish.trim() || !token) return;
 
     try {
-      const res = await fetch("http://localhost:8000/api/admin/dictionary", {
+      const res = await fetch(`${API_BASE_URL}/api/admin/dictionary`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -274,7 +494,7 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!editItem || !token) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/dictionary/${editItem.id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${editItem.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -312,7 +532,7 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!deleteItemId || !token) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/dictionary/${deleteItemId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${deleteItemId}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -373,52 +593,52 @@ export function AdminPage({ user }: AdminPageProps) {
       {/* Quick Statistics Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {/* Stat 1 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex items-center gap-4">
-          <div style={{ backgroundColor: "rgba(196,98,45,0.08)", color: "#C4622D" }} className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <Layers size={22} />
+        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <div style={{ backgroundColor: "rgba(196,98,45,0.08)", color: "#C4622D" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <Layers size={18} className="sm:w-5 sm:h-5" />
           </div>
           <div>
-            <span style={{ color: "#6B7A99" }} className="text-xs font-semibold block">Total Dictionary</span>
-            <span style={{ color: "#1C2B4A" }} className="text-xl font-extrabold block leading-tight">{dictionaryCount} words</span>
+            <span style={{ color: "#6B7A99" }} className="text-[10px] sm:text-xs font-semibold block leading-tight">Total Dictionary</span>
+            <span style={{ color: "#1C2B4A" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{dictionaryCount} words</span>
           </div>
         </div>
 
         {/* Stat 2 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex items-center gap-4">
+        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
           <div 
             style={{ 
               backgroundColor: pendingCount > 0 ? "rgba(245,158,11,0.08)" : "rgba(28,43,74,0.06)", 
               color: pendingCount > 0 ? "#D97706" : "#6B7A99" 
             }} 
-            className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${pendingCount > 0 ? "animate-pulse" : ""}`}
+            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${pendingCount > 0 ? "animate-pulse" : ""}`}
           >
-            <AlertTriangle size={22} />
+            <AlertTriangle size={18} className="sm:w-5 sm:h-5" />
           </div>
           <div>
-            <span style={{ color: "#6B7A99" }} className="text-xs font-semibold block">Pending Approvals</span>
-            <span style={{ color: pendingCount > 0 ? "#D97706" : "#1C2B4A" }} className="text-xl font-extrabold block leading-tight">{pendingCount} submissions</span>
+            <span style={{ color: "#6B7A99" }} className="text-[10px] sm:text-xs font-semibold block leading-tight">Pending Approvals</span>
+            <span style={{ color: pendingCount > 0 ? "#D97706" : "#1C2B4A" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{pendingCount} submissions</span>
           </div>
         </div>
 
         {/* Stat 3 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex items-center gap-4">
-          <div style={{ backgroundColor: "rgba(16,185,129,0.08)", color: "#10B981" }} className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <CheckCircle size={22} />
+        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <div style={{ backgroundColor: "rgba(16,185,129,0.08)", color: "#10B981" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <CheckCircle size={18} className="sm:w-5 sm:h-5" />
           </div>
           <div>
-            <span style={{ color: "#6B7A99" }} className="text-xs font-semibold block">Approved Suggestions</span>
-            <span style={{ color: "#10B981" }} className="text-xl font-extrabold block leading-tight">{approvedCount} entries</span>
+            <span style={{ color: "#6B7A99" }} className="text-[10px] sm:text-xs font-semibold block leading-tight">Approved Suggestions</span>
+            <span style={{ color: "#10B981" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{approvedCount} entries</span>
           </div>
         </div>
 
         {/* Stat 4 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex items-center gap-4">
-          <div style={{ backgroundColor: "rgba(239,68,68,0.08)", color: "#EF4444" }} className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <X size={22} />
+        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <div style={{ backgroundColor: "rgba(239,68,68,0.08)", color: "#EF4444" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <X size={18} className="sm:w-5 sm:h-5" />
           </div>
           <div>
-            <span style={{ color: "#6B7A99" }} className="text-xs font-semibold block">Rejected Items</span>
-            <span style={{ color: "#EF4444" }} className="text-xl font-extrabold block leading-tight">{rejectedCount} entries</span>
+            <span style={{ color: "#6B7A99" }} className="text-[10px] sm:text-xs font-semibold block leading-tight">Rejected Items</span>
+            <span style={{ color: "#EF4444" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{rejectedCount} entries</span>
           </div>
         </div>
       </div>
@@ -874,6 +1094,8 @@ export function AdminPage({ user }: AdminPageProps) {
               </div>
             </div>
 
+            {renderVoiceRecorder("add")}
+
             {/* Submit btn */}
             <div className="flex justify-end pt-3 border-t border-[rgba(28,43,74,0.06)]">
               <button
@@ -1127,6 +1349,8 @@ export function AdminPage({ user }: AdminPageProps) {
                 </div>
               </div>
 
+              {renderVoiceRecorder("review")}
+
               <div className="flex gap-2 justify-end border-t pt-4 mt-4">
                 <button
                   type="button"
@@ -1294,6 +1518,8 @@ export function AdminPage({ user }: AdminPageProps) {
                   className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                 />
               </div>
+
+              {renderVoiceRecorder("edit")}
 
               <div className="flex gap-2 justify-end border-t pt-4 mt-4">
                 <button

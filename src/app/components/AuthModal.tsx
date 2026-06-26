@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
+import { API_BASE_URL } from "../config";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -21,7 +22,7 @@ export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
 
   // Fetch Google Client ID from backend
   useEffect(() => {
-    fetch("http://localhost:8000/api/auth/config")
+    fetch(`${API_BASE_URL}/api/auth/config`)
       .then((res) => res.json())
       .then((data) => {
         if (data.google_client_id) {
@@ -86,7 +87,7 @@ export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
     setError(null);
 
     // Send Google credential token to backend
-    fetch("http://localhost:8000/api/auth/google", {
+    fetch(`${API_BASE_URL}/api/auth/google`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
