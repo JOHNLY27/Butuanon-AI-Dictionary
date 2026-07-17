@@ -36,11 +36,8 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
             onClick={() => onNavigate("home")}
             className="flex items-center gap-2 group flex-shrink-0"
           >
-            <div
-              style={{ backgroundColor: "#C4622D" }}
-              className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-            >
-              <BookOpen size={16} color="#FFFDF9" />
+            <div className="w-9 h-9 flex items-center justify-center flex-shrink-0 rounded-full overflow-hidden border border-orange-500/20">
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
             </div>
             <div className="text-left">
               <span

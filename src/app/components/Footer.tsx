@@ -8,11 +8,8 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div
-                style={{ backgroundColor: "#C4622D" }}
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-              >
-                <BookOpen size={16} color="#FFFDF9" />
+              <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 rounded-full overflow-hidden border border-orange-500/20">
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
               </div>
               <span
                 style={{ color: "#F7F2EB", fontFamily: "Poppins, sans-serif" }}

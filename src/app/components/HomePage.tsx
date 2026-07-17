@@ -239,7 +239,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div className="flex items-center gap-2">
                 <BookOpen size={14} color="#C4622D" />
                 <span style={{ color: "#8B9DC3" }} className="text-xs font-medium">
-                  June 12, 2024
+                  {new Date().toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </span>
               </div>
               <span

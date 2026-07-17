@@ -178,7 +178,7 @@ function findAudioForButuanon(text: string, entries: any[]): string | null {
   return null;
 }
 
-export function TranslatePage() {
+export function TranslatePage({ user }: { user?: any }) {
   const [direction, setDirection] = useState<"but-en" | "en-but">("but-en");
   const [sourceText, setSourceText] = useState("");
   const [result, setResult] = useState("");
@@ -202,26 +202,41 @@ export function TranslatePage() {
       });
   }, []);
 
-  const [history, setHistory] = useState<Translation[]>([
-    {
-      id: 1,
-      from: "Butuanon",
-      to: "English",
-      sourceText: "Madiyaw nga hinaat",
-      result: "Good morning",
-      direction: "but-en",
-      timestamp: new Date(Date.now() - 120000),
-    },
-    {
-      id: 2,
-      from: "English",
-      to: "Butuanon",
-      sourceText: "Thank you",
-      result: "Salamat",
-      direction: "en-but",
-      timestamp: new Date(Date.now() - 300000),
-    },
-  ]);
+  const storageKey = user ? `translation_history_${user.username}` : "translation_history_guest";
+
+  const [history, setHistory] = useState<Translation[]>(() => {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.map((item: any) => ({
+          ...item,
+          timestamp: new Date(item.timestamp)
+        }));
+      }
+    } catch (e) {
+      console.error("Failed to parse translation history:", e);
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setHistory(parsed.map((item: any) => ({
+          ...item,
+          timestamp: new Date(item.timestamp)
+        })));
+      } else {
+        setHistory([]);
+      }
+    } catch (e) {
+      console.error("Failed to load translation history:", e);
+      setHistory([]);
+    }
+  }, [storageKey]);
 
   function swapDirection() {
     setDirection(direction === "but-en" ? "en-but" : "but-en");
@@ -248,18 +263,22 @@ export function TranslatePage() {
       .then((data) => {
         setResult(data.result);
         setLoading(false);
-        setHistory((prev) => [
-          {
-            id: Date.now(),
-            from: direction === "but-en" ? "Butuanon" : "English",
-            to: direction === "but-en" ? "English" : "Butuanon",
-            sourceText,
-            result: data.result,
-            direction,
-            timestamp: new Date(),
-          },
-          ...prev.slice(0, 9),
-        ]);
+        setHistory((prev) => {
+          const newHistory = [
+            {
+              id: Date.now(),
+              from: direction === "but-en" ? "Butuanon" : "English",
+              to: direction === "but-en" ? "English" : "Butuanon",
+              sourceText,
+              result: data.result,
+              direction,
+              timestamp: new Date(),
+            },
+            ...prev.slice(0, 9),
+          ];
+          localStorage.setItem(storageKey, JSON.stringify(newHistory));
+          return newHistory;
+        });
       })
       .catch((err) => {
         console.warn("Backend translation failed, falling back to mock client", err);
@@ -267,18 +286,22 @@ export function TranslatePage() {
         const translated = getMockTranslation(sourceText, direction);
         setResult(translated);
         setLoading(false);
-        setHistory((prev) => [
-          {
-            id: Date.now(),
-            from: direction === "but-en" ? "Butuanon" : "English",
-            to: direction === "but-en" ? "English" : "Butuanon",
-            sourceText,
-            result: translated,
-            direction,
-            timestamp: new Date(),
-          },
-          ...prev.slice(0, 9),
-        ]);
+        setHistory((prev) => {
+          const newHistory = [
+            {
+              id: Date.now(),
+              from: direction === "but-en" ? "Butuanon" : "English",
+              to: direction === "but-en" ? "English" : "Butuanon",
+              sourceText,
+              result: translated,
+              direction,
+              timestamp: new Date(),
+            },
+            ...prev.slice(0, 9),
+          ];
+          localStorage.setItem(storageKey, JSON.stringify(newHistory));
+          return newHistory;
+        });
       });
   }
 
@@ -527,14 +550,26 @@ export function TranslatePage() {
         {/* History */}
         {history.length > 0 && (
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                style={{ backgroundColor: "#C4622D" }}
-                className="w-1 h-5 rounded-full"
-              />
-              <h2 style={{ color: "#1C2B4A" }} className="text-base font-semibold">
-                Recent Translations
-              </h2>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div
+                  style={{ backgroundColor: "#C4622D" }}
+                  className="w-1 h-5 rounded-full"
+                />
+                <h2 style={{ color: "#1C2B4A" }} className="text-base font-semibold">
+                  Recent Translations
+                </h2>
+              </div>
+              <button
+                onClick={() => {
+                  setHistory([]);
+                  localStorage.removeItem(storageKey);
+                }}
+                style={{ color: "#8B9DC3" }}
+                className="text-xs font-semibold hover:text-red-400 transition-colors flex items-center gap-1"
+              >
+                Clear All
+              </button>
             </div>
             <div className="space-y-3">
               {history.map((item) => (

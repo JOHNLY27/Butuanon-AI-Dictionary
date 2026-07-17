@@ -162,7 +162,7 @@ export default function App() {
       <main className="flex-1">
         {currentPage === "home" && <HomePage onNavigate={navigate} />}
         {currentPage === "dictionary" && <DictionaryPage />}
-        {currentPage === "translate" && <TranslatePage />}
+        {currentPage === "translate" && <TranslatePage user={user} />}
         {currentPage === "quiz" && (
           <QuizPage
             user={user}
