@@ -116,11 +116,11 @@ export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent style={{ backgroundColor: "#FFFDF9", fontFamily: "Poppins, sans-serif" }} className="max-w-md rounded-3xl border-none p-8 shadow-2xl text-center">
         <DialogHeader className="mb-6 flex flex-col items-center">
-          <div style={{ backgroundColor: "rgba(196, 98, 45, 0.1)", color: "#C4622D" }} className="w-14 h-14 rounded-full flex items-center justify-center mb-3">
-            <LogIn size={28} />
+          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[var(--golden-heritage)] shadow-md mb-3 bg-[#0F1D30]">
+            <img src="/logo.png" alt="Butuanon Balanghay Logo" className="w-full h-full object-cover scale-105" />
           </div>
-          <DialogTitle style={{ color: "#1C2B4A" }} className="text-xl font-bold flex items-center gap-1.5 justify-center">
-            <Sparkles size={20} className="text-[#C4622D]" /> Sign In / Sign Up
+          <DialogTitle style={{ color: "var(--river-blue)" }} className="text-xl font-bold flex items-center gap-1.5 justify-center">
+            <Sparkles size={20} style={{ color: "var(--golden-heritage)" }} /> Sign In / Sign Up
           </DialogTitle>
           <DialogDescription style={{ color: "#6B7A99" }} className="text-xs mt-1 max-w-xs leading-relaxed mx-auto">
             Preserve Butuanon history and compete with others. Connect your Google account to unlock flashcards and vocabulary quizzes.
@@ -137,11 +137,11 @@ export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
         <div className="flex flex-col items-center justify-center py-6 min-h-[80px]">
           {loading ? (
             <div className="flex flex-col items-center gap-2">
-              <div style={{ borderTopColor: "#C4622D" }} className="w-6 h-6 border-2 border-gray-300 rounded-full animate-spin"></div>
-              <span style={{ color: "#8B9DC3" }} className="text-xs font-semibold">Exchanging Google session...</span>
+              <div style={{ borderTopColor: "var(--golden-heritage)" }} className="w-6 h-6 border-2 border-gray-300 rounded-full animate-spin"></div>
+              <span style={{ color: "#6B7A99" }} className="text-xs font-semibold">Exchanging Google session...</span>
             </div>
           ) : clientId === "YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com" || !clientId ? (
-            <div style={{ backgroundColor: "rgba(196, 98, 45, 0.08)", borderColor: "rgba(196, 98, 45, 0.15)", color: "#A04A1A" }} className="rounded-xl border p-4 text-xs text-left max-w-sm">
+            <div style={{ backgroundColor: "rgba(212, 175, 55, 0.1)", borderColor: "rgba(212, 175, 55, 0.25)", color: "#0F1D30" }} className="rounded-xl border p-4 text-xs text-left max-w-sm">
               <p className="font-bold mb-1">Configuration Needed</p>
               <p className="leading-relaxed">
                 Google Client ID is not configured yet. Please edit <code>backend/.env</code> and replace the placeholder value with your Google Cloud OAuth client credentials to enable Google Sign-In.

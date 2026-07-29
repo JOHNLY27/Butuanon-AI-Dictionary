@@ -150,7 +150,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#F7F2EB" }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}>
       <Navbar
         currentPage={currentPage}
         onNavigate={navigate}
@@ -192,7 +192,7 @@ export default function App() {
       {showInstallBanner && (
         <div 
           className="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 z-[9999] w-[92%] max-w-sm rounded-2xl p-4 flex items-center justify-between gap-4 animate-fade-in shadow-2xl border border-amber-900/10"
-          style={{ backgroundColor: "#FFFDF9", fontFamily: "Poppins, sans-serif" }}
+          style={{ backgroundColor: "var(--card)", fontFamily: "Poppins, sans-serif" }}
         >
           <button 
             onClick={() => setShowInstallBanner(false)}
@@ -208,15 +208,15 @@ export default function App() {
               className="w-12 h-12 rounded-xl object-cover shadow-md border border-gray-100 flex-shrink-0" 
             />
             <div className="text-left">
-              <p style={{ color: "#1C2B4A" }} className="font-bold text-sm leading-tight">Butuanon Dictionary</p>
+              <p style={{ color: "var(--river-blue)" }} className="font-bold text-sm leading-tight">Butuanon Dictionary</p>
               <p style={{ color: "#6B7A99" }} className="text-[10px] leading-snug mt-0.5 max-w-[170px]">Install as a mobile app for offline access and fast launches!</p>
             </div>
           </div>
           
           <button 
             onClick={handleInstallClick}
-            style={{ backgroundColor: "#C4622D" }}
-            className="text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-md hover:opacity-90 active:scale-95 transition-all flex-shrink-0"
+            style={{ backgroundColor: "var(--golden-heritage)", color: "#1C252C" }}
+            className="text-xs font-bold px-4 py-2 rounded-xl shadow-md hover:opacity-90 active:scale-95 transition-all flex-shrink-0"
           >
             Install
           </button>
@@ -249,16 +249,16 @@ export default function App() {
             </button>
           </div>
           
-          <div style={{ backgroundColor: "#F7F2EB" }} className="rounded-xl p-3 text-xs text-left leading-relaxed flex flex-col gap-2">
+          <div style={{ backgroundColor: "var(--background)" }} className="rounded-xl p-3 text-xs text-left leading-relaxed flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <span style={{ backgroundColor: "#C4622D" }} className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold">1</span>
-              <p style={{ color: "#1C2B4A" }} className="m-0 leading-tight">
-                Tap the <strong className="font-bold">Share</strong> button <span className="inline-flex items-center justify-center p-0.5 rounded border border-gray-300 bg-white"><Share size={12} className="text-[#C4622D] inline" /></span> in Safari.
+              <span style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }} className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">1</span>
+              <p style={{ color: "var(--river-blue)" }} className="m-0 leading-tight">
+                Tap the <strong className="font-bold">Share</strong> button <span className="inline-flex items-center justify-center p-0.5 rounded border border-gray-300 bg-white"><Share size={12} style={{ color: "var(--golden-heritage)" }} className="inline" /></span> in Safari.
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span style={{ backgroundColor: "#C4622D" }} className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold">2</span>
-              <p style={{ color: "#1C2B4A" }} className="m-0 leading-tight">
+              <span style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }} className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">2</span>
+              <p style={{ color: "var(--river-blue)" }} className="m-0 leading-tight">
                 Scroll down and select <strong className="font-bold">Add to Home Screen</strong>.
               </p>
             </div>

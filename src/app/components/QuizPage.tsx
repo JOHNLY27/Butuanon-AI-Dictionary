@@ -121,7 +121,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
     { title: "Tubig Navigator", badgeColor: "#3D7A9E" },     // 20-29
     { title: "Balay Builder", badgeColor: "#4E8C6A" },       // 30-39
     { title: "Kahoy Climber", badgeColor: "#9C7C38" },       // 40-49
-    { title: "Amigo Messenger", badgeColor: "#C4622D" },     // 50-59
+    { title: "Amigo Messenger", badgeColor: "#D4AF37" },     // 50-59
     { title: "Hinaat Awakener", badgeColor: "#E08B3E" },     // 60-69
     { title: "Gugma Devotee", badgeColor: "#E05A70" },       // 70-79
     { title: "Tawo Chronicler", badgeColor: "#82369A" },     // 80-89
@@ -228,7 +228,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
         particleCount: 20,
         spread: 30,
         origin: { y: 0.8 },
-        colors: ["#C4622D", "#8B9DC3"],
+        colors: ["#D4AF37", "#0F1D30"],
       });
     } else {
       newMastered = newMastered.filter((mId) => mId !== id);
@@ -683,7 +683,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
           particleCount: 120,
           spread: 90,
           origin: { y: 0.6 },
-          colors: ["#D4AF37", "#C4622D", "#8B9DC3"],
+          colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
         });
       } else if (score >= 4) {
         // Standard score confetti
@@ -691,7 +691,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
           particleCount: 150,
           spread: 80,
           origin: { y: 0.6 },
-          colors: ["#C4622D", "#1C2B4A", "#F7F2EB"],
+          colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
         });
       }
     }
@@ -721,18 +721,18 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
 
   if (!user) {
     return (
-      <div style={{ backgroundColor: "#F7F2EB", minHeight: "80vh", fontFamily: "Poppins, sans-serif" }} className="flex flex-col items-center justify-center py-12 px-4 sm:px-6">
-        <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="max-w-xl w-full rounded-3xl border p-6 sm:p-12 text-center shadow-xl space-y-8 relative overflow-hidden animate-in fade-in zoom-in duration-300">
+      <div style={{ backgroundColor: "var(--background)", minHeight: "80vh", fontFamily: "Poppins, sans-serif" }} className="flex flex-col items-center justify-center py-12 px-4 sm:px-6">
+        <div style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }} className="max-w-xl w-full rounded-3xl border p-6 sm:p-12 text-center shadow-xl space-y-8 relative overflow-hidden animate-in fade-in zoom-in duration-300">
           {/* Decorative background lights */}
-          <div className="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-[#C4622D]/10 blur-3xl"></div>
-          <div className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-[#1C2B4A]/10 blur-3xl"></div>
+          <div className="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-amber-500/10 blur-3xl"></div>
+          <div className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-[#0F1D30]/10 blur-3xl"></div>
           
-          <div style={{ backgroundColor: "rgba(196, 98, 45, 0.1)", color: "#C4622D" }} className="w-20 h-20 rounded-full flex items-center justify-center mx-auto relative z-10 animate-pulse">
+          <div style={{ backgroundColor: "rgba(212, 175, 55, 0.15)", color: "var(--golden-heritage)" }} className="w-20 h-20 rounded-full flex items-center justify-center mx-auto relative z-10 animate-pulse">
             <Lock size={36} />
           </div>
           
           <div className="space-y-3 relative z-10">
-            <h2 style={{ color: "#1C2B4A" }} className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <h2 style={{ color: "var(--river-blue)" }} className="text-2xl sm:text-3xl font-extrabold tracking-tight">
               Unlock the Learning Portal
             </h2>
             <p style={{ color: "#6B7A99" }} className="text-sm max-w-sm mx-auto leading-relaxed">
@@ -747,7 +747,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <Check size={12} />
               </div>
               <div>
-                <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Interactive Flashcards</h4>
+                <h4 style={{ color: "var(--river-blue)" }} className="text-xs font-bold">Interactive Flashcards</h4>
                 <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Learn pronunciations, translations, and custom vocabulary examples.</p>
               </div>
             </div>
@@ -757,7 +757,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <Check size={12} />
               </div>
               <div>
-                <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Vocabulary Quiz Challenge</h4>
+                <h4 style={{ color: "var(--river-blue)" }} className="text-xs font-bold">Vocabulary Quiz Challenge</h4>
                 <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Test your Butuanon skills with 10-question adaptive rounds.</p>
               </div>
             </div>
@@ -767,7 +767,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <Check size={12} />
               </div>
               <div>
-                <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Level Up through 100 Ranks</h4>
+                <h4 style={{ color: "var(--river-blue)" }} className="text-xs font-bold">Level Up through 100 Ranks</h4>
                 <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Progress from "Lungsod Explorer I" up to "Butuanon Supreme Master" at 5000 XP.</p>
               </div>
             </div>
@@ -777,7 +777,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <Check size={12} />
               </div>
               <div>
-                <h4 style={{ color: "#1C2B4A" }} className="text-xs font-bold">Earn an Official Certificate</h4>
+                <h4 style={{ color: "var(--river-blue)" }} className="text-xs font-bold">Earn an Official Certificate</h4>
                 <p style={{ color: "#6B7A99" }} className="text-[11px] leading-tight mt-0.5">Unlock a downloadable, printable Certificate of Mastery at Rank 100.</p>
               </div>
             </div>
@@ -786,7 +786,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
           <div className="pt-2 relative z-10 space-y-3 flex flex-col items-center">
             <button
               onClick={onOpenAuth}
-              style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+              style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
               className="w-full max-w-md mx-auto py-3.5 rounded-xl text-xs font-bold shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2"
             >
               <LogIn size={14} />
@@ -799,13 +799,13 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 localStorage.setItem("guest_user", JSON.stringify(guestUser));
                 window.location.reload();
               }}
-              style={{ borderColor: "#1C2B4A", color: "#1C2B4A" }}
+              style={{ borderColor: "var(--river-blue)", color: "var(--river-blue)" }}
               className="w-full max-w-md mx-auto py-3 rounded-xl text-xs font-bold border hover:bg-gray-100 transition-all flex items-center justify-center gap-2"
             >
               Play as Guest (Progress Not Saved)
             </button>
             
-            <p style={{ color: "#8B9DC3" }} className="text-[9px] uppercase font-bold tracking-wider mt-4">
+            <p style={{ color: "#6B7A99" }} className="text-[9px] uppercase font-bold tracking-wider mt-4">
               Google Account is required to save progress to database
             </p>
           </div>
@@ -835,12 +835,12 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
       `}} />
 
       {/* Header */}
-      <div style={{ backgroundColor: "#1C2B4A" }} className="py-10 px-4">
+      <div style={{ backgroundColor: "var(--river-blue)" }} className="py-10 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 style={{ color: "#F7F2EB" }} className="text-2xl font-bold mb-1">
+          <h1 style={{ color: "var(--ivory-sail)" }} className="text-2xl font-bold mb-1">
             Learning Portal
           </h1>
-          <p style={{ color: "#8B9DC3" }} className="text-sm mb-6 max-w-md mx-auto">
+          <p style={{ color: "#A0B2D6" }} className="text-sm mb-6 max-w-md mx-auto">
             Gamify your learning experience! Practice with interactive flashcards or test your vocabulary in the quiz challenge.
           </p>
 
@@ -849,10 +849,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             <button
               onClick={() => handleTabChange("flashcards")}
               style={{
-                backgroundColor: activeTab === "flashcards" ? "#C4622D" : "transparent",
-                color: activeTab === "flashcards" ? "#FFFDF9" : "#CBD5E8",
+                backgroundColor: activeTab === "flashcards" ? "var(--golden-heritage)" : "transparent",
+                color: activeTab === "flashcards" ? "#1C252C" : "#CBD5E8",
               }}
-              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
+              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-bold transition-all hover:text-white"
             >
               <Layers size={13} />
               Flashcards Mode
@@ -860,10 +860,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             <button
               onClick={() => handleTabChange("quiz")}
               style={{
-                backgroundColor: activeTab === "quiz" ? "#C4622D" : "transparent",
-                color: activeTab === "quiz" ? "#FFFDF9" : "#CBD5E8",
+                backgroundColor: activeTab === "quiz" ? "var(--golden-heritage)" : "transparent",
+                color: activeTab === "quiz" ? "#1C252C" : "#CBD5E8",
               }}
-              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
+              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-bold transition-all hover:text-white"
             >
               <HelpCircle size={13} />
               Vocabulary Quiz
@@ -871,10 +871,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             <button
               onClick={() => handleTabChange("speaking")}
               style={{
-                backgroundColor: activeTab === "speaking" ? "#C4622D" : "transparent",
-                color: activeTab === "speaking" ? "#FFFDF9" : "#CBD5E8",
+                backgroundColor: activeTab === "speaking" ? "var(--golden-heritage)" : "transparent",
+                color: activeTab === "speaking" ? "#1C252C" : "#CBD5E8",
               }}
-              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
+              className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-bold transition-all hover:text-white"
             >
               <Mic size={13} />
               Speaking Quiz
@@ -886,8 +886,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 }
               }}
               style={{
-                backgroundColor: activeTab === "certificate" ? "#C4622D" : "transparent",
-                color: currentRankIndex >= 100 ? (activeTab === "certificate" ? "#FFFDF9" : "#CBD5E8") : "rgba(203,213,232,0.4)",
+                backgroundColor: activeTab === "certificate" ? "var(--golden-heritage)" : "transparent",
+                color: currentRankIndex >= 100 ? (activeTab === "certificate" ? "#0F1D30" : "#CBD5E8") : "rgba(203,213,232,0.4)",
                 cursor: currentRankIndex >= 100 ? "pointer" : "not-allowed",
               }}
               className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-xl sm:rounded-lg text-xs font-semibold transition-all hover:text-white"
@@ -916,17 +916,17 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               </span>
               <button
                 onClick={resetMastery}
-                className="flex items-center gap-1 hover:text-[#C4622D] transition-colors"
-                style={{ color: "#8B9DC3" }}
+                className="flex items-center gap-1 hover:text-[#D4AF37] transition-colors"
+                style={{ color: "#6B7A99" }}
               >
                 <RefreshCw size={10} />
                 Reset Progress
               </button>
             </div>
-            <div style={{ backgroundColor: "#EDE6DA" }} className="w-full h-2 rounded-full overflow-hidden">
+            <div style={{ backgroundColor: "var(--muted)" }} className="w-full h-2 rounded-full overflow-hidden">
               <div
                 style={{
-                  backgroundColor: "#C4622D",
+                  backgroundColor: "var(--golden-heritage)",
                   width: `${(masteredIds.length / allWords.length) * 100}%`,
                 }}
                 className="h-full rounded-full transition-all duration-300"
@@ -982,7 +982,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                               speakText(currentCard.butuanon);
                             }
                           }}
-                          style={{ backgroundColor: "rgba(196,98,45,0.1)", color: "#C4622D" }}
+                          style={{ backgroundColor: "rgba(212,175,55,0.15)", color: "var(--river-blue)" }}
                           className="p-3 rounded-full hover:scale-105 transition-all"
                           aria-label="Play pronunciation"
                         >
@@ -990,7 +990,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                         </button>
                       </div>
 
-                      <p style={{ color: "#8B9DC3" }} className="text-[10px] mt-8 uppercase font-semibold tracking-wider opacity-60">
+                      <p style={{ color: "#6B7A99" }} className="text-[10px] mt-8 uppercase font-semibold tracking-wider opacity-60">
                         Click card to flip
                       </p>
                     </div>
@@ -998,42 +998,42 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     {/* Back of Card */}
                     <div
                       style={{
-                        backgroundColor: "#1C2B4A",
+                        backgroundColor: "var(--river-blue)",
                         borderColor: "rgba(28,43,74,0.08)",
                       }}
                       className="absolute inset-0 w-full h-full rounded-3xl border shadow-lg flex flex-col justify-between p-6 sm:p-8 rotate-y-180 backface-hidden"
                     >
                       <div>
-                        <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
+                        <span style={{ color: "#A0B2D6" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
                           English Translation
                         </span>
-                        <h3 style={{ color: "#C4622D" }} className="text-2xl font-bold mb-4">
+                        <h3 style={{ color: "var(--golden-heritage)" }} className="text-2xl font-bold mb-4">
                           {currentCard.english}
                         </h3>
 
-                        <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
+                        <span style={{ color: "#A0B2D6" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
                           Definition
                         </span>
-                        <p style={{ color: "#F7F2EB" }} className="text-xs leading-relaxed mb-4">
+                        <p style={{ color: "var(--ivory-sail)" }} className="text-xs leading-relaxed mb-4">
                           {currentCard.definition}
                         </p>
 
                         {currentCard.exampleButuanon && (
                           <>
-                            <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
+                            <span style={{ color: "#A0B2D6" }} className="text-[10px] uppercase tracking-widest font-semibold block mb-1">
                               Example Usage
                             </span>
                             <p style={{ color: "#CBD5E8" }} className="text-xs font-medium">
                               "{currentCard.exampleButuanon}"
                             </p>
-                            <p style={{ color: "#8B9DC3" }} className="text-[11px] italic">
+                            <p style={{ color: "#A0B2D6" }} className="text-[11px] italic">
                               — {currentCard.exampleEnglish}
                             </p>
                           </>
                         )}
                       </div>
 
-                      <p style={{ color: "#8B9DC3" }} className="text-[10px] text-center uppercase font-semibold tracking-wider opacity-60">
+                      <p style={{ color: "#A0B2D6" }} className="text-[10px] text-center uppercase font-semibold tracking-wider opacity-60">
                         Click card to flip back
                       </p>
                     </div>
@@ -1044,8 +1044,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <div className="flex gap-3 mt-8 w-full max-w-sm">
                   <button
                     onClick={() => handleMastery(currentCard.id, false)}
-                    style={{ borderColor: "#C4622D", color: "#C4622D" }}
-                    className="flex-1 py-3 border font-semibold text-xs rounded-xl hover:bg-[#C4622D]/5 transition-all flex items-center justify-center gap-1"
+                    style={{ borderColor: "var(--golden-heritage)", color: "var(--river-blue)" }}
+                    className="flex-1 py-3 border font-semibold text-xs rounded-xl hover:bg-black/5 transition-all flex items-center justify-center gap-1"
                   >
                     Need Practice
                   </button>
@@ -1132,17 +1132,17 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                       : "Test your vocabulary to progress. Difficulty scales automatically:"
                     }
                   </p>
-                  <div className="inline-flex gap-4 justify-center text-[10px] font-bold py-2 px-3 rounded-lg" style={{ backgroundColor: "#EDE6DA", color: "#1C2B4A" }}>
-                    <span>Difficulty: <span style={{ color: "#C4622D" }}>{diffSettings.difficulty}</span></span>
+                  <div className="inline-flex gap-4 justify-center text-[10px] font-bold py-2 px-3 rounded-lg" style={{ backgroundColor: "#EFE6D8", color: "var(--river-blue)" }}>
+                    <span>Difficulty: <span style={{ color: "var(--golden-heritage)" }}>{diffSettings.difficulty}</span></span>
                     <span>•</span>
-                    <span>Timer: <span style={{ color: "#C4622D" }}>{activeTab === "speaking" ? "No limit" : (diffSettings.timeLimit > 0 ? `${diffSettings.timeLimit}s` : "No limit")}</span></span>
+                    <span>Timer: <span style={{ color: "var(--golden-heritage)" }}>{activeTab === "speaking" ? "No limit" : (diffSettings.timeLimit > 0 ? `${diffSettings.timeLimit}s` : "No limit")}</span></span>
                     <span>•</span>
-                    <span>Value: <span style={{ color: "#C4622D" }}>{diffSettings.pointsPerCorrect} XP/{activeTab === "speaking" ? "sentence" : "word"}</span></span>
+                    <span>Value: <span style={{ color: "var(--golden-heritage)" }}>{diffSettings.pointsPerCorrect} XP/{activeTab === "speaking" ? "sentence" : "word"}</span></span>
                   </div>
                 </div>
                 <button
                   onClick={startQuiz}
-                  style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                  style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
                   className="w-full py-3.5 rounded-xl text-xs font-bold shadow-md hover:opacity-90 transition-opacity"
                 >
                   Start Rank Quiz Challenge
@@ -1150,30 +1150,30 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               </div>
             ) : quizFinished ? (
               <div
-                style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
+                style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }}
                 className="rounded-3xl border p-6 sm:p-8 text-center shadow-lg"
               >
-                <div style={{ backgroundColor: "rgba(196,98,45,0.1)", color: "#C4622D" }} className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div style={{ backgroundColor: "rgba(212,175,55,0.15)", color: "var(--golden-heritage)" }} className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Trophy size={40} className="animate-bounce" />
                 </div>
-                <h3 style={{ color: "#1C2B4A" }} className="text-xl font-bold mb-1">
+                <h3 style={{ color: "var(--river-blue)" }} className="text-xl font-bold mb-1">
                   Quiz Completed!
                 </h3>
-                <p style={{ color: "#8B9DC3" }} className="text-xs uppercase tracking-wider mb-6 font-semibold">
+                <p style={{ color: "#6B7A99" }} className="text-xs uppercase tracking-wider mb-6 font-semibold">
                   Preservation Scorecard
                 </p>
-                <div className="w-28 h-28 rounded-full border-4 border-[#C4622D] flex flex-col items-center justify-center mx-auto mb-6">
-                  <span style={{ color: "#1C2B4A" }} className="text-3xl font-extrabold">{score}</span>
-                  <span style={{ color: "#8B9DC3" }} className="text-xs">out of {quizQuestions.length}</span>
+                <div className="w-28 h-28 rounded-full border-4 border-amber-500 flex flex-col items-center justify-center mx-auto mb-6">
+                  <span style={{ color: "var(--river-blue)" }} className="text-3xl font-extrabold">{score}</span>
+                  <span style={{ color: "#6B7A99" }} className="text-xs">out of {quizQuestions.length}</span>
                 </div>
-                <div style={{ backgroundColor: "rgba(196,98,45,0.06)", borderColor: "rgba(196,98,45,0.15)" }} className="rounded-xl border p-4 mb-6 max-w-xs mx-auto">
+                <div style={{ backgroundColor: "rgba(212,175,55,0.08)", borderColor: "rgba(212,175,55,0.2)" }} className="rounded-xl border p-4 mb-6 max-w-xs mx-auto">
                   <div className="flex justify-between text-xs font-semibold">
                     <span style={{ color: "#6B7A99" }}>Difficulty Level:</span>
-                    <span style={{ color: "#C4622D" }}>{diffSettings.difficulty}</span>
+                    <span style={{ color: "var(--golden-heritage)" }}>{diffSettings.difficulty}</span>
                   </div>
                   <div className="flex justify-between text-xs font-semibold mt-1">
                     <span style={{ color: "#6B7A99" }}>Points Gained:</span>
-                    <span style={{ color: "#C4622D" }}>+{pointsEarnedThisSession} XP</span>
+                    <span style={{ color: "var(--golden-heritage)" }}>+{pointsEarnedThisSession} XP</span>
                   </div>
                 </div>
                 <div className="max-w-xs mx-auto mb-6 text-left space-y-1.5">
@@ -1181,10 +1181,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     <span>Rank Progression</span>
                     <span>{totalPoints} / {currentRankIndex >= 100 ? "5000+" : (currentRankIndex + 1) * 50} XP</span>
                   </div>
-                  <div style={{ backgroundColor: "#EDE6DA" }} className="w-full h-2 rounded-full overflow-hidden">
+                  <div style={{ backgroundColor: "#EFE6D8" }} className="w-full h-2 rounded-full overflow-hidden">
                     <div
                       style={{
-                        backgroundColor: "#C4622D",
+                        backgroundColor: "var(--golden-heritage)",
                         width: `${currentRankIndex >= 100 ? 100 : ((totalPoints % 50) / 50) * 100}%`,
                       }}
                       className="h-full rounded-full transition-all duration-1000 ease-out"
@@ -1200,7 +1200,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <div className="flex flex-col gap-2 max-w-xs mx-auto">
                   <button
                     onClick={startQuiz}
-                    style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                    style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
                     className="w-full py-3.5 rounded-xl text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 shadow-md"
                   >
                     <ArrowRight size={12} />
@@ -1209,7 +1209,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                   <div className="flex gap-2">
                     <button
                       onClick={startQuiz}
-                      style={{ backgroundColor: "rgba(28,43,74,0.06)", color: "#1C2B4A" }}
+                      style={{ backgroundColor: "rgba(28,43,74,0.06)", color: "var(--river-blue)" }}
                       className="flex-1 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-1"
                     >
                       <RotateCcw size={12} />
@@ -1217,8 +1217,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     </button>
                     <button
                       onClick={() => setQuizStarted(false)}
-                      style={{ borderColor: "#C4622D", color: "#C4622D" }}
-                      className="flex-1 py-2.5 border rounded-xl text-xs font-bold hover:bg-[#C4622D]/5 transition-all"
+                      style={{ borderColor: "var(--river-blue)", color: "var(--river-blue)" }}
+                      className="flex-1 py-2.5 border rounded-xl text-xs font-bold hover:bg-black/5 transition-all"
                     >
                       Exit Quiz
                     </button>
@@ -1228,21 +1228,21 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             ) : (
               <div className="space-y-6 animate-fade-in">
                 <div className="flex justify-between items-center text-xs font-semibold">
-                  <span style={{ color: "#1C2B4A" }}>
+                  <span style={{ color: "var(--river-blue)" }}>
                     Question {currentQuestionIndex + 1} of {quizQuestions.length}
                   </span>
-                  <span style={{ color: "#C4622D" }}>Rank {currentRankIndex} · Score: {score}</span>
+                  <span style={{ color: "var(--golden-heritage)" }}>Rank {currentRankIndex} · Score: {score}</span>
                 </div>
                 {timerActive && (
                   <div className="w-full space-y-1">
                     <div className="flex justify-between text-[10px] text-gray-400 font-semibold px-1">
                       <span className="flex items-center gap-1"><Clock size={10} /> Time Remaining</span>
-                      <span style={{ color: timeLeft <= 3 ? "#DC2626" : "#C4622D" }} className="font-bold">{timeLeft}s</span>
+                      <span style={{ color: timeLeft <= 3 ? "#DC2626" : "var(--golden-heritage)" }} className="font-bold">{timeLeft}s</span>
                     </div>
-                    <div style={{ backgroundColor: "#EDE6DA" }} className="w-full h-1.5 rounded-full overflow-hidden">
+                    <div style={{ backgroundColor: "#EFE6D8" }} className="w-full h-1.5 rounded-full overflow-hidden">
                       <div
                         style={{
-                          backgroundColor: timeLeft <= 3 ? "#DC2626" : "#C4622D",
+                          backgroundColor: timeLeft <= 3 ? "#DC2626" : "var(--golden-heritage)",
                           width: `${(timeLeft / diffSettings.timeLimit) * 100}%`,
                         }}
                         className="h-full rounded-full transition-all duration-1000 ease-linear"
@@ -1252,16 +1252,16 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 )}
                 <div style={{ backgroundColor: "#1C2B4A" }} className="rounded-3xl p-6 sm:p-8 text-center shadow-lg relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-4 opacity-5">
-                    <Sparkles size={100} color="#F7F2EB" />
+                    <Sparkles size={100} color="#FAF6EE" />
                   </div>
-                  <span style={{ color: "#C4622D" }} className="text-[10px] uppercase font-bold tracking-widest block mb-2">
+                  <span style={{ color: "var(--golden-heritage)" }} className="text-[10px] uppercase font-bold tracking-widest block mb-2">
                     {quizQuestions[currentQuestionIndex].type === "but-en" 
                       ? "Vocabulary Check" 
                       : quizQuestions[currentQuestionIndex].type === "en-but" 
                       ? "Translate Check" 
                       : "Pronunciation Challenge"}
                   </span>
-                  <h3 style={{ color: "#F7F2EB" }} className="text-base sm:text-lg font-semibold leading-relaxed">
+                  <h3 style={{ color: "#FAF6EE" }} className="text-base sm:text-lg font-semibold leading-relaxed">
                     {quizQuestions[currentQuestionIndex].prompt}
                   </h3>
                   {quizQuestions[currentQuestionIndex].type === "but-en" && (
@@ -1278,34 +1278,34 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 {quizQuestions[currentQuestionIndex].type === "pronounce" ? (
                   <div className="space-y-6">
                     {isEvaluating ? (
-                      <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-8 shadow-lg flex flex-col items-center justify-center min-h-[220px] space-y-4 animate-pulse">
-                        <Loader2 className="animate-spin text-[#C4622D]" size={48} />
-                        <p style={{ color: "#1C2B4A" }} className="text-sm font-bold">AI Evaluating Pronunciation...</p>
+                      <div style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-8 shadow-lg flex flex-col items-center justify-center min-h-[220px] space-y-4 animate-pulse">
+                        <Loader2 className="animate-spin text-[#D4AF37]" size={48} />
+                        <p style={{ color: "var(--river-blue)" }} className="text-sm font-bold">AI Evaluating Pronunciation...</p>
                         <p style={{ color: "#6B7A99" }} className="text-xs text-center max-w-xs leading-relaxed">Analyzing your speech recordings for phonological correctness. Just a moment!</p>
                       </div>
                     ) : answered && evaluationResult ? (
-                      <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-6 sm:p-8 shadow-lg space-y-6 text-center animate-in fade-in zoom-in-95 duration-200">
+                      <div style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-6 sm:p-8 shadow-lg space-y-6 text-center animate-in fade-in zoom-in-95 duration-200">
                         <div className="flex flex-col items-center">
                           <div 
                             style={{ 
-                              borderColor: evaluationResult.isCorrect ? "#2F6B38" : "#C4622D",
-                              backgroundColor: evaluationResult.isCorrect ? "rgba(80,148,90,0.04)" : "rgba(220,38,38,0.04)"
+                              borderColor: evaluationResult.isCorrect ? "#2F6B38" : "var(--golden-heritage)",
+                              backgroundColor: evaluationResult.isCorrect ? "rgba(80,148,90,0.04)" : "rgba(212,175,55,0.08)"
                             }} 
                             className="w-24 h-24 rounded-full border-4 flex flex-col items-center justify-center mb-4 shadow-inner"
                           >
                             <span 
-                              style={{ color: evaluationResult.isCorrect ? "#2F6B38" : "#C4622D" }} 
+                              style={{ color: evaluationResult.isCorrect ? "#2F6B38" : "var(--river-blue)" }} 
                               className="text-3xl font-extrabold"
                             >
                               {evaluationResult.score}%
                             </span>
-                            <span style={{ color: "#8B9DC3" }} className="text-[9px] font-bold uppercase tracking-wider">Accuracy</span>
+                            <span style={{ color: "#6B7A99" }} className="text-[9px] font-bold uppercase tracking-wider">Accuracy</span>
                           </div>
 
                           <span 
                             style={{ 
-                              backgroundColor: evaluationResult.isCorrect ? "rgba(80, 148, 90, 0.12)" : "rgba(220, 38, 38, 0.08)", 
-                              color: evaluationResult.isCorrect ? "#2F6B38" : "#DC2626" 
+                              backgroundColor: evaluationResult.isCorrect ? "rgba(80, 148, 90, 0.12)" : "rgba(212, 175, 55, 0.15)", 
+                              color: evaluationResult.isCorrect ? "#2F6B38" : "var(--river-blue)" 
                             }} 
                             className="inline-flex items-center gap-1.5 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider mb-2 shadow-sm"
                           >
@@ -1315,21 +1315,21 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                         </div>
 
                         {evaluationResult.transcript && (
-                          <div style={{ backgroundColor: "rgba(28,43,74,0.03)" }} className="rounded-2xl p-4 text-left border border-gray-100">
-                            <span style={{ color: "#8B9DC3" }} className="text-[9px] uppercase font-bold tracking-wider block mb-1">What the AI Heard:</span>
-                            <p style={{ color: "#1C2B4A" }} className="text-sm font-serif italic">"{evaluationResult.transcript}"</p>
+                          <div style={{ backgroundColor: "var(--background)" }} className="rounded-2xl p-4 text-left border border-gray-100">
+                            <span style={{ color: "#6B7A99" }} className="text-[9px] uppercase font-bold tracking-wider block mb-1">What the AI Heard:</span>
+                            <p style={{ color: "var(--river-blue)" }} className="text-sm font-serif italic">"{evaluationResult.transcript}"</p>
                           </div>
                         )}
 
-                        <div style={{ backgroundColor: "rgba(196,98,45,0.03)" }} className="rounded-2xl p-4 text-left border-l-4 border-[#C4622D]">
-                          <span style={{ color: "#C4622D" }} className="text-[9px] uppercase font-bold tracking-wider block mb-1">AI Feedback:</span>
-                          <p style={{ color: "#4A5873" }} className="text-xs leading-relaxed font-medium">{evaluationResult.feedback}</p>
+                        <div style={{ backgroundColor: "rgba(212,175,55,0.08)" }} className="rounded-2xl p-4 text-left border-l-4 border-[#D4AF37]">
+                          <span style={{ color: "var(--river-blue)" }} className="text-[9px] uppercase font-bold tracking-wider block mb-1">AI Feedback:</span>
+                          <p style={{ color: "#334155" }} className="text-xs leading-relaxed font-medium">{evaluationResult.feedback}</p>
                         </div>
 
                         <div className="flex gap-2">
                           <button
                             onClick={() => playGuideAudio(quizQuestions[currentQuestionIndex])}
-                            style={{ backgroundColor: "rgba(28,43,74,0.06)", color: "#1C2B4A" }}
+                            style={{ backgroundColor: "rgba(28,43,74,0.06)", color: "var(--river-blue)" }}
                             className="flex-1 py-3 rounded-xl text-xs font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-1.5"
                           >
                             <Volume2 size={14} /> Listen Guide
@@ -1342,8 +1342,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                               setIsRecording(false);
                               setRecordingDuration(0);
                             }}
-                            style={{ borderColor: "#C4622D", color: "#C4622D" }}
-                            className="flex-1 py-3 border rounded-xl text-xs font-bold hover:bg-[#C4622D]/5 transition-all flex items-center justify-center gap-1"
+                            style={{ borderColor: "var(--golden-heritage)", color: "var(--river-blue)" }}
+                            className="flex-1 py-3 border rounded-xl text-xs font-bold hover:bg-[#D4AF37]/10 transition-all flex items-center justify-center gap-1"
                           >
                             <RotateCcw size={12} /> Try Again
                           </button>
@@ -1373,14 +1373,14 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                             <button
                               onClick={startRecording}
                               style={{
-                                backgroundColor: "#C4622D",
-                                color: "#FFFDF9",
-                                boxShadow: "0 10px 25px -5px rgba(196, 98, 45, 0.4)",
+                                backgroundColor: "var(--golden-heritage)",
+                                color: "#0F1D30",
+                                boxShadow: "0 10px 25px -5px rgba(212, 175, 55, 0.4)",
                               }}
                               className="w-24 h-24 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 relative group"
                             >
-                              <div className="absolute inset-0 rounded-full border-4 border-[#C4622D] opacity-25 group-hover:scale-110 transition-transform duration-500"></div>
-                              <Mic size={36} className="group-hover:rotate-6 transition-transform duration-300" />
+                              <div className="absolute inset-0 rounded-full border-4 border-amber-500 opacity-25 group-hover:scale-110 transition-transform duration-500"></div>
+                              <Mic size={36} className="group-hover:rotate-6 transition-transform duration-300 text-[#0F1D30]" />
                             </button>
                           )}
 
@@ -1390,7 +1390,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                               Recording: {Math.floor(recordingDuration / 60).toString().padStart(2, '0')}:{(recordingDuration % 60).toString().padStart(2, '0')}
                             </div>
                           ) : (
-                            <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase font-bold tracking-wider">
+                            <span style={{ color: "#6B7A99" }} className="text-[10px] uppercase font-bold tracking-wider">
                               Tap to Record
                             </span>
                           )}
@@ -1398,7 +1398,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
 
                         <button
                           onClick={() => playGuideAudio(quizQuestions[currentQuestionIndex])}
-                          style={{ backgroundColor: "rgba(196,98,45,0.06)", color: "#C4622D" }}
+                          style={{ backgroundColor: "rgba(212,175,55,0.15)", color: "var(--river-blue)" }}
                           className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold hover:opacity-90 transition-all shadow-sm"
                         >
                           <Volume2 size={14} /> Listen to Pronunciation Guide
@@ -1409,7 +1409,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     {answered && evaluationResult && (
                       <button
                         onClick={nextQuestion}
-                        style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                        style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
                         className="w-full py-4 rounded-2xl text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1 shadow-md"
                       >
                         {currentQuestionIndex === quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
@@ -1423,11 +1423,11 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                       {quizQuestions[currentQuestionIndex].options.map((option) => {
                         const isCorrect = option === quizQuestions[currentQuestionIndex].correctAnswer;
                         const isSelected = option === selectedAnswer;
-                        let btnStyle = { backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)", color: "#1C2B4A" };
+                        let btnStyle = { backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)", color: "var(--river-blue)" };
                         if (answered) {
                           if (isCorrect) btnStyle = { backgroundColor: "rgba(80, 148, 90, 0.12)", borderColor: "#2F6B38", color: "#2F6B38" };
                           else if (isSelected) btnStyle = { backgroundColor: "rgba(220, 38, 38, 0.08)", borderColor: "#DC2626", color: "#DC2626" };
-                          else btnStyle = { backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.04)", color: "rgba(28,43,74,0.4)" };
+                          else btnStyle = { backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.04)", color: "rgba(28,43,74,0.4)" };
                         }
                         return (
                           <button
@@ -1447,7 +1447,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                     {answered && (
                       <button
                         onClick={nextQuestion}
-                        style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                        style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
                         className="w-full py-4 rounded-2xl text-xs font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-1 animate-fade-in shadow-md"
                       >
                         {currentQuestionIndex === quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
@@ -1461,8 +1461,8 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
           </div>
         ) : (
           <div className="space-y-6 animate-fade-in text-center">
-            <div style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-6 shadow-md print:hidden">
-              <h3 style={{ color: "#1C2B4A" }} className="text-sm font-bold mb-2 flex items-center justify-center gap-1.5">
+            <div style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }} className="rounded-3xl border p-6 shadow-md print:hidden">
+              <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold mb-2 flex items-center justify-center gap-1.5">
                 <Sparkles size={16} color="#D4AF37" /> Customize Your Certificate
               </h3>
               <p className="text-xs text-gray-500 mb-4 leading-relaxed">
@@ -1475,13 +1475,13 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   placeholder="Enter your full name"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A" }}
-                  className="w-full px-4 py-3 rounded-xl text-xs font-semibold outline-none border border-transparent focus:border-[#C4622D]"
+                  style={{ backgroundColor: "var(--background)", color: "var(--river-blue)" }}
+                  className="w-full px-4 py-3 rounded-xl text-xs font-semibold outline-none border border-transparent focus:border-[#D4AF37]"
                 />
               </div>
               <button
                 onClick={() => window.print()}
-                style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
                 className="w-full max-w-sm mx-auto mt-4 py-3 rounded-xl text-xs font-bold shadow-md hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5"
               >
                 <Download size={14} /> Print Certificate / Save PDF
@@ -1496,7 +1496,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <div className="flex justify-center mb-1">
                   <Award size={64} color="#D4AF37" />
                 </div>
-                <h2 style={{ fontFamily: "Georgia, serif", color: "#1C2B4A" }} className="text-2xl sm:text-3xl font-bold uppercase tracking-wider">
+                <h2 style={{ fontFamily: "Georgia, serif", color: "var(--river-blue)" }} className="text-2xl sm:text-3xl font-bold uppercase tracking-wider">
                   Certificate of Mastery
                 </h2>
                 <p style={{ fontFamily: "Georgia, serif" }} className="text-[10px] tracking-widest text-[#B3922E] font-semibold uppercase">
@@ -1506,10 +1506,10 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                 <p style={{ color: "#6B7A99" }} className="text-xs italic font-serif">
                   This is proudly presented to
                 </p>
-                <h3 style={{ fontFamily: "Georgia, serif", color: "#C4622D" }} className="text-3xl sm:text-4xl font-extrabold underline decoration-double decoration-[#D4AF37] tracking-wide my-4 py-2">
+                <h3 style={{ fontFamily: "Georgia, serif", color: "var(--golden-heritage)" }} className="text-3xl sm:text-4xl font-extrabold underline decoration-double decoration-[#D4AF37] tracking-wide my-4 py-2">
                   {userName || "Your Name"}
                 </h3>
-                <p style={{ color: "#4A5873" }} className="text-xs max-w-md mx-auto leading-relaxed font-serif px-2">
+                <p style={{ color: "#334155" }} className="text-xs max-w-md mx-auto leading-relaxed font-serif px-2">
                   for successfully mastering the Butuanon language lexicon, accumulating 5000+ proficiency points, and completing the Rank 100 Vocabulary Quiz challenge.
                 </p>
                 <div className="pt-8 grid grid-cols-2 gap-4 max-w-sm mx-auto items-end">
@@ -1522,7 +1522,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
                   </div>
                   <div className="space-y-4 col-span-2 sm:col-span-1">
                     <div className="border-b border-gray-400 mx-auto w-36">
-                      <span style={{ fontFamily: "cursive", color: "#1C2B4A" }} className="text-sm italic">Antigravity AI Scholar</span>
+                      <span style={{ fontFamily: "cursive", color: "var(--river-blue)" }} className="text-sm italic">Antigravity AI Scholar</span>
                     </div>
                     <span className="text-[9px] uppercase font-bold text-gray-400 block tracking-wider">Verification Authority</span>
                   </div>
@@ -1537,7 +1537,7 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
       {showLevelUpModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 print:hidden">
           <div
-            style={{ backgroundColor: "#FFFDF9", borderColor: "#D4AF37" }}
+            style={{ backgroundColor: "var(--card)", borderColor: "#D4AF37" }}
             className="max-w-md w-full border-2 rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300"
           >
             <div className="absolute top-0 right-0 p-4 opacity-5">
@@ -1548,21 +1548,21 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
               <Award size={36} className="animate-pulse" />
             </div>
             
-            <h3 style={{ color: "#1C2B4A" }} className="text-2xl font-extrabold mb-1">
+            <h3 style={{ color: "var(--river-blue)" }} className="text-2xl font-extrabold mb-1">
               Rank Promoted!
             </h3>
-            <p style={{ color: "#C4622D" }} className="text-xs uppercase tracking-widest font-bold mb-6">
+            <p style={{ color: "var(--golden-heritage)" }} className="text-xs uppercase tracking-widest font-bold mb-6">
               LEVEL UP ACHIEVED
             </p>
             
             <div className="flex justify-center items-center gap-4 mb-6">
               <div className="text-center">
-                <span style={{ color: "#8B9DC3" }} className="text-[10px] uppercase font-bold block mb-1">Previous</span>
+                <span style={{ color: "#6B7A99" }} className="text-[10px] uppercase font-bold block mb-1">Previous</span>
                 <span style={{ backgroundColor: "rgba(28,43,74,0.06)", color: "#6B7A99" }} className="px-3 py-1.5 rounded-lg text-xs font-semibold">
                   {RANKS[previousRank]?.title || "Explorer"}
                 </span>
               </div>
-              <span style={{ color: "#C4622D" }} className="text-lg font-bold">→</span>
+              <span style={{ color: "var(--golden-heritage)" }} className="text-lg font-bold">→</span>
               <div className="text-center">
                 <span style={{ color: "#D4AF37" }} className="text-[10px] uppercase font-bold block mb-1">New Rank</span>
                 <span style={{ backgroundColor: "rgba(212,175,55,0.12)", color: "#B3922E", borderColor: "#D4AF37" }} className="px-3 py-1.5 rounded-lg text-xs font-bold border border-[#D4AF37]">

@@ -3956,7 +3956,7 @@ function VerifiedBadge({ tag, rating }: { tag: VerifiedTag; rating: number }) {
   if (!tag) return (
     <div className="flex items-center gap-1">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} size={10} color={i < rating ? "#C4622D" : "#D4C5B5"} fill={i < rating ? "#C4622D" : "none"} />
+        <Star key={i} size={10} color={i < rating ? "var(--golden-heritage)" : "#D4C5B5"} fill={i < rating ? "var(--golden-heritage)" : "none"} />
       ))}
     </div>
   );
@@ -3972,7 +3972,7 @@ function VerifiedBadge({ tag, rating }: { tag: VerifiedTag; rating: number }) {
       </span>
       <div className="flex items-center gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={10} color={i < rating ? "#C4622D" : "#D4C5B5"} fill={i < rating ? "#C4622D" : "none"} />
+          <Star key={i} size={10} color={i < rating ? "var(--golden-heritage)" : "#D4C5B5"} fill={i < rating ? "var(--golden-heritage)" : "none"} />
         ))}
       </div>
     </div>
@@ -4020,7 +4020,7 @@ function speakText(text: string) {
 
 const POS_COLORS: Record<string, { bg: string; text: string }> = {
   noun: { bg: "rgba(28, 43, 74, 0.08)", text: "#1C2B4A" },
-  verb: { bg: "rgba(196, 98, 45, 0.1)", text: "#C4622D" },
+  verb: { bg: "rgba(212, 175, 55, 0.2)", text: "#0F1D30" },
   adjective: { bg: "rgba(107, 122, 153, 0.12)", text: "#6B7A99" },
   phrase: { bg: "rgba(80, 148, 90, 0.12)", text: "#3D7A47" },
   adverb: { bg: "rgba(130, 60, 160, 0.1)", text: "#82369A" },
@@ -4105,14 +4105,14 @@ export function DictionaryPage() {
   const posStyle = (pos: string) => POS_COLORS[pos] || POS_COLORS.noun;
 
   return (
-    <div style={{ backgroundColor: "#F7F2EB", minHeight: "100vh", fontFamily: "Poppins, sans-serif" }}>
+    <div style={{ backgroundColor: "var(--background)", minHeight: "100vh", fontFamily: "Poppins, sans-serif" }}>
       {/* Header */}
-      <div style={{ backgroundColor: "#1C2B4A" }} className="py-10 px-4">
+      <div style={{ backgroundColor: "var(--river-blue)" }} className="py-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 style={{ color: "#F7F2EB" }} className="text-2xl font-bold mb-1">
+          <h1 style={{ color: "var(--ivory-sail)" }} className="text-2xl font-bold mb-1">
             Butuanon Dictionary
           </h1>
-          <p style={{ color: "#8B9DC3" }} className="text-sm mb-6">
+          <p style={{ color: "#A0B2D6" }} className="text-sm mb-6">
             Browse and search thousands of Butuanon words and their English meanings.
           </p>
 
@@ -4122,7 +4122,7 @@ export function DictionaryPage() {
               <Search
                 size={16}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2"
-                color="#8B9DC3"
+                color="#A0B2D6"
               />
               <input
                 type="text"
@@ -4135,18 +4135,18 @@ export function DictionaryPage() {
                 }
                 style={{
                   backgroundColor: "#FFFDF9",
-                  color: "#1C2B4A",
+                  color: "#1E293B",
                   fontFamily: "Poppins, sans-serif",
                 }}
-                className="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none placeholder:text-gray-400"
+                className="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none placeholder:text-gray-400 border border-amber-900/10"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <button
                 onClick={() => setDirection(direction === "but-en" ? "en-but" : "but-en")}
                 style={{
-                  backgroundColor: "#C4622D",
-                  color: "#FFFDF9",
+                  backgroundColor: "var(--golden-heritage)",
+                  color: "#0F1D30",
                 }}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
               >
@@ -4174,20 +4174,20 @@ export function DictionaryPage() {
         {/* Suggest Word Banner */}
         <div
           style={{
-            backgroundColor: "rgba(196, 98, 45, 0.08)",
-            borderColor: "rgba(196, 98, 45, 0.15)",
+            backgroundColor: "rgba(212, 175, 55, 0.1)",
+            borderColor: "rgba(212, 175, 55, 0.25)",
           }}
           className="rounded-2xl border p-5 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
         >
           <div className="flex items-start gap-3">
             <div
-              style={{ backgroundColor: "rgba(196, 98, 45, 0.15)", color: "#C4622D" }}
+              style={{ backgroundColor: "rgba(212, 175, 55, 0.2)", color: "var(--river-blue)" }}
               className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
             >
-              <Sparkles size={18} />
+              <Sparkles size={18} style={{ color: "var(--golden-heritage)" }} />
             </div>
             <div>
-              <h3 style={{ color: "#1C2B4A" }} className="text-sm font-bold">
+              <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold">
                 Help Us Preserve Butuanon!
               </h3>
               <p style={{ color: "#6B7A99" }} className="text-xs mt-0.5 max-w-xl leading-relaxed">
@@ -4197,8 +4197,8 @@ export function DictionaryPage() {
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
-            className="px-5 py-2.5 rounded-xl text-xs font-bold hover:opacity-90 transition-opacity self-start sm:self-auto whitespace-nowrap"
+            style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
+            className="px-5 py-2.5 rounded-xl text-xs font-bold hover:opacity-90 transition-opacity self-start sm:self-auto whitespace-nowrap shadow-sm"
           >
             Suggest Word
           </button>
@@ -4209,10 +4209,10 @@ export function DictionaryPage() {
           <button
             onClick={() => setActiveLetter(null)}
             style={{
-              backgroundColor: !activeLetter ? "#1C2B4A" : "#EDE6DA",
-              color: !activeLetter ? "#F7F2EB" : "#1C2B4A",
+              backgroundColor: !activeLetter ? "var(--river-blue)" : "#EFE6D8",
+              color: !activeLetter ? "var(--ivory-sail)" : "var(--river-blue)",
             }}
-            className="w-8 h-8 rounded-lg text-xs font-semibold hover:opacity-80 transition-all"
+            className="w-8 h-8 rounded-lg text-xs font-bold hover:opacity-80 transition-all"
           >
             All
           </button>
@@ -4223,10 +4223,10 @@ export function DictionaryPage() {
                 setActiveLetter(activeLetter === letter ? null : letter)
               }
               style={{
-                backgroundColor: activeLetter === letter ? "#C4622D" : "#EDE6DA",
-                color: activeLetter === letter ? "#FFFDF9" : "#1C2B4A",
+                backgroundColor: activeLetter === letter ? "var(--golden-heritage)" : "#EFE6D8",
+                color: activeLetter === letter ? "#0F1D30" : "var(--river-blue)",
               }}
-              className="w-8 h-8 rounded-lg text-xs font-semibold hover:opacity-80 transition-all"
+              className="w-8 h-8 rounded-lg text-xs font-bold hover:opacity-80 transition-all"
             >
               {letter}
             </button>
@@ -4234,7 +4234,7 @@ export function DictionaryPage() {
         </div>
 
         {/* Results count */}
-        <p style={{ color: "#8B9DC3" }} className="text-xs mb-4">
+        <p style={{ color: "#6B7A99" }} className="text-xs mb-4 font-semibold">
           {words.length} {words.length === 1 ? "entry" : "entries"} found
         </p>
 
@@ -4242,19 +4242,19 @@ export function DictionaryPage() {
         <div className="space-y-3">
           {loading ? (
             <div
-              style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
+              style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }}
               className="rounded-2xl border p-10 text-center animate-pulse"
             >
-              <p style={{ color: "#8B9DC3" }} className="text-sm font-semibold">
+              <p style={{ color: "#6B7A99" }} className="text-sm font-semibold">
                 Searching lexicon records...
               </p>
             </div>
           ) : words.length === 0 ? (
             <div
-              style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
+              style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }}
               className="rounded-2xl border p-10 text-center"
             >
-              <p style={{ color: "#8B9DC3" }} className="text-sm">
+              <p style={{ color: "#6B7A99" }} className="text-sm font-medium">
                 No words found. Try a different search term.
               </p>
             </div>
@@ -4266,10 +4266,10 @@ export function DictionaryPage() {
                 <div
                   key={entry.id}
                   style={{
-                    backgroundColor: "#FFFDF9",
-                    borderColor: isExpanded ? "#C4622D" : "rgba(28,43,74,0.08)",
+                    backgroundColor: "var(--card)",
+                    borderColor: isExpanded ? "var(--golden-heritage)" : "rgba(28,43,74,0.08)",
                   }}
-                  className="rounded-2xl border overflow-hidden transition-all"
+                  className="rounded-2xl border overflow-hidden transition-all shadow-sm"
                 >
                   <div
                     role="button"
@@ -4280,25 +4280,25 @@ export function DictionaryPage() {
                         setExpandedId(isExpanded ? null : entry.id);
                       }
                     }}
-                    className="w-full text-left p-5 flex items-center gap-4 hover:bg-[#F7F2EB]/50 transition-colors cursor-pointer outline-none"
+                    className="w-full text-left p-5 flex items-center gap-4 hover:bg-black/5 transition-colors cursor-pointer outline-none"
                     onClick={() => setExpandedId(isExpanded ? null : entry.id)}
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-1">
                         <span
-                          style={{ color: "#1C2B4A" }}
-                          className="font-semibold text-base"
+                          style={{ color: "var(--river-blue)" }}
+                          className="font-bold text-base"
                         >
                           {entry.butuanon}
                         </span>
                         <span
                           style={{ backgroundColor: ps.bg, color: ps.text }}
-                          className="text-xs px-2 py-0.5 rounded-full font-medium"
+                          className="text-xs px-2 py-0.5 rounded-full font-bold"
                         >
                           {entry.pos}
                         </span>
                       </div>
-                      <p style={{ color: "#6B7A99" }} className="text-sm truncate mb-1.5">
+                      <p style={{ color: "#6B7A99" }} className="text-sm truncate mb-1.5 font-medium">
                         {entry.english}
                       </p>
                       <VerifiedBadge tag={entry.verified} rating={entry.rating} />
@@ -4309,16 +4309,16 @@ export function DictionaryPage() {
                         style={{
                           backgroundColor:
                             playingId === entry.id
-                              ? "#C4622D"
-                              : "rgba(196, 98, 45, 0.1)",
+                              ? "var(--golden-heritage)"
+                              : "rgba(212, 175, 55, 0.15)",
                           color:
-                            playingId === entry.id ? "#FFFDF9" : "#C4622D",
+                            playingId === entry.id ? "#0F1D30" : "var(--river-blue)",
                         }}
                         className="w-8 h-8 rounded-full flex items-center justify-center hover:scale-105 transition-all"
                       >
                         <Volume2 size={14} />
                       </button>
-                      <div style={{ color: "#8B9DC3" }}>
+                      <div style={{ color: "#6B7A99" }}>
                         {isExpanded ? (
                           <ChevronUp size={16} />
                         ) : (
@@ -4331,51 +4331,51 @@ export function DictionaryPage() {
                   {isExpanded && (
                     <div
                       style={{
-                        backgroundColor: "#F7F2EB",
+                        backgroundColor: "var(--background)",
                         borderTopColor: "rgba(28,43,74,0.08)",
                       }}
                       className="border-t px-5 py-5"
                     >
                       <p
-                        style={{ color: "#8B9DC3" }}
-                        className="text-xs font-medium uppercase tracking-wider mb-2"
+                        style={{ color: "#6B7A99" }}
+                        className="text-xs font-bold uppercase tracking-wider mb-2"
                       >
                         Pronunciation
                       </p>
-                      <p style={{ color: "#6B7A99" }} className="text-sm mb-4">
+                      <p style={{ color: "var(--river-blue)" }} className="text-sm mb-4 font-semibold">
                         /{entry.pronunciation}/
                       </p>
 
                       <p
-                        style={{ color: "#8B9DC3" }}
-                        className="text-xs font-medium uppercase tracking-wider mb-2"
+                        style={{ color: "#6B7A99" }}
+                        className="text-xs font-bold uppercase tracking-wider mb-2"
                       >
                         Definition
                       </p>
                       <p
-                        style={{ color: "#4A5873" }}
-                        className="text-sm leading-relaxed mb-4"
+                        style={{ color: "#334155" }}
+                        className="text-sm leading-relaxed mb-4 font-medium"
                       >
                         {entry.definition}
                       </p>
 
                       <p
-                        style={{ color: "#8B9DC3" }}
-                        className="text-xs font-medium uppercase tracking-wider mb-2"
+                        style={{ color: "#6B7A99" }}
+                        className="text-xs font-bold uppercase tracking-wider mb-2"
                       >
                         Example Sentence
                       </p>
                       <div
                         style={{
-                          backgroundColor: "#FFFDF9",
+                          backgroundColor: "var(--card)",
                           borderColor: "rgba(28,43,74,0.08)",
-                          borderLeftColor: "#C4622D",
+                          borderLeftColor: "var(--golden-heritage)",
                         }}
-                        className="rounded-xl border border-l-4 p-4"
+                        className="rounded-xl border border-l-4 p-4 shadow-sm"
                       >
                         <p
-                          style={{ color: "#1C2B4A" }}
-                          className="text-sm font-medium mb-1"
+                          style={{ color: "var(--river-blue)" }}
+                          className="text-sm font-bold mb-1"
                         >
                           {entry.exampleButuanon}
                         </p>

@@ -114,7 +114,7 @@ function TranslatingAnimation({ direction }: { direction: "but-en" | "en-but" })
       {/* Animated word-flow graphic */}
       <div className="flex items-center gap-3">
         <div
-          style={{ backgroundColor: "rgba(28,43,74,0.1)", color: "#1C2B4A" }}
+          style={{ backgroundColor: "rgba(15,29,48,0.1)", color: "var(--river-blue)" }}
           className="px-3 py-1 rounded-lg text-xs font-semibold"
         >
           {direction === "but-en" ? "BUT" : "ENG"}
@@ -124,7 +124,7 @@ function TranslatingAnimation({ direction }: { direction: "but-en" | "en-but" })
             <div
               key={i}
               style={{
-                backgroundColor: "#C4622D",
+                backgroundColor: "var(--golden-heritage)",
                 opacity: dots === i ? 1 : 0.25,
                 width: 6,
                 height: 6,
@@ -135,22 +135,22 @@ function TranslatingAnimation({ direction }: { direction: "but-en" | "en-but" })
           ))}
         </div>
         <div
-          style={{ backgroundColor: "rgba(196,98,45,0.15)", color: "#C4622D" }}
+          style={{ backgroundColor: "rgba(212,175,55,0.2)", color: "var(--golden-heritage)" }}
           className="px-3 py-1 rounded-lg text-xs font-semibold"
         >
           {direction === "but-en" ? "ENG" : "BUT"}
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <Sparkles size={14} color="#C4622D" className="animate-pulse" />
-        <p style={{ color: "#8B9DC3" }} className="text-xs font-medium">
+        <Sparkles size={14} style={{ color: "var(--golden-heritage)" }} className="animate-pulse" />
+        <p style={{ color: "#A0B2D6" }} className="text-xs font-medium">
           {steps[step]}
         </p>
       </div>
       {/* Progress bar */}
-      <div style={{ backgroundColor: "#EDE6DA" }} className="w-40 h-1.5 rounded-full overflow-hidden">
+      <div style={{ backgroundColor: "#EFE6D8" }} className="w-40 h-1.5 rounded-full overflow-hidden">
         <div
-          style={{ backgroundColor: "#C4622D" }}
+          style={{ backgroundColor: "var(--golden-heritage)" }}
           className="h-full rounded-full animate-pulse"
           // width cycles via animation
         />
@@ -365,12 +365,12 @@ export function TranslatePage({ user }: { user?: any }) {
       style={{ backgroundColor: "#F7F2EB", minHeight: "100vh", fontFamily: "Poppins, sans-serif" }}
     >
       {/* Header */}
-      <div style={{ backgroundColor: "#1C2B4A" }} className="py-10 px-4">
+      <div style={{ backgroundColor: "var(--river-blue)" }} className="py-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 style={{ color: "#F7F2EB" }} className="text-2xl font-bold mb-1">
+          <h1 style={{ color: "var(--ivory-sail)" }} className="text-2xl font-bold mb-1">
             AI Translator
           </h1>
-          <p style={{ color: "#8B9DC3" }} className="text-sm">
+          <p style={{ color: "#A0B2D6" }} className="text-sm">
             Translate between Butuanon and English using AI-assisted technology.
           </p>
         </div>
@@ -379,20 +379,20 @@ export function TranslatePage({ user }: { user?: any }) {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Translator Card */}
         <div
-          style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
+          style={{ backgroundColor: "var(--card)", borderColor: "rgba(11,79,108,0.12)" }}
           className="rounded-2xl border shadow-md overflow-hidden mb-6"
         >
           {/* Language labels + swap */}
           <div
             style={{
-              backgroundColor: "#1C2B4A",
+              backgroundColor: "var(--river-blue)",
               borderBottomColor: "rgba(255,255,255,0.08)",
             }}
             className="flex items-center border-b"
           >
             <div className="flex-1 px-5 py-3 text-center">
               <span
-                style={{ color: direction === "but-en" ? "#C4622D" : "#8B9DC3" }}
+                style={{ color: direction === "but-en" ? "var(--golden-heritage)" : "#A0B2D6" }}
                 className="text-xs font-semibold uppercase tracking-wider"
               >
                 {direction === "but-en" ? "Butuanon" : "English"}
@@ -400,14 +400,14 @@ export function TranslatePage({ user }: { user?: any }) {
             </div>
             <button
               onClick={swapDirection}
-              style={{ backgroundColor: "rgba(196, 98, 45, 0.15)", color: "#C4622D" }}
-              className="mx-3 p-2 rounded-lg hover:bg-[#C4622D]/25 transition-all"
+              style={{ backgroundColor: "rgba(212, 175, 55, 0.2)", color: "var(--golden-heritage)" }}
+              className="mx-3 p-2 rounded-lg hover:bg-white/10 transition-all"
             >
               <ArrowLeftRight size={16} />
             </button>
             <div className="flex-1 px-5 py-3 text-center">
               <span
-                style={{ color: direction === "but-en" ? "#8B9DC3" : "#C4622D" }}
+                style={{ color: direction === "but-en" ? "#A0B2D6" : "var(--golden-heritage)" }}
                 className="text-xs font-semibold uppercase tracking-wider"
               >
                 {direction === "but-en" ? "English" : "Butuanon"}
@@ -446,9 +446,9 @@ export function TranslatePage({ user }: { user?: any }) {
                     onClick={handleSourceAudio}
                     style={{
                       backgroundColor: playingSource
-                        ? "#C4622D"
-                        : "rgba(196, 98, 45, 0.1)",
-                      color: playingSource ? "#FFFDF9" : "#C4622D",
+                        ? "var(--golden-heritage)"
+                        : "rgba(212, 175, 55, 0.15)",
+                      color: playingSource ? "#0F1D30" : "var(--river-blue)",
                     }}
                     className="w-7 h-7 rounded-full flex items-center justify-center hover:scale-105 transition-all"
                   >
@@ -459,17 +459,17 @@ export function TranslatePage({ user }: { user?: any }) {
             </div>
 
             {/* Result */}
-            <div className="p-5 relative" style={{ backgroundColor: "#F7F2EB" }}>
+            <div className="p-5 relative" style={{ backgroundColor: "var(--background)" }}>
               {loading ? (
                 <TranslatingAnimation direction={direction} />
               ) : (
                 <div className="h-36 overflow-y-auto">
                   <p
                     style={{
-                      color: result ? "#1C2B4A" : "#B0BAC8",
+                      color: result ? "var(--river-blue)" : "#B0BAC8",
                       fontFamily: "Poppins, sans-serif",
                     }}
-                    className="text-sm leading-relaxed"
+                    className="text-sm leading-relaxed font-medium"
                   >
                     {result || "Translation will appear here..."}
                   </p>
@@ -477,16 +477,16 @@ export function TranslatePage({ user }: { user?: any }) {
               )}
               {result && (
                 <div className="flex items-center justify-between mt-3">
-                  <span style={{ color: "#8B9DC3" }} className="text-xs">
+                  <span style={{ color: "#6B7A99" }} className="text-xs">
                     AI-generated translation
                   </span>
                   <button
                     onClick={handleResultAudio}
                     style={{
                       backgroundColor: playingResult
-                        ? "#C4622D"
-                        : "rgba(196, 98, 45, 0.1)",
-                      color: playingResult ? "#FFFDF9" : "#C4622D",
+                        ? "var(--golden-heritage)"
+                        : "rgba(212, 175, 55, 0.15)",
+                      color: playingResult ? "#0F1D30" : "var(--river-blue)",
                     }}
                     className="w-7 h-7 rounded-full flex items-center justify-center hover:scale-105 transition-all"
                   >
@@ -507,10 +507,10 @@ export function TranslatePage({ user }: { user?: any }) {
               disabled={!sourceText.trim() || loading}
               style={{
                 backgroundColor:
-                  sourceText.trim() && !loading ? "#C4622D" : "#EDE6DA",
-                color: sourceText.trim() && !loading ? "#FFFDF9" : "#8B9DC3",
+                  sourceText.trim() && !loading ? "var(--golden-heritage)" : "#EFE6D8",
+                color: sourceText.trim() && !loading ? "#0F1D30" : "#6B7A99",
               }}
-              className="flex-1 py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition-all disabled:cursor-not-allowed"
+              className="flex-1 py-3 rounded-xl text-sm font-bold shadow-md hover:opacity-90 transition-all disabled:cursor-not-allowed"
             >
               {loading ? "Translating..." : "Translate"}
             </button>
@@ -532,15 +532,15 @@ export function TranslatePage({ user }: { user?: any }) {
         {/* AI disclaimer */}
         <div
           style={{
-            backgroundColor: "rgba(196, 98, 45, 0.08)",
-            borderColor: "rgba(196, 98, 45, 0.2)",
+            backgroundColor: "rgba(212, 175, 55, 0.1)",
+            borderColor: "rgba(212, 175, 55, 0.3)",
           }}
           className="rounded-xl border px-4 py-3 mb-8 flex items-start gap-3"
         >
-          <span style={{ color: "#C4622D" }} className="text-lg leading-none mt-0.5">
+          <span style={{ color: "var(--golden-heritage)" }} className="text-lg leading-none mt-0.5">
             ⚠
           </span>
-          <p style={{ color: "#7A4020" }} className="text-xs leading-relaxed">
+          <p style={{ color: "#334155" }} className="text-xs leading-relaxed">
             <strong>AI-generated translation — may not be perfect.</strong> The Butuanon language
             has nuanced dialects and expressions. Always verify important translations with a
             native speaker or language expert.
@@ -553,10 +553,10 @@ export function TranslatePage({ user }: { user?: any }) {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div
-                  style={{ backgroundColor: "#C4622D" }}
-                  className="w-1 h-5 rounded-full"
+                  style={{ backgroundColor: "var(--golden-heritage)" }}
+                  className="w-1.5 h-5 rounded-full"
                 />
-                <h2 style={{ color: "#1C2B4A" }} className="text-base font-semibold">
+                <h2 style={{ color: "var(--river-blue)" }} className="text-base font-bold">
                   Recent Translations
                 </h2>
               </div>
@@ -565,7 +565,7 @@ export function TranslatePage({ user }: { user?: any }) {
                   setHistory([]);
                   localStorage.removeItem(storageKey);
                 }}
-                style={{ color: "#8B9DC3" }}
+                style={{ color: "#6B7A99" }}
                 className="text-xs font-semibold hover:text-red-400 transition-colors flex items-center gap-1"
               >
                 Clear All
@@ -581,7 +581,7 @@ export function TranslatePage({ user }: { user?: any }) {
                     setResult(item.result);
                   }}
                   style={{
-                    backgroundColor: "#FFFDF9",
+                    backgroundColor: "var(--card)",
                     borderColor: "rgba(28,43,74,0.08)",
                   }}
                   className="w-full text-left rounded-xl border p-4 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -592,21 +592,21 @@ export function TranslatePage({ user }: { user?: any }) {
                         backgroundColor: "rgba(28,43,74,0.07)",
                         color: "#6B7A99",
                       }}
-                      className="text-xs px-2 py-0.5 rounded-full"
+                      className="text-xs px-2 py-0.5 rounded-full font-medium"
                     >
                       {item.from} → {item.to}
                     </span>
                     <div className="flex items-center gap-1 ml-auto">
-                      <Clock size={10} color="#8B9DC3" />
-                      <span style={{ color: "#8B9DC3" }} className="text-xs">
+                      <Clock size={10} color="#6B7A99" />
+                      <span style={{ color: "#6B7A99" }} className="text-xs">
                         {timeAgo(item.timestamp)}
                       </span>
                     </div>
                   </div>
-                  <p style={{ color: "#1C2B4A" }} className="text-sm font-medium mb-1">
+                  <p style={{ color: "var(--river-blue)" }} className="text-sm font-semibold mb-1">
                     {item.sourceText}
                   </p>
-                  <p style={{ color: "#C4622D" }} className="text-sm">
+                  <p style={{ color: "var(--golden-heritage)" }} className="text-sm font-bold">
                     {item.result}
                   </p>
                 </button>

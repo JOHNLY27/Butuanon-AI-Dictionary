@@ -26,7 +26,7 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
 
   return (
     <nav
-      style={{ backgroundColor: "#1C2B4A" }}
+      style={{ backgroundColor: "var(--river-blue)" }}
       className="sticky top-0 z-50 shadow-lg"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -36,18 +36,18 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
             onClick={() => onNavigate("home")}
             className="flex items-center gap-2 group flex-shrink-0"
           >
-            <div className="w-9 h-9 flex items-center justify-center flex-shrink-0 rounded-full overflow-hidden border border-orange-500/20">
-              <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
+            <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 rounded-full overflow-hidden border border-[var(--golden-heritage)]/40 shadow-sm group-hover:scale-105 transition-transform bg-[#0F1D30]">
+              <img src="/logo.png" alt="Butuanon Dictionary Logo with Balanghay Boat" className="w-full h-full object-cover scale-105" />
             </div>
             <div className="text-left">
               <span
-                style={{ color: "#F7F2EB", fontFamily: "Poppins, sans-serif" }}
+                style={{ color: "var(--ivory-sail)", fontFamily: "Poppins, sans-serif" }}
                 className="text-sm font-semibold leading-tight block"
               >
                 Butuanon
               </span>
               <span
-                style={{ color: "#C4622D", fontFamily: "Poppins, sans-serif" }}
+                style={{ color: "var(--golden-heritage)", fontFamily: "Poppins, sans-serif" }}
                 className="text-xs font-medium leading-tight block"
               >
                 Dictionary
@@ -64,10 +64,10 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
                   onClick={() => onNavigate(link.id)}
                   style={{
                     fontFamily: "Poppins, sans-serif",
-                    color: currentPage === link.id ? "#C4622D" : "#CBD5E8",
+                    color: currentPage === link.id ? "var(--golden-heritage)" : "#CBD5E8",
                     backgroundColor:
                       currentPage === link.id
-                        ? "rgba(196, 98, 45, 0.12)"
+                        ? "rgba(212, 175, 55, 0.18)"
                         : "transparent",
                   }}
                   className="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:text-white hover:bg-white/10"
@@ -89,13 +89,13 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
                         className="w-7 h-7 rounded-full border border-white/15 object-cover"
                       />
                     ) : (
-                      <div style={{ backgroundColor: "#C4622D" }} className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase">
+                      <div style={{ backgroundColor: "var(--golden-heritage)" }} className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-gray-900 uppercase">
                         {user.username.charAt(0)}
                       </div>
                     )}
                     <div className="text-left leading-none">
-                      <span style={{ color: "#F7F2EB" }} className="text-xs font-semibold block max-w-[100px] truncate">{user.username}</span>
-                      <span style={{ color: "#C4622D" }} className="text-[10px] font-bold block mt-0.5">{user.xp_points} XP</span>
+                      <span style={{ color: "var(--ivory-sail)" }} className="text-xs font-semibold block max-w-[100px] truncate">{user.username}</span>
+                      <span style={{ color: "var(--golden-heritage)" }} className="text-[10px] font-bold block mt-0.5">{user.xp_points} XP</span>
                     </div>
                   </div>
                   <button
@@ -109,8 +109,8 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
               ) : (
                 <button
                   onClick={onOpenAuth}
-                  style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
-                  className="px-4 py-2 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: "var(--golden-heritage)", color: "#1C252C" }}
+                  className="px-4 py-2 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity shadow-sm"
                 >
                   Sign In
                 </button>
@@ -145,7 +145,7 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
                   }}
                   style={{
                     fontFamily: "Poppins, sans-serif",
-                    color: currentPage === link.id ? "#C4622D" : "#CBD5E8",
+                    color: currentPage === link.id ? "var(--golden-heritage)" : "#CBD5E8",
                     transitionDelay: mobileOpen ? `${i * 40}ms` : "0ms",
                   }}
                   className="w-full text-left px-4 py-3 text-sm font-medium hover:text-white hover:bg-white/10 rounded-lg transition-all flex items-center justify-between"
@@ -153,7 +153,7 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
                   <span>{link.label}</span>
                   {currentPage === link.id && (
                     <span
-                      style={{ backgroundColor: "#C4622D" }}
+                      style={{ backgroundColor: "var(--golden-heritage)" }}
                       className="w-1.5 h-1.5 rounded-full"
                     />
                   )}
@@ -173,13 +173,13 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
                         className="w-8 h-8 rounded-full border border-white/15 object-cover"
                       />
                     ) : (
-                      <div style={{ backgroundColor: "#C4622D" }} className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase">
+                      <div style={{ backgroundColor: "var(--golden-heritage)" }} className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-gray-900 uppercase">
                         {user.username.charAt(0)}
                       </div>
                     )}
                     <div className="text-left leading-none">
-                      <span style={{ color: "#F7F2EB" }} className="text-xs font-semibold block">{user.username}</span>
-                      <span style={{ color: "#C4622D" }} className="text-[10px] font-bold block mt-1">{user.xp_points} XP</span>
+                      <span style={{ color: "var(--ivory-sail)" }} className="text-xs font-semibold block">{user.username}</span>
+                      <span style={{ color: "var(--golden-heritage)" }} className="text-[10px] font-bold block mt-1">{user.xp_points} XP</span>
                     </div>
                   </div>
                   <button
@@ -193,7 +193,7 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
               ) : (
                 <button
                   onClick={() => { onOpenAuth(); setMobileOpen(false); }}
-                  style={{ backgroundColor: "#C4622D", color: "#FFFDF9" }}
+                  style={{ backgroundColor: "var(--golden-heritage)", color: "#1C252C" }}
                   className="w-full py-3 rounded-xl text-xs font-bold text-center hover:opacity-90 transition-opacity"
                 >
                   Sign In with Google

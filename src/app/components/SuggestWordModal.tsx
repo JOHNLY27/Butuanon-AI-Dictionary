@@ -173,7 +173,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ["#C4622D", "#1C2B4A", "#F7F2EB"],
+        colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
       });
 
       setTimeout(() => {
@@ -214,7 +214,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ["#C4622D", "#1C2B4A", "#F7F2EB"],
+        colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
       });
 
       setTimeout(() => {
@@ -237,10 +237,10 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) { resetForm(); onClose(); } }}>
-      <DialogContent style={{ backgroundColor: "#FFFDF9", fontFamily: "Poppins, sans-serif" }} className="max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl border-none p-6 shadow-2xl">
+      <DialogContent style={{ backgroundColor: "var(--card)", fontFamily: "Poppins, sans-serif" }} className="max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl border-none p-6 shadow-2xl">
         <DialogHeader className="mb-4">
-          <DialogTitle style={{ color: "#1C2B4A" }} className="text-xl font-bold flex items-center gap-2">
-            <Sparkles size={20} className="text-[#C4622D]" />
+          <DialogTitle style={{ color: "var(--river-blue)" }} className="text-xl font-bold flex items-center gap-2">
+            <Sparkles size={20} style={{ color: "var(--golden-heritage)" }} />
             Suggest a New Word
           </DialogTitle>
           <DialogDescription style={{ color: "#6B7A99" }} className="text-xs">
@@ -253,7 +253,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
             <div style={{ backgroundColor: "rgba(80, 148, 90, 0.1)", color: "#2F6B38" }} className="w-16 h-16 rounded-full flex items-center justify-center mb-4">
               <CheckCircle size={36} />
             </div>
-            <h3 style={{ color: "#1C2B4A" }} className="text-lg font-bold mb-2">Thank you!</h3>
+            <h3 style={{ color: "var(--river-blue)" }} className="text-lg font-bold mb-2">Thank you!</h3>
             <p style={{ color: "#6B7A99" }} className="text-sm max-w-sm">
               Your suggestion for <strong>"{butuanon}"</strong> has been queued. It will appear under "My Contributions" shortly.
             </p>
@@ -263,7 +263,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Butuanon Word */}
               <div className="space-y-1">
-                <label htmlFor="suggest-butuanon" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Butuanon Word <span className="text-[#C4622D]">*</span></label>
+                <label htmlFor="suggest-butuanon" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Butuanon Word <span style={{ color: "var(--golden-heritage)" }}>*</span></label>
                 <input
                   id="suggest-butuanon"
                   name="butuanon"
@@ -272,14 +272,14 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   value={butuanon}
                   onChange={(e) => setButuanon(e.target.value)}
                   placeholder="e.g. Daga"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors"
                 />
               </div>
 
               {/* English Meaning */}
               <div className="space-y-1">
-                <label htmlFor="suggest-english" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">English Meaning <span className="text-[#C4622D]">*</span></label>
+                <label htmlFor="suggest-english" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">English Meaning <span style={{ color: "var(--golden-heritage)" }}>*</span></label>
                 <input
                   id="suggest-english"
                   name="english"
@@ -288,8 +288,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   value={english}
                   onChange={(e) => setEnglish(e.target.value)}
                   placeholder="e.g. Land / Earth"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors"
                 />
               </div>
             </div>
@@ -297,26 +297,30 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Part of Speech */}
               <div className="space-y-1">
-                <label htmlFor="suggest-pos" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Part of Speech</label>
+                <label htmlFor="suggest-pos" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Part of Speech</label>
                 <select
                   id="suggest-pos"
                   name="pos"
                   value={pos}
                   onChange={(e) => setPos(e.target.value)}
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors appearance-none cursor-pointer"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors appearance-none cursor-pointer"
                 >
-                  <option value="noun">Noun</option>
-                  <option value="verb">Verb</option>
-                  <option value="adjective">Adjective</option>
-                  <option value="adverb">Adverb</option>
-                  <option value="phrase">Phrase</option>
+                  <option value="noun">Noun (Pangngalan)</option>
+                  <option value="verb">Verb (Pandiwa)</option>
+                  <option value="adjective">Adjective (Pang-uri)</option>
+                  <option value="adverb">Adverb (Pang-abay)</option>
+                  <option value="phrase">Phrase / Idiom</option>
+                  <option value="pronoun">Pronoun</option>
+                  <option value="preposition">Preposition</option>
+                  <option value="conjunction">Conjunction</option>
+                  <option value="interjection">Interjection</option>
                 </select>
               </div>
 
               {/* Pronunciation */}
               <div className="space-y-1">
-                <label htmlFor="suggest-pronunciation" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Pronunciation Guide</label>
+                <label htmlFor="suggest-pronunciation" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Pronunciation Guide</label>
                 <input
                   id="suggest-pronunciation"
                   name="pronunciation"
@@ -324,15 +328,15 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   value={pronunciation}
                   onChange={(e) => setPronunciation(e.target.value)}
                   placeholder="e.g. DAH-gah"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors"
                 />
               </div>
             </div>
 
             {/* Definition */}
             <div className="space-y-1">
-              <label htmlFor="suggest-definition" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Definition <span className="text-[#C4622D]">*</span></label>
+              <label htmlFor="suggest-definition" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Definition <span style={{ color: "var(--golden-heritage)" }}>*</span></label>
               <textarea
                 id="suggest-definition"
                 name="definition"
@@ -341,14 +345,14 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                 onChange={(e) => setDefinition(e.target.value)}
                 placeholder="Write a clear definition of the word in English..."
                 rows={3}
-                style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)", resize: "none" }}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)", resize: "none" }}
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors"
               />
             </div>
 
             {/* Example Sentences */}
-            <div className="border border-[rgba(28,43,74,0.05)] rounded-2xl p-4 bg-[#F7F2EB]/40 space-y-3">
-              <p style={{ color: "#1C2B4A" }} className="text-xs font-bold uppercase tracking-wider">Example Usage (Optional)</p>
+            <div className="border border-[rgba(28,43,74,0.05)] rounded-2xl p-4 bg-amber-500/5 space-y-3">
+              <p style={{ color: "var(--river-blue)" }} className="text-xs font-bold uppercase tracking-wider">Example Usage (Optional)</p>
               <div className="space-y-2">
                 <input
                   id="suggest-example-butuanon"
@@ -357,8 +361,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   value={exampleButuanon}
                   onChange={(e) => setExampleButuanon(e.target.value)}
                   placeholder="Butuanon Example Sentence..."
-                  style={{ backgroundColor: "#FFFDF9", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--card)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors"
                 />
                 <input
                   id="suggest-example-english"
@@ -367,15 +371,15 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   value={exampleEnglish}
                   onChange={(e) => setExampleEnglish(e.target.value)}
                   placeholder="English Example Translation..."
-                  style={{ backgroundColor: "#FFFDF9", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--card)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2 rounded-xl border outline-none focus:border-[var(--golden-heritage)] transition-colors"
                 />
               </div>
             </div>
 
             {/* Audio Voice Recorder */}
-            <div style={{ backgroundColor: "#F7F2EB" }} className="rounded-2xl p-4 border border-[rgba(28,43,74,0.08)] flex flex-col items-center justify-center">
-              <span style={{ color: "#1C2B4A" }} className="text-xs font-semibold mb-2 block w-full text-left">Record Pronunciation Audio</span>
+            <div style={{ backgroundColor: "var(--background)" }} className="rounded-2xl p-4 border border-[rgba(28,43,74,0.08)] flex flex-col items-center justify-center">
+              <span style={{ color: "var(--river-blue)" }} className="text-xs font-semibold mb-2 block w-full text-left">Record Pronunciation Audio</span>
 
               {isRecording ? (
                 <div className="flex flex-col items-center gap-2 py-2 w-full">
@@ -384,12 +388,12 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                     </span>
-                    <span style={{ color: "#1C2B4A" }} className="text-sm font-semibold tracking-wider">{formatTime(recordingTime)}</span>
+                    <span style={{ color: "var(--river-blue)" }} className="text-sm font-semibold tracking-wider">{formatTime(recordingTime)}</span>
                   </div>
                   <button
                     type="button"
                     onClick={stopRecording}
-                    style={{ backgroundColor: "#1C2B4A" }}
+                    style={{ backgroundColor: "var(--river-blue)" }}
                     className="flex items-center gap-2 text-white px-5 py-2 rounded-full text-xs font-semibold hover:opacity-90 transition-opacity"
                   >
                     <Square size={12} fill="white" />
@@ -397,25 +401,25 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   </button>
                 </div>
               ) : audioUrl ? (
-                <div className="flex items-center justify-between w-full bg-[#FFFDF9] border border-[rgba(28,43,74,0.08)] rounded-xl p-3">
+                <div className="flex items-center justify-between w-full bg-white border border-[rgba(28,43,74,0.08)] rounded-xl p-3">
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={togglePlayback}
-                      style={{ backgroundColor: isPlaying ? "#C4622D" : "rgba(196,98,45,0.12)", color: "#C4622D" }}
+                      style={{ backgroundColor: isPlaying ? "var(--golden-heritage)" : "rgba(212,175,55,0.18)", color: "#0F1D30" }}
                       className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-105 transition-all"
                     >
-                      {isPlaying ? <Pause size={14} fill="#C4622D" /> : <Play size={14} className="ml-0.5" fill="#C4622D" />}
+                      {isPlaying ? <Pause size={14} fill="#0F1D30" /> : <Play size={14} className="ml-0.5" fill="#0F1D30" />}
                     </button>
                     <div>
-                      <span style={{ color: "#1C2B4A" }} className="text-xs font-semibold block">Pronunciation Playback</span>
-                      <span style={{ color: "#8B9DC3" }} className="text-[10px]">Audio Recorded Successfully</span>
+                      <span style={{ color: "var(--river-blue)" }} className="text-xs font-semibold block">Pronunciation Playback</span>
+                      <span style={{ color: "#6B7A99" }} className="text-[10px]">Audio Recorded Successfully</span>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={deleteRecording}
-                    style={{ color: "#8B9DC3" }}
+                    style={{ color: "#6B7A99" }}
                     className="p-2 hover:text-red-500 transition-colors"
                   >
                     <Trash2 size={16} />
@@ -425,8 +429,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                 <button
                   type="button"
                   onClick={startRecording}
-                  style={{ backgroundColor: "rgba(196, 98, 45, 0.1)", color: "#C4622D" }}
-                  className="flex items-center justify-center gap-2 w-full py-4 rounded-xl border border-dashed border-[#C4622D]/40 hover:bg-[#C4622D]/15 transition-all group"
+                  style={{ backgroundColor: "rgba(212, 175, 55, 0.15)", color: "#0F1D30" }}
+                  className="flex items-center justify-center gap-2 w-full py-4 rounded-xl border border-dashed border-amber-500/40 hover:bg-amber-500/20 transition-all group"
                 >
                   <Mic size={16} className="group-hover:scale-110 transition-transform" />
                   <span className="text-xs font-bold">Start Recording Pronunciation</span>
@@ -448,8 +452,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                 type="submit"
                 disabled={!butuanon.trim() || !english.trim() || !definition.trim()}
                 style={{
-                  backgroundColor: butuanon.trim() && english.trim() && definition.trim() ? "#C4622D" : "#EDE6DA",
-                  color: butuanon.trim() && english.trim() && definition.trim() ? "#FFFDF9" : "#8B9DC3",
+                  backgroundColor: butuanon.trim() && english.trim() && definition.trim() ? "var(--golden-heritage)" : "#ECE4D7",
+                  color: butuanon.trim() && english.trim() && definition.trim() ? "#0F1D30" : "#6B7A99",
                 }}
                 className="flex items-center gap-1.5 px-6 py-2.5 rounded-xl text-xs font-bold shadow-md disabled:cursor-not-allowed hover:opacity-95 transition-all"
               >

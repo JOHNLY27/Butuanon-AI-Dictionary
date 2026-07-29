@@ -227,7 +227,7 @@ export function AdminPage({ user }: AdminPageProps) {
             <button
               type="button"
               onClick={startRecording}
-              style={{ backgroundColor: "rgba(196,98,45,0.08)", color: "#C4622D" }}
+              style={{ backgroundColor: "rgba(212,175,55,0.15)", color: "#0F1D30" }}
               className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-all"
             >
               <Mic size={14} />
@@ -251,10 +251,10 @@ export function AdminPage({ user }: AdminPageProps) {
               <button
                 type="button"
                 onClick={toggleRecordingPlayback}
-                style={{ backgroundColor: isPlayingRecording ? "#C4622D" : "rgba(28,43,74,0.08)", color: isPlayingRecording ? "#FFFDF9" : "#1C2B4A" }}
+                style={{ backgroundColor: isPlayingRecording ? "var(--golden-heritage)" : "rgba(28,43,74,0.08)", color: isPlayingRecording ? "#0F1D30" : "var(--river-blue)" }}
                 className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold hover:scale-105 transition-all"
               >
-                {isPlayingRecording ? <Pause size={14} fill={isPlayingRecording ? "#FFFDF9" : "#1C2B4A"} /> : <Play size={14} fill="#1C2B4A" />}
+                {isPlayingRecording ? <Pause size={14} fill="#0F1D30" /> : <Play size={14} fill="#0F1D30" />}
                 {isPlayingRecording ? "Pause Preview" : "Play Preview"}
               </button>
 
@@ -572,8 +572,8 @@ export function AdminPage({ user }: AdminPageProps) {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span style={{ backgroundColor: "#C4622D" }} className="w-2.5 h-6 rounded-full inline-block"></span>
-            <h1 style={{ color: "#1C2B4A" }} className="text-2xl md:text-3xl font-extrabold tracking-tight">Admin Moderation Console</h1>
+            <span style={{ backgroundColor: "var(--golden-heritage)" }} className="w-2.5 h-6 rounded-full inline-block"></span>
+            <h1 style={{ color: "var(--river-blue)" }} className="text-2xl md:text-3xl font-extrabold tracking-tight">Admin Moderation Console</h1>
           </div>
           <p style={{ color: "#6B7A99" }} className="text-sm">
             Good day, <strong>{user?.username}</strong>. Verify vocabulary suggestions, record audio, and manage the live database.
@@ -581,8 +581,8 @@ export function AdminPage({ user }: AdminPageProps) {
         </div>
         
         {/* Quick info chip */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.06)" }} className="flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-sm">
-          <Activity size={18} className="text-[#C4622D] animate-pulse" />
+        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.06)" }} className="flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-sm">
+          <Activity size={18} style={{ color: "var(--golden-heritage)" }} className="animate-pulse" />
           <div className="text-xs">
             <span style={{ color: "#6B7A99" }} className="block">Status Connection</span>
             <span style={{ color: "#2F6B38" }} className="font-bold block">Secure DB Online</span>
@@ -593,21 +593,21 @@ export function AdminPage({ user }: AdminPageProps) {
       {/* Quick Statistics Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {/* Stat 1 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-          <div style={{ backgroundColor: "rgba(196,98,45,0.08)", color: "#C4622D" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
+        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <div style={{ backgroundColor: "rgba(212,175,55,0.15)", color: "#0F1D30" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
             <Layers size={18} className="sm:w-5 sm:h-5" />
           </div>
           <div>
             <span style={{ color: "#6B7A99" }} className="text-[10px] sm:text-xs font-semibold block leading-tight">Total Dictionary</span>
-            <span style={{ color: "#1C2B4A" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{dictionaryCount} words</span>
+            <span style={{ color: "var(--river-blue)" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{dictionaryCount} words</span>
           </div>
         </div>
 
         {/* Stat 2 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
           <div 
             style={{ 
-              backgroundColor: pendingCount > 0 ? "rgba(245,158,11,0.08)" : "rgba(28,43,74,0.06)", 
+              backgroundColor: pendingCount > 0 ? "rgba(245,158,11,0.12)" : "rgba(28,43,74,0.06)", 
               color: pendingCount > 0 ? "#D97706" : "#6B7A99" 
             }} 
             className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${pendingCount > 0 ? "animate-pulse" : ""}`}
@@ -616,12 +616,12 @@ export function AdminPage({ user }: AdminPageProps) {
           </div>
           <div>
             <span style={{ color: "#6B7A99" }} className="text-[10px] sm:text-xs font-semibold block leading-tight">Pending Approvals</span>
-            <span style={{ color: pendingCount > 0 ? "#D97706" : "#1C2B4A" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{pendingCount} submissions</span>
+            <span style={{ color: pendingCount > 0 ? "#D97706" : "var(--river-blue)" }} className="text-base sm:text-xl font-extrabold block leading-tight mt-0.5">{pendingCount} submissions</span>
           </div>
         </div>
 
         {/* Stat 3 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
           <div style={{ backgroundColor: "rgba(16,185,129,0.08)", color: "#10B981" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
             <CheckCircle size={18} className="sm:w-5 sm:h-5" />
           </div>
@@ -632,7 +632,7 @@ export function AdminPage({ user }: AdminPageProps) {
         </div>
 
         {/* Stat 4 */}
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
           <div style={{ backgroundColor: "rgba(239,68,68,0.08)", color: "#EF4444" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
             <X size={18} className="sm:w-5 sm:h-5" />
           </div>
@@ -644,12 +644,12 @@ export function AdminPage({ user }: AdminPageProps) {
       </div>
 
       {/* Navigation tabs */}
-      <div className="flex gap-2 p-1.5 rounded-2xl bg-[#EBE4D8] border border-[rgba(28,43,74,0.06)] max-w-lg mb-8 overflow-x-auto whitespace-nowrap scrollbar-none scroll-smooth">
+      <div className="flex gap-2 p-1.5 rounded-2xl bg-[#EFE6D8] border border-[rgba(28,43,74,0.06)] max-w-lg mb-8 overflow-x-auto whitespace-nowrap scrollbar-none scroll-smooth">
         <button
           onClick={() => { stopAudio(); setActiveTab("contributions"); }}
           style={{
-            backgroundColor: activeTab === "contributions" ? "#FFFDF9" : "transparent",
-            color: activeTab === "contributions" ? "#C4622D" : "#6B7A99",
+            backgroundColor: activeTab === "contributions" ? "var(--card)" : "transparent",
+            color: activeTab === "contributions" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "contributions" ? "700" : "500"
           }}
           className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
@@ -661,8 +661,8 @@ export function AdminPage({ user }: AdminPageProps) {
         <button
           onClick={() => { stopAudio(); setActiveTab("dictionary"); }}
           style={{
-            backgroundColor: activeTab === "dictionary" ? "#FFFDF9" : "transparent",
-            color: activeTab === "dictionary" ? "#C4622D" : "#6B7A99",
+            backgroundColor: activeTab === "dictionary" ? "var(--card)" : "transparent",
+            color: activeTab === "dictionary" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "dictionary" ? "700" : "500"
           }}
           className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
@@ -674,8 +674,8 @@ export function AdminPage({ user }: AdminPageProps) {
         <button
           onClick={() => { stopAudio(); setActiveTab("add"); }}
           style={{
-            backgroundColor: activeTab === "add" ? "#FFFDF9" : "transparent",
-            color: activeTab === "add" ? "#C4622D" : "#6B7A99",
+            backgroundColor: activeTab === "add" ? "var(--card)" : "transparent",
+            color: activeTab === "add" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "add" ? "700" : "500"
           }}
           className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
@@ -687,8 +687,8 @@ export function AdminPage({ user }: AdminPageProps) {
         <button
           onClick={() => { stopAudio(); setActiveTab("stats"); }}
           style={{
-            backgroundColor: activeTab === "stats" ? "#FFFDF9" : "transparent",
-            color: activeTab === "stats" ? "#C4622D" : "#6B7A99",
+            backgroundColor: activeTab === "stats" ? "var(--card)" : "transparent",
+            color: activeTab === "stats" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "stats" ? "700" : "500"
           }}
           className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
@@ -710,13 +710,13 @@ export function AdminPage({ user }: AdminPageProps) {
 
           {loadingContribs ? (
             <div className="flex flex-col items-center py-16 text-[#6B7A99]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C4622D] mb-4"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D4AF37] mb-4"></div>
               <span>Fetching community contributions database...</span>
             </div>
           ) : contributions.filter(c => c.status === "pending").length === 0 ? (
-            <div style={{ backgroundColor: "#FFFDF9", border: "1px dashed rgba(28,43,74,0.12)" }} className="rounded-3xl p-12 text-center">
+            <div style={{ backgroundColor: "var(--card)", border: "1px dashed rgba(28,43,74,0.12)" }} className="rounded-3xl p-12 text-center shadow-sm">
               <CheckCircle size={40} className="text-[#10B981] mx-auto mb-3" />
-              <h3 style={{ color: "#1C2B4A" }} className="text-base font-bold mb-1">Moderation Queue is Empty!</h3>
+              <h3 style={{ color: "var(--river-blue)" }} className="text-base font-bold mb-1">Moderation Queue is Empty!</h3>
               <p style={{ color: "#6B7A99" }} className="text-xs max-w-sm mx-auto">
                 No users have suggested words recently. All contributions have been approved or rejected.
               </p>
@@ -726,36 +726,36 @@ export function AdminPage({ user }: AdminPageProps) {
               {contributions.filter(c => c.status === "pending").map((c) => (
                 <div 
                   key={c.id} 
-                  style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} 
+                  style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} 
                   className="rounded-3xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
                     {/* Badge row */}
                     <div className="flex justify-between items-start mb-3">
-                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider bg-orange-100 text-[#C4622D]">
+                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider bg-amber-100 text-[#0F1D30]">
                         {c.pos}
                       </span>
-                      <span style={{ color: "#8B9DC3" }} className="text-[10px]">
+                      <span style={{ color: "#6B7A99" }} className="text-[10px] font-medium">
                         {new Date(c.created_at).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'})}
                       </span>
                     </div>
 
                     {/* Word Spelling */}
-                    <h3 style={{ color: "#1C2B4A" }} className="text-lg font-bold mb-1">
-                      {c.butuanon} <span style={{ color: "#8B9DC3" }} className="text-xs font-normal">({c.pronunciation})</span>
+                    <h3 style={{ color: "var(--river-blue)" }} className="text-lg font-bold mb-1">
+                      {c.butuanon} <span style={{ color: "#6B7A99" }} className="text-xs font-normal">({c.pronunciation})</span>
                     </h3>
-                    <p style={{ color: "#C4622D" }} className="text-xs font-semibold mb-2">
+                    <p style={{ color: "var(--golden-heritage)" }} className="text-xs font-bold mb-2">
                       Translation: {c.english}
                     </p>
-                    <p style={{ color: "#6B7A99" }} className="text-xs line-clamp-3 mb-4 italic">
+                    <p style={{ color: "#6B7A99" }} className="text-xs line-clamp-3 mb-4 italic font-medium">
                       "{c.definition}"
                     </p>
 
                     {/* Examples if present */}
                     {(c.example_butuanon || c.example_english) && (
-                      <div style={{ backgroundColor: "#F7F2EB" }} className="rounded-2xl p-3 border border-[rgba(28,43,74,0.04)] mb-4 space-y-1">
-                        <span style={{ color: "#8B9DC3" }} className="text-[9px] font-bold block uppercase tracking-wider">Example Usage</span>
-                        {c.example_butuanon && <p style={{ color: "#1C2B4A" }} className="text-xs font-medium">{c.example_butuanon}</p>}
+                      <div style={{ backgroundColor: "var(--background)" }} className="rounded-2xl p-3 border border-[rgba(28,43,74,0.04)] mb-4 space-y-1">
+                        <span style={{ color: "#6B7A99" }} className="text-[9px] font-bold block uppercase tracking-wider">Example Usage</span>
+                        {c.example_butuanon && <p style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">{c.example_butuanon}</p>}
                         {c.example_english && <p style={{ color: "#6B7A99" }} className="text-xs italic">{c.example_english}</p>}
                       </div>
                     )}
@@ -768,16 +768,16 @@ export function AdminPage({ user }: AdminPageProps) {
                       <button
                         onClick={() => playAudio(c.audio_url, `c_${c.id}`)}
                         style={{
-                          backgroundColor: playingAudioId === `c_${c.id}` ? "#C4622D" : "rgba(196,98,45,0.08)",
-                          color: playingAudioId === `c_${c.id}` ? "#FFFDF9" : "#C4622D"
+                          backgroundColor: playingAudioId === `c_${c.id}` ? "var(--golden-heritage)" : "rgba(212,175,55,0.15)",
+                          color: playingAudioId === `c_${c.id}` ? "#0F1D30" : "var(--river-blue)"
                         }}
                         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all hover:scale-105"
                       >
-                        {playingAudioId === `c_${c.id}` ? <Pause size={12} fill="#FFFDF9" /> : <Play size={12} fill="#C4622D" />}
+                        {playingAudioId === `c_${c.id}` ? <Pause size={12} fill="#0F1D30" /> : <Play size={12} fill="#0F1D30" />}
                         Listen Clip
                       </button>
                     ) : (
-                      <span style={{ color: "#8B9DC3" }} className="text-[10px] flex items-center gap-1">
+                      <span style={{ color: "#6B7A99" }} className="text-[10px] flex items-center gap-1">
                         <Volume2 size={12} /> No audio
                       </span>
                     )}
@@ -823,21 +823,21 @@ export function AdminPage({ user }: AdminPageProps) {
             
             {/* Search Input */}
             <div className="relative w-full sm:w-72">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8B9DC3]" />
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7A99]" />
               <input
                 type="text"
                 placeholder="Search database words..."
                 value={dictSearch}
                 onChange={(e) => setDictSearch(e.target.value)}
-                style={{ backgroundColor: "#FFFDF9", borderColor: "rgba(28,43,74,0.08)" }}
-                className="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }}
+                className="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
               />
             </div>
           </div>
 
           {loadingDict ? (
             <div className="flex flex-col items-center py-16 text-[#6B7A99]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C4622D] mb-4"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D4AF37] mb-4"></div>
               <span>Reading SQL tables...</span>
             </div>
           ) : filteredDict.length === 0 ? (
@@ -895,8 +895,8 @@ export function AdminPage({ user }: AdminPageProps) {
                             <button
                               onClick={() => playAudio(item.audio, `d_${item.id}`)}
                               style={{ 
-                                backgroundColor: playingAudioId === `d_${item.id}` ? "#C4622D" : "rgba(28,43,74,0.05)",
-                                color: playingAudioId === `d_${item.id}` ? "#FFFDF9" : "#1C2B4A"
+                                backgroundColor: playingAudioId === `d_${item.id}` ? "var(--golden-heritage)" : "rgba(28,43,74,0.05)",
+                                color: playingAudioId === `d_${item.id}` ? "#0F1D30" : "var(--river-blue)"
                               }}
                               className="w-7 h-7 rounded-full inline-flex items-center justify-center transition-all hover:scale-110"
                             >
@@ -943,10 +943,10 @@ export function AdminPage({ user }: AdminPageProps) {
 
       {/* 3. ADD / PUBLISH ENTRY TAB */}
       {activeTab === "add" && (
-        <div style={{ backgroundColor: "#FFFDF9", border: "1px solid rgba(28,43,74,0.05)" }} className="rounded-3xl p-6 md:p-8 shadow-sm max-w-2xl mx-auto">
+        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="rounded-3xl p-6 md:p-8 shadow-sm max-w-2xl mx-auto">
           <div className="border-b border-[rgba(28,43,74,0.06)] pb-4 mb-6">
-            <h2 style={{ color: "#1C2B4A" }} className="text-lg font-bold flex items-center gap-1.5">
-              <Sparkles size={18} className="text-[#C4622D]" />
+            <h2 style={{ color: "var(--river-blue)" }} className="text-lg font-bold flex items-center gap-1.5">
+              <Sparkles size={18} style={{ color: "var(--golden-heritage)" }} />
               Publish a New Dictionary Word
             </h2>
             <p style={{ color: "#6B7A99" }} className="text-xs">Create and publish an entry directly to the SQL database immediately.</p>
@@ -955,7 +955,7 @@ export function AdminPage({ user }: AdminPageProps) {
           <form onSubmit={handleCreateEntry} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="add-butuanon" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Butuanon Word *</label>
+                <label htmlFor="add-butuanon" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Butuanon Word *</label>
                 <input
                   id="add-butuanon"
                   name="butuanon"
@@ -964,13 +964,13 @@ export function AdminPage({ user }: AdminPageProps) {
                   value={newButuanon}
                   onChange={(e) => setNewButuanon(e.target.value)}
                   placeholder="e.g. Suwang"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="add-english" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">English Meaning *</label>
+                <label htmlFor="add-english" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">English Meaning *</label>
                 <input
                   id="add-english"
                   name="english"
@@ -979,22 +979,22 @@ export function AdminPage({ user }: AdminPageProps) {
                   value={newEnglish}
                   onChange={(e) => setNewEnglish(e.target.value)}
                   placeholder="e.g. Sun"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="add-pos" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Part of Speech</label>
+                <label htmlFor="add-pos" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Part of Speech</label>
                 <select
                   id="add-pos"
                   name="pos"
                   value={newPos}
                   onChange={(e) => setNewPos(e.target.value)}
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors cursor-pointer"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors cursor-pointer"
                 >
                   <option value="noun">Noun</option>
                   <option value="verb">Verb</option>
@@ -1005,7 +1005,7 @@ export function AdminPage({ user }: AdminPageProps) {
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="add-pronunciation" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Pronunciation Guide</label>
+                <label htmlFor="add-pronunciation" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Pronunciation Guide</label>
                 <input
                   id="add-pronunciation"
                   name="pronunciation"
@@ -1013,14 +1013,14 @@ export function AdminPage({ user }: AdminPageProps) {
                   value={newPronunciation}
                   onChange={(e) => setNewPronunciation(e.target.value)}
                   placeholder="e.g. soo-WANG"
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="add-definition" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Definition *</label>
+              <label htmlFor="add-definition" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Definition *</label>
               <textarea
                 id="add-definition"
                 name="definition"
@@ -1029,14 +1029,14 @@ export function AdminPage({ user }: AdminPageProps) {
                 onChange={(e) => setNewDefinition(e.target.value)}
                 placeholder="Definition of the word in English..."
                 rows={3}
-                style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)", resize: "none" }}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)", resize: "none" }}
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
               />
             </div>
 
             {/* Examples */}
-            <div className="border border-[rgba(28,43,74,0.04)] rounded-2xl p-4 bg-[#F7F2EB]/50 space-y-3">
-              <span style={{ color: "#1C2B4A" }} className="text-xs font-bold uppercase tracking-wider block">Example Usage (Optional)</span>
+            <div className="border border-[rgba(28,43,74,0.04)] rounded-2xl p-4 bg-amber-500/5 space-y-3">
+              <span style={{ color: "var(--river-blue)" }} className="text-xs font-bold uppercase tracking-wider block">Example Usage (Optional)</span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input
                   id="add-example-butuanon"
@@ -1045,8 +1045,8 @@ export function AdminPage({ user }: AdminPageProps) {
                   placeholder="Butuanon Example Sentence..."
                   value={newExampleButuanon}
                   onChange={(e) => setNewExampleButuanon(e.target.value)}
-                  style={{ backgroundColor: "#FFFDF9", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="text-xs px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--card)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="text-xs px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
                 <input
                   id="add-example-english"
@@ -1055,8 +1055,8 @@ export function AdminPage({ user }: AdminPageProps) {
                   placeholder="English Translation..."
                   value={newExampleEnglish}
                   onChange={(e) => setNewExampleEnglish(e.target.value)}
-                  style={{ backgroundColor: "#FFFDF9", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="text-xs px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--card)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="text-xs px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
             </div>
@@ -1064,14 +1064,14 @@ export function AdminPage({ user }: AdminPageProps) {
             {/* Extra Metadata (verified & audio URL) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="add-verified" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Verification Badge</label>
+                <label htmlFor="add-verified" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Verification Badge</label>
                 <select
                   id="add-verified"
                   name="verified"
                   value={newVerified}
                   onChange={(e) => setNewVerified(e.target.value)}
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors cursor-pointer"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors cursor-pointer"
                 >
                   <option value="native-speaker">Verified: Native Speaker</option>
                   <option value="academic">Verified: Academic Vetted</option>
@@ -1080,7 +1080,7 @@ export function AdminPage({ user }: AdminPageProps) {
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="add-audio-url" style={{ color: "#1C2B4A" }} className="text-xs font-semibold">Audio URL (Optional)</label>
+                <label htmlFor="add-audio-url" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Audio URL (Optional)</label>
                 <input
                   id="add-audio-url"
                   name="audioUrl"
@@ -1088,8 +1088,8 @@ export function AdminPage({ user }: AdminPageProps) {
                   placeholder="Link to hosted audio mp3/webm..."
                   value={newAudioUrl}
                   onChange={(e) => setNewAudioUrl(e.target.value)}
-                  style={{ backgroundColor: "#F7F2EB", color: "#1C2B4A", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#C4622D] transition-colors"
+                  style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
             </div>
@@ -1101,8 +1101,8 @@ export function AdminPage({ user }: AdminPageProps) {
               <button
                 type="submit"
                 disabled={!newButuanon.trim() || !newEnglish.trim() || !newDefinition.trim()}
-                style={{ backgroundColor: "#C4622D" }}
-                className="w-full sm:w-max px-8 py-2.5 rounded-xl text-white text-xs font-bold shadow-md hover:opacity-95 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
+                className="w-full sm:w-max px-8 py-2.5 rounded-xl font-bold text-xs shadow-md hover:opacity-95 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Publish Word Directly
               </button>
@@ -1116,20 +1116,21 @@ export function AdminPage({ user }: AdminPageProps) {
         <div className="space-y-6">
           <div className="border-b border-[rgba(28,43,74,0.06)] pb-3">
             <h2 style={{ color: "#1C2B4A" }} className="text-lg font-bold">System Health & Metrics</h2>
+            <h2 style={{ color: "var(--river-blue)" }} className="text-lg font-bold">System Health & Metrics</h2>
             <p style={{ color: "#6B7A99" }} className="text-xs">Database statistics and performance summaries.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Box 1 */}
-            <div style={{ backgroundColor: "#FFFDF9" }} className="rounded-3xl p-6 border border-[rgba(28,43,74,0.05)] shadow-sm">
-              <h3 style={{ color: "#1C2B4A" }} className="text-sm font-bold mb-4 flex items-center gap-1.5">
-                <FileText size={16} className="text-[#C4622D]" />
+            <div style={{ backgroundColor: "var(--card)" }} className="rounded-3xl p-6 border border-[rgba(28,43,74,0.05)] shadow-sm">
+              <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold mb-4 flex items-center gap-1.5">
+                <FileText size={16} style={{ color: "var(--golden-heritage)" }} />
                 Contribution Metrics
               </h3>
               <div className="space-y-3 text-xs">
                 <div className="flex justify-between border-b pb-2">
                   <span style={{ color: "#6B7A99" }}>Submissions Total</span>
-                  <span className="font-semibold text-[#1C2B4A]">{contributions.length}</span>
+                  <span className="font-semibold text-[var(--river-blue)]">{contributions.length}</span>
                 </div>
                 <div className="flex justify-between border-b pb-2">
                   <span style={{ color: "#6B7A99" }}>Awaiting Approval</span>
@@ -1149,9 +1150,9 @@ export function AdminPage({ user }: AdminPageProps) {
             </div>
 
             {/* Box 2 */}
-            <div style={{ backgroundColor: "#FFFDF9" }} className="rounded-3xl p-6 border border-[rgba(28,43,74,0.05)] shadow-sm">
-              <h3 style={{ color: "#1C2B4A" }} className="text-sm font-bold mb-4 flex items-center gap-1.5">
-                <Award size={16} className="text-[#C4622D]" />
+            <div style={{ backgroundColor: "var(--card)" }} className="rounded-3xl p-6 border border-[rgba(28,43,74,0.05)] shadow-sm">
+              <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold mb-4 flex items-center gap-1.5">
+                <Award size={16} style={{ color: "var(--golden-heritage)" }} />
                 Verification Status Breakdown
               </h3>
               <div className="space-y-3 text-xs">
@@ -1169,13 +1170,13 @@ export function AdminPage({ user }: AdminPageProps) {
                 </div>
                 <div className="flex justify-between border-b pb-2">
                   <span style={{ color: "#6B7A99" }}>Community Checked</span>
-                  <span className="font-semibold text-[#C4622D]">
+                  <span className="font-semibold text-[var(--river-blue)]">
                     {dictionary.filter(i => i.verified === "community" || !i.verified).length} entries
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span style={{ color: "#6B7A99" }}>Audio Pronunciations Uploaded</span>
-                  <span className="font-semibold text-[#1C2B4A]">
+                  <span className="font-semibold text-[var(--river-blue)]">
                     {dictionary.filter(i => i.audio).length} clips
                   </span>
                 </div>
@@ -1183,18 +1184,18 @@ export function AdminPage({ user }: AdminPageProps) {
             </div>
 
             {/* Box 3 */}
-            <div style={{ backgroundColor: "#FFFDF9" }} className="rounded-3xl p-6 border border-[rgba(28,43,74,0.05)] shadow-sm flex flex-col justify-between">
+            <div style={{ backgroundColor: "var(--card)" }} className="rounded-3xl p-6 border border-[rgba(28,43,74,0.05)] shadow-sm flex flex-col justify-between">
               <div>
-                <h3 style={{ color: "#1C2B4A" }} className="text-sm font-bold mb-2 flex items-center gap-1.5">
-                  <Users size={16} className="text-[#C4622D]" />
+                <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold mb-2 flex items-center gap-1.5">
+                  <Users size={16} style={{ color: "var(--golden-heritage)" }} />
                   Gamification Info
                 </h3>
                 <p style={{ color: "#6B7A99" }} className="text-xs mb-4">
                   Approved user submissions automatically credit XP points to contributors. This is tracked inside the PostgreSQL users table.
                 </p>
               </div>
-              <div style={{ backgroundColor: "#F7F2EB" }} className="p-3.5 rounded-2xl text-[11px] text-[#6B7A99] border">
-                <span className="font-bold text-[#1C2B4A] block mb-1">XP Scaling Formula</span>
+              <div style={{ backgroundColor: "var(--background)" }} className="p-3.5 rounded-2xl text-[11px] text-[#6B7A99] border">
+                <span className="font-bold text-[var(--river-blue)] block mb-1">XP Scaling Formula</span>
                 Approval gives <strong>+50 XP</strong>. Every user quiz answers correctly awards <strong>+5-10 XP</strong>. Admins can adjust rates manually in endpoints.py.
               </div>
             </div>
@@ -1206,11 +1207,11 @@ export function AdminPage({ user }: AdminPageProps) {
 
       {/* MODAL A: MODERATION REVIEW & APPROVAL FORM */}
       {isReviewModalOpen && reviewItem && (
-        <div style={{ backgroundColor: "rgba(28,43,74,0.4)" }} className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div style={{ backgroundColor: "#FFFDF9" }} className="rounded-3xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-[rgba(28,43,74,0.06)] animate-fade-in">
+        <div style={{ backgroundColor: "rgba(15,29,48,0.5)" }} className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div style={{ backgroundColor: "var(--card)" }} className="rounded-3xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-[rgba(28,43,74,0.06)] animate-fade-in">
             <div className="flex justify-between items-center border-b pb-3 mb-4">
-              <h3 style={{ color: "#1C2B4A" }} className="font-bold text-base flex items-center gap-1.5">
-                <FileText size={18} className="text-[#C4622D]" />
+              <h3 style={{ color: "var(--river-blue)" }} className="font-bold text-base flex items-center gap-1.5">
+                <CheckCircle size={18} className="text-emerald-500" />
                 Review & Publish Contribution
               </h3>
               <button 
@@ -1228,24 +1229,24 @@ export function AdminPage({ user }: AdminPageProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">Butuanon Word *</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Butuanon Word *</label>
                   <input
                     type="text"
                     required
                     value={reviewItem.butuanon}
                     onChange={(e) => setReviewItem({ ...reviewItem, butuanon: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">English Meaning *</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">English Meaning *</label>
                   <input
                     type="text"
                     required
                     value={reviewItem.english}
                     onChange={(e) => setReviewItem({ ...reviewItem, english: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                   />
                 </div>
@@ -1253,11 +1254,11 @@ export function AdminPage({ user }: AdminPageProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">Part of Speech</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Part of Speech</label>
                   <select
                     value={reviewItem.pos}
                     onChange={(e) => setReviewItem({ ...reviewItem, pos: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none cursor-pointer"
                   >
                     <option value="noun">Noun</option>
@@ -1268,47 +1269,47 @@ export function AdminPage({ user }: AdminPageProps) {
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">Pronunciation Guide</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Pronunciation Guide</label>
                   <input
                     type="text"
                     value={reviewItem.pronunciation}
                     onChange={(e) => setReviewItem({ ...reviewItem, pronunciation: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-[#1C2B4A]">Definition *</label>
+                <label className="text-[10px] font-bold text-[var(--river-blue)]">Definition *</label>
                 <textarea
                   required
                   value={reviewItem.definition}
                   onChange={(e) => setReviewItem({ ...reviewItem, definition: e.target.value })}
                   rows={2}
-                  style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)", resize: "none" }}
+                  style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)", resize: "none" }}
                   className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">Butuanon Example Usage</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Butuanon Example Usage</label>
                   <input
                     type="text"
                     value={reviewItem.example_butuanon || ""}
                     onChange={(e) => setReviewItem({ ...reviewItem, example_butuanon: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">English Example Translation</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">English Example Translation</label>
                   <input
                     type="text"
                     value={reviewItem.example_english || ""}
                     onChange={(e) => setReviewItem({ ...reviewItem, example_english: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                   />
                 </div>
@@ -1316,11 +1317,11 @@ export function AdminPage({ user }: AdminPageProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">Vetting Badge Category</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Vetting Badge Category</label>
                   <select
                     value={reviewItem.verified}
                     onChange={(e) => setReviewItem({ ...reviewItem, verified: e.target.value })}
-                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none cursor-pointer"
                   >
                     <option value="community">Verified: Community Checked</option>
@@ -1330,16 +1331,16 @@ export function AdminPage({ user }: AdminPageProps) {
                 </div>
                 
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#1C2B4A]">Pronunciation clip</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Pronunciation clip</label>
                   <div className="pt-1.5">
                     {reviewItem.audio_url ? (
                       <button
                         type="button"
                         onClick={() => playAudio(reviewItem.audio_url, `rev_${reviewItem.id}`)}
-                        style={{ backgroundColor: playingAudioId === `rev_${reviewItem.id}` ? "#C4622D" : "rgba(196,98,45,0.08)", color: "#C4622D" }}
+                        style={{ backgroundColor: playingAudioId === `rev_${reviewItem.id}` ? "var(--golden-heritage)" : "rgba(212,175,55,0.15)", color: "#0F1D30" }}
                         className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold transition-all"
                       >
-                        {playingAudioId === `rev_${reviewItem.id}` ? <Pause size={10} fill="#FFFDF9" /> : <Play size={10} fill="#C4622D" />}
+                        {playingAudioId === `rev_${reviewItem.id}` ? <Pause size={10} fill="#0F1D30" /> : <Play size={10} fill="#0F1D30" />}
                         Play Audio File
                       </button>
                     ) : (
@@ -1362,8 +1363,8 @@ export function AdminPage({ user }: AdminPageProps) {
                 </button>
                 <button
                   type="submit"
-                  style={{ backgroundColor: "#C4622D" }}
-                  className="text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md hover:opacity-90"
+                  style={{ backgroundColor: "var(--golden-heritage)", color: "#0F1D30" }}
+                  className="px-5 py-2 rounded-xl text-xs font-bold shadow-md hover:opacity-90"
                 >
                   Approve & Publish Entry
                 </button>
@@ -1375,11 +1376,11 @@ export function AdminPage({ user }: AdminPageProps) {
 
       {/* MODAL B: DIRECT DICTIONARY ITEM EDIT FORM */}
       {isEditModalOpen && editItem && (
-        <div style={{ backgroundColor: "rgba(28,43,74,0.4)" }} className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div style={{ backgroundColor: "#FFFDF9" }} className="rounded-3xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-[rgba(28,43,74,0.06)] animate-fade-in">
+        <div style={{ backgroundColor: "rgba(15,29,48,0.5)" }} className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div style={{ backgroundColor: "var(--card)" }} className="rounded-3xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-[rgba(28,43,74,0.06)] animate-fade-in">
             <div className="flex justify-between items-center border-b pb-3 mb-4">
-              <h3 style={{ color: "#1C2B4A" }} className="font-bold text-base flex items-center gap-1.5">
-                <Edit2 size={16} className="text-[#C4622D]" />
+              <h3 style={{ color: "var(--river-blue)" }} className="font-bold text-base flex items-center gap-1.5">
+                <Edit2 size={16} style={{ color: "var(--golden-heritage)" }} />
                 Modify Dictionary Entry
               </h3>
               <button 
