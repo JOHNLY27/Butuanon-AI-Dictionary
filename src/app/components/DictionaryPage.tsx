@@ -3924,31 +3924,35 @@ export const dictionaryEntries = [
 
 const VERIFIED_CONFIG: Record<
   NonNullable<VerifiedTag>,
-  { label: string; bg: string; text: string; border: string }
+  { label: string; icon: string; bg: string; text: string; border: string }
 > = {
   "native-speaker": {
     label: "Verified by Native Speaker",
-    bg: "rgba(196, 98, 45, 0.10)",
-    text: "#A04A1A",
-    border: "rgba(196, 98, 45, 0.25)",
+    icon: "🎯",
+    bg: "#FFF3EB",
+    text: "#9A3412",
+    border: "#FDBA74",
   },
   academic: {
     label: "Academic Review",
-    bg: "rgba(28, 43, 74, 0.08)",
-    text: "#1C2B4A",
-    border: "rgba(28, 43, 74, 0.18)",
+    icon: "📚",
+    bg: "#F1F5F9",
+    text: "#1E293B",
+    border: "#CBD5E1",
   },
   community: {
     label: "Community Validated",
-    bg: "rgba(80, 148, 90, 0.10)",
-    text: "#2F6B38",
-    border: "rgba(80, 148, 90, 0.25)",
+    icon: "👥",
+    bg: "#ECFDF5",
+    text: "#065F46",
+    border: "#6EE7B7",
   },
   pending: {
     label: "Pending Review",
-    bg: "rgba(245, 158, 11, 0.10)",
-    text: "#B45309",
-    border: "rgba(245, 158, 11, 0.25)",
+    icon: "⏳",
+    bg: "#FEF3C7",
+    text: "#92400E",
+    border: "#FDE68A",
   },
 };
 
@@ -3960,14 +3964,14 @@ function VerifiedBadge({ tag, rating }: { tag: VerifiedTag; rating: number }) {
       ))}
     </div>
   );
-  const cfg = VERIFIED_CONFIG[tag];
+  const cfg = VERIFIED_CONFIG[tag] || VERIFIED_CONFIG["community"];
   return (
     <div className="flex items-center gap-2 flex-wrap">
       <span
         style={{ backgroundColor: cfg.bg, color: cfg.text, borderColor: cfg.border }}
-        className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full border font-medium"
+        className="inline-flex items-center gap-1.5 text-xs px-2.5 py-0.5 rounded-full border font-bold shadow-2xs"
       >
-        <BadgeCheck size={10} />
+        <span className="text-[11px]">{cfg.icon}</span>
         {cfg.label}
       </span>
       <div className="flex items-center gap-0.5">

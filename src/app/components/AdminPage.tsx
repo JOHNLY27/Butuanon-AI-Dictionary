@@ -878,16 +878,18 @@ export function AdminPage({ user }: AdminPageProps) {
                           <span 
                             style={{ 
                               backgroundColor: 
-                                item.verified === "native-speaker" ? "rgba(16,185,129,0.12)" : 
-                                item.verified === "academic" ? "rgba(79,70,229,0.12)" : "rgba(28,43,74,0.08)",
+                                item.verified === "native-speaker" ? "#FFF3EB" : 
+                                item.verified === "academic" ? "#F1F5F9" : "#ECFDF5",
                               color: 
-                                item.verified === "native-speaker" ? "#10B981" : 
-                                item.verified === "academic" ? "#4F46E5" : "#6B7A99"
+                                item.verified === "native-speaker" ? "#9A3412" : 
+                                item.verified === "academic" ? "#1E293B" : "#065F46",
+                              borderColor:
+                                item.verified === "native-speaker" ? "#FDBA74" : 
+                                item.verified === "academic" ? "#CBD5E1" : "#6EE7B7",
                             }} 
-                            className="text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 w-max"
+                            className="text-[10px] font-extrabold px-2.5 py-1 rounded-full border flex items-center gap-1 w-max"
                           >
-                            <Award size={10} />
-                            {item.verified || "unverified"}
+                            {item.verified === "native-speaker" ? "🎯 Native Speaker" : item.verified === "academic" ? "📚 Academic Review" : "👥 Community"}
                           </span>
                         </td>
                         <td className="p-3.5 text-center">
@@ -1073,9 +1075,9 @@ export function AdminPage({ user }: AdminPageProps) {
                   style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
                   className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors cursor-pointer"
                 >
-                  <option value="native-speaker">Verified: Native Speaker</option>
-                  <option value="academic">Verified: Academic Vetted</option>
-                  <option value="community">Verified: Community Checked</option>
+                  <option value="native-speaker">🎯 Verified by Native Speaker (Fluent Butuanon Elders/People)</option>
+                  <option value="academic">📚 Academic Review (Verified by Books & Research)</option>
+                  <option value="community">👥 Community Validated</option>
                 </select>
               </div>
 
@@ -1324,9 +1326,9 @@ export function AdminPage({ user }: AdminPageProps) {
                     style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none cursor-pointer"
                   >
-                    <option value="community">Verified: Community Checked</option>
-                    <option value="native-speaker">Verified: Native Speaker</option>
-                    <option value="academic">Verified: Academic Vetted</option>
+                    <option value="native-speaker">🎯 Verified by Native Speaker</option>
+                    <option value="academic">📚 Academic Review (Verified by Books)</option>
+                    <option value="community">👥 Community Validated</option>
                   </select>
                 </div>
                 
@@ -1489,9 +1491,9 @@ export function AdminPage({ user }: AdminPageProps) {
                     style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none cursor-pointer"
                   >
-                    <option value="community">Verified: Community Checked</option>
-                    <option value="native-speaker">Verified: Native Speaker</option>
-                    <option value="academic">Verified: Academic Vetted</option>
+                    <option value="native-speaker">🎯 Verified by Native Speaker</option>
+                    <option value="academic">📚 Academic Review (Verified by Books)</option>
+                    <option value="community">👥 Community Validated</option>
                   </select>
                 </div>
                 <div className="space-y-1">
