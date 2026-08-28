@@ -33,10 +33,10 @@ function speakText(text: string) {
   const speak = () => {
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = "fil-PH";
-    utt.rate = 0.78; // Relaxed articulate speed easy to listen to and mimic
+    utt.rate = 0.78; // Relaxed articulate speed for clear Filipino pronunciation
     utt.pitch = 1.0;
 
-    // Search and select female neural/natural Tagalog or Austronesian voice
+    // Search and select female neural/natural Filipino (Tagalog) voice ONLY
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
       const targetVoices = voices.filter((v) => {
@@ -59,19 +59,6 @@ function speakText(text: string) {
         });
         utt.voice = femaleVoice || targetVoices[0];
         utt.lang = (femaleVoice || targetVoices[0]).lang;
-      } else {
-        const femaleFallback = voices.find((v) => {
-          const l = v.lang.toLowerCase();
-          const n = v.name.toLowerCase();
-          return (
-            (l.startsWith("id") || l.startsWith("es") || l.startsWith("ms")) &&
-            (n.includes("female") || n.includes("natural") || n.includes("google") || n.includes("neural"))
-          );
-        });
-        if (femaleFallback) {
-          utt.voice = femaleFallback;
-          utt.lang = femaleFallback.lang;
-        }
       }
     }
 

@@ -3253,7 +3253,7 @@ export const dictionaryEntries = [
     butuanon: "Madiyaw nga hinaat",
     english: "Good morning",
     pos: "phrase",
-    pronunciation: "mah-dee-YAWNG hee-nah-AT",
+    pronunciation: "mah-DEE-yaw ngah hee-NAH-at",
     definition: "A greeting used in the morning hours, expressing good wishes.",
     exampleButuanon: "Madiyaw nga hinaat, kaiban! Kumusta ka?",
     exampleEnglish: "Good morning, friend! How are you?",
@@ -5444,13 +5444,12 @@ function speakText(text: string) {
   const speak = () => {
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = "fil-PH";
-    utt.rate = 0.78; // Relaxed articulate speed easy to listen to and mimic
+    utt.rate = 0.78; // Relaxed articulate speed for clear Filipino pronunciation
     utt.pitch = 1.0;
 
-    // Search and select female neural/natural Tagalog or Austronesian voice
+    // Search and select female neural/natural Filipino (Tagalog) voice ONLY
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
-      // 1. Search for Filipino/Tagalog female/natural voices
       const targetVoices = voices.filter((v) => {
         const l = v.lang.toLowerCase();
         return l.startsWith("fil") || l.startsWith("tl");
@@ -5471,20 +5470,6 @@ function speakText(text: string) {
         });
         utt.voice = femaleVoice || targetVoices[0];
         utt.lang = (femaleVoice || targetVoices[0]).lang;
-      } else {
-        // Fallback search for natural female voices across available packs
-        const femaleFallback = voices.find((v) => {
-          const l = v.lang.toLowerCase();
-          const n = v.name.toLowerCase();
-          return (
-            (l.startsWith("id") || l.startsWith("es") || l.startsWith("ms")) &&
-            (n.includes("female") || n.includes("natural") || n.includes("google") || n.includes("neural"))
-          );
-        });
-        if (femaleFallback) {
-          utt.voice = femaleFallback;
-          utt.lang = femaleFallback.lang;
-        }
       }
     }
 

@@ -8,7 +8,7 @@ json_filepath = os.path.join(backend_dir, "generated_butuanon_words.json")
 
 # Known phonetic pronunciations map
 phonetic_map = {
-    "madiyaw nga hinaat": "mah-dee-YAWNG hee-nah-AT",
+    "madiyaw nga hinaat": "mah-DEE-yaw ngah hee-NAH-at",
     "madiyaw nga hapon": "mah-dee-YAWNG hah-PON",
     "madiyaw nga gabi-i": "mah-dee-YAWNG gah-bee-EE",
     "suwang": "soo-WANG",
