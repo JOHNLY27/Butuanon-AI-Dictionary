@@ -3253,7 +3253,7 @@ export const dictionaryEntries = [
     butuanon: "Madiyaw nga hinaat",
     english: "Good morning",
     pos: "phrase",
-    pronunciation: "mah-DEE-yaw ngah hee-NAH-at",
+    pronunciation: "mah-DEE-yow ngah hee-NAH-at",
     definition: "A greeting used in the morning hours, expressing good wishes.",
     exampleButuanon: "Madiyaw nga hinaat, kaiban! Kumusta ka?",
     exampleEnglish: "Good morning, friend! How are you?",
