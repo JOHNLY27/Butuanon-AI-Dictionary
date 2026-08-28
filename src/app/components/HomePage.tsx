@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, Volume2, ChevronRight, Globe, BookOpen, Mic } from "lucide-react";
+import { dictionaryEntries } from "./DictionaryPage";
+import { API_BASE_URL } from "../config";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -133,6 +135,18 @@ export function HomePage({ onNavigate }: HomePageProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [audioRipple, setAudioRipple] = useState(false);
+  const [entryCount, setEntryCount] = useState<number>(dictionaryEntries.length);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/dictionary`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setEntryCount(data.length);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -419,10 +433,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { icon: BookOpen, label: "Dictionary Entries", value: "2,400+" },
-              { icon: Mic, label: "Audio Recordings", value: "800+" },
-              { icon: Globe, label: "Languages", value: "2" },
-              { icon: Search, label: "Daily Searches", value: "500+" },
+              { icon: BookOpen, label: "Dictionary Entries", value: `${entryCount}+` },
+              { icon: Mic, label: "Audio Pronunciations", value: `${entryCount}+` },
+              { icon: Globe, label: "Supported Languages", value: "Butuanon & English" },
+              { icon: Search, label: "Search Capability", value: "Real-Time AI" },
             ].map(({ icon: Icon, label, value }) => (
               <div
                 key={label}

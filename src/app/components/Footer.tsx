@@ -83,7 +83,7 @@ export function Footer() {
             style={{ color: "#A0B2D6", fontFamily: "Poppins, sans-serif" }}
             className="text-xs"
           >
-            © 2024 Butuanon-English AI Dictionary · Father Saturnino Urios
+            © {new Date().getFullYear()} Butuanon-English AI Dictionary · Father Saturnino Urios
             University (FSUU)
           </p>
           <p

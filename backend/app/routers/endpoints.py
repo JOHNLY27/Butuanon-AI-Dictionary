@@ -187,17 +187,9 @@ def get_quiz(
     for entry in random_entries:
         if mode == "speaking":
             quiz_type = "pronounce"
-        elif mode == "quiz":
-            quiz_type = "but-en" if random.random() > 0.5 else "en-but"
         else:
-            # 40% chance of but-en, 40% chance of en-but, 20% chance of pronounce
-            r = random.random()
-            if r < 0.4:
-                quiz_type = "but-en"
-            elif r < 0.8:
-                quiz_type = "en-but"
-            else:
-                quiz_type = "pronounce"
+            # Vocabulary Quiz: ONLY multiple-choice questions (but-en or en-but)
+            quiz_type = "but-en" if random.random() > 0.5 else "en-but"
 
         if quiz_type == "pronounce":
             target_text = entry.example_butuanon if entry.example_butuanon else entry.butuanon

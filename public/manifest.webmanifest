@@ -1,0 +1,21 @@
+{
+  "short_name": "Butuanon AI",
+  "name": "Butuanon-English AI Dictionary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0F1D30",
+  "theme_color": "#0B4F6C",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -537,15 +537,13 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
         const selectedWords = shuffled.slice(0, Math.min(numQuestions, shuffled.length));
         const settings = getDifficultySettings(currentRankIndex);
 
+        const isSpeakingMode = activeTab === "speaking";
         const generatedQuestions: Question[] = selectedWords.map((word) => {
-          const rVal = Math.random();
           let type: "but-en" | "en-but" | "pronounce";
-          if (rVal < 0.4) {
-            type = "but-en";
-          } else if (rVal < 0.8) {
-            type = "en-but";
-          } else {
+          if (isSpeakingMode) {
             type = "pronounce";
+          } else {
+            type = Math.random() < 0.5 ? "but-en" : "en-but";
           }
 
           if (type === "pronounce") {

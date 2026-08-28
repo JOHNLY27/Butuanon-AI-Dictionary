@@ -1,40 +1,56 @@
+import { useState, useEffect } from "react";
 import { BookOpen, Globe, Users, Award, Heart, Mic } from "lucide-react";
+import { dictionaryEntries } from "./DictionaryPage";
+import { API_BASE_URL } from "../config";
 
 const team = [
   {
-    name: "Dr. Maria Santos",
-    role: "Lead Researcher, Linguistics",
+    name: "John Patrick Gura",
+    role: "Project Leader & Team Head",
     description:
-      "Specializes in Austronesian languages with 15 years of field research in Butuan City.",
+      "Leads the capstone project initiative, overseeing research coordination, project management, and strategic development.",
   },
   {
-    name: "Prof. Jose Dela Cruz",
-    role: "Cultural Heritage Consultant",
+    name: "John Lydrick H. Remitar",
+    role: "Full-Stack Developer & AI Systems Engineer",
     description:
-      "Expert in Mindanaoan indigenous cultures and oral traditions of the Butuanon people.",
+      "Designed and built the full-stack web application, database architecture, API backend, and AI translation pipeline integration.",
   },
   {
-    name: "Ana Reyes, M.A.",
-    role: "Lexicographer & Data Curator",
+    name: "Fei Yi",
+    role: "Research & Data Curator Specialist",
     description:
-      "Compiled and verified over 2,400 dictionary entries with native speaker validation.",
+      "Specializes in Butuanon lexicography, language data collection, entry validation, and linguistic research.",
   },
   {
-    name: "Carlo Mendoza",
-    role: "AI/NLP Engineer",
+    name: "Calvin Zack Alvizo",
+    role: "UI/UX & Multimedia Specialist",
     description:
-      "Developed the neural translation model trained on Butuanon-English parallel corpora.",
+      "Focuses on user interface design, user experience optimization, media assets, and frontend component layout.",
   },
 ];
 
 const milestones = [
-  { year: "2021", event: "Project inception at FSUU College of Arts and Sciences" },
-  { year: "2022", event: "Community field research and native speaker interviews" },
-  { year: "2023", event: "First draft of Butuanon digital lexicon (1,200 entries)" },
-  { year: "2024", event: "AI translation model trained; web platform launched" },
+  { year: "Phase 1", event: "Capstone Inception & Research Planning at Father Saturnino Urios University (FSUU)" },
+  { year: "Phase 2", event: "Butuanon Lexicon Data Curation & Database Schema Architecture" },
+  { year: "Phase 3", event: "Full-Stack Web Development & Google Gemini RAG Translation Integration" },
+  { year: "Phase 4", event: "Native Audio Streaming, Web Platform Deployment & Capstone Presentation" },
 ];
 
 export function AboutPage() {
+  const [entryCount, setEntryCount] = useState<number>(dictionaryEntries.length);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/dictionary`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setEntryCount(data.length);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <div
       style={{ backgroundColor: "var(--background)", minHeight: "100vh", fontFamily: "Poppins, sans-serif" }}
@@ -105,8 +121,8 @@ export function AboutPage() {
         {/* Stats row */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
           {[
-            { icon: BookOpen, value: "2,400+", label: "Dictionary Entries" },
-            { icon: Mic, value: "800+", label: "Audio Recordings" },
+            { icon: BookOpen, value: `${entryCount}+`, label: "Dictionary Entries" },
+            { icon: Mic, value: `${entryCount}+`, label: "Audio Pronunciations" },
             { icon: Users, value: "50+", label: "Native Speaker Contributors" },
           ].map(({ icon: Icon, value, label }) => (
             <div
