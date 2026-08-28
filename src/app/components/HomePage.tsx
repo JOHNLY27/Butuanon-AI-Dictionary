@@ -27,43 +27,52 @@ const featuredWords = [
 function speakText(text: string) {
   if (!("speechSynthesis" in window)) return;
 
+  // Cancel any active speech
   window.speechSynthesis.cancel();
 
   const speak = () => {
-    const cleanText = text.replace(/[-]/g, " ").trim();
-    const utt = new SpeechSynthesisUtterance(cleanText);
-    utt.rate = 0.82;
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = "fil-PH";
+    utt.rate = 0.78; // Relaxed articulate speed easy to listen to and mimic
     utt.pitch = 1.0;
 
+    // Search and select female neural/natural Tagalog or Austronesian voice
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
-      let chosenVoice = voices.find((v) => {
+      const targetVoices = voices.filter((v) => {
         const l = v.lang.toLowerCase();
         return l.startsWith("fil") || l.startsWith("tl");
       });
 
-      if (!chosenVoice) {
-        chosenVoice = voices.find((v) => {
-          const l = v.lang.toLowerCase();
-          return l.startsWith("id") || l.startsWith("ms") || l.startsWith("es");
+      if (targetVoices.length > 0) {
+        const femaleVoice = targetVoices.find((v) => {
+          const name = v.name.toLowerCase();
+          return (
+            name.includes("female") ||
+            name.includes("natural") ||
+            name.includes("google") ||
+            name.includes("neural") ||
+            name.includes("rosa") ||
+            name.includes("maria") ||
+            name.includes("zira")
+          );
         });
-      }
-
-      if (!chosenVoice) {
-        chosenVoice = voices.find((v) => {
-          const n = v.name.toLowerCase();
-          return n.includes("natural") || n.includes("google") || n.includes("neural") || n.includes("premium");
-        });
-      }
-
-      if (chosenVoice) {
-        utt.voice = chosenVoice;
-        utt.lang = chosenVoice.lang;
+        utt.voice = femaleVoice || targetVoices[0];
+        utt.lang = (femaleVoice || targetVoices[0]).lang;
       } else {
-        utt.lang = "fil-PH";
+        const femaleFallback = voices.find((v) => {
+          const l = v.lang.toLowerCase();
+          const n = v.name.toLowerCase();
+          return (
+            (l.startsWith("id") || l.startsWith("es") || l.startsWith("ms")) &&
+            (n.includes("female") || n.includes("natural") || n.includes("google") || n.includes("neural"))
+          );
+        });
+        if (femaleFallback) {
+          utt.voice = femaleFallback;
+          utt.lang = femaleFallback.lang;
+        }
       }
-    } else {
-      utt.lang = "fil-PH";
     }
 
     window.speechSynthesis.speak(utt);
