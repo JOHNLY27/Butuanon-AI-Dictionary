@@ -5438,29 +5438,49 @@ function VerifiedBadge({ tag, rating }: { tag: VerifiedTag; rating: number }) {
 function speakText(text: string) {
   if (!("speechSynthesis" in window)) return;
 
-  // Cancel any active speech
   window.speechSynthesis.cancel();
 
   const speak = () => {
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = "fil-PH";
-    utt.rate = 0.78; // Slowed down for clear articulation, easy for users to mimic
+    // Clean hyphenated words so TTS articulates syllables clearly (e.g. Ab-ab -> Ab ab)
+    const cleanText = text.replace(/[-]/g, " ").trim();
+    const utt = new SpeechSynthesisUtterance(cleanText);
+    utt.rate = 0.82;
+    utt.pitch = 1.0;
 
-    // Search and select neural/premium Filipino/Tagalog voices
     const voices = window.speechSynthesis.getVoices();
-    const isTargetLang = (voiceLang: string) => {
-      const vl = voiceLang.toLowerCase();
-      return vl.startsWith("fil") || vl.startsWith("tl");
-    };
-
-    const targetVoices = voices.filter(v => isTargetLang(v.lang));
-    if (targetVoices.length > 0) {
-      const premiumVoice = targetVoices.find(v => {
-        const name = v.name.toLowerCase();
-        return name.includes("natural") || name.includes("google") || name.includes("neural") || name.includes("premium");
+    if (voices.length > 0) {
+      // 1. Try to find Filipino / Tagalog voice
+      let chosenVoice = voices.find((v) => {
+        const l = v.lang.toLowerCase();
+        return l.startsWith("fil") || l.startsWith("tl");
       });
-      utt.voice = premiumVoice || targetVoices[0];
+
+      // 2. If no Filipino voice, try Indonesian / Malay / Spanish (phonetically matching vowel sounds)
+      if (!chosenVoice) {
+        chosenVoice = voices.find((v) => {
+          const l = v.lang.toLowerCase();
+          return l.startsWith("id") || l.startsWith("ms") || l.startsWith("es");
+        });
+      }
+
+      // 3. Try finding any Natural / Neural voice
+      if (!chosenVoice) {
+        chosenVoice = voices.find((v) => {
+          const n = v.name.toLowerCase();
+          return n.includes("natural") || n.includes("google") || n.includes("neural") || n.includes("premium");
+        });
+      }
+
+      if (chosenVoice) {
+        utt.voice = chosenVoice;
+        utt.lang = chosenVoice.lang;
+      } else {
+        utt.lang = "fil-PH";
+      }
+    } else {
+      utt.lang = "fil-PH";
     }
+
     window.speechSynthesis.speak(utt);
   };
 
