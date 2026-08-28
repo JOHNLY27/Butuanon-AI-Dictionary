@@ -5,9 +5,58 @@ from .routers.auth_router import router as auth_router
 from .routers.admin_router import router as admin_router
 from .database import engine, Base
 
-# Attempt to create SQL tables on application startup
+import os
+import json
+from .database import engine, Base, SessionLocal
+from .models import DictionaryEntry
+
+# Attempt to create SQL tables and seed database on application startup
 try:
     Base.metadata.create_all(bind=engine)
+    
+    # Auto-seed database from generated_butuanon_words.json if DB has fewer records
+    json_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "generated_butuanon_words.json")
+    if os.path.exists(json_path):
+        with open(json_path, "r", encoding="utf-8") as f:
+            words_data = json.load(f)
+            
+        db = SessionLocal()
+        try:
+            db_count = db.query(DictionaryEntry).count()
+            if db_count < len(words_data):
+                print(f"Auto-seeding database: {db_count} existing -> seeding {len(words_data)} words...")
+                for item in words_data:
+                    butuanon = item.get("butuanon", "").strip()
+                    pos = item.get("pos", "noun").strip().lower()
+                    if not butuanon:
+                        continue
+                    existing = db.query(DictionaryEntry).filter(
+                        DictionaryEntry.butuanon.ilike(butuanon),
+                        DictionaryEntry.pos.ilike(pos)
+                    ).first()
+                    
+                    if not existing:
+                        ex_but = item.get("exampleButuanon") or item.get("example_butuanon")
+                        ex_eng = item.get("exampleEnglish") or item.get("example_english")
+                        entry = DictionaryEntry(
+                            butuanon=butuanon,
+                            english=item.get("english", ""),
+                            pos=pos,
+                            pronunciation=item.get("pronunciation", butuanon),
+                            definition=item.get("definition", ""),
+                            example_butuanon=ex_but,
+                            example_english=ex_eng,
+                            verified=item.get("verified", "academic"),
+                            rating=item.get("rating", 5)
+                        )
+                        db.add(entry)
+                db.commit()
+                print("Auto-seeding on application startup completed successfully!")
+        except Exception as err:
+            db.rollback()
+            print(f"Auto-seeding database warning: {err}")
+        finally:
+            db.close()
 except Exception as e:
     print(f"Database Table Auto-creation Warning: {e}")
 
