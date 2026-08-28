@@ -103,6 +103,9 @@ def get_dictionary(
             if item.butuanon.upper().startswith(let_str)
         ]
 
+    # Sort results alphabetically A to Z by Butuanon word
+    filtered.sort(key=lambda x: x.butuanon.lower().strip())
+
     return filtered
 
 # 2. Submit Word Suggestion

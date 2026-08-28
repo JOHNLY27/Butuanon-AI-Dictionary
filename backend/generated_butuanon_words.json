@@ -1,135 +1,25 @@
 [
   {
-    "butuanon": "Suwang",
-    "english": "Sun",
-    "pos": "noun",
-    "pronunciation": "soo-WANG",
-    "definition": "The star around which the earth orbits; the sun.",
-    "exampleButuanon": "Aslag ug mainit ang suwang kuman.",
-    "exampleEnglish": "The sun is big and hot now.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Amigo",
-    "english": "Friend",
-    "pos": "noun",
-    "pronunciation": "ah-MEE-go",
-    "definition": "A person with whom one has a bond of mutual affection; a companion or buddy.",
-    "exampleButuanon": "Ikaw ang akong pinakamahal nga amigo.",
-    "exampleEnglish": "You are my most treasured friend.",
-    "verified": "community",
-    "rating": 4
-  },
-  {
-    "butuanon": "Balay",
-    "english": "House; Home",
-    "pos": "noun",
-    "pronunciation": "BAH-lay",
-    "definition": "A structure serving as a dwelling place; the place where one lives.",
-    "exampleButuanon": "Aslag ang among balay sa bukid.",
-    "exampleEnglish": "Our house in the mountains is big.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Hinaat",
-    "english": "Morning",
-    "pos": "noun",
-    "pronunciation": "hee-nah-AT",
-    "definition": "The period of time from sunrise to noon.",
-    "exampleButuanon": "Madiyaw ang hinaat disani sa Butuan.",
-    "exampleEnglish": "The morning is beautiful here in Butuan.",
+    "butuanon": "Ab-Ab",
+    "english": "To bite voraciously",
+    "pos": "verb",
+    "pronunciation": "ab-ab",
+    "definition": "To bite aggressively or with great force.",
+    "exampleButuanon": "Ab-ab sa Butuan.",
+    "exampleEnglish": "Example sentence for Ab-ab (To bite voraciously).",
     "verified": "academic",
     "rating": 5
   },
   {
-    "butuanon": "Daga",
-    "english": "Land; Earth; Ground",
-    "pos": "noun",
-    "pronunciation": "DAH-gah",
-    "definition": "The solid surface of the earth; territory or homeland.",
-    "exampleButuanon": "Ang daga hong Butuan madiyaw ug tabunok.",
-    "exampleEnglish": "The land of Butuan is good and fertile.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gugma",
-    "english": "Love; Affection",
-    "pos": "noun",
-    "pronunciation": "GOOG-mah",
-    "definition": "A deep feeling of affection and care for another person or thing.",
-    "exampleButuanon": "Aslag ang akong gugma hong akong pamilya.",
-    "exampleEnglish": "My love for my family is great.",
+    "butuanon": "Ab-Hong",
+    "english": "Moldy",
+    "pos": "adjective",
+    "pronunciation": "ab-hong",
+    "definition": "Covered with mold or fungus.",
+    "exampleButuanon": "Ab-hong sa Butuan.",
+    "exampleEnglish": "Example sentence for Ab-hong (Moldy).",
     "verified": "academic",
     "rating": 5
-  },
-  {
-    "butuanon": "Kahoy",
-    "english": "Tree; Wood",
-    "pos": "noun",
-    "pronunciation": "KAH-hoy",
-    "definition": "A tall plant with a trunk; also refers to timber or wood material.",
-    "exampleButuanon": "Ang kahoy sa bukid taas.",
-    "exampleEnglish": "The tree in the mountain is tall.",
-    "verified": "community",
-    "rating": 4
-  },
-  {
-    "butuanon": "Lungsod",
-    "english": "City; Town",
-    "pos": "noun",
-    "pronunciation": "LOONG-sod",
-    "definition": "A large and important town; an urban center.",
-    "exampleButuanon": "Butuan ang among lungsod.",
-    "exampleEnglish": "Butuan is our city.",
-    "verified": "academic",
-    "rating": 3
-  },
-  {
-    "butuanon": "Madiyaw nga hinaat",
-    "english": "Good morning",
-    "pos": "phrase",
-    "pronunciation": "mah-dee-YAWNG hee-nah-AT",
-    "definition": "A greeting used in the morning hours, expressing good wishes.",
-    "exampleButuanon": "Madiyaw nga hinaat, kaiban! Kumusta ka?",
-    "exampleEnglish": "Good morning, friend! How are you?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Pamilya",
-    "english": "Family",
-    "pos": "noun",
-    "pronunciation": "pah-MEEL-yah",
-    "definition": "A group of people related by blood or marriage; relatives.",
-    "exampleButuanon": "Importante ang pamilya sa atong kinabuhi.",
-    "exampleEnglish": "Family is important in our life.",
-    "verified": "academic",
-    "rating": 4
-  },
-  {
-    "butuanon": "Tawo",
-    "english": "Person; Human being",
-    "pos": "noun",
-    "pronunciation": "TAH-wo",
-    "definition": "A human being; an individual member of the human species.",
-    "exampleButuanon": "Madiyaw nga tawo si Juan.",
-    "exampleEnglish": "Juan is a good person.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Tubig",
-    "english": "Water",
-    "pos": "noun",
-    "pronunciation": "TOO-big",
-    "definition": "A clear, colorless liquid that forms rivers, seas, and rain; essential for life.",
-    "exampleButuanon": "Bugnaw ang tubig hong suba.",
-    "exampleEnglish": "The water of the river is cold.",
-    "verified": "community",
-    "rating": 4
   },
   {
     "butuanon": "Abaga",
@@ -139,6 +29,39 @@
     "definition": "The body part connecting the arm to the torso.",
     "exampleButuanon": "Abaga sa Butuan.",
     "exampleEnglish": "Example sentence for Abaga (Shoulder).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abang",
+    "english": "To block",
+    "pos": "verb",
+    "pronunciation": "abang",
+    "definition": "To stop or obstruct the way.",
+    "exampleButuanon": "Abang sa Butuan.",
+    "exampleEnglish": "Example sentence for Abang (To block).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abatod",
+    "english": "Caterpillar",
+    "pos": "noun",
+    "pronunciation": "abatod",
+    "definition": "The larval stage of a bettle.",
+    "exampleButuanon": "Abatod sa Butuan.",
+    "exampleEnglish": "Example sentence for Abatod (Caterpillar).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abay",
+    "english": "by the side",
+    "pos": "noun",
+    "pronunciation": "abay",
+    "definition": "A procession held on water using boats.",
+    "exampleButuanon": "Abay sa Butuan.",
+    "exampleEnglish": "Example sentence for Abay (by the side).",
     "verified": "academic",
     "rating": 5
   },
@@ -154,6 +77,72 @@
     "rating": 5
   },
   {
+    "butuanon": "Abis",
+    "english": "To slice",
+    "pos": "verb",
+    "pronunciation": "abis",
+    "definition": "To cut into thin pieces.",
+    "exampleButuanon": "Abis sa Butuan.",
+    "exampleEnglish": "Example sentence for Abis (To slice).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abo",
+    "english": "Stove",
+    "pos": "noun",
+    "pronunciation": "abo",
+    "definition": "A place or structure used for cooking.",
+    "exampleButuanon": "Abo sa Butuan.",
+    "exampleEnglish": "Example sentence for Abo (Stove).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abod",
+    "english": "Whip lash mark",
+    "pos": "noun",
+    "pronunciation": "abod",
+    "definition": "A mark left by a whip.",
+    "exampleButuanon": "Abod sa Butuan.",
+    "exampleEnglish": "Example sentence for Abod (Whip lash mark).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abog",
+    "english": "Dust",
+    "pos": "noun",
+    "pronunciation": "abog",
+    "definition": "Fine dry particles of earth or dirt.",
+    "exampleButuanon": "Abog sa Butuan.",
+    "exampleEnglish": "Example sentence for Abog (Dust).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Abot",
+    "english": "To arrive",
+    "pos": "verb",
+    "pronunciation": "abot",
+    "definition": "To reach a destination.",
+    "exampleButuanon": "Abot sa Butuan.",
+    "exampleEnglish": "Example sentence for Abot (To arrive).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ad-Ad",
+    "english": "To slice",
+    "pos": "verb",
+    "pronunciation": "ad-ad",
+    "definition": "To cut into pieces.",
+    "exampleButuanon": "Ad-ad sa Butuan.",
+    "exampleEnglish": "Example sentence for Ad-ad (To slice).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Adhaa",
     "english": "Dry throat",
     "pos": "noun",
@@ -161,6 +150,116 @@
     "definition": "A sensation of dryness in the throat, often indicating thirst.",
     "exampleButuanon": "Naa koy adhaa, inom ko tubig.",
     "exampleEnglish": "I have a dry throat, I will drink water.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Adoy / agoy",
+    "english": "Exclamation of pain",
+    "pos": "expression",
+    "pronunciation": "adoy / agoy",
+    "definition": "An expression used when hurt or surprised.",
+    "exampleButuanon": "Adoy / Agoy sa Butuan.",
+    "exampleEnglish": "Example sentence for Adoy / Agoy (Exclamation of pain).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ag-Ag",
+    "english": "To sieve",
+    "pos": "verb",
+    "pronunciation": "ag-ag",
+    "definition": "sieve flour.",
+    "exampleButuanon": "Ag-ag sa Butuan.",
+    "exampleEnglish": "Example sentence for Ag-ag (To sieve).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Agay / agay / awas",
+    "english": "Flow of rain liquid",
+    "pos": "expression",
+    "pronunciation": "agay / agay / awas",
+    "definition": "it is the act of liquid flowing.",
+    "exampleButuanon": "Agay / Agay / Awas sa Butuan.",
+    "exampleEnglish": "Example sentence for Agay / Agay / Awas (Flow of rain liquid).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Agda",
+    "english": "To request",
+    "pos": "verb",
+    "pronunciation": "agda",
+    "definition": "To persuade to do something.",
+    "exampleButuanon": "Agda sa Butuan.",
+    "exampleEnglish": "Example sentence for Agda (To request).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Agmod",
+    "english": "Sound of a wild pig",
+    "pos": "noun",
+    "pronunciation": "agmod",
+    "definition": "The noise made by a wild pig.",
+    "exampleButuanon": "Agmod sa Butuan.",
+    "exampleEnglish": "Example sentence for Agmod (Sound of a wild pig).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ago-Ab",
+    "english": "To cut grass with a flat-bladed bolo",
+    "pos": "verb",
+    "pronunciation": "ago-ab",
+    "definition": "To clear grass using a flat-bladed bolo.",
+    "exampleButuanon": "Ago-ab sa Butuan.",
+    "exampleEnglish": "Example sentence for Ago-ab (To cut grass with a flat-bladed bolo).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ago-Ago",
+    "english": "Pretending to know",
+    "pos": "verb",
+    "pronunciation": "ago-ago",
+    "definition": "Acting as if one knows something.",
+    "exampleButuanon": "Ago-ago sa Butuan.",
+    "exampleEnglish": "Example sentence for Ago-ago (Pretending to know).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ago-Agoy",
+    "english": "Pretending to feel pain",
+    "pos": "verb",
+    "pronunciation": "ago-agoy",
+    "definition": "Acting as if one is in pain.",
+    "exampleButuanon": "Ago-agoy sa Butuan.",
+    "exampleEnglish": "Example sentence for Ago-agoy (Pretending to feel pain).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Agong",
+    "english": "Bass drum",
+    "pos": "noun",
+    "pronunciation": "agong",
+    "definition": "A large percussion instrument producing deep sounds.",
+    "exampleButuanon": "Agong sa Butuan.",
+    "exampleEnglish": "Example sentence for Agong (Bass drum).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Agutay",
+    "english": "Wild banana",
+    "pos": "noun",
+    "pronunciation": "agutay",
+    "definition": "A native growing banana plant with seeds inside.",
+    "exampleButuanon": "Agutay sa Butuan.",
+    "exampleEnglish": "Example sentence for Agutay (Wild banana).",
     "verified": "academic",
     "rating": 5
   },
@@ -176,6 +275,61 @@
     "rating": 5
   },
   {
+    "butuanon": "Aho",
+    "english": "Pestle",
+    "pos": "noun",
+    "pronunciation": "aho",
+    "definition": "A small instrument.",
+    "exampleButuanon": "Aho sa Butuan.",
+    "exampleEnglish": "Example sentence for Aho (Pestle).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ahot",
+    "english": "Brave",
+    "pos": "adjective",
+    "pronunciation": "ahot",
+    "definition": "Showing courage.",
+    "exampleButuanon": "Ahot sa Butuan.",
+    "exampleEnglish": "Example sentence for Ahot (Brave).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ak-Ak",
+    "english": "To peel",
+    "pos": "verb",
+    "pronunciation": "ak-ak",
+    "definition": "To remove the outer covering.",
+    "exampleButuanon": "Ak-ak sa Butuan.",
+    "exampleEnglish": "Example sentence for Ak-ak (To peel).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ako",
+    "english": "Mine",
+    "pos": "pronoun",
+    "pronunciation": "ako",
+    "definition": "Something that belongs to me.",
+    "exampleButuanon": "Ako sa Butuan.",
+    "exampleEnglish": "Example sentence for Ako (Mine).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Alimat",
+    "english": "Take care",
+    "pos": "verb",
+    "pronunciation": "alimat",
+    "definition": "To protect or look after someone or something.",
+    "exampleButuanon": "Alimat sa Butuan.",
+    "exampleEnglish": "Example sentence for Alimat (Take care).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Alimatá",
     "english": "To watch / Take care of",
     "pos": "verb",
@@ -187,24 +341,68 @@
     "rating": 5
   },
   {
-    "butuanon": "Amát",
-    "english": "Blind",
+    "butuanon": "Alingongog",
+    "english": "Noisy",
     "pos": "adjective",
-    "pronunciation": "ah-MAT",
-    "definition": "Unable to see.",
-    "exampleButuanon": "Ang tigulang nga babaye amat.",
-    "exampleEnglish": "The old woman is blind.",
+    "pronunciation": "alingongog",
+    "definition": "Producing a lot of sound.",
+    "exampleButuanon": "Alingongog sa Butuan.",
+    "exampleEnglish": "Example sentence for Alingongog (Noisy).",
     "verified": "academic",
     "rating": 5
   },
   {
-    "butuanon": "Amo ba",
-    "english": "Is it / Really?",
-    "pos": "phrase",
-    "pronunciation": "AH-moh bah",
-    "definition": "A common expression used to ask for confirmation or to express surprise.",
-    "exampleButuanon": "Moadto ka sa Butuan? Amo ba?",
-    "exampleEnglish": "Are you going to Butuan? Is it / Really?",
+    "butuanon": "Aliwas",
+    "english": "Big monkey ape",
+    "pos": "noun",
+    "pronunciation": "aliwas",
+    "definition": "A large monkey.",
+    "exampleButuanon": "Aliwas sa Butuan.",
+    "exampleEnglish": "Example sentence for Aliwas (Big monkey ape).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Amag",
+    "english": "Shine",
+    "pos": "verb",
+    "pronunciation": "amag",
+    "definition": "To give off light.",
+    "exampleButuanon": "Amag sa Butuan.",
+    "exampleEnglish": "Example sentence for Amag (Shine).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Amat",
+    "english": "bad",
+    "pos": "adjective",
+    "pronunciation": "amat",
+    "definition": "Unlikable.",
+    "exampleButuanon": "Amat sa Butuan.",
+    "exampleEnglish": "Example sentence for Amat (bad).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ambak",
+    "english": "Frog",
+    "pos": "noun",
+    "pronunciation": "ambak",
+    "definition": "An amphibian that jumps.",
+    "exampleButuanon": "Ambak sa Butuan.",
+    "exampleEnglish": "Example sentence for Ambak (Frog).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ambao",
+    "english": "Rat",
+    "pos": "noun",
+    "pronunciation": "ambao",
+    "definition": "A small rodent.",
+    "exampleButuanon": "Ambao sa Butuan.",
+    "exampleEnglish": "Example sentence for Ambao (Rat).",
     "verified": "academic",
     "rating": 5
   },
@@ -220,6 +418,39 @@
     "rating": 5
   },
   {
+    "butuanon": "Amigo",
+    "english": "Friend",
+    "pos": "noun",
+    "pronunciation": "ah-MEE-go",
+    "definition": "A person with whom one has a bond of mutual affection; a companion or buddy.",
+    "exampleButuanon": "Ikaw ang akong pinakamahal nga amigo.",
+    "exampleEnglish": "You are my most treasured friend.",
+    "verified": "community",
+    "rating": 4
+  },
+  {
+    "butuanon": "Amo ba",
+    "english": "Is it / Really?",
+    "pos": "phrase",
+    "pronunciation": "AH-moh bah",
+    "definition": "A common expression used to ask for confirmation or to express surprise.",
+    "exampleButuanon": "Moadto ka sa Butuan? Amo ba?",
+    "exampleEnglish": "Are you going to Butuan? Is it / Really?",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Amo-Amo",
+    "english": "look a like",
+    "pos": "verb",
+    "pronunciation": "amo-amo",
+    "definition": "To look similar to something else.",
+    "exampleButuanon": "Amo-amo sa Butuan.",
+    "exampleEnglish": "Example sentence for Amo-amo (look a like).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Ampan",
     "english": "Nothing",
     "pos": "adverb",
@@ -231,13 +462,145 @@
     "rating": 5
   },
   {
-    "butuanon": "Anád",
-    "english": "Study / Learn",
+    "butuanon": "Amping",
+    "english": "Take care",
+    "pos": "phrase",
+    "pronunciation": "AM-ping",
+    "definition": "An expression used when parting, wishing someone safety.",
+    "exampleButuanon": "Amping sa imong biyahe.",
+    "exampleEnglish": "Take care on your trip.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Amát",
+    "english": "Blind",
+    "pos": "adjective",
+    "pronunciation": "ah-MAT",
+    "definition": "Unable to see.",
+    "exampleButuanon": "Ang tigulang nga babaye amat.",
+    "exampleEnglish": "The old woman is blind.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anad",
+    "english": "Tame",
+    "pos": "adjective",
+    "pronunciation": "anad",
+    "definition": "Gentle and accustomed to people.",
+    "exampleButuanon": "Anad sa Butuan.",
+    "exampleEnglish": "Example sentence for Anad (Tame).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anad",
+    "english": "Study",
     "pos": "verb",
-    "pronunciation": "ah-NAD",
-    "definition": "To acquire knowledge or skill through instruction or experience.",
-    "exampleButuanon": "Kinahanglan ko anád para sa eksam.",
-    "exampleEnglish": "I need to study for the exam.",
+    "pronunciation": "anad",
+    "definition": "To learn or examine something.",
+    "exampleButuanon": "Anad sa Butuan.",
+    "exampleEnglish": "Example sentence for Anad (Study).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anad-Anad",
+    "english": "Pretending to study; pretending to be tame",
+    "pos": "verb",
+    "pronunciation": "anad-anad",
+    "definition": "Acting as if studying or becoming tame.",
+    "exampleButuanon": "Anad-anad sa Butuan.",
+    "exampleEnglish": "Example sentence for Anad-anad (Pretending to study; pretending to be tame).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anad-Na",
+    "english": "Used to",
+    "pos": "adjective",
+    "pronunciation": "anad-na",
+    "definition": "Familiar with something through repeated experience.",
+    "exampleButuanon": "Anad-na sa Butuan.",
+    "exampleEnglish": "Example sentence for Anad-na (Used to).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anak",
+    "english": "Child",
+    "pos": "noun",
+    "pronunciation": "anak",
+    "definition": "A son or daughter.",
+    "exampleButuanon": "Anak sa Butuan.",
+    "exampleEnglish": "Example sentence for Anak (Child).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anak nga daga",
+    "english": "Daughter",
+    "pos": "noun",
+    "pronunciation": "anak nga daga",
+    "definition": "A female child.",
+    "exampleButuanon": "Anak nga daga sa Butuan.",
+    "exampleEnglish": "Example sentence for Anak nga daga (Daughter).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anak nga usog",
+    "english": "Son",
+    "pos": "noun",
+    "pronunciation": "anak nga usog",
+    "definition": "A male child.",
+    "exampleButuanon": "Anak nga usog sa Butuan.",
+    "exampleEnglish": "Example sentence for Anak nga usog (Son).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ang-Ang",
+    "english": "Not in the right range",
+    "pos": "adjective",
+    "pronunciation": "ang-ang",
+    "definition": "Outside the proper limit.",
+    "exampleButuanon": "Ang-ang sa Butuan.",
+    "exampleEnglish": "Example sentence for Ang-ang (Not in the right range).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Angkab",
+    "english": "Bite",
+    "pos": "verb",
+    "pronunciation": "angkab",
+    "definition": "To cut with the teeth.",
+    "exampleButuanon": "Angkab sa Butuan.",
+    "exampleEnglish": "Example sentence for Angkab (Bite).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anib",
+    "english": "to include",
+    "pos": "adjective",
+    "pronunciation": "anib",
+    "definition": "to belong to a group.",
+    "exampleButuanon": "Anib sa Butuan.",
+    "exampleEnglish": "Example sentence for Anib (to include).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anibong",
+    "english": "Palm tree",
+    "pos": "noun",
+    "pronunciation": "anibong",
+    "definition": "A tropical tree with large fan-shaped leaves.",
+    "exampleButuanon": "Anibong sa Butuan.",
+    "exampleEnglish": "Example sentence for Anibong (Palm tree).",
     "verified": "academic",
     "rating": 5
   },
@@ -253,6 +616,72 @@
     "rating": 5
   },
   {
+    "butuanon": "Ano-Os",
+    "english": "Smoke",
+    "pos": "noun",
+    "pronunciation": "ano-os",
+    "definition": "The visible gas produced by burning.",
+    "exampleButuanon": "Ano-os sa Butuan.",
+    "exampleEnglish": "Example sentence for Ano-os (Smoke).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anod",
+    "english": "Carried by flood",
+    "pos": "verb",
+    "pronunciation": "anod",
+    "definition": "To be swept away by floodwater.",
+    "exampleButuanon": "Anod sa Butuan.",
+    "exampleEnglish": "Example sentence for Anod (Carried by flood).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anod-Anod",
+    "english": "go with the flow",
+    "pos": "verb",
+    "pronunciation": "anod-anod",
+    "definition": "Acting as if being swept away by water or another force.",
+    "exampleButuanon": "Anod-anod sa Butuan.",
+    "exampleEnglish": "Example sentence for Anod-anod (go with the flow).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anog-Og",
+    "english": "Thunder",
+    "pos": "noun",
+    "pronunciation": "anog-og",
+    "definition": "The loud sound produced during a storm.",
+    "exampleButuanon": "Anog-og sa Butuan.",
+    "exampleEnglish": "Example sentence for Anog-og (Thunder).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anogot",
+    "english": "made from dried leaves",
+    "pos": "noun",
+    "pronunciation": "anogot",
+    "definition": "A handheld source of fire or light.",
+    "exampleButuanon": "Anogot sa Butuan.",
+    "exampleEnglish": "Example sentence for Anogot (made from dried leaves).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anok",
+    "english": "Warm; feverish",
+    "pos": "adjective",
+    "pronunciation": "anok",
+    "definition": "Having elevated body temperature.",
+    "exampleButuanon": "Anok sa Butuan.",
+    "exampleEnglish": "Example sentence for Anok (Warm; feverish).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Anugon",
     "english": "What a waste",
     "pos": "phrase",
@@ -260,6 +689,39 @@
     "definition": "An expression of regret over something lost or unused.",
     "exampleButuanon": "Anugon sa pagkaon nga wala nahurot.",
     "exampleEnglish": "What a waste of food that was not finished.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Anád",
+    "english": "Study / Learn",
+    "pos": "verb",
+    "pronunciation": "ah-NAD",
+    "definition": "To acquire knowledge or skill through instruction or experience.",
+    "exampleButuanon": "Kinahanglan ko anád para sa eksam.",
+    "exampleEnglish": "I need to study for the exam.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ap-Ap",
+    "english": "Skin disease",
+    "pos": "noun",
+    "pronunciation": "ap-ap",
+    "definition": "A disease affecting the skin.",
+    "exampleButuanon": "Ap-ap sa Butuan.",
+    "exampleEnglish": "Example sentence for Ap-ap (Skin disease).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apan",
+    "english": "grass Hoppers",
+    "pos": "noun",
+    "pronunciation": "apan",
+    "definition": "An insect that jumps, such as a grasshopper.",
+    "exampleButuanon": "Apan sa Butuan.",
+    "exampleEnglish": "Example sentence for Apan (grass Hoppers).",
     "verified": "academic",
     "rating": 5
   },
@@ -275,6 +737,83 @@
     "rating": 5
   },
   {
+    "butuanon": "Apdo",
+    "english": "Bile",
+    "pos": "noun",
+    "pronunciation": "apdo",
+    "definition": "A digestive fluid produced by the liver.",
+    "exampleButuanon": "Apdo sa Butuan.",
+    "exampleEnglish": "Example sentence for Apdo (Bile).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apik",
+    "english": "Cat",
+    "pos": "noun",
+    "pronunciation": "apik",
+    "definition": "A domesticated feline animal.",
+    "exampleButuanon": "Apik sa Butuan.",
+    "exampleEnglish": "Example sentence for Apik (Cat).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apo",
+    "english": "Grandparent",
+    "pos": "noun",
+    "pronunciation": "‘apo",
+    "definition": "The parent of one's parent.",
+    "exampleButuanon": "‘Apo sa Butuan.",
+    "exampleEnglish": "Example sentence for ‘Apo (Grandparent).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apod",
+    "english": "Astringent",
+    "pos": "adjective",
+    "pronunciation": "apod",
+    "definition": "Having a sharp or drying taste.",
+    "exampleButuanon": "Apod sa Butuan.",
+    "exampleEnglish": "Example sentence for Apod (Astringent).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apog",
+    "english": "Lime",
+    "pos": "noun",
+    "pronunciation": "apog",
+    "definition": "A white alkaline substance used in construction or betel chewing.",
+    "exampleButuanon": "Apog sa Butuan.",
+    "exampleEnglish": "Example sentence for Apog (Lime).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apot",
+    "english": "Sticky",
+    "pos": "adjective",
+    "pronunciation": "apot",
+    "definition": "Having a surface that easily adheres.",
+    "exampleButuanon": "Apot sa Butuan.",
+    "exampleEnglish": "Example sentence for Apot (Sticky).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Apo’",
+    "english": "Grandchildren",
+    "pos": "noun",
+    "pronunciation": "apo’",
+    "definition": "The children of one's children.",
+    "exampleButuanon": "Apo’ sa Butuan.",
+    "exampleEnglish": "Example sentence for Apo’ (Grandchildren).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Apík",
     "english": "Cat",
     "pos": "noun",
@@ -282,6 +821,17 @@
     "definition": "A small domesticated carnivorous mammal with soft fur, a short snout, and retractable claws.",
     "exampleButuanon": "Naa koy apík sa balay.",
     "exampleEnglish": "I have a cat at home.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Arat",
+    "english": "Endearing address to a woman",
+    "pos": "noun",
+    "pronunciation": "arat",
+    "definition": "An affectionate way of addressing a woman.",
+    "exampleButuanon": "Arat sa Butuan.",
+    "exampleEnglish": "Example sentence for Arat (Endearing address to a woman).",
     "verified": "academic",
     "rating": 5
   },
@@ -297,24 +847,35 @@
     "rating": 5
   },
   {
-    "butuanon": "Atabay",
-    "english": "Well (water)",
-    "pos": "noun",
-    "pronunciation": "ah-TA-bay",
-    "definition": "A deep hole or shaft dug or drilled to obtain water.",
-    "exampleButuanon": "Nagkuha mi ug tubig sa atabay.",
-    "exampleEnglish": "We got water from the well.",
+    "butuanon": "Asido",
+    "english": "Small",
+    "pos": "adjective",
+    "pronunciation": "asido",
+    "definition": "Of little size.",
+    "exampleButuanon": "Asido sa Butuan.",
+    "exampleEnglish": "Example sentence for Asido (Small).",
     "verified": "academic",
     "rating": 5
   },
   {
-    "butuanon": "Atulí",
-    "english": "Earwax",
-    "pos": "noun",
-    "pronunciation": "ah-too-LI",
-    "definition": "A yellowish waxy substance secreted in the ear canal.",
-    "exampleButuanon": "Kinahanglan nako limpyohan akong atulí.",
-    "exampleEnglish": "I need to clean my earwax.",
+    "butuanon": "Asidot",
+    "english": "Smaller",
+    "pos": "adjective",
+    "pronunciation": "asidot",
+    "definition": "More small in size.",
+    "exampleButuanon": "Asidot sa Butuan.",
+    "exampleEnglish": "Example sentence for Asidot (Smaller).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Asidotay",
+    "english": "Smallest",
+    "pos": "adjective",
+    "pronunciation": "asidotay",
+    "definition": "The least in size.",
+    "exampleButuanon": "Asidotay sa Butuan.",
+    "exampleEnglish": "Example sentence for Asidotay (Smallest).",
     "verified": "academic",
     "rating": 5
   },
@@ -352,6 +913,149 @@
     "rating": 5
   },
   {
+    "butuanon": "Asngab",
+    "english": "Bite (bigger)",
+    "pos": "verb",
+    "pronunciation": "asngab",
+    "definition": "To bite forcefully.",
+    "exampleButuanon": "Asngab sa Butuan.",
+    "exampleEnglish": "Example sentence for Asngab (Bite (bigger)).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Asok",
+    "english": "To pester",
+    "pos": "verb",
+    "pronunciation": "asok",
+    "definition": "To annoy repeatedly.",
+    "exampleButuanon": "Asok sa Butuan.",
+    "exampleEnglish": "Example sentence for Asok (To pester).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Asubo",
+    "english": "Ask",
+    "pos": "verb",
+    "pronunciation": "asubo",
+    "definition": "To request information or something from someone.",
+    "exampleButuanon": "Asubo sa Butuan.",
+    "exampleEnglish": "Example sentence for Asubo (Ask).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atabay",
+    "english": "Well (water)",
+    "pos": "noun",
+    "pronunciation": "ah-TA-bay",
+    "definition": "A deep hole or shaft dug or drilled to obtain water.",
+    "exampleButuanon": "Nagkuha mi ug tubig sa atabay.",
+    "exampleEnglish": "We got water from the well.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ati-A",
+    "english": "Expression of dislike",
+    "pos": "expression",
+    "pronunciation": "ati-a",
+    "definition": "A reaction showing disapproval.",
+    "exampleButuanon": "Ati-a sa Butuan.",
+    "exampleEnglish": "Example sentence for Ati-a (Expression of dislike).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ati-At",
+    "english": "Installment",
+    "pos": "noun",
+    "pronunciation": "ati-at",
+    "definition": "A payment made in parts over time.",
+    "exampleButuanon": "Ati-at sa Butuan.",
+    "exampleEnglish": "Example sentence for Ati-at (Installment).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atipawo",
+    "english": "Glow worm",
+    "pos": "noun",
+    "pronunciation": "atipawo",
+    "definition": "A small insect that emits light.",
+    "exampleButuanon": "Atipawo sa Butuan.",
+    "exampleEnglish": "Example sentence for Atipawo (Glow worm).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atod",
+    "english": "To see",
+    "pos": "verb",
+    "pronunciation": "atod",
+    "definition": "To perceive with the eyes.",
+    "exampleButuanon": "Atod sa Butuan.",
+    "exampleEnglish": "Example sentence for Atod (To see).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atole",
+    "english": "Sago delicacy",
+    "pos": "noun",
+    "pronunciation": "atole",
+    "definition": "A food made from sago.",
+    "exampleButuanon": "Atole sa Butuan.",
+    "exampleEnglish": "Example sentence for Atole (Sago delicacy).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atoli’",
+    "english": "Earwax",
+    "pos": "noun",
+    "pronunciation": "atoli’",
+    "definition": "The wax naturally found inside the ear.",
+    "exampleButuanon": "Atoli’ sa Butuan.",
+    "exampleEnglish": "Example sentence for Atoli’ (Earwax).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ato’b",
+    "english": "To medicate using smoke",
+    "pos": "verb",
+    "pronunciation": "ato’b",
+    "definition": "To produce or inhale smoke.",
+    "exampleButuanon": "Ato’b sa Butuan.",
+    "exampleEnglish": "Example sentence for Ato’b (To medicate using smoke).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atubangan",
+    "english": "Front",
+    "pos": "noun",
+    "pronunciation": "atubangan",
+    "definition": "The front or forward part.",
+    "exampleButuanon": "Atubangan sa Butuan.",
+    "exampleEnglish": "Example sentence for Atubangan (Front).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Atulí",
+    "english": "Earwax",
+    "pos": "noun",
+    "pronunciation": "ah-too-LI",
+    "definition": "A yellowish waxy substance secreted in the ear canal.",
+    "exampleButuanon": "Kinahanglan nako limpyohan akong atulí.",
+    "exampleEnglish": "I need to clean my earwax.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Atuob",
     "english": "Burning of incense",
     "pos": "noun",
@@ -363,13 +1067,90 @@
     "rating": 5
   },
   {
-    "butuanon": "Ba-id",
+    "butuanon": "Awod-Awaod",
+    "english": "attention seeker",
+    "pos": "adjective",
+    "pronunciation": "awod-awaod",
+    "definition": "Wanting more than what is needed.",
+    "exampleButuanon": "Awod-awaod sa Butuan.",
+    "exampleEnglish": "Example sentence for Awod-awaod (attention seeker).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ayaw",
+    "english": "Don't / Do not",
+    "pos": "phrase",
+    "pronunciation": "ah-YAW",
+    "definition": "Used to express prohibition.",
+    "exampleButuanon": "Ayaw kabalaka.",
+    "exampleEnglish": "Don't worry.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "A’t",
+    "english": "Basket",
+    "pos": "noun",
+    "pronunciation": "a’t",
+    "definition": "A woven container used for carrying things.",
+    "exampleButuanon": "a’t sa Butuan.",
+    "exampleEnglish": "Example sentence for a’t (Basket).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ba-Id",
     "english": "To ask for permission",
     "pos": "verb",
     "pronunciation": "BA-id",
     "definition": "To request approval or authorization to do something.",
     "exampleButuanon": "Kinahanglan ka ba-id sa dili pa molakaw.",
     "exampleEnglish": "You need to ask for permission before leaving.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Ba-O",
+    "english": "Turtle",
+    "pos": "noun",
+    "pronunciation": "bah-OH",
+    "definition": "A slow-moving reptile enclosed in a scaly or leathery shell.",
+    "exampleButuanon": "Hinay maglakaw ang ba-o.",
+    "exampleEnglish": "The turtle walks slowly.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Babaye",
+    "english": "Female / Woman",
+    "pos": "noun",
+    "pronunciation": "bah-bah-YEE",
+    "definition": "An adult human female.",
+    "exampleButuanon": "Madiyaw nga babaye.",
+    "exampleEnglish": "Good woman.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Bagul-Bagul",
+    "english": "Skull",
+    "pos": "noun",
+    "pronunciation": "bah-GUL-bah-GUL",
+    "definition": "A bony framework enclosing the brain of a vertebrate.",
+    "exampleButuanon": "Nakakita ko ug bagul-bagul sa museyo.",
+    "exampleEnglish": "I saw a skull in the museum.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Bahaqu",
+    "english": "New",
+    "pos": "adjective",
+    "pronunciation": "bah-hah-KOO",
+    "definition": "Not existing before; recently made or discovered.",
+    "exampleButuanon": "Bahaqu ang akong libro.",
+    "exampleEnglish": "My book is new.",
     "verified": "academic",
     "rating": 5
   },
@@ -385,14 +1166,14 @@
     "rating": 5
   },
   {
-    "butuanon": "Bagul-Bagul",
-    "english": "Skull",
+    "butuanon": "Balay",
+    "english": "House; Home",
     "pos": "noun",
-    "pronunciation": "bah-GUL-bah-GUL",
-    "definition": "A bony framework enclosing the brain of a vertebrate.",
-    "exampleButuanon": "Nakakita ko ug bagul-bagul sa museyo.",
-    "exampleEnglish": "I saw a skull in the museum.",
-    "verified": "academic",
+    "pronunciation": "BAH-lay",
+    "definition": "A structure serving as a dwelling place; the place where one lives.",
+    "exampleButuanon": "Aslag ang among balay sa bukid.",
+    "exampleEnglish": "Our house in the mountains is big.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -429,6 +1210,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Bata",
+    "english": "Child / Young person",
+    "pos": "noun",
+    "pronunciation": "bah-TAH",
+    "definition": "A young human being below the age of full physical development.",
+    "exampleButuanon": "Kulaag ang bata.",
+    "exampleEnglish": "The child is happy.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Bati-Is",
+    "english": "Lower leg / Calf",
+    "pos": "noun",
+    "pronunciation": "bah-tee-IS",
+    "definition": "The part of the human leg between the knee and ankle.",
+    "exampleButuanon": "Sakit akong bati-is.",
+    "exampleEnglish": "My lower leg hurts.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Batikunuo",
     "english": "Gizzard",
     "pos": "noun",
@@ -462,17 +1265,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Bilár",
-    "english": "To sleep late",
-    "pos": "verb",
-    "pronunciation": "bi-LAR",
-    "definition": "To remain asleep or in bed beyond the usual or proper time.",
-    "exampleButuanon": "Ayaw pag-bilár ugma.",
-    "exampleEnglish": "Don't sleep late tomorrow.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Bilasâ",
     "english": "Untidy appearance",
     "pos": "adjective",
@@ -484,6 +1276,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Bilár",
+    "english": "To sleep late",
+    "pos": "verb",
+    "pronunciation": "bi-LAR",
+    "definition": "To remain asleep or in bed beyond the usual or proper time.",
+    "exampleButuanon": "Ayaw pag-bilár ugma.",
+    "exampleEnglish": "Don't sleep late tomorrow.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Bilí",
     "english": "Buy",
     "pos": "verb",
@@ -491,17 +1294,6 @@
     "definition": "To acquire something in exchange for money.",
     "exampleButuanon": "Gusto ko mag-bilí ug bag-o nga sapatos.",
     "exampleEnglish": "I want to buy new shoes.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Bringhinas",
-    "english": "Eggplant",
-    "pos": "noun",
-    "pronunciation": "bring-HI-nas",
-    "definition": "A plant of the nightshade family, widely cultivated for its large, edible, dark purple fruit.",
-    "exampleButuanon": "Lami ang bringhinas nga sinugba.",
-    "exampleEnglish": "Grilled eggplant is delicious.",
     "verified": "academic",
     "rating": 5
   },
@@ -528,46 +1320,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Bukóg",
-    "english": "Fish bone",
+    "butuanon": "Bringhinas",
+    "english": "Eggplant",
     "pos": "noun",
-    "pronunciation": "bu-KOG",
-    "definition": "A bone from a fish.",
-    "exampleButuanon": "Pag-amping sa bukóg sa isda.",
-    "exampleEnglish": "Be careful with the fish bone.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Bungoo",
-    "english": "Deaf",
-    "pos": "adjective",
-    "pronunciation": "bu-NGO-o",
-    "definition": "Unable to hear, either partially or completely.",
-    "exampleButuanon": "Ang tigulang nga babaye bungoo.",
-    "exampleEnglish": "The old woman is deaf.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Burokà",
-    "english": "Fight",
-    "pos": "verb",
-    "pronunciation": "bu-ro-KA",
-    "definition": "To engage in a violent struggle involving physical blows or weapons.",
-    "exampleButuanon": "Ayaw pag-burokà sa eskwelahan.",
-    "exampleEnglish": "Don't fight in school.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Burokinta",
-    "english": "Belligerent",
-    "pos": "adjective",
-    "pronunciation": "bu-ro-KIN-ta",
-    "definition": "Hostile and aggressive, ready to fight.",
-    "exampleButuanon": "Ang iyang batasan burokinta.",
-    "exampleEnglish": "His attitude is belligerent.",
+    "pronunciation": "bring-HI-nas",
+    "definition": "A plant of the nightshade family, widely cultivated for its large, edible, dark purple fruit.",
+    "exampleButuanon": "Lami ang bringhinas nga sinugba.",
+    "exampleEnglish": "Grilled eggplant is delicious.",
     "verified": "academic",
     "rating": 5
   },
@@ -583,6 +1342,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Bukóg",
+    "english": "Fish bone",
+    "pos": "noun",
+    "pronunciation": "bu-KOG",
+    "definition": "A bone from a fish.",
+    "exampleButuanon": "Pag-amping sa bukóg sa isda.",
+    "exampleEnglish": "Be careful with the fish bone.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Bulî",
     "english": "Butt",
     "pos": "noun",
@@ -590,6 +1360,39 @@
     "definition": "The buttocks or rear end.",
     "exampleButuanon": "Sakit ang akong bulî human sa pagkahulog.",
     "exampleEnglish": "My butt hurts after falling.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Bungoo",
+    "english": "Deaf",
+    "pos": "adjective",
+    "pronunciation": "bu-NGO-o",
+    "definition": "Unable to hear, either partially or completely.",
+    "exampleButuanon": "Ang tigulang nga babaye bungoo.",
+    "exampleEnglish": "The old woman is deaf.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Burokinta",
+    "english": "Belligerent",
+    "pos": "adjective",
+    "pronunciation": "bu-ro-KIN-ta",
+    "definition": "Hostile and aggressive, ready to fight.",
+    "exampleButuanon": "Ang iyang batasan burokinta.",
+    "exampleEnglish": "His attitude is belligerent.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Burokà",
+    "english": "Fight",
+    "pos": "verb",
+    "pronunciation": "bu-ro-KA",
+    "definition": "To engage in a violent struggle involving physical blows or weapons.",
+    "exampleButuanon": "Ayaw pag-burokà sa eskwelahan.",
+    "exampleEnglish": "Don't fight in school.",
     "verified": "academic",
     "rating": 5
   },
@@ -616,24 +1419,79 @@
     "rating": 5
   },
   {
-    "butuanon": "Kalibutan",
-    "english": "World",
-    "pos": "noun",
-    "pronunciation": "ka-li-BU-tan",
-    "definition": "The earth, together with all of its countries, peoples, and natural features.",
-    "exampleButuanon": "Dako ang kalibutan.",
-    "exampleEnglish": "The world is big.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Da-ak",
+    "butuanon": "Da-Ak",
     "english": "To command",
     "pos": "verb",
     "pronunciation": "da-AK",
     "definition": "To give an authoritative order.",
     "exampleButuanon": "Gi-da-ak niya ako nga molakaw.",
     "exampleEnglish": "He commanded me to leave.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Daan",
+    "english": "Old / Previous",
+    "pos": "adjective",
+    "pronunciation": "dah-AN",
+    "definition": "Having lived or existed for a long time.",
+    "exampleButuanon": "Daan na ini nga sasakyan.",
+    "exampleEnglish": "This vehicle is already old.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Dag-Ay",
+    "english": "Laugh",
+    "pos": "verb",
+    "pronunciation": "DAG-ay",
+    "definition": "To make the spontaneous sounds and movements of the face and body that are the instinctive expressions of lively amusement.",
+    "exampleButuanon": "Nindot paminawon ang iyang dag-ay.",
+    "exampleEnglish": "Her laugh is nice to hear.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Daga",
+    "english": "Land; Earth; Ground",
+    "pos": "noun",
+    "pronunciation": "DAH-gah",
+    "definition": "The solid surface of the earth; territory or homeland.",
+    "exampleButuanon": "Ang daga hong Butuan madiyaw ug tabunok.",
+    "exampleEnglish": "The land of Butuan is good and fertile.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Dagaha",
+    "english": "Chest",
+    "pos": "noun",
+    "pronunciation": "da-GA-ha",
+    "definition": "The front surface of a person's or animal's body between the neck and the abdomen.",
+    "exampleButuanon": "Sakit ang akong dagaha.",
+    "exampleEnglish": "My chest hurts.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Daginâ",
+    "english": "Step",
+    "pos": "verb",
+    "pronunciation": "dah-gi-NÂ",
+    "definition": "To lift and set down one's foot in order to move forward or backward.",
+    "exampleButuanon": "Daginâ kaw sa unahan.",
+    "exampleEnglish": "Step forward.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Dako",
+    "english": "Big / Large",
+    "pos": "adjective",
+    "pronunciation": "dah-KOH",
+    "definition": "Of considerable size, extent, or intensity.",
+    "exampleButuanon": "Dako ang suba.",
+    "exampleEnglish": "The river is big.",
     "verified": "academic",
     "rating": 5
   },
@@ -660,39 +1518,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Dagaha",
-    "english": "Chest",
-    "pos": "noun",
-    "pronunciation": "da-GA-ha",
-    "definition": "The front surface of a person's or animal's body between the neck and the abdomen.",
-    "exampleButuanon": "Sakit ang akong dagaha.",
-    "exampleEnglish": "My chest hurts.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Dag-ay",
-    "english": "Laugh",
-    "pos": "verb",
-    "pronunciation": "DAG-ay",
-    "definition": "To make the spontaneous sounds and movements of the face and body that are the instinctive expressions of lively amusement.",
-    "exampleButuanon": "Nindot paminawon ang iyang dag-ay.",
-    "exampleEnglish": "Her laugh is nice to hear.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Daginâ",
-    "english": "Step",
-    "pos": "verb",
-    "pronunciation": "dah-gi-NÂ",
-    "definition": "To lift and set down one's foot in order to move forward or backward.",
-    "exampleButuanon": "Daginâ kaw sa unahan.",
-    "exampleEnglish": "Step forward.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Dawngalî",
     "english": "Heat rashes",
     "pos": "noun",
@@ -715,7 +1540,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Dig-ay",
+    "butuanon": "Dig-Ay",
     "english": "Burp",
     "pos": "verb",
     "pronunciation": "DIG-ay",
@@ -726,7 +1551,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Dig-itá",
+    "butuanon": "Dig-Itá",
     "english": "A little amount",
     "pos": "phrase",
     "pronunciation": "dig-i-TÁ",
@@ -734,6 +1559,28 @@
     "exampleButuanon": "Hatagi ako dig-itá na tubig.",
     "exampleEnglish": "Give me a little amount of water.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Dili",
+    "english": "No / Not",
+    "pos": "phrase",
+    "pronunciation": "dee-LEE",
+    "definition": "A negative response.",
+    "exampleButuanon": "Dili ako mag-reklamo.",
+    "exampleEnglish": "I will not complain.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Disani",
+    "english": "Here",
+    "pos": "adverb",
+    "pronunciation": "dee-sah-NEE",
+    "definition": "In or at this place.",
+    "exampleButuanon": "Disani ang among balay.",
+    "exampleEnglish": "Our house is here.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -825,6 +1672,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Gabi-I",
+    "english": "Night / Evening",
+    "pos": "noun",
+    "pronunciation": "gah-bee-EE",
+    "definition": "The period of darkness between sunset and sunrise.",
+    "exampleButuanon": "Mainit ang gabi-i.",
+    "exampleEnglish": "The night is warm.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Gaburuka",
     "english": "Fighting",
     "pos": "verb",
@@ -843,17 +1701,6 @@
     "definition": "Extremely limited in size or extent.",
     "exampleButuanon": "Ang iring gagmatoy pa.",
     "exampleEnglish": "The cat is still very small.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gahî",
-    "english": "Hard",
-    "pos": "adjective",
-    "pronunciation": "ga-HÎ",
-    "definition": "Solid, firm, and resistant to pressure; not easily broken or bent.",
-    "exampleButuanon": "Gahî ang bato.",
-    "exampleEnglish": "The rock is hard.",
     "verified": "academic",
     "rating": 5
   },
@@ -891,6 +1738,50 @@
     "rating": 5
   },
   {
+    "butuanon": "Gahî",
+    "english": "Hard",
+    "pos": "adjective",
+    "pronunciation": "ga-HÎ",
+    "definition": "Solid, firm, and resistant to pressure; not easily broken or bent.",
+    "exampleButuanon": "Gahî ang bato.",
+    "exampleEnglish": "The rock is hard.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Gaiyák",
+    "english": "Yell",
+    "pos": "verb",
+    "pronunciation": "ga-i-YÁK",
+    "definition": "To utter a loud, sharp cry or shout.",
+    "exampleButuanon": "Ayaw gaiyák sa sulod sa simbahan.",
+    "exampleEnglish": "Don't yell inside the church.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Gakapu-Kapu",
+    "english": "In a hurry",
+    "pos": "adverb",
+    "pronunciation": "ga-KA-pu-KA-pu",
+    "definition": "Moving or acting with great speed or urgency.",
+    "exampleButuanon": "Gakapu-kapu siya naglakaw.",
+    "exampleEnglish": "He walked in a hurry.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Gakita",
+    "english": "To see each other",
+    "pos": "verb",
+    "pronunciation": "ga-KI-ta",
+    "definition": "To meet or encounter one another.",
+    "exampleButuanon": "Gakita kami sa merkado.",
+    "exampleEnglish": "We saw each other at the market.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Galalís",
     "english": "To argue",
     "pos": "verb",
@@ -913,39 +1804,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Gaiyák",
-    "english": "Yell",
-    "pos": "verb",
-    "pronunciation": "ga-i-YÁK",
-    "definition": "To utter a loud, sharp cry or shout.",
-    "exampleButuanon": "Ayaw gaiyák sa sulod sa simbahan.",
-    "exampleEnglish": "Don't yell inside the church.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gakapu-kapu",
-    "english": "In a hurry",
-    "pos": "adverb",
-    "pronunciation": "ga-KA-pu-KA-pu",
-    "definition": "Moving or acting with great speed or urgency.",
-    "exampleButuanon": "Gakapu-kapu siya naglakaw.",
-    "exampleEnglish": "He walked in a hurry.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gakita",
-    "english": "To see each other",
-    "pos": "verb",
-    "pronunciation": "ga-KI-ta",
-    "definition": "To meet or encounter one another.",
-    "exampleButuanon": "Gakita kami sa merkado.",
-    "exampleEnglish": "We saw each other at the market.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Galuya",
     "english": "Weak",
     "pos": "adjective",
@@ -953,6 +1811,17 @@
     "definition": "Lacking physical strength or energy.",
     "exampleButuanon": "Galuya ako pagkahuman sa sakit.",
     "exampleEnglish": "I am weak after the illness.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Gamay",
+    "english": "Small / Little",
+    "pos": "adjective",
+    "pronunciation": "gah-MAY",
+    "definition": "Of small size or amount.",
+    "exampleButuanon": "Gamay ang balay.",
+    "exampleEnglish": "The house is small.",
     "verified": "academic",
     "rating": 5
   },
@@ -1034,24 +1903,24 @@
     "rating": 5
   },
   {
-    "butuanon": "Gikaw-an",
-    "english": "Doing",
-    "pos": "verb",
-    "pronunciation": "gi-KAW-an",
-    "definition": "To be in the process of performing an action or task.",
-    "exampleButuanon": "Unsa ang gikaw-an mo?",
-    "exampleEnglish": "What are you doing?",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gigum-os",
+    "butuanon": "Gigum-Os",
     "english": "Pin down",
     "pos": "verb",
     "pronunciation": "gi-GUM-os",
     "definition": "To hold something down firmly, often to prevent it from moving or flying away.",
     "exampleButuanon": "Gigum-os niya ang habol aron dili molupad.",
     "exampleEnglish": "He pinned down the blanket so it wouldn't fly away.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Gikaw-An",
+    "english": "Doing",
+    "pos": "verb",
+    "pronunciation": "gi-KAW-an",
+    "definition": "To be in the process of performing an action or task.",
+    "exampleButuanon": "Unsa ang gikaw-an mo?",
+    "exampleEnglish": "What are you doing?",
     "verified": "academic",
     "rating": 5
   },
@@ -1074,6 +1943,17 @@
     "definition": "To move a spoon or other implement around in a liquid or mixture to mix it.",
     "exampleButuanon": "Gubín ang kape.",
     "exampleEnglish": "Stir the coffee.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Gugma",
+    "english": "Love; Affection",
+    "pos": "noun",
+    "pronunciation": "GOOG-mah",
+    "definition": "A deep feeling of affection and care for another person or thing.",
+    "exampleButuanon": "Aslag ang akong gugma hong akong pamilya.",
+    "exampleEnglish": "My love for my family is great.",
     "verified": "academic",
     "rating": 5
   },
@@ -1133,6 +2013,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Hain",
+    "english": "Where",
+    "pos": "phrase",
+    "pronunciation": "hah-IN",
+    "definition": "Used to ask about location.",
+    "exampleButuanon": "Hain ang balay?",
+    "exampleEnglish": "Where is the house?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Hangaa",
     "english": "Greedy",
     "pos": "adjective",
@@ -1162,6 +2053,28 @@
     "definition": "Having little length or height.",
     "exampleButuanon": "Hayupô ang iyang buhok.",
     "exampleEnglish": "Her hair is short.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Hikót",
+    "english": "To bond / Tie",
+    "pos": "verb",
+    "pronunciation": "hi-KOT",
+    "definition": "To fasten or secure with a cord, rope, or similar material; also to form a close connection.",
+    "exampleButuanon": "Hikót ang pisi.",
+    "exampleEnglish": "Tie the rope.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Hinaat",
+    "english": "Morning",
+    "pos": "noun",
+    "pronunciation": "hee-nah-AT",
+    "definition": "The period of time from sunrise to noon.",
+    "exampleButuanon": "Madiyaw ang hinaat disani sa Butuan.",
+    "exampleEnglish": "The morning is beautiful here in Butuan.",
     "verified": "academic",
     "rating": 5
   },
@@ -1210,17 +2123,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Hikót",
-    "english": "To bond / Tie",
-    "pos": "verb",
-    "pronunciation": "hi-KOT",
-    "definition": "To fasten or secure with a cord, rope, or similar material; also to form a close connection.",
-    "exampleButuanon": "Hikót ang pisi.",
-    "exampleEnglish": "Tie the rope.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Hubadon",
     "english": "Translate",
     "pos": "verb",
@@ -1243,24 +2145,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Ib-ib",
+    "butuanon": "Ib-Ib",
     "english": "To gnaw",
     "pos": "verb",
     "pronunciation": "IB-ib",
     "definition": "To bite at or chew something persistently.",
     "exampleButuanon": "An idò nag-ib-ib sa bukog.",
     "exampleEnglish": "The dog is gnawing on the bone.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Idò",
-    "english": "Dog",
-    "pos": "noun",
-    "pronunciation": "I-dò",
-    "definition": "A domesticated carnivorous mammal, typically with a long snout, an acute sense of smell, and a barking, howling, or whining voice.",
-    "exampleButuanon": "An idò ko mahigugmaon.",
-    "exampleEnglish": "My dog is loving.",
     "verified": "academic",
     "rating": 5
   },
@@ -1276,13 +2167,24 @@
     "rating": 5
   },
   {
-    "butuanon": "Idut-ong",
+    "butuanon": "Idut-Ong",
     "english": "To include",
     "pos": "verb",
     "pronunciation": "i-DUT-ong",
     "definition": "To make someone or something part of a group or total.",
     "exampleButuanon": "Idut-ong mo ako sa lista.",
     "exampleEnglish": "Include me in the list.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Idò",
+    "english": "Dog",
+    "pos": "noun",
+    "pronunciation": "I-dò",
+    "definition": "A domesticated carnivorous mammal, typically with a long snout, an acute sense of smell, and a barking, howling, or whining voice.",
+    "exampleButuanon": "An idò ko mahigugmaon.",
+    "exampleEnglish": "My dog is loving.",
     "verified": "academic",
     "rating": 5
   },
@@ -1353,17 +2255,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Kabâ-kabâ",
-    "english": "Butterfly",
-    "pos": "noun",
-    "pronunciation": "ka-BÂ-ka-bâ",
-    "definition": "An insect with large, often brightly colored wings, a slender body, and clubbed antennae.",
-    "exampleButuanon": "An kabâ-kabâ nindot tan-awon.",
-    "exampleEnglish": "The butterfly is beautiful to look at.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Kabaw",
     "english": "Cow / Carabao",
     "pos": "noun",
@@ -1397,6 +2288,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Kabâ-Kabâ",
+    "english": "Butterfly",
+    "pos": "noun",
+    "pronunciation": "ka-BÂ-ka-bâ",
+    "definition": "An insect with large, often brightly colored wings, a slender body, and clubbed antennae.",
+    "exampleButuanon": "An kabâ-kabâ nindot tan-awon.",
+    "exampleEnglish": "The butterfly is beautiful to look at.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kagabi-I",
+    "english": "Last night",
+    "pos": "adverb",
+    "pronunciation": "kah-gah-bee-EE",
+    "definition": "During the previous night.",
+    "exampleButuanon": "Miyulan kagabi-i.",
+    "exampleEnglish": "It rained last night.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kahagkot",
     "english": "So cold",
     "pos": "adjective",
@@ -1408,17 +2321,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Kahapdós",
-    "english": "Sore",
-    "pos": "adjective",
-    "pronunciation": "ka-hap-DÓS",
-    "definition": "Painful or aching, especially from injury or overuse.",
-    "exampleButuanon": "Kahapdós an akong tiil.",
-    "exampleEnglish": "My foot is sore.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Kahamót",
     "english": "Fragrance",
     "pos": "noun",
@@ -1426,6 +2328,17 @@
     "definition": "A pleasant, sweet smell.",
     "exampleButuanon": "Nindot an kahamót sa bulak.",
     "exampleEnglish": "The fragrance of the flower is nice.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kahapdós",
+    "english": "Sore",
+    "pos": "adjective",
+    "pronunciation": "ka-hap-DÓS",
+    "definition": "Painful or aching, especially from injury or overuse.",
+    "exampleButuanon": "Kahapdós an akong tiil.",
+    "exampleEnglish": "My foot is sore.",
     "verified": "academic",
     "rating": 5
   },
@@ -1452,6 +2365,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Kahoy",
+    "english": "Tree; Wood",
+    "pos": "noun",
+    "pronunciation": "KAH-hoy",
+    "definition": "A tall plant with a trunk; also refers to timber or wood material.",
+    "exampleButuanon": "Ang kahoy sa bukid taas.",
+    "exampleEnglish": "The tree in the mountain is tall.",
+    "verified": "community",
+    "rating": 4
+  },
+  {
+    "butuanon": "Kaiban",
+    "english": "Companion / Friend",
+    "pos": "noun",
+    "pronunciation": "kah-ee-BAN",
+    "definition": "A companion, buddy, or fellow member.",
+    "exampleButuanon": "Kaiban nako si Juan.",
+    "exampleEnglish": "Juan is my companion.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kailò",
     "english": "Pitiful",
     "pos": "adjective",
@@ -1474,6 +2409,39 @@
     "rating": 5
   },
   {
+    "butuanon": "Kaisog",
+    "english": "Courage / Bravery",
+    "pos": "noun",
+    "pronunciation": "kah-ee-SOG",
+    "definition": "The ability to do something that frightens one; bravery.",
+    "exampleButuanon": "Dako ang iyang kaisog.",
+    "exampleEnglish": "His courage is great.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kalibutan",
+    "english": "World",
+    "pos": "noun",
+    "pronunciation": "ka-li-BU-tan",
+    "definition": "The earth, together with all of its countries, peoples, and natural features.",
+    "exampleButuanon": "Dako ang kalibutan.",
+    "exampleEnglish": "The world is big.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kalinaw",
+    "english": "Peace / Serenity",
+    "pos": "noun",
+    "pronunciation": "kah-lee-NAW",
+    "definition": "Freedom from disturbance; tranquility.",
+    "exampleButuanon": "Hinaot nga maginaray ug kalinaw.",
+    "exampleEnglish": "May there be peace.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kalipát",
     "english": "Forgotten",
     "pos": "adjective",
@@ -1482,6 +2450,17 @@
     "exampleButuanon": "Kalipát na nako an iyang ngalan.",
     "exampleEnglish": "I have forgotten his/her name.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kalisud",
+    "english": "Hardship / Difficulty",
+    "pos": "noun",
+    "pronunciation": "kah-lee-SOOD",
+    "definition": "Severe suffering or privation.",
+    "exampleButuanon": "Adunay kalisud sa kinabuhi.",
+    "exampleEnglish": "There is hardship in life.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -1507,6 +2486,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Kamingaw",
+    "english": "Loneliness / Solitude",
+    "pos": "noun",
+    "pronunciation": "kah-meeng-AW",
+    "definition": "Sadness because one has no friends or company.",
+    "exampleButuanon": "Gibatyag nako ang kamingaw.",
+    "exampleEnglish": "I feel the loneliness.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kamrás",
     "english": "Scratch",
     "pos": "verb",
@@ -1514,17 +2504,6 @@
     "definition": "To mark or cut the surface of something with a sharp object or fingernails.",
     "exampleButuanon": "Ayaw kamrása an lamesa.",
     "exampleEnglish": "Don't scratch the table.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kanding",
-    "english": "Goat",
-    "pos": "noun",
-    "pronunciation": "KAN-ding",
-    "definition": "A hardy domesticated ruminant mammal, typically having horns and a beard.",
-    "exampleButuanon": "An kanding nagkaon sin sagbot.",
-    "exampleEnglish": "The goat is eating grass.",
     "verified": "academic",
     "rating": 5
   },
@@ -1540,6 +2519,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Kanding",
+    "english": "Goat",
+    "pos": "noun",
+    "pronunciation": "KAN-ding",
+    "definition": "A hardy domesticated ruminant mammal, typically having horns and a beard.",
+    "exampleButuanon": "An kanding nagkaon sin sagbot.",
+    "exampleEnglish": "The goat is eating grass.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kano",
+    "english": "When",
+    "pos": "phrase",
+    "pronunciation": "kah-NOH",
+    "definition": "Used to ask about time.",
+    "exampleButuanon": "Kano ka mabuhi?",
+    "exampleEnglish": "When will you arrive?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kapasô",
     "english": "So hot",
     "pos": "adjective",
@@ -1551,7 +2552,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Kasuk-an",
+    "butuanon": "Kasuk-An",
     "english": "To scold",
     "pos": "verb",
     "pronunciation": "ka-SUK-an",
@@ -1595,6 +2596,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Kinsa",
+    "english": "Who",
+    "pos": "phrase",
+    "pronunciation": "keen-SAH",
+    "definition": "Used to ask about a person's identity.",
+    "exampleButuanon": "Kinsa ka?",
+    "exampleEnglish": "Who are you?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kinumò",
     "english": "Fist",
     "pos": "noun",
@@ -1603,6 +2615,17 @@
     "exampleButuanon": "Gikumo niya an iya kamot.",
     "exampleEnglish": "He clenched his hand into a fist.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kis-A",
+    "english": "Sometimes",
+    "pos": "adverb",
+    "pronunciation": "kees-AH",
+    "definition": "On some occasions; occasionally.",
+    "exampleButuanon": "Kis-a mamiya ako.",
+    "exampleEnglish": "Sometimes I leave.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -1639,6 +2662,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Kuman",
+    "english": "Now / Today",
+    "pos": "adverb",
+    "pronunciation": "koo-MAN",
+    "definition": "At the present time or date.",
+    "exampleButuanon": "Kuman na kita moki-an.",
+    "exampleEnglish": "Let us go now.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Kumbusna",
     "english": "However",
     "pos": "adverb",
@@ -1647,6 +2681,17 @@
     "exampleButuanon": "Gusto ko maglakaw, kumbusna nag-ulan.",
     "exampleEnglish": "I want to walk, however, it's raining.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kumusta ka",
+    "english": "How are you?",
+    "pos": "phrase",
+    "pronunciation": "koo-MOOS-tah kah",
+    "definition": "A common greeting asking about someone's well-being.",
+    "exampleButuanon": "Kumusta ka, amigo?",
+    "exampleEnglish": "How are you, friend?",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -1672,17 +2717,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Kutáy",
-    "english": "Clothesline",
-    "pos": "noun",
-    "pronunciation": "ku-TÁY",
-    "definition": "A rope or wire on which clothes are hung to dry.",
-    "exampleButuanon": "Ibitay an mga sinina sa kutáy.",
-    "exampleEnglish": "Hang the clothes on the clothesline.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Kutob",
     "english": "Till here",
     "pos": "adverb",
@@ -1690,6 +2724,17 @@
     "definition": "Up to this point or location.",
     "exampleButuanon": "Kutob lang kita diri.",
     "exampleEnglish": "We will only go till here.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Kutáy",
+    "english": "Clothesline",
+    "pos": "noun",
+    "pronunciation": "ku-TÁY",
+    "definition": "A rope or wire on which clothes are hung to dry.",
+    "exampleButuanon": "Ibitay an mga sinina sa kutáy.",
+    "exampleEnglish": "Hang the clothes on the clothesline.",
     "verified": "academic",
     "rating": 5
   },
@@ -1705,7 +2750,18 @@
     "rating": 5
   },
   {
-    "butuanon": "Lang-à",
+    "butuanon": "Lalaki",
+    "english": "Male / Man",
+    "pos": "noun",
+    "pronunciation": "lah-lah-KEE",
+    "definition": "An adult human male.",
+    "exampleButuanon": "Madiyaw nga lalaki.",
+    "exampleEnglish": "Good man.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Lang-À",
     "english": "To tell",
     "pos": "verb",
     "pronunciation": "LANG-à",
@@ -1738,17 +2794,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Lawâ-lawâ",
-    "english": "Spider",
-    "pos": "noun",
-    "pronunciation": "la-WÂ-la-WÂ",
-    "definition": "An eight-legged predatory arachnid with an unsegmented body consisting of a prosoma and an opisthosoma.",
-    "exampleButuanon": "May lawâ-lawâ sa kisame.",
-    "exampleEnglish": "There is a spider on the ceiling.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Lawom baay",
     "english": "Under the house",
     "pos": "phrase",
@@ -1756,6 +2801,17 @@
     "definition": "Located beneath the structure of a house.",
     "exampleButuanon": "An iring nagtago sa lawom baay.",
     "exampleEnglish": "The cat is hiding under the house.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Lawâ-Lawâ",
+    "english": "Spider",
+    "pos": "noun",
+    "pronunciation": "la-WÂ-la-WÂ",
+    "definition": "An eight-legged predatory arachnid with an unsegmented body consisting of a prosoma and an opisthosoma.",
+    "exampleButuanon": "May lawâ-lawâ sa kisame.",
+    "exampleEnglish": "There is a spider on the ceiling.",
     "verified": "academic",
     "rating": 5
   },
@@ -1782,17 +2838,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Luy-à",
-    "english": "Ginger",
-    "pos": "noun",
-    "pronunciation": "loo-YAH",
-    "definition": "A pungent, spicy root used as a spice or medicine.",
-    "exampleButuanon": "Nagpalit ako sin luy-à para sa sabaw.",
-    "exampleEnglish": "I bought ginger for the soup.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Ludyô",
     "english": "Machete",
     "pos": "noun",
@@ -1815,6 +2860,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Lungsod",
+    "english": "City; Town",
+    "pos": "noun",
+    "pronunciation": "LOONG-sod",
+    "definition": "A large and important town; an urban center.",
+    "exampleButuanon": "Butuan ang among lungsod.",
+    "exampleEnglish": "Butuan is our city.",
+    "verified": "academic",
+    "rating": 3
+  },
+  {
     "butuanon": "Lupà",
     "english": "Land / Soil",
     "pos": "noun",
@@ -1822,6 +2878,17 @@
     "definition": "The part of the earth's surface that is not covered by water, or the upper layer of earth in which plants grow.",
     "exampleButuanon": "An lupà sa amon uma tabunok.",
     "exampleEnglish": "The soil in our farm is fertile.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Luy-À",
+    "english": "Ginger",
+    "pos": "noun",
+    "pronunciation": "loo-YAH",
+    "definition": "A pungent, spicy root used as a spice or medicine.",
+    "exampleButuanon": "Nagpalit ako sin luy-à para sa sabaw.",
+    "exampleEnglish": "I bought ginger for the soup.",
     "verified": "academic",
     "rating": 5
   },
@@ -1848,13 +2915,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Maát",
-    "english": "Shameless / Bad",
-    "pos": "adjective",
-    "pronunciation": "mah-AHT",
-    "definition": "Lacking a sense of shame or decency, or of poor quality or low standard.",
-    "exampleButuanon": "Maát an iya batasan.",
-    "exampleEnglish": "His attitude is bad.",
+    "butuanon": "Mabukgan",
+    "english": "Choke on bone",
+    "pos": "verb",
+    "pronunciation": "mah-buk-GAN",
+    "definition": "To have a bone become lodged in the throat, obstructing breathing.",
+    "exampleButuanon": "Nagkaon siya isda tapos nabukgan.",
+    "exampleEnglish": "He ate fish and then choked on a bone.",
     "verified": "academic",
     "rating": 5
   },
@@ -1881,29 +2948,40 @@
     "rating": 5
   },
   {
-    "butuanon": "Makatoo",
-    "english": "Itchy",
-    "pos": "adjective",
-    "pronunciation": "mah-kah-TOH-oh",
-    "definition": "Causing or feeling an irritating sensation on the skin that makes one want to scratch.",
-    "exampleButuanon": "Makatoo an kagat sa lamok.",
-    "exampleEnglish": "The mosquito bite is itchy.",
-    "verified": "academic",
+    "butuanon": "Madiyaw nga gabi-I",
+    "english": "Good evening / Good night",
+    "pos": "phrase",
+    "pronunciation": "mah-dee-YAWNG gah-bee-EE",
+    "definition": "A greeting used during evening or night hours.",
+    "exampleButuanon": "Madiyaw nga gabi-i, pamilya.",
+    "exampleEnglish": "Good evening, family.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
-    "butuanon": "Mahisnang",
-    "english": "Mischievous",
-    "pos": "adjective",
-    "pronunciation": "mah-his-NANG",
-    "definition": "Causing or showing a fondness for causing trouble in a playful way.",
-    "exampleButuanon": "Mahisnang kaayo an bata.",
-    "exampleEnglish": "The child is very mischievous.",
-    "verified": "academic",
+    "butuanon": "Madiyaw nga hapon",
+    "english": "Good afternoon",
+    "pos": "phrase",
+    "pronunciation": "mah-dee-YAWNG hah-PON",
+    "definition": "A greeting used during afternoon hours.",
+    "exampleButuanon": "Madiyaw nga hapon sa inyong tanan.",
+    "exampleEnglish": "Good afternoon to all of you.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
-    "butuanon": "Mag-aguanta",
+    "butuanon": "Madiyaw nga hinaat",
+    "english": "Good morning",
+    "pos": "phrase",
+    "pronunciation": "mah-dee-YAWNG hee-nah-AT",
+    "definition": "A greeting used in the morning hours, expressing good wishes.",
+    "exampleButuanon": "Madiyaw nga hinaat, kaiban! Kumusta ka?",
+    "exampleEnglish": "Good morning, friend! How are you?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Mag-Aguanta",
     "english": "To endure",
     "pos": "verb",
     "pronunciation": "mag-ah-goo-AN-tah",
@@ -1914,7 +2992,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Mag-anad",
+    "butuanon": "Mag-Anad",
     "english": "Study",
     "pos": "verb",
     "pronunciation": "mag-AH-nad",
@@ -1925,7 +3003,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Mag-ignay",
+    "butuanon": "Mag-Ignay",
     "english": "Avoid",
     "pos": "verb",
     "pronunciation": "mag-IG-nay",
@@ -1958,6 +3036,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Magpalahok-Lahok",
+    "english": "To wander",
+    "pos": "verb",
+    "pronunciation": "mag-pah-lah-HOK-lah-hok",
+    "definition": "To walk or move in a leisurely, casual, or aimless way.",
+    "exampleButuanon": "Ganahan siya magpalahok-lahok sa parke.",
+    "exampleEnglish": "He likes to wander in the park.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Magpasaa",
     "english": "To practice",
     "pos": "verb",
@@ -1965,17 +3054,6 @@
     "definition": "To perform an activity or exercise a skill repeatedly or regularly in order to improve or maintain one's proficiency.",
     "exampleButuanon": "Kinahanglan ka magpasaa sa imong kanta.",
     "exampleEnglish": "You need to practice your song.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Magpalahok-lahok",
-    "english": "To wander",
-    "pos": "verb",
-    "pronunciation": "mag-pah-lah-HOK-lah-hok",
-    "definition": "To walk or move in a leisurely, casual, or aimless way.",
-    "exampleButuanon": "Ganahan siya magpalahok-lahok sa parke.",
-    "exampleEnglish": "He likes to wander in the park.",
     "verified": "academic",
     "rating": 5
   },
@@ -2002,7 +3080,29 @@
     "rating": 5
   },
   {
-    "butuanon": "Malahà-lahà",
+    "butuanon": "Mahisnang",
+    "english": "Mischievous",
+    "pos": "adjective",
+    "pronunciation": "mah-his-NANG",
+    "definition": "Causing or showing a fondness for causing trouble in a playful way.",
+    "exampleButuanon": "Mahisnang kaayo an bata.",
+    "exampleEnglish": "The child is very mischievous.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Makatoo",
+    "english": "Itchy",
+    "pos": "adjective",
+    "pronunciation": "mah-kah-TOH-oh",
+    "definition": "Causing or feeling an irritating sensation on the skin that makes one want to scratch.",
+    "exampleButuanon": "Makatoo an kagat sa lamok.",
+    "exampleEnglish": "The mosquito bite is itchy.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Malahà-Lahà",
     "english": "Shameless",
     "pos": "adjective",
     "pronunciation": "mah-lah-HAH-lah-hah",
@@ -2057,13 +3157,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Manigpod",
-    "english": "To balance",
+    "butuanon": "Mangasubo",
+    "english": "To ask",
     "pos": "verb",
-    "pronunciation": "mah-nig-POD",
-    "definition": "To maintain an even distribution of weight or stability.",
-    "exampleButuanon": "Kinahanglan mo manigpod sa imo paglakaw.",
-    "exampleEnglish": "You need to balance your walk.",
+    "pronunciation": "mah-nga-SU-bo",
+    "definition": "To request information or an answer from someone.",
+    "exampleButuanon": "Mangasubo ako sa iya kon unsa an iya ngalan.",
+    "exampleEnglish": "I will ask him what his name is.",
     "verified": "academic",
     "rating": 5
   },
@@ -2090,17 +3190,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Mangasubo",
-    "english": "To ask",
-    "pos": "verb",
-    "pronunciation": "mah-nga-SU-bo",
-    "definition": "To request information or an answer from someone.",
-    "exampleButuanon": "Mangasubo ako sa iya kon unsa an iya ngalan.",
-    "exampleEnglish": "I will ask him what his name is.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Mangyat",
     "english": "Proficient / Know how",
     "pos": "adjective",
@@ -2108,6 +3197,17 @@
     "definition": "Skilled and experienced in a particular field or activity.",
     "exampleButuanon": "Mangyat siya magluto.",
     "exampleEnglish": "She is proficient at cooking.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Manigpod",
+    "english": "To balance",
+    "pos": "verb",
+    "pronunciation": "mah-nig-POD",
+    "definition": "To maintain an even distribution of weight or stability.",
+    "exampleButuanon": "Kinahanglan mo manigpod sa imo paglakaw.",
+    "exampleEnglish": "You need to balance your walk.",
     "verified": "academic",
     "rating": 5
   },
@@ -2167,17 +3267,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Mabukgan",
-    "english": "Choke on bone",
-    "pos": "verb",
-    "pronunciation": "mah-buk-GAN",
-    "definition": "To have a bone become lodged in the throat, obstructing breathing.",
-    "exampleButuanon": "Nagkaon siya isda tapos nabukgan.",
-    "exampleEnglish": "He ate fish and then choked on a bone.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Matutô",
     "english": "Raise / Care",
     "pos": "verb",
@@ -2196,6 +3285,17 @@
     "definition": "Having the pleasant taste characteristic of sugar or honey.",
     "exampleButuanon": "Mayumo an iya tingog.",
     "exampleEnglish": "Her voice is sweet.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Maát",
+    "english": "Shameless / Bad",
+    "pos": "adjective",
+    "pronunciation": "mah-AHT",
+    "definition": "Lacking a sense of shame or decency, or of poor quality or low standard.",
+    "exampleButuanon": "Maát an iya batasan.",
+    "exampleEnglish": "His attitude is bad.",
     "verified": "academic",
     "rating": 5
   },
@@ -2222,7 +3322,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Midalin-as",
+    "butuanon": "Midalin-As",
     "english": "Slipped",
     "pos": "verb",
     "pronunciation": "mi-dah-lin-AS",
@@ -2233,46 +3333,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Midat-ugan",
+    "butuanon": "Midat-Ugan",
     "english": "Pin down",
     "pos": "verb",
     "pronunciation": "mi-dat-U-gan",
     "definition": "To hold someone or something firmly in a particular position, preventing movement.",
     "exampleButuanon": "Midat-ugan niya an kawatan.",
     "exampleEnglish": "He pinned down the thief.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Mikatawa",
-    "english": "To laugh",
-    "pos": "verb",
-    "pronunciation": "mi-ka-TA-wa",
-    "definition": "To make the spontaneous sounds and movements of the face and body that are an instinctive expression of lively amusement.",
-    "exampleButuanon": "Mikatawa siya sa akong istorya.",
-    "exampleEnglish": "He laughed at my story.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Mikaosmod",
-    "english": "Subsob (face down)",
-    "pos": "verb",
-    "pronunciation": "mi-ka-OS-mod",
-    "definition": "To fall or place oneself face down, often forcefully.",
-    "exampleButuanon": "Mikaosmod siya sa yuta.",
-    "exampleEnglish": "He fell face down on the ground.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Mikuyapan",
-    "english": "Fainted",
-    "pos": "verb",
-    "pronunciation": "mi-ku-YA-pan",
-    "definition": "To lose consciousness for a short time due to a temporary insufficient blood flow to the brain.",
-    "exampleButuanon": "Mikuyapan siya tungod sa kainit.",
-    "exampleEnglish": "She fainted because of the heat.",
     "verified": "academic",
     "rating": 5
   },
@@ -2299,6 +3366,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Miilo na",
+    "english": "Orphan",
+    "pos": "noun",
+    "pronunciation": "mi-I-lo na",
+    "definition": "A child whose parents are deceased.",
+    "exampleButuanon": "Siya usa ka miilo na bata.",
+    "exampleEnglish": "He is an orphan child.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Miiyan",
     "english": "Became like that",
     "pos": "phrase",
@@ -2306,6 +3384,61 @@
     "definition": "To transform into a particular state or condition.",
     "exampleButuanon": "Miiyan an iya batasan tungod sa problema.",
     "exampleEnglish": "His attitude became like that because of the problem.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Mikaosmod",
+    "english": "Subsob (face down)",
+    "pos": "verb",
+    "pronunciation": "mi-ka-OS-mod",
+    "definition": "To fall or place oneself face down, often forcefully.",
+    "exampleButuanon": "Mikaosmod siya sa yuta.",
+    "exampleEnglish": "He fell face down on the ground.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Mikatawa",
+    "english": "To laugh",
+    "pos": "verb",
+    "pronunciation": "mi-ka-TA-wa",
+    "definition": "To make the spontaneous sounds and movements of the face and body that are an instinctive expression of lively amusement.",
+    "exampleButuanon": "Mikatawa siya sa akong istorya.",
+    "exampleEnglish": "He laughed at my story.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Mikudoo",
+    "english": "Wrinkled",
+    "pos": "adjective",
+    "pronunciation": "mi-ku-DO-o",
+    "definition": "Having developed folds or creases, especially in skin or fabric.",
+    "exampleButuanon": "Mikudoo na an iya bayu.",
+    "exampleEnglish": "Her shirt is already wrinkled.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Mikuyapan",
+    "english": "Fainted",
+    "pos": "verb",
+    "pronunciation": "mi-ku-YA-pan",
+    "definition": "To lose consciousness for a short time due to a temporary insufficient blood flow to the brain.",
+    "exampleButuanon": "Mikuyapan siya tungod sa kainit.",
+    "exampleEnglish": "She fainted because of the heat.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Milagà",
+    "english": "Flame",
+    "pos": "noun",
+    "pronunciation": "mi-la-GA",
+    "definition": "The visible, gaseous part of a fire.",
+    "exampleButuanon": "An milagà san kalayo dako.",
+    "exampleEnglish": "The flame of the fire is big.",
     "verified": "academic",
     "rating": 5
   },
@@ -2332,13 +3465,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Mingintawon",
-    "english": "Defecate",
-    "pos": "verb",
-    "pronunciation": "ming-in-TAW-won",
-    "definition": "To excrete feces from the body.",
-    "exampleButuanon": "Mingintawon si bata sa kasilyas.",
-    "exampleEnglish": "The child defecated in the toilet.",
+    "butuanon": "Mina-Usog",
+    "english": "Gay",
+    "pos": "adjective",
+    "pronunciation": "mi-na-U-sog",
+    "definition": "Referring to a homosexual man.",
+    "exampleButuanon": "Siya usa ka mina-usog.",
+    "exampleEnglish": "He is a gay man.",
     "verified": "academic",
     "rating": 5
   },
@@ -2354,17 +3487,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Mina-usog",
-    "english": "Gay",
-    "pos": "adjective",
-    "pronunciation": "mi-na-U-sog",
-    "definition": "Referring to a homosexual man.",
-    "exampleButuanon": "Siya usa ka mina-usog.",
-    "exampleEnglish": "He is a gay man.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Mingamho",
     "english": "Hope",
     "pos": "verb",
@@ -2376,35 +3498,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Mikudoo",
-    "english": "Wrinkled",
-    "pos": "adjective",
-    "pronunciation": "mi-ku-DO-o",
-    "definition": "Having developed folds or creases, especially in skin or fabric.",
-    "exampleButuanon": "Mikudoo na an iya bayu.",
-    "exampleEnglish": "Her shirt is already wrinkled.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Miilo na",
-    "english": "Orphan",
-    "pos": "noun",
-    "pronunciation": "mi-I-lo na",
-    "definition": "A child whose parents are deceased.",
-    "exampleButuanon": "Siya usa ka miilo na bata.",
-    "exampleEnglish": "He is an orphan child.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Milagà",
-    "english": "Flame",
-    "pos": "noun",
-    "pronunciation": "mi-la-GA",
-    "definition": "The visible, gaseous part of a fire.",
-    "exampleButuanon": "An milagà san kalayo dako.",
-    "exampleEnglish": "The flame of the fire is big.",
+    "butuanon": "Mingintawon",
+    "english": "Defecate",
+    "pos": "verb",
+    "pronunciation": "ming-in-TAW-won",
+    "definition": "To excrete feces from the body.",
+    "exampleButuanon": "Mingintawon si bata sa kasilyas.",
+    "exampleEnglish": "The child defecated in the toilet.",
     "verified": "academic",
     "rating": 5
   },
@@ -2453,6 +3553,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Moiban",
+    "english": "To go along",
+    "pos": "verb",
+    "pronunciation": "mo-I-ban",
+    "definition": "To accompany someone or join in an activity.",
+    "exampleButuanon": "Moiban ka ba sa amon?",
+    "exampleEnglish": "Will you go along with us?",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Mokadto",
     "english": "Will go",
     "pos": "verb",
@@ -2486,13 +3597,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Moiban",
-    "english": "To go along",
-    "pos": "verb",
-    "pronunciation": "mo-I-ban",
-    "definition": "To accompany someone or join in an activity.",
-    "exampleButuanon": "Moiban ka ba sa amon?",
-    "exampleEnglish": "Will you go along with us?",
+    "butuanon": "Mubo",
+    "english": "Short / Low",
+    "pos": "adjective",
+    "pronunciation": "moo-BOH",
+    "definition": "Measuring a small distance from end to end.",
+    "exampleButuanon": "Mubo ang silya.",
+    "exampleEnglish": "The chair is short.",
     "verified": "academic",
     "rating": 5
   },
@@ -2519,14 +3630,14 @@
     "rating": 5
   },
   {
-    "butuanon": "Ngawon",
-    "english": "Later",
-    "pos": "adverb",
-    "pronunciation": "NGA-won",
-    "definition": "At a subsequent time; afterward.",
-    "exampleButuanon": "Magkita kita ngawon.",
-    "exampleEnglish": "We will see each other later.",
-    "verified": "academic",
+    "butuanon": "Ngano",
+    "english": "Why",
+    "pos": "phrase",
+    "pronunciation": "ngah-NOH",
+    "definition": "Used to ask for a reason or explanation.",
+    "exampleButuanon": "Ngano man?",
+    "exampleEnglish": "Why is that?",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -2541,13 +3652,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Ogód",
-    "english": "Nuka (skin sore)",
-    "pos": "noun",
-    "pronunciation": "O-god",
-    "definition": "A type of skin sore or lesion.",
-    "exampleButuanon": "May ogód an iya tiil.",
-    "exampleEnglish": "He has a nuka (skin sore) on his foot.",
+    "butuanon": "Ngawon",
+    "english": "Later",
+    "pos": "adverb",
+    "pronunciation": "NGA-won",
+    "definition": "At a subsequent time; afterward.",
+    "exampleButuanon": "Magkita kita ngawon.",
+    "exampleEnglish": "We will see each other later.",
     "verified": "academic",
     "rating": 5
   },
@@ -2563,6 +3674,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Ogód",
+    "english": "Nuka (skin sore)",
+    "pos": "noun",
+    "pronunciation": "O-god",
+    "definition": "A type of skin sore or lesion.",
+    "exampleButuanon": "May ogód an iya tiil.",
+    "exampleEnglish": "He has a nuka (skin sore) on his foot.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Oo",
+    "english": "Yes",
+    "pos": "phrase",
+    "pronunciation": "oh-OH",
+    "definition": "An affirmative response.",
+    "exampleButuanon": "Oo, mo-anhi ako.",
+    "exampleEnglish": "Yes, I will come.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Paa",
     "english": "Smelly (urine)",
     "pos": "adjective",
@@ -2570,17 +3703,6 @@
     "definition": "Having an unpleasant odor, specifically referring to urine.",
     "exampleButuanon": "Paa an ihi san iring.",
     "exampleEnglish": "The cat's urine is smelly.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Pabyon",
-    "english": "Mosquito Net",
-    "pos": "noun",
-    "pronunciation": "PAB-yon",
-    "definition": "A net used to protect against mosquitoes and other insects.",
-    "exampleButuanon": "Gamita an pabyon para waray lamok.",
-    "exampleEnglish": "Use the mosquito net so there are no mosquitoes.",
     "verified": "academic",
     "rating": 5
   },
@@ -2596,6 +3718,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Pabyon",
+    "english": "Mosquito Net",
+    "pos": "noun",
+    "pronunciation": "PAB-yon",
+    "definition": "A net used to protect against mosquitoes and other insects.",
+    "exampleButuanon": "Gamita an pabyon para waray lamok.",
+    "exampleEnglish": "Use the mosquito net so there are no mosquitoes.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Padayata",
     "english": "Rest",
     "pos": "verb",
@@ -2607,7 +3740,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Pag-atud",
+    "butuanon": "Pag-Atud",
     "english": "To look at",
     "pos": "verb",
     "pronunciation": "pag-AH-tud",
@@ -2615,6 +3748,28 @@
     "exampleButuanon": "Pag-atud sa bata nga nagdula.",
     "exampleEnglish": "Look at the child playing.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Pagkamó",
+    "english": "To cook rice",
+    "pos": "verb",
+    "pronunciation": "pag-ka-MO",
+    "definition": "To prepare rice by boiling or steaming it until it is ready to eat.",
+    "exampleButuanon": "Pagkamó na ta para sa panihapon.",
+    "exampleEnglish": "Let's cook rice for dinner.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Paglaum",
+    "english": "Hope",
+    "pos": "noun",
+    "pronunciation": "pahg-lah-UM",
+    "definition": "A feeling of expectation and desire for a certain thing to happen.",
+    "exampleButuanon": "Naay paglaum kanunay.",
+    "exampleEnglish": "There is always hope.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -2640,14 +3795,14 @@
     "rating": 5
   },
   {
-    "butuanon": "Pagkamó",
-    "english": "To cook rice",
-    "pos": "verb",
-    "pronunciation": "pag-ka-MO",
-    "definition": "To prepare rice by boiling or steaming it until it is ready to eat.",
-    "exampleButuanon": "Pagkamó na ta para sa panihapon.",
-    "exampleEnglish": "Let's cook rice for dinner.",
-    "verified": "academic",
+    "butuanon": "Palihug",
+    "english": "Please",
+    "pos": "phrase",
+    "pronunciation": "pah-LEE-hoog",
+    "definition": "Used as a polite request.",
+    "exampleButuanon": "Palihug ihatag ang tubig.",
+    "exampleEnglish": "Please give the water.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -2662,6 +3817,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Pamilya",
+    "english": "Family",
+    "pos": "noun",
+    "pronunciation": "pah-MEEL-yah",
+    "definition": "A group of people related by blood or marriage; relatives.",
+    "exampleButuanon": "Importante ang pamilya sa atong kinabuhi.",
+    "exampleEnglish": "Family is important in our life.",
+    "verified": "academic",
+    "rating": 4
+  },
+  {
     "butuanon": "Pamisti",
     "english": "Get-up / Dress",
     "pos": "noun",
@@ -2669,6 +3835,17 @@
     "definition": "An outfit or style of clothing worn by a person.",
     "exampleButuanon": "Nindot kaayo iyang pamisti sa kasal.",
     "exampleEnglish": "Her dress for the wedding was very nice.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Pan-Os",
+    "english": "Spoiled",
+    "pos": "adjective",
+    "pronunciation": "PAN-os",
+    "definition": "Describing food that has gone bad and is no longer fit to eat.",
+    "exampleButuanon": "Ayaw kaon ana kay pan-os na ang pagkaon.",
+    "exampleEnglish": "Don't eat that because the food is already spoiled.",
     "verified": "academic",
     "rating": 5
   },
@@ -2695,17 +3872,6 @@
     "rating": 5
   },
   {
-    "butuanon": "Panggos",
-    "english": "Scrape",
-    "pos": "verb",
-    "pronunciation": "PANG-gos",
-    "definition": "To remove something from a surface by drawing a sharp or hard object across it.",
-    "exampleButuanon": "Panggos ang hugaw sa lamesa.",
-    "exampleEnglish": "Scrape the dirt off the table.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
     "butuanon": "Pangawa",
     "english": "To get",
     "pos": "verb",
@@ -2717,6 +3883,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Panggos",
+    "english": "Scrape",
+    "pos": "verb",
+    "pronunciation": "PANG-gos",
+    "definition": "To remove something from a surface by drawing a sharp or hard object across it.",
+    "exampleButuanon": "Panggos ang hugaw sa lamesa.",
+    "exampleEnglish": "Scrape the dirt off the table.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Panghiyamod",
     "english": "Wipe the face",
     "pos": "verb",
@@ -2724,28 +3901,6 @@
     "definition": "To clean or dry one's face with a cloth or hand.",
     "exampleButuanon": "Panghiyamod sa imong nawong kay singot kaayo.",
     "exampleEnglish": "Wipe your face because you are very sweaty.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Pan-os",
-    "english": "Spoiled",
-    "pos": "adjective",
-    "pronunciation": "PAN-os",
-    "definition": "Describing food that has gone bad and is no longer fit to eat.",
-    "exampleButuanon": "Ayaw kaon ana kay pan-os na ang pagkaon.",
-    "exampleEnglish": "Don't eat that because the food is already spoiled.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Pâpâ",
-    "english": "Chew",
-    "pos": "verb",
-    "pronunciation": "PA-pa",
-    "definition": "To masticate food with the teeth.",
-    "exampleButuanon": "Pâpâ sa imong pagkaon ug hinay.",
-    "exampleEnglish": "Chew your food slowly.",
     "verified": "academic",
     "rating": 5
   },
@@ -2783,6 +3938,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Pila",
+    "english": "How much / How many",
+    "pos": "phrase",
+    "pronunciation": "pee-LAH",
+    "definition": "Used to ask about quantity or price.",
+    "exampleButuanon": "Pila ini?",
+    "exampleEnglish": "How much is this?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Pilók",
     "english": "Eyelashes",
     "pos": "noun",
@@ -2790,17 +3956,6 @@
     "definition": "The short hairs growing on the edge of the eyelids.",
     "exampleButuanon": "Taas ang iyang pilók.",
     "exampleEnglish": "Her eyelashes are long.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Pinít",
-    "english": "Lizard",
-    "pos": "noun",
-    "pronunciation": "pi-NIT",
-    "definition": "A reptile typically having a long body and tail, four legs, and a movable eyelid.",
-    "exampleButuanon": "Naa'y pinít sa kisame.",
-    "exampleEnglish": "There's a lizard on the ceiling.",
     "verified": "academic",
     "rating": 5
   },
@@ -2816,13 +3971,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Pisák",
-    "english": "Mud",
+    "butuanon": "Pinít",
+    "english": "Lizard",
     "pos": "noun",
-    "pronunciation": "pi-SAK",
-    "definition": "Soft, sticky earth made wet with water.",
-    "exampleButuanon": "Daghan kaayong pisák sa dalan human sa ulan.",
-    "exampleEnglish": "There's a lot of mud on the road after the rain.",
+    "pronunciation": "pi-NIT",
+    "definition": "A reptile typically having a long body and tail, four legs, and a movable eyelid.",
+    "exampleButuanon": "Naa'y pinít sa kisame.",
+    "exampleEnglish": "There's a lizard on the ceiling.",
     "verified": "academic",
     "rating": 5
   },
@@ -2834,6 +3989,17 @@
     "definition": "To firmly press something, typically with one's fingers, to extract liquid or change its shape.",
     "exampleButuanon": "Pisgaa ang lemon para sa juice.",
     "exampleEnglish": "Squeeze the lemon for the juice.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Pisák",
+    "english": "Mud",
+    "pos": "noun",
+    "pronunciation": "pi-SAK",
+    "definition": "Soft, sticky earth made wet with water.",
+    "exampleButuanon": "Daghan kaayong pisák sa dalan human sa ulan.",
+    "exampleEnglish": "There's a lot of mud on the road after the rain.",
     "verified": "academic",
     "rating": 5
   },
@@ -2904,13 +4070,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Pòpò",
-    "english": "Harvest",
-    "pos": "verb",
-    "pronunciation": "PO-po",
-    "definition": "To gather a crop or crops.",
-    "exampleButuanon": "Panahon na sa pagpòpò sa humay.",
-    "exampleEnglish": "It's time to harvest the rice.",
+    "butuanon": "Pusong",
+    "english": "Arrogant",
+    "pos": "adjective",
+    "pronunciation": "poo-SONG",
+    "definition": "Having or revealing an exaggerated sense of one's own importance or abilities.",
+    "exampleButuanon": "Ayaw pagin pusong sa imong kaalam.",
+    "exampleEnglish": "Don't be arrogant with your knowledge.",
     "verified": "academic",
     "rating": 5
   },
@@ -2926,14 +4092,36 @@
     "rating": 5
   },
   {
-    "butuanon": "Pusong",
-    "english": "Arrogant",
-    "pos": "adjective",
-    "pronunciation": "poo-SONG",
-    "definition": "Having or revealing an exaggerated sense of one's own importance or abilities.",
-    "exampleButuanon": "Ayaw pagin pusong sa imong kaalam.",
-    "exampleEnglish": "Don't be arrogant with your knowledge.",
+    "butuanon": "Pâpâ",
+    "english": "Chew",
+    "pos": "verb",
+    "pronunciation": "PA-pa",
+    "definition": "To masticate food with the teeth.",
+    "exampleButuanon": "Pâpâ sa imong pagkaon ug hinay.",
+    "exampleEnglish": "Chew your food slowly.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Pòpò",
+    "english": "Harvest",
+    "pos": "verb",
+    "pronunciation": "PO-po",
+    "definition": "To gather a crop or crops.",
+    "exampleButuanon": "Panahon na sa pagpòpò sa humay.",
+    "exampleEnglish": "It's time to harvest the rice.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Sa-A",
+    "english": "Taro / Gabi",
+    "pos": "noun",
+    "pronunciation": "sah-AH",
+    "definition": "A tropical root crop widely grown for edible starchy corms.",
+    "exampleButuanon": "Lami ang sa-a.",
+    "exampleEnglish": "The taro is delicious.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -2970,6 +4158,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Sabod",
+    "english": "To feed the chicken",
+    "pos": "verb",
+    "pronunciation": "sabod",
+    "definition": "To give food to chickens.",
+    "exampleButuanon": "Sabod sa Butuan.",
+    "exampleEnglish": "Example sentence for Sabod (To feed the chicken).",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Sadangay",
     "english": "No way",
     "pos": "phrase",
@@ -3000,6 +4199,17 @@
     "exampleButuanon": "Kini nga sakót lami kaayo.",
     "exampleEnglish": "This mixture is very delicious.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Salamat",
+    "english": "Thank you",
+    "pos": "phrase",
+    "pronunciation": "sah-LAH-mat",
+    "definition": "An expression of gratitude or appreciation.",
+    "exampleButuanon": "Dako nga salamat sa imong tabang.",
+    "exampleEnglish": "Big thank you for your help.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -3047,7 +4257,7 @@
     "rating": 5
   },
   {
-    "butuanon": "Sid-ok",
+    "butuanon": "Sid-Ok",
     "english": "Hiccups",
     "pos": "noun",
     "pronunciation": "SID-ok",
@@ -3066,6 +4276,17 @@
     "exampleButuanon": "Naay sigay sa among lugar.",
     "exampleEnglish": "There is a flood in our area.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Sigi",
+    "english": "Okay / Go ahead",
+    "pos": "phrase",
+    "pronunciation": "see-GEE",
+    "definition": "An expression of agreement or permission.",
+    "exampleButuanon": "Sigi, lakaw na.",
+    "exampleEnglish": "Okay, go ahead.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -3091,13 +4312,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Simâ-simâ",
-    "english": "Snack / Nibble",
-    "pos": "verb",
-    "pronunciation": "see-MAH-see-MAH",
-    "definition": "To eat a small amount of food between meals.",
-    "exampleButuanon": "Gusto ko magsimâ-simâ ug mani.",
-    "exampleEnglish": "I want to snack on peanuts.",
+    "butuanon": "Simag",
+    "english": "Wearied black animal with big eyes",
+    "pos": "adjective",
+    "pronunciation": "simag",
+    "definition": "Describes a tired dark-colored animal with large eyes.",
+    "exampleButuanon": "simag sa Butuan.",
+    "exampleEnglish": "Example sentence for simag (Wearied black animal with big eyes).",
     "verified": "academic",
     "rating": 5
   },
@@ -3113,13 +4334,24 @@
     "rating": 5
   },
   {
-    "butuanon": "Soroon",
-    "english": "Coconut",
+    "butuanon": "Simâ-Simâ",
+    "english": "Snack / Nibble",
+    "pos": "verb",
+    "pronunciation": "see-MAH-see-MAH",
+    "definition": "To eat a small amount of food between meals.",
+    "exampleButuanon": "Gusto ko magsimâ-simâ ug mani.",
+    "exampleEnglish": "I want to snack on peanuts.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Sinipák",
+    "english": "Firewood",
     "pos": "noun",
-    "pronunciation": "so-RO-on",
-    "definition": "The large, oval, brown seed of a tropical palm, consisting of a hard shell lined with edible white flesh and containing a clear liquid.",
-    "exampleButuanon": "Lami ang tubig sa soroon.",
-    "exampleEnglish": "The coconut water is delicious.",
+    "pronunciation": "si-ni-PÁK",
+    "definition": "Wood cut into pieces for burning in a fire.",
+    "exampleButuanon": "Daghan sinipák sa gawas.",
+    "exampleEnglish": "There is a lot of firewood outside.",
     "verified": "academic",
     "rating": 5
   },
@@ -3132,6 +4364,28 @@
     "exampleButuanon": "Sopsopon ang duga sa prutas.",
     "exampleEnglish": "Suck the juice from the fruit.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Soroon",
+    "english": "Coconut",
+    "pos": "noun",
+    "pronunciation": "so-RO-on",
+    "definition": "The large, oval, brown seed of a tropical palm, consisting of a hard shell lined with edible white flesh and containing a clear liquid.",
+    "exampleButuanon": "Lami ang tubig sa soroon.",
+    "exampleEnglish": "The coconut water is delicious.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Suba",
+    "english": "River",
+    "pos": "noun",
+    "pronunciation": "soo-BAH",
+    "definition": "A large natural stream of water flowing in a channel to the sea or a lake.",
+    "exampleButuanon": "Agusan suba sa Butuan.",
+    "exampleEnglish": "Agusan river in Butuan.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -3201,46 +4455,24 @@
     "rating": 5
   },
   {
-    "butuanon": "Sinipák",
-    "english": "Firewood",
+    "butuanon": "Suwang",
+    "english": "Sun",
     "pos": "noun",
-    "pronunciation": "si-ni-PÁK",
-    "definition": "Wood cut into pieces for burning in a fire.",
-    "exampleButuanon": "Daghan sinipák sa gawas.",
-    "exampleEnglish": "There is a lot of firewood outside.",
-    "verified": "academic",
+    "pronunciation": "soo-WANG",
+    "definition": "The star around which the earth orbits; the sun.",
+    "exampleButuanon": "Aslag ug mainit ang suwang kuman.",
+    "exampleEnglish": "The sun is big and hot now.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
-    "butuanon": "Taà",
-    "english": "Footprint",
-    "pos": "noun",
-    "pronunciation": "ta-Á",
-    "definition": "The impression left by a foot or shoe on a surface.",
-    "exampleButuanon": "Nakita ko an iya taà.",
-    "exampleEnglish": "I saw his/her footprint.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Tambaa",
-    "english": "Medicine",
-    "pos": "noun",
-    "pronunciation": "tam-BÁ-a",
-    "definition": "A substance used for treating or preventing illness.",
-    "exampleButuanon": "Inom kaw tambaa para sa imo hilanat.",
-    "exampleEnglish": "Drink medicine for your fever.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Tabanog",
-    "english": "Kite",
-    "pos": "noun",
-    "pronunciation": "ta-BA-nog",
-    "definition": "A toy consisting of a light frame covered with paper or cloth, flown in the wind at the end of a long string.",
-    "exampleButuanon": "Nagpalupad kami sin tabanog.",
-    "exampleEnglish": "We flew a kite.",
+    "butuanon": "Taas",
+    "english": "Tall / High",
+    "pos": "adjective",
+    "pronunciation": "tah-AS",
+    "definition": "Measuring a great distance from top to bottom.",
+    "exampleButuanon": "Taas ang kahoy.",
+    "exampleEnglish": "The tree is tall.",
     "verified": "academic",
     "rating": 5
   },
@@ -3252,6 +4484,17 @@
     "definition": "To assist someone in need or to contribute to an effort.",
     "exampleButuanon": "Tabangi ako pagbuhat sini.",
     "exampleEnglish": "Help me do this.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Tabanog",
+    "english": "Kite",
+    "pos": "noun",
+    "pronunciation": "ta-BA-nog",
+    "definition": "A toy consisting of a light frame covered with paper or cloth, flown in the wind at the end of a long string.",
+    "exampleButuanon": "Nagpalupad kami sin tabanog.",
+    "exampleEnglish": "We flew a kite.",
     "verified": "academic",
     "rating": 5
   },
@@ -3311,6 +4554,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Tambaa",
+    "english": "Medicine",
+    "pos": "noun",
+    "pronunciation": "tam-BÁ-a",
+    "definition": "A substance used for treating or preventing illness.",
+    "exampleButuanon": "Inom kaw tambaa para sa imo hilanat.",
+    "exampleEnglish": "Drink medicine for your fever.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Tamoka",
     "english": "Catch it",
     "pos": "verb",
@@ -3322,14 +4576,14 @@
     "rating": 5
   },
   {
-    "butuanon": "Tapós",
-    "english": "Done",
-    "pos": "adjective",
-    "pronunciation": "ta-PÓS",
-    "definition": "Completed or finished.",
-    "exampleButuanon": "Tapós na ako sa akon trabaho.",
-    "exampleEnglish": "I am done with my work.",
-    "verified": "academic",
+    "butuanon": "Tana",
+    "english": "Let's go",
+    "pos": "phrase",
+    "pronunciation": "tah-NAH",
+    "definition": "An invitation to leave or proceed together.",
+    "exampleButuanon": "Tana sa balay.",
+    "exampleEnglish": "Let's go to the house.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -3355,6 +4609,17 @@
     "rating": 5
   },
   {
+    "butuanon": "Tapós",
+    "english": "Done",
+    "pos": "adjective",
+    "pronunciation": "ta-PÓS",
+    "definition": "Completed or finished.",
+    "exampleButuanon": "Tapós na ako sa akon trabaho.",
+    "exampleEnglish": "I am done with my work.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
     "butuanon": "Taway",
     "english": "Tip / End",
     "pos": "noun",
@@ -3363,6 +4628,17 @@
     "exampleButuanon": "An taway san lapis.",
     "exampleEnglish": "The tip of the pencil.",
     "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Tawo",
+    "english": "Person; Human being",
+    "pos": "noun",
+    "pronunciation": "TAH-wo",
+    "definition": "A human being; an individual member of the human species.",
+    "exampleButuanon": "Madiyaw nga tawo si Juan.",
+    "exampleEnglish": "Juan is a good person.",
+    "verified": "native-speaker",
     "rating": 5
   },
   {
@@ -3377,6 +4653,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Taà",
+    "english": "Footprint",
+    "pos": "noun",
+    "pronunciation": "ta-Á",
+    "definition": "The impression left by a foot or shoe on a surface.",
+    "exampleButuanon": "Nakita ko an iya taà.",
+    "exampleEnglish": "I saw his/her footprint.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Tigulang",
+    "english": "Elderly / Old person",
+    "pos": "noun",
+    "pronunciation": "tee-goo-LANG",
+    "definition": "An elderly person.",
+    "exampleButuanon": "Respetohi ang tigulang.",
+    "exampleEnglish": "Respect the elderly.",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Tikan",
     "english": "Since / From",
     "pos": "preposition",
@@ -3384,17 +4682,6 @@
     "definition": "Indicating a starting point in time or space.",
     "exampleButuanon": "Tikan sa Butuan ako.",
     "exampleEnglish": "I am from Butuan.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Titoo",
-    "english": "Puppy",
-    "pos": "noun",
-    "pronunciation": "ti-TÓ-o",
-    "definition": "A young dog.",
-    "exampleButuanon": "May bag-o kami nga titoo.",
-    "exampleEnglish": "We have a new puppy.",
     "verified": "academic",
     "rating": 5
   },
@@ -3410,13 +4697,13 @@
     "rating": 5
   },
   {
-    "butuanon": "Toonlon",
-    "english": "To swallow",
-    "pos": "verb",
-    "pronunciation": "to-ON-lon",
-    "definition": "To cause food or drink to pass down the throat.",
-    "exampleButuanon": "Lisod toonlon an tambal.",
-    "exampleEnglish": "It's hard to swallow the medicine.",
+    "butuanon": "Titoo",
+    "english": "Puppy",
+    "pos": "noun",
+    "pronunciation": "ti-TÓ-o",
+    "definition": "A young dog.",
+    "exampleButuanon": "May bag-o kami nga titoo.",
+    "exampleEnglish": "We have a new puppy.",
     "verified": "academic",
     "rating": 5
   },
@@ -3430,6 +4717,28 @@
     "exampleEnglish": "My shirt has a hole.",
     "verified": "academic",
     "rating": 5
+  },
+  {
+    "butuanon": "Toonlon",
+    "english": "To swallow",
+    "pos": "verb",
+    "pronunciation": "to-ON-lon",
+    "definition": "To cause food or drink to pass down the throat.",
+    "exampleButuanon": "Lisod toonlon an tambal.",
+    "exampleEnglish": "It's hard to swallow the medicine.",
+    "verified": "academic",
+    "rating": 5
+  },
+  {
+    "butuanon": "Tubig",
+    "english": "Water",
+    "pos": "noun",
+    "pronunciation": "TOO-big",
+    "definition": "A clear, colorless liquid that forms rivers, seas, and rain; essential for life.",
+    "exampleButuanon": "Bugnaw ang tubig hong suba.",
+    "exampleEnglish": "The water of the river is cold.",
+    "verified": "community",
+    "rating": 4
   },
   {
     "butuanon": "Tudlo",
@@ -3520,6 +4829,28 @@
     "rating": 5
   },
   {
+    "butuanon": "Unsa",
+    "english": "What",
+    "pos": "phrase",
+    "pronunciation": "oon-SAH",
+    "definition": "Used to ask for information about something.",
+    "exampleButuanon": "Unsa ini?",
+    "exampleEnglish": "What is this?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
+    "butuanon": "Unsaon",
+    "english": "How",
+    "pos": "phrase",
+    "pronunciation": "oon-sah-ON",
+    "definition": "Used to ask about the way or manner of doing something.",
+    "exampleButuanon": "Unsaon pagbuhat ini?",
+    "exampleEnglish": "How to do this?",
+    "verified": "native-speaker",
+    "rating": 5
+  },
+  {
     "butuanon": "Upà",
     "english": "Rent",
     "pos": "noun",
@@ -3583,1337 +4914,6 @@
     "exampleButuanon": "Naa siyay uwát sa iyang bukton.",
     "exampleEnglish": "He has a scar on his arm.",
     "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ab-ab",
-    "english": "To bite voraciously",
-    "pos": "verb",
-    "pronunciation": "ab-ab",
-    "definition": "To bite aggressively or with great force.",
-    "exampleButuanon": "Ab-ab sa Butuan.",
-    "exampleEnglish": "Example sentence for Ab-ab (To bite voraciously).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abatod",
-    "english": "Caterpillar",
-    "pos": "noun",
-    "pronunciation": "abatod",
-    "definition": "The larval stage of a bettle.",
-    "exampleButuanon": "Abatod sa Butuan.",
-    "exampleEnglish": "Example sentence for Abatod (Caterpillar).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abang",
-    "english": "To block",
-    "pos": "verb",
-    "pronunciation": "abang",
-    "definition": "To stop or obstruct the way.",
-    "exampleButuanon": "Abang sa Butuan.",
-    "exampleEnglish": "Example sentence for Abang (To block).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ab-hong",
-    "english": "Moldy",
-    "pos": "adjective",
-    "pronunciation": "ab-hong",
-    "definition": "Covered with mold or fungus.",
-    "exampleButuanon": "Ab-hong sa Butuan.",
-    "exampleEnglish": "Example sentence for Ab-hong (Moldy).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abod",
-    "english": "Whip lash mark",
-    "pos": "noun",
-    "pronunciation": "abod",
-    "definition": "A mark left by a whip.",
-    "exampleButuanon": "Abod sa Butuan.",
-    "exampleEnglish": "Example sentence for Abod (Whip lash mark).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Sabod",
-    "english": "To feed the chicken",
-    "pos": "verb",
-    "pronunciation": "sabod",
-    "definition": "To give food to chickens.",
-    "exampleButuanon": "Sabod sa Butuan.",
-    "exampleEnglish": "Example sentence for Sabod (To feed the chicken).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abis",
-    "english": "To slice",
-    "pos": "verb",
-    "pronunciation": "abis",
-    "definition": "To cut into thin pieces.",
-    "exampleButuanon": "Abis sa Butuan.",
-    "exampleEnglish": "Example sentence for Abis (To slice).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abog",
-    "english": "Dust",
-    "pos": "noun",
-    "pronunciation": "abog",
-    "definition": "Fine dry particles of earth or dirt.",
-    "exampleButuanon": "Abog sa Butuan.",
-    "exampleEnglish": "Example sentence for Abog (Dust).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abo",
-    "english": "Stove",
-    "pos": "noun",
-    "pronunciation": "abo",
-    "definition": "A place or structure used for cooking.",
-    "exampleButuanon": "Abo sa Butuan.",
-    "exampleEnglish": "Example sentence for Abo (Stove).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abot",
-    "english": "To arrive",
-    "pos": "verb",
-    "pronunciation": "abot",
-    "definition": "To reach a destination.",
-    "exampleButuanon": "Abot sa Butuan.",
-    "exampleEnglish": "Example sentence for Abot (To arrive).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Adoy / Agoy",
-    "english": "Exclamation of pain",
-    "pos": "expression",
-    "pronunciation": "adoy / agoy",
-    "definition": "An expression used when hurt or surprised.",
-    "exampleButuanon": "Adoy / Agoy sa Butuan.",
-    "exampleEnglish": "Example sentence for Adoy / Agoy (Exclamation of pain).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Arat",
-    "english": "Endearing address to a woman",
-    "pos": "noun",
-    "pronunciation": "arat",
-    "definition": "An affectionate way of addressing a woman.",
-    "exampleButuanon": "Arat sa Butuan.",
-    "exampleEnglish": "Example sentence for Arat (Endearing address to a woman).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Agay / Agay / Awas",
-    "english": "Flow of rain liquid",
-    "pos": "expression",
-    "pronunciation": "agay / agay / awas",
-    "definition": "it is the act of liquid flowing.",
-    "exampleButuanon": "Agay / Agay / Awas sa Butuan.",
-    "exampleEnglish": "Example sentence for Agay / Agay / Awas (Flow of rain liquid).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Agmod",
-    "english": "Sound of a wild pig",
-    "pos": "noun",
-    "pronunciation": "agmod",
-    "definition": "The noise made by a wild pig.",
-    "exampleButuanon": "Agmod sa Butuan.",
-    "exampleEnglish": "Example sentence for Agmod (Sound of a wild pig).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Agda",
-    "english": "To request",
-    "pos": "verb",
-    "pronunciation": "agda",
-    "definition": "To persuade to do something.",
-    "exampleButuanon": "Agda sa Butuan.",
-    "exampleEnglish": "Example sentence for Agda (To request).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Agong",
-    "english": "Bass drum",
-    "pos": "noun",
-    "pronunciation": "agong",
-    "definition": "A large percussion instrument producing deep sounds.",
-    "exampleButuanon": "Agong sa Butuan.",
-    "exampleEnglish": "Example sentence for Agong (Bass drum).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Agutay",
-    "english": "Wild banana",
-    "pos": "noun",
-    "pronunciation": "agutay",
-    "definition": "A native growing banana plant with seeds inside.",
-    "exampleButuanon": "Agutay sa Butuan.",
-    "exampleEnglish": "Example sentence for Agutay (Wild banana).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Atipawo",
-    "english": "Glow worm",
-    "pos": "noun",
-    "pronunciation": "atipawo",
-    "definition": "A small insect that emits light.",
-    "exampleButuanon": "Atipawo sa Butuan.",
-    "exampleEnglish": "Example sentence for Atipawo (Glow worm).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Alimat",
-    "english": "Take care",
-    "pos": "verb",
-    "pronunciation": "alimat",
-    "definition": "To protect or look after someone or something.",
-    "exampleButuanon": "Alimat sa Butuan.",
-    "exampleEnglish": "Example sentence for Alimat (Take care).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ahot",
-    "english": "Brave",
-    "pos": "adjective",
-    "pronunciation": "ahot",
-    "definition": "Showing courage.",
-    "exampleButuanon": "Ahot sa Butuan.",
-    "exampleEnglish": "Example sentence for Ahot (Brave).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ako",
-    "english": "Mine",
-    "pos": "pronoun",
-    "pronunciation": "ako",
-    "definition": "Something that belongs to me.",
-    "exampleButuanon": "Ako sa Butuan.",
-    "exampleEnglish": "Example sentence for Ako (Mine).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "a’t",
-    "english": "Basket",
-    "pos": "noun",
-    "pronunciation": "a’t",
-    "definition": "A woven container used for carrying things.",
-    "exampleButuanon": "a’t sa Butuan.",
-    "exampleEnglish": "Example sentence for a’t (Basket).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Abay",
-    "english": "by the side",
-    "pos": "noun",
-    "pronunciation": "abay",
-    "definition": "A procession held on water using boats.",
-    "exampleButuanon": "Abay sa Butuan.",
-    "exampleEnglish": "Example sentence for Abay (by the side).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Amat",
-    "english": "bad",
-    "pos": "adjective",
-    "pronunciation": "amat",
-    "definition": "Unlikable.",
-    "exampleButuanon": "Amat sa Butuan.",
-    "exampleEnglish": "Example sentence for Amat (bad).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anak",
-    "english": "Child",
-    "pos": "noun",
-    "pronunciation": "anak",
-    "definition": "A son or daughter.",
-    "exampleButuanon": "Anak sa Butuan.",
-    "exampleEnglish": "Example sentence for Anak (Child).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anak nga usog",
-    "english": "Son",
-    "pos": "noun",
-    "pronunciation": "anak nga usog",
-    "definition": "A male child.",
-    "exampleButuanon": "Anak nga usog sa Butuan.",
-    "exampleEnglish": "Example sentence for Anak nga usog (Son).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anak nga daga",
-    "english": "Daughter",
-    "pos": "noun",
-    "pronunciation": "anak nga daga",
-    "definition": "A female child.",
-    "exampleButuanon": "Anak nga daga sa Butuan.",
-    "exampleEnglish": "Example sentence for Anak nga daga (Daughter).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anib",
-    "english": "to include",
-    "pos": "adjective",
-    "pronunciation": "anib",
-    "definition": "to belong to a group.",
-    "exampleButuanon": "Anib sa Butuan.",
-    "exampleEnglish": "Example sentence for Anib (to include).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anibong",
-    "english": "Palm tree",
-    "pos": "noun",
-    "pronunciation": "anibong",
-    "definition": "A tropical tree with large fan-shaped leaves.",
-    "exampleButuanon": "Anibong sa Butuan.",
-    "exampleEnglish": "Example sentence for Anibong (Palm tree).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anog-og",
-    "english": "Thunder",
-    "pos": "noun",
-    "pronunciation": "anog-og",
-    "definition": "The loud sound produced during a storm.",
-    "exampleButuanon": "Anog-og sa Butuan.",
-    "exampleEnglish": "Example sentence for Anog-og (Thunder).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anogot",
-    "english": "made from dried leaves",
-    "pos": "noun",
-    "pronunciation": "anogot",
-    "definition": "A handheld source of fire or light.",
-    "exampleButuanon": "Anogot sa Butuan.",
-    "exampleEnglish": "Example sentence for Anogot (made from dried leaves).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ano-os",
-    "english": "Smoke",
-    "pos": "noun",
-    "pronunciation": "ano-os",
-    "definition": "The visible gas produced by burning.",
-    "exampleButuanon": "Ano-os sa Butuan.",
-    "exampleEnglish": "Example sentence for Ano-os (Smoke).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anod",
-    "english": "Carried by flood",
-    "pos": "verb",
-    "pronunciation": "anod",
-    "definition": "To be swept away by floodwater.",
-    "exampleButuanon": "Anod sa Butuan.",
-    "exampleEnglish": "Example sentence for Anod (Carried by flood).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anok",
-    "english": "Warm; feverish",
-    "pos": "adjective",
-    "pronunciation": "anok",
-    "definition": "Having elevated body temperature.",
-    "exampleButuanon": "Anok sa Butuan.",
-    "exampleEnglish": "Example sentence for Anok (Warm; feverish).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apik",
-    "english": "Cat",
-    "pos": "noun",
-    "pronunciation": "apik",
-    "definition": "A domesticated feline animal.",
-    "exampleButuanon": "Apik sa Butuan.",
-    "exampleEnglish": "Example sentence for Apik (Cat).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "‘Apo",
-    "english": "Grandparent",
-    "pos": "noun",
-    "pronunciation": "‘apo",
-    "definition": "The parent of one's parent.",
-    "exampleButuanon": "‘Apo sa Butuan.",
-    "exampleEnglish": "Example sentence for ‘Apo (Grandparent).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apo’",
-    "english": "Grandchildren",
-    "pos": "noun",
-    "pronunciation": "apo’",
-    "definition": "The children of one's children.",
-    "exampleButuanon": "Apo’ sa Butuan.",
-    "exampleEnglish": "Example sentence for Apo’ (Grandchildren).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apog",
-    "english": "Lime",
-    "pos": "noun",
-    "pronunciation": "apog",
-    "definition": "A white alkaline substance used in construction or betel chewing.",
-    "exampleButuanon": "Apog sa Butuan.",
-    "exampleEnglish": "Example sentence for Apog (Lime).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apod",
-    "english": "Astringent",
-    "pos": "adjective",
-    "pronunciation": "apod",
-    "definition": "Having a sharp or drying taste.",
-    "exampleButuanon": "Apod sa Butuan.",
-    "exampleEnglish": "Example sentence for Apod (Astringent).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apan",
-    "english": "grass Hoppers",
-    "pos": "noun",
-    "pronunciation": "apan",
-    "definition": "An insect that jumps, such as a grasshopper.",
-    "exampleButuanon": "Apan sa Butuan.",
-    "exampleEnglish": "Example sentence for Apan (grass Hoppers).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apdo",
-    "english": "Bile",
-    "pos": "noun",
-    "pronunciation": "apdo",
-    "definition": "A digestive fluid produced by the liver.",
-    "exampleButuanon": "Apdo sa Butuan.",
-    "exampleEnglish": "Example sentence for Apdo (Bile).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Apot",
-    "english": "Sticky",
-    "pos": "adjective",
-    "pronunciation": "apot",
-    "definition": "Having a surface that easily adheres.",
-    "exampleButuanon": "Apot sa Butuan.",
-    "exampleEnglish": "Example sentence for Apot (Sticky).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Asubo",
-    "english": "Ask",
-    "pos": "verb",
-    "pronunciation": "asubo",
-    "definition": "To request information or something from someone.",
-    "exampleButuanon": "Asubo sa Butuan.",
-    "exampleEnglish": "Example sentence for Asubo (Ask).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Asido",
-    "english": "Small",
-    "pos": "adjective",
-    "pronunciation": "asido",
-    "definition": "Of little size.",
-    "exampleButuanon": "Asido sa Butuan.",
-    "exampleEnglish": "Example sentence for Asido (Small).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Asidot",
-    "english": "Smaller",
-    "pos": "adjective",
-    "pronunciation": "asidot",
-    "definition": "More small in size.",
-    "exampleButuanon": "Asidot sa Butuan.",
-    "exampleEnglish": "Example sentence for Asidot (Smaller).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Asidotay",
-    "english": "Smallest",
-    "pos": "adjective",
-    "pronunciation": "asidotay",
-    "definition": "The least in size.",
-    "exampleButuanon": "Asidotay sa Butuan.",
-    "exampleEnglish": "Example sentence for Asidotay (Smallest).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Asok",
-    "english": "To pester",
-    "pos": "verb",
-    "pronunciation": "asok",
-    "definition": "To annoy repeatedly.",
-    "exampleButuanon": "Asok sa Butuan.",
-    "exampleEnglish": "Example sentence for Asok (To pester).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Asngab",
-    "english": "Bite (bigger)",
-    "pos": "verb",
-    "pronunciation": "asngab",
-    "definition": "To bite forcefully.",
-    "exampleButuanon": "Asngab sa Butuan.",
-    "exampleEnglish": "Example sentence for Asngab (Bite (bigger)).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Angkab",
-    "english": "Bite",
-    "pos": "verb",
-    "pronunciation": "angkab",
-    "definition": "To cut with the teeth.",
-    "exampleButuanon": "Angkab sa Butuan.",
-    "exampleEnglish": "Example sentence for Angkab (Bite).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ati-at",
-    "english": "Installment",
-    "pos": "noun",
-    "pronunciation": "ati-at",
-    "definition": "A payment made in parts over time.",
-    "exampleButuanon": "Ati-at sa Butuan.",
-    "exampleEnglish": "Example sentence for Ati-at (Installment).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ato’b",
-    "english": "To medicate using smoke",
-    "pos": "verb",
-    "pronunciation": "ato’b",
-    "definition": "To produce or inhale smoke.",
-    "exampleButuanon": "Ato’b sa Butuan.",
-    "exampleEnglish": "Example sentence for Ato’b (To medicate using smoke).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Atod",
-    "english": "To see",
-    "pos": "verb",
-    "pronunciation": "atod",
-    "definition": "To perceive with the eyes.",
-    "exampleButuanon": "Atod sa Butuan.",
-    "exampleEnglish": "Example sentence for Atod (To see).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Awod-awaod",
-    "english": "attention seeker",
-    "pos": "adjective",
-    "pronunciation": "awod-awaod",
-    "definition": "Wanting more than what is needed.",
-    "exampleButuanon": "Awod-awaod sa Butuan.",
-    "exampleEnglish": "Example sentence for Awod-awaod (attention seeker).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ago-ab",
-    "english": "To cut grass with a flat-bladed bolo",
-    "pos": "verb",
-    "pronunciation": "ago-ab",
-    "definition": "To clear grass using a flat-bladed bolo.",
-    "exampleButuanon": "Ago-ab sa Butuan.",
-    "exampleEnglish": "Example sentence for Ago-ab (To cut grass with a flat-bladed bolo).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Atole",
-    "english": "Sago delicacy",
-    "pos": "noun",
-    "pronunciation": "atole",
-    "definition": "A food made from sago.",
-    "exampleButuanon": "Atole sa Butuan.",
-    "exampleEnglish": "Example sentence for Atole (Sago delicacy).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Atoli’",
-    "english": "Earwax",
-    "pos": "noun",
-    "pronunciation": "atoli’",
-    "definition": "The wax naturally found inside the ear.",
-    "exampleButuanon": "Atoli’ sa Butuan.",
-    "exampleEnglish": "Example sentence for Atoli’ (Earwax).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ati-a",
-    "english": "Expression of dislike",
-    "pos": "expression",
-    "pronunciation": "ati-a",
-    "definition": "A reaction showing disapproval.",
-    "exampleButuanon": "Ati-a sa Butuan.",
-    "exampleEnglish": "Example sentence for Ati-a (Expression of dislike).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Alingongog",
-    "english": "Noisy",
-    "pos": "adjective",
-    "pronunciation": "alingongog",
-    "definition": "Producing a lot of sound.",
-    "exampleButuanon": "Alingongog sa Butuan.",
-    "exampleEnglish": "Example sentence for Alingongog (Noisy).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Aliwas",
-    "english": "Big monkey ape",
-    "pos": "noun",
-    "pronunciation": "aliwas",
-    "definition": "A large monkey.",
-    "exampleButuanon": "Aliwas sa Butuan.",
-    "exampleEnglish": "Example sentence for Aliwas (Big monkey ape).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Aho",
-    "english": "Pestle",
-    "pos": "noun",
-    "pronunciation": "aho",
-    "definition": "A small instrument.",
-    "exampleButuanon": "Aho sa Butuan.",
-    "exampleEnglish": "Example sentence for Aho (Pestle).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ambak",
-    "english": "Frog",
-    "pos": "noun",
-    "pronunciation": "ambak",
-    "definition": "An amphibian that jumps.",
-    "exampleButuanon": "Ambak sa Butuan.",
-    "exampleEnglish": "Example sentence for Ambak (Frog).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ambao",
-    "english": "Rat",
-    "pos": "noun",
-    "pronunciation": "ambao",
-    "definition": "A small rodent.",
-    "exampleButuanon": "Ambao sa Butuan.",
-    "exampleEnglish": "Example sentence for Ambao (Rat).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "simag",
-    "english": "Wearied black animal with big eyes",
-    "pos": "adjective",
-    "pronunciation": "simag",
-    "definition": "Describes a tired dark-colored animal with large eyes.",
-    "exampleButuanon": "simag sa Butuan.",
-    "exampleEnglish": "Example sentence for simag (Wearied black animal with big eyes).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Amag",
-    "english": "Shine",
-    "pos": "verb",
-    "pronunciation": "amag",
-    "definition": "To give off light.",
-    "exampleButuanon": "Amag sa Butuan.",
-    "exampleEnglish": "Example sentence for Amag (Shine).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anad",
-    "english": "Tame",
-    "pos": "adjective",
-    "pronunciation": "anad",
-    "definition": "Gentle and accustomed to people.",
-    "exampleButuanon": "Anad sa Butuan.",
-    "exampleEnglish": "Example sentence for Anad (Tame).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anad",
-    "english": "Study",
-    "pos": "verb",
-    "pronunciation": "anad",
-    "definition": "To learn or examine something.",
-    "exampleButuanon": "Anad sa Butuan.",
-    "exampleEnglish": "Example sentence for Anad (Study).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anad-na",
-    "english": "Used to",
-    "pos": "adjective",
-    "pronunciation": "anad-na",
-    "definition": "Familiar with something through repeated experience.",
-    "exampleButuanon": "Anad-na sa Butuan.",
-    "exampleEnglish": "Example sentence for Anad-na (Used to).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ak-ak",
-    "english": "To peel",
-    "pos": "verb",
-    "pronunciation": "ak-ak",
-    "definition": "To remove the outer covering.",
-    "exampleButuanon": "Ak-ak sa Butuan.",
-    "exampleEnglish": "Example sentence for Ak-ak (To peel).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ad-ad",
-    "english": "To slice",
-    "pos": "verb",
-    "pronunciation": "ad-ad",
-    "definition": "To cut into pieces.",
-    "exampleButuanon": "Ad-ad sa Butuan.",
-    "exampleEnglish": "Example sentence for Ad-ad (To slice).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ap-ap",
-    "english": "Skin disease",
-    "pos": "noun",
-    "pronunciation": "ap-ap",
-    "definition": "A disease affecting the skin.",
-    "exampleButuanon": "Ap-ap sa Butuan.",
-    "exampleEnglish": "Example sentence for Ap-ap (Skin disease).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ag-ag",
-    "english": "To sieve",
-    "pos": "verb",
-    "pronunciation": "ag-ag",
-    "definition": "sieve flour.",
-    "exampleButuanon": "Ag-ag sa Butuan.",
-    "exampleEnglish": "Example sentence for Ag-ag (To sieve).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ago-ago",
-    "english": "Pretending to know",
-    "pos": "verb",
-    "pronunciation": "ago-ago",
-    "definition": "Acting as if one knows something.",
-    "exampleButuanon": "Ago-ago sa Butuan.",
-    "exampleEnglish": "Example sentence for Ago-ago (Pretending to know).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ago-agoy",
-    "english": "Pretending to feel pain",
-    "pos": "verb",
-    "pronunciation": "ago-agoy",
-    "definition": "Acting as if one is in pain.",
-    "exampleButuanon": "Ago-agoy sa Butuan.",
-    "exampleEnglish": "Example sentence for Ago-agoy (Pretending to feel pain).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ang-ang",
-    "english": "Not in the right range",
-    "pos": "adjective",
-    "pronunciation": "ang-ang",
-    "definition": "Outside the proper limit.",
-    "exampleButuanon": "Ang-ang sa Butuan.",
-    "exampleEnglish": "Example sentence for Ang-ang (Not in the right range).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Amo-amo",
-    "english": "look a like",
-    "pos": "verb",
-    "pronunciation": "amo-amo",
-    "definition": "To look similar to something else.",
-    "exampleButuanon": "Amo-amo sa Butuan.",
-    "exampleEnglish": "Example sentence for Amo-amo (look a like).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anod-anod",
-    "english": "go with the flow",
-    "pos": "verb",
-    "pronunciation": "anod-anod",
-    "definition": "Acting as if being swept away by water or another force.",
-    "exampleButuanon": "Anod-anod sa Butuan.",
-    "exampleEnglish": "Example sentence for Anod-anod (go with the flow).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Anad-anad",
-    "english": "Pretending to study; pretending to be tame",
-    "pos": "verb",
-    "pronunciation": "anad-anad",
-    "definition": "Acting as if studying or becoming tame.",
-    "exampleButuanon": "Anad-anad sa Butuan.",
-    "exampleEnglish": "Example sentence for Anad-anad (Pretending to study; pretending to be tame).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Atubangan",
-    "english": "Front",
-    "pos": "noun",
-    "pronunciation": "atubangan",
-    "definition": "The front or forward part.",
-    "exampleButuanon": "Atubangan sa Butuan.",
-    "exampleEnglish": "Example sentence for Atubangan (Front).",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kumusta ka",
-    "english": "How are you?",
-    "pos": "phrase",
-    "pronunciation": "koo-MOOS-tah kah",
-    "definition": "A common greeting asking about someone's well-being.",
-    "exampleButuanon": "Kumusta ka, amigo?",
-    "exampleEnglish": "How are you, friend?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Salamat",
-    "english": "Thank you",
-    "pos": "phrase",
-    "pronunciation": "sah-LAH-mat",
-    "definition": "An expression of gratitude or appreciation.",
-    "exampleButuanon": "Dako nga salamat sa imong tabang.",
-    "exampleEnglish": "Big thank you for your help.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Palihug",
-    "english": "Please",
-    "pos": "phrase",
-    "pronunciation": "pah-LEE-hoog",
-    "definition": "Used as a polite request.",
-    "exampleButuanon": "Palihug ihatag ang tubig.",
-    "exampleEnglish": "Please give the water.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Amping",
-    "english": "Take care",
-    "pos": "phrase",
-    "pronunciation": "AM-ping",
-    "definition": "An expression used when parting, wishing someone safety.",
-    "exampleButuanon": "Amping sa imong biyahe.",
-    "exampleEnglish": "Take care on your trip.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Madiyaw nga hapon",
-    "english": "Good afternoon",
-    "pos": "phrase",
-    "pronunciation": "mah-dee-YAWNG hah-PON",
-    "definition": "A greeting used during afternoon hours.",
-    "exampleButuanon": "Madiyaw nga hapon sa inyong tanan.",
-    "exampleEnglish": "Good afternoon to all of you.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Madiyaw nga gabi-i",
-    "english": "Good evening / Good night",
-    "pos": "phrase",
-    "pronunciation": "mah-dee-YAWNG gah-bee-EE",
-    "definition": "A greeting used during evening or night hours.",
-    "exampleButuanon": "Madiyaw nga gabi-i, pamilya.",
-    "exampleEnglish": "Good evening, family.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Oo",
-    "english": "Yes",
-    "pos": "phrase",
-    "pronunciation": "oh-OH",
-    "definition": "An affirmative response.",
-    "exampleButuanon": "Oo, mo-anhi ako.",
-    "exampleEnglish": "Yes, I will come.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Dili",
-    "english": "No / Not",
-    "pos": "phrase",
-    "pronunciation": "dee-LEE",
-    "definition": "A negative response.",
-    "exampleButuanon": "Dili ako mag-reklamo.",
-    "exampleEnglish": "I will not complain.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Pila",
-    "english": "How much / How many",
-    "pos": "phrase",
-    "pronunciation": "pee-LAH",
-    "definition": "Used to ask about quantity or price.",
-    "exampleButuanon": "Pila ini?",
-    "exampleEnglish": "How much is this?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Hain",
-    "english": "Where",
-    "pos": "phrase",
-    "pronunciation": "hah-IN",
-    "definition": "Used to ask about location.",
-    "exampleButuanon": "Hain ang balay?",
-    "exampleEnglish": "Where is the house?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kinsa",
-    "english": "Who",
-    "pos": "phrase",
-    "pronunciation": "keen-SAH",
-    "definition": "Used to ask about a person's identity.",
-    "exampleButuanon": "Kinsa ka?",
-    "exampleEnglish": "Who are you?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Unsa",
-    "english": "What",
-    "pos": "phrase",
-    "pronunciation": "oon-SAH",
-    "definition": "Used to ask for information about something.",
-    "exampleButuanon": "Unsa ini?",
-    "exampleEnglish": "What is this?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kano",
-    "english": "When",
-    "pos": "phrase",
-    "pronunciation": "kah-NOH",
-    "definition": "Used to ask about time.",
-    "exampleButuanon": "Kano ka mabuhi?",
-    "exampleEnglish": "When will you arrive?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ngano",
-    "english": "Why",
-    "pos": "phrase",
-    "pronunciation": "ngah-NOH",
-    "definition": "Used to ask for a reason or explanation.",
-    "exampleButuanon": "Ngano man?",
-    "exampleEnglish": "Why is that?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Unsaon",
-    "english": "How",
-    "pos": "phrase",
-    "pronunciation": "oon-sah-ON",
-    "definition": "Used to ask about the way or manner of doing something.",
-    "exampleButuanon": "Unsaon pagbuhat ini?",
-    "exampleEnglish": "How to do this?",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kaiban",
-    "english": "Companion / Friend",
-    "pos": "noun",
-    "pronunciation": "kah-ee-BAN",
-    "definition": "A companion, buddy, or fellow member.",
-    "exampleButuanon": "Kaiban nako si Juan.",
-    "exampleEnglish": "Juan is my companion.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Suba",
-    "english": "River",
-    "pos": "noun",
-    "pronunciation": "soo-BAH",
-    "definition": "A large natural stream of water flowing in a channel to the sea or a lake.",
-    "exampleButuanon": "Agusan suba sa Butuan.",
-    "exampleEnglish": "Agusan river in Butuan.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kuman",
-    "english": "Now / Today",
-    "pos": "adverb",
-    "pronunciation": "koo-MAN",
-    "definition": "At the present time or date.",
-    "exampleButuanon": "Kuman na kita moki-an.",
-    "exampleEnglish": "Let us go now.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Disani",
-    "english": "Here",
-    "pos": "adverb",
-    "pronunciation": "dee-sah-NEE",
-    "definition": "In or at this place.",
-    "exampleButuanon": "Disani ang among balay.",
-    "exampleEnglish": "Our house is here.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Sa-a",
-    "english": "Taro / Gabi",
-    "pos": "noun",
-    "pronunciation": "sah-AH",
-    "definition": "A tropical root crop widely grown for edible starchy corms.",
-    "exampleButuanon": "Lami ang sa-a.",
-    "exampleEnglish": "The taro is delicious.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ba-o",
-    "english": "Turtle",
-    "pos": "noun",
-    "pronunciation": "bah-OH",
-    "definition": "A slow-moving reptile enclosed in a scaly or leathery shell.",
-    "exampleButuanon": "Hinay maglakaw ang ba-o.",
-    "exampleEnglish": "The turtle walks slowly.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Bati-is",
-    "english": "Lower leg / Calf",
-    "pos": "noun",
-    "pronunciation": "bah-tee-IS",
-    "definition": "The part of the human leg between the knee and ankle.",
-    "exampleButuanon": "Sakit akong bati-is.",
-    "exampleEnglish": "My lower leg hurts.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gabi-i",
-    "english": "Night / Evening",
-    "pos": "noun",
-    "pronunciation": "gah-bee-EE",
-    "definition": "The period of darkness between sunset and sunrise.",
-    "exampleButuanon": "Mainit ang gabi-i.",
-    "exampleEnglish": "The night is warm.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kagabi-i",
-    "english": "Last night",
-    "pos": "adverb",
-    "pronunciation": "kah-gah-bee-EE",
-    "definition": "During the previous night.",
-    "exampleButuanon": "Miyulan kagabi-i.",
-    "exampleEnglish": "It rained last night.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kis-a",
-    "english": "Sometimes",
-    "pos": "adverb",
-    "pronunciation": "kees-AH",
-    "definition": "On some occasions; occasionally.",
-    "exampleButuanon": "Kis-a mamiya ako.",
-    "exampleEnglish": "Sometimes I leave.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Sigi",
-    "english": "Okay / Go ahead",
-    "pos": "phrase",
-    "pronunciation": "see-GEE",
-    "definition": "An expression of agreement or permission.",
-    "exampleButuanon": "Sigi, lakaw na.",
-    "exampleEnglish": "Okay, go ahead.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Tana",
-    "english": "Let's go",
-    "pos": "phrase",
-    "pronunciation": "tah-NAH",
-    "definition": "An invitation to leave or proceed together.",
-    "exampleButuanon": "Tana sa balay.",
-    "exampleEnglish": "Let's go to the house.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Ayaw",
-    "english": "Don't / Do not",
-    "pos": "phrase",
-    "pronunciation": "ah-YAW",
-    "definition": "Used to express prohibition.",
-    "exampleButuanon": "Ayaw kabalaka.",
-    "exampleEnglish": "Don't worry.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Bahaqu",
-    "english": "New",
-    "pos": "adjective",
-    "pronunciation": "bah-hah-KOO",
-    "definition": "Not existing before; recently made or discovered.",
-    "exampleButuanon": "Bahaqu ang akong libro.",
-    "exampleEnglish": "My book is new.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Daan",
-    "english": "Old / Previous",
-    "pos": "adjective",
-    "pronunciation": "dah-AN",
-    "definition": "Having lived or existed for a long time.",
-    "exampleButuanon": "Daan na ini nga sasakyan.",
-    "exampleEnglish": "This vehicle is already old.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Taas",
-    "english": "Tall / High",
-    "pos": "adjective",
-    "pronunciation": "tah-AS",
-    "definition": "Measuring a great distance from top to bottom.",
-    "exampleButuanon": "Taas ang kahoy.",
-    "exampleEnglish": "The tree is tall.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Mubo",
-    "english": "Short / Low",
-    "pos": "adjective",
-    "pronunciation": "moo-BOH",
-    "definition": "Measuring a small distance from end to end.",
-    "exampleButuanon": "Mubo ang silya.",
-    "exampleEnglish": "The chair is short.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Gamay",
-    "english": "Small / Little",
-    "pos": "adjective",
-    "pronunciation": "gah-MAY",
-    "definition": "Of small size or amount.",
-    "exampleButuanon": "Gamay ang balay.",
-    "exampleEnglish": "The house is small.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Dako",
-    "english": "Big / Large",
-    "pos": "adjective",
-    "pronunciation": "dah-KOH",
-    "definition": "Of considerable size, extent, or intensity.",
-    "exampleButuanon": "Dako ang suba.",
-    "exampleEnglish": "The river is big.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Bata",
-    "english": "Child / Young person",
-    "pos": "noun",
-    "pronunciation": "bah-TAH",
-    "definition": "A young human being below the age of full physical development.",
-    "exampleButuanon": "Kulaag ang bata.",
-    "exampleEnglish": "The child is happy.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Tigulang",
-    "english": "Elderly / Old person",
-    "pos": "noun",
-    "pronunciation": "tee-goo-LANG",
-    "definition": "An elderly person.",
-    "exampleButuanon": "Respetohi ang tigulang.",
-    "exampleEnglish": "Respect the elderly.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Lalaki",
-    "english": "Male / Man",
-    "pos": "noun",
-    "pronunciation": "lah-lah-KEE",
-    "definition": "An adult human male.",
-    "exampleButuanon": "Madiyaw nga lalaki.",
-    "exampleEnglish": "Good man.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Babaye",
-    "english": "Female / Woman",
-    "pos": "noun",
-    "pronunciation": "bah-bah-YEE",
-    "definition": "An adult human female.",
-    "exampleButuanon": "Madiyaw nga babaye.",
-    "exampleEnglish": "Good woman.",
-    "verified": "academic",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kamingaw",
-    "english": "Loneliness / Solitude",
-    "pos": "noun",
-    "pronunciation": "kah-meeng-AW",
-    "definition": "Sadness because one has no friends or company.",
-    "exampleButuanon": "Gibatyag nako ang kamingaw.",
-    "exampleEnglish": "I feel the loneliness.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kalisud",
-    "english": "Hardship / Difficulty",
-    "pos": "noun",
-    "pronunciation": "kah-lee-SOOD",
-    "definition": "Severe suffering or privation.",
-    "exampleButuanon": "Adunay kalisud sa kinabuhi.",
-    "exampleEnglish": "There is hardship in life.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kalinaw",
-    "english": "Peace / Serenity",
-    "pos": "noun",
-    "pronunciation": "kah-lee-NAW",
-    "definition": "Freedom from disturbance; tranquility.",
-    "exampleButuanon": "Hinaot nga maginaray ug kalinaw.",
-    "exampleEnglish": "May there be peace.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Paglaum",
-    "english": "Hope",
-    "pos": "noun",
-    "pronunciation": "pahg-lah-UM",
-    "definition": "A feeling of expectation and desire for a certain thing to happen.",
-    "exampleButuanon": "Naay paglaum kanunay.",
-    "exampleEnglish": "There is always hope.",
-    "verified": "native-speaker",
-    "rating": 5
-  },
-  {
-    "butuanon": "Kaisog",
-    "english": "Courage / Bravery",
-    "pos": "noun",
-    "pronunciation": "kah-ee-SOG",
-    "definition": "The ability to do something that frightens one; bravery.",
-    "exampleButuanon": "Dako ang iyang kaisog.",
-    "exampleEnglish": "His courage is great.",
-    "verified": "native-speaker",
     "rating": 5
   }
 ]
