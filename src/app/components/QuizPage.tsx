@@ -73,9 +73,10 @@ interface QuizPageProps {
   user: any;
   onOpenAuth: () => void;
   onUpdateUserXp: (points: number) => void;
+  onPlayAsGuest?: () => void;
 }
 
-export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
+export function QuizPage({ user, onOpenAuth, onUpdateUserXp, onPlayAsGuest }: QuizPageProps) {
   const [activeTab, setActiveTab] = useState<"flashcards" | "quiz" | "speaking" | "certificate">("flashcards");
 
   // Load user suggestions to include in games
@@ -793,9 +794,13 @@ export function QuizPage({ user, onOpenAuth, onUpdateUserXp }: QuizPageProps) {
             
             <button
               onClick={() => {
-                const guestUser = { username: "Guest Scholar", xp_points: 0, is_guest: true };
-                localStorage.setItem("guest_user", JSON.stringify(guestUser));
-                window.location.reload();
+                if (onPlayAsGuest) {
+                  onPlayAsGuest();
+                } else {
+                  const guestUser = { username: "Guest Scholar", xp_points: 0, is_guest: true };
+                  localStorage.setItem("guest_user", JSON.stringify(guestUser));
+                  window.location.reload();
+                }
               }}
               style={{ borderColor: "var(--river-blue)", color: "var(--river-blue)" }}
               className="w-full max-w-md mx-auto py-3 rounded-xl text-xs font-bold border hover:bg-gray-100 transition-all flex items-center justify-center gap-2"

@@ -121,6 +121,14 @@ export default function App() {
     localStorage.setItem("auth_user", JSON.stringify(userData));
   };
 
+  const handlePlayAsGuest = () => {
+    const guestUser = { username: "Guest Scholar", xp_points: 0, is_guest: true };
+    localStorage.setItem("guest_user", JSON.stringify(guestUser));
+    setUser(guestUser);
+    setIsAuthModalOpen(false);
+    navigate("quiz");
+  };
+
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("auth_token");
@@ -168,6 +176,7 @@ export default function App() {
             user={user}
             onOpenAuth={() => setIsAuthModalOpen(true)}
             onUpdateUserXp={handleUpdateUserXp}
+            onPlayAsGuest={handlePlayAsGuest}
           />
         )}
         {currentPage === "about" && <AboutPage />}
@@ -186,6 +195,7 @@ export default function App() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onLoginSuccess={handleLoginSuccess}
+        onPlayAsGuest={handlePlayAsGuest}
       />
 
       {/* PWA Install Banner for Android/Chrome/Edge */}

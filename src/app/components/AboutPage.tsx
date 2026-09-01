@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../config";
 
 const team = [
   {
-    name: "John Patrick Gura",
+    name: "Patrick John Gura",
     role: "Project Leader & Team Head",
     description:
       "Leads the capstone project initiative, overseeing research coordination, project management, and strategic development.",
@@ -17,7 +17,7 @@ const team = [
       "Designed and built the full-stack web application, database architecture, API backend, and AI translation pipeline integration.",
   },
   {
-    name: "Fei Yi",
+    name: "Jemimah R. Tortola",
     role: "Research & Data Curator Specialist",
     description:
       "Specializes in Butuanon lexicography, language data collection, entry validation, and linguistic research.",
@@ -48,7 +48,7 @@ export function AboutPage() {
           setEntryCount(data.length);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   return (
@@ -236,9 +236,7 @@ export function AboutPage() {
           className="rounded-3xl p-6 sm:p-8 text-center shadow-xl relative overflow-hidden mt-10"
         >
           <p style={{ color: "#8B9DC3" }} className="text-xs leading-relaxed max-w-md mx-auto font-medium">
-            This research project was conducted under the auspices of the FSUU Research Center
-            with support from the National Commission for Culture and the Arts (NCCA) and the
-            Commission on the Filipino Language (KWF).
+            This research project was conducted under the guidance of the FSUU advisor of this research group.
           </p>
         </div>
       </div>

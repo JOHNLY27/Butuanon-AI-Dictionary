@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Sparkles, LogIn, AlertCircle } from "lucide-react";
+import { Sparkles, LogIn, AlertCircle, Gamepad2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,9 +13,10 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   onLoginSuccess: (user: any, token: string) => void;
+  onPlayAsGuest?: () => void;
 }
 
-export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
+export function AuthModal({ isOpen, onClose, onLoginSuccess, onPlayAsGuest }: AuthModalProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [clientId, setClientId] = useState<string | null>(null);
@@ -134,14 +135,14 @@ export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
           </div>
         )}
 
-        <div className="flex flex-col items-center justify-center py-6 min-h-[80px]">
+        <div className="flex flex-col items-center justify-center py-4 min-h-[70px]">
           {loading ? (
             <div className="flex flex-col items-center gap-2">
               <div style={{ borderTopColor: "var(--golden-heritage)" }} className="w-6 h-6 border-2 border-gray-300 rounded-full animate-spin"></div>
               <span style={{ color: "#6B7A99" }} className="text-xs font-semibold">Exchanging Google session...</span>
             </div>
           ) : clientId === "YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com" || !clientId ? (
-            <div style={{ backgroundColor: "rgba(212, 175, 55, 0.1)", borderColor: "rgba(212, 175, 55, 0.25)", color: "#0F1D30" }} className="rounded-xl border p-4 text-xs text-left max-w-sm">
+            <div style={{ backgroundColor: "rgba(212, 175, 55, 0.1)", borderColor: "rgba(212, 175, 55, 0.25)", color: "#0F1D30" }} className="rounded-xl border p-4 text-xs text-left max-w-sm mb-2">
               <p className="font-bold mb-1">Configuration Needed</p>
               <p className="leading-relaxed">
                 Google Client ID is not configured yet. Please edit <code>backend/.env</code> and replace the placeholder value with your Google Cloud OAuth client credentials to enable Google Sign-In.
@@ -151,6 +152,24 @@ export function AuthModal({ isOpen, onClose, onLoginSuccess }: AuthModalProps) {
             <div id="google-signin-btn" className="hover:scale-102 transition-transform"></div>
           )}
         </div>
+
+        <div className="flex items-center my-3 w-full max-w-xs mx-auto">
+          <div className="flex-1 border-t border-gray-200"></div>
+          <span className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">or</span>
+          <div className="flex-1 border-t border-gray-200"></div>
+        </div>
+
+        <button
+          onClick={() => {
+            if (onPlayAsGuest) {
+              onPlayAsGuest();
+            }
+          }}
+          style={{ backgroundColor: "var(--river-blue)", color: "#FFFFFF" }}
+          className="w-full max-w-xs mx-auto py-3 rounded-xl text-xs font-bold shadow-md hover:opacity-95 active:scale-98 transition-all flex items-center justify-center gap-2"
+        >
+          <Gamepad2 size={16} /> Play as Guest & Go to Quiz
+        </button>
 
         <p style={{ color: "#8B9DC3" }} className="text-[10px] uppercase font-bold tracking-wider mt-4">
           SECURE LOG-IN POWERED BY GOOGLE
