@@ -1,36 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-      <title>Butuanon-English AI Dictionary</title>
-      <link rel="icon" type="image/png" href="/favicon.png" />
-      <link rel="apple-touch-icon" href="/icon-192.png" />
-      <link rel="manifest" href="/manifest.webmanifest" />
-      <meta name="theme-color" content="#0B4F6C" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="description" content="Explore and learn the Butuanon language with an interactive dictionary, AI-powered translations, audio pronunciations, and cultural insights." />
-      <meta name="robots" content="noindex, nofollow" />
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-      
-    </head>
+<head>
 
-    <body>
-      
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-      <script>
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-              .then(reg => console.log('[Service Worker] Registered for offline use:', reg.scope))
-              .catch(err => console.warn('[Service Worker] Registration failed:', err));
-          });
-        }
-      </script>
-    </body>
-  </html>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Butuanon-English AI Dictionary & Audio Translation System</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="canonical" href="https://butuanondictionary.vercel.app/" />
+  <meta name="theme-color" content="#0B4F6C" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description"
+    content="Explore and learn the Butuanon language with an interactive dictionary, AI-powered Gemini translations, audio pronunciations, and cultural insights." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook & Messenger Preview Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://butuanondictionary.vercel.app/" />
+  <meta property="og:title" content="Butuanon-English AI Dictionary & Audio Translation System" />
+  <meta property="og:description" content="Web-Based AI-Driven Butuanon-English Dictionary and Audio Translation System. Search entries, translate with Gemini AI, listen to pronunciations, and take quizzes." />
+  <meta property="og:image" content="https://butuanondictionary.vercel.app/icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:site_name" content="Butuanon AI Dictionary" />
+
+  <!-- Twitter / X Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://butuanondictionary.vercel.app/" />
+  <meta name="twitter:title" content="Butuanon-English AI Dictionary & Audio Translation System" />
+  <meta name="twitter:description" content="Explore and learn the Butuanon language with interactive dictionary, Gemini AI translations, and native audio pronunciations." />
+  <meta name="twitter:image" content="https://butuanondictionary.vercel.app/icon-512.png" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    #root {
+      height: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('[Service Worker] Registered for offline use:', reg.scope))
+          .catch(err => console.warn('[Service Worker] Registration failed:', err));
+      });
+    }
+  </script>
+</body>
+
+</html>
