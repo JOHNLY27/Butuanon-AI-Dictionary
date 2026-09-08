@@ -26,7 +26,6 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
   const [definition, setDefinition] = useState("");
   const [exampleButuanon, setExampleButuanon] = useState("");
   const [exampleEnglish, setExampleEnglish] = useState("");
-  const [showOptionalFields, setShowOptionalFields] = useState(false);
 
   // Recording states
   const [isRecording, setIsRecording] = useState(false);
@@ -231,7 +230,6 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
     setDefinition("");
     setExampleButuanon("");
     setExampleEnglish("");
-    setShowOptionalFields(false);
     deleteRecording();
     setIsSubmitted(false);
   };
@@ -329,6 +327,50 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
               </div>
             </div>
 
+            {/* Category & Pronunciation Guide Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+              {/* Part of Speech / Word Category */}
+              <div className="space-y-1.5">
+                <label htmlFor="suggest-pos" style={{ color: "var(--river-blue)" }} className="text-sm sm:text-base font-bold whitespace-nowrap block">
+                  Word Category
+                </label>
+                <select
+                  id="suggest-pos"
+                  name="pos"
+                  value={pos}
+                  onChange={(e) => setPos(e.target.value)}
+                  className="w-full text-base font-semibold px-4 py-3 rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none transition-all"
+                >
+                  <option value="noun">Noun (Pangngalan)</option>
+                  <option value="verb">Verb (Pandiwa)</option>
+                  <option value="adjective">Adjective (Pang-uri)</option>
+                  <option value="adverb">Adverb (Pang-abay)</option>
+                  <option value="phrase">Phrase / Idiom</option>
+                  <option value="pronoun">Pronoun</option>
+                  <option value="preposition">Preposition</option>
+                  <option value="conjunction">Conjunction</option>
+                  <option value="interjection">Interjection</option>
+                </select>
+              </div>
+
+              {/* Pronunciation Guide */}
+              <div className="space-y-1.5">
+                <label htmlFor="suggest-pronunciation" style={{ color: "var(--river-blue)" }} className="text-sm sm:text-base font-bold whitespace-nowrap block">
+                  Pronunciation Guide
+                </label>
+                <input
+                  id="suggest-pronunciation"
+                  name="pronunciation"
+                  type="text"
+                  value={pronunciation}
+                  onChange={(e) => setPronunciation(e.target.value)}
+                  placeholder="e.g. DAH-gah"
+                  style={{ color: "#0F1D30" }}
+                  className="w-full text-base font-semibold px-4 py-3 rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none transition-all placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
             {/* Description Input */}
             <div className="space-y-1.5">
               <div className="flex items-center gap-2 min-h-[28px]">
@@ -352,11 +394,38 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
               />
             </div>
 
+            {/* Example Sentences */}
+            <div className="space-y-2">
+              <label style={{ color: "var(--river-blue)" }} className="text-sm sm:text-base font-bold block">
+                Example Sentence
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input
+                  id="suggest-example-butuanon"
+                  name="exampleButuanon"
+                  type="text"
+                  value={exampleButuanon}
+                  onChange={(e) => setExampleButuanon(e.target.value)}
+                  placeholder="Butuanon Example Sentence..."
+                  className="w-full text-base font-medium px-4 py-3 rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none transition-all placeholder:text-slate-400"
+                />
+                <input
+                  id="suggest-example-english"
+                  name="exampleEnglish"
+                  type="text"
+                  value={exampleEnglish}
+                  onChange={(e) => setExampleEnglish(e.target.value)}
+                  placeholder="English Translation..."
+                  className="w-full text-base font-medium px-4 py-3 rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none transition-all placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
             {/* Voice Audio Recorder */}
             <div className="bg-amber-500/10 border-2 border-amber-400/80 rounded-2xl p-4 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-base font-bold text-slate-900">Record Voice Pronunciation</span>
-                <span className="text-xs bg-slate-200 text-slate-700 font-bold px-2 py-0.5 rounded-full">Optional</span>
+                <span className="text-xs bg-slate-200 text-slate-700 font-bold px-2 py-0.5 rounded-full">Audio</span>
               </div>
 
               {isRecording ? (
@@ -418,91 +487,6 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   <Mic size={20} className="text-slate-900" />
                   <span>Tap to Record Voice</span>
                 </button>
-              )}
-            </div>
-
-            {/* Optional Advanced Details Toggle */}
-            <div className="border-t border-slate-200 pt-3">
-              <button
-                type="button"
-                onClick={() => setShowOptionalFields(!showOptionalFields)}
-                className="w-full flex items-center justify-between text-left py-2 text-sm font-bold text-slate-700 hover:text-slate-900 transition-colors"
-              >
-                <span>➕ Add Category or Example Sentence (Optional)</span>
-                <span className="text-xs bg-slate-200 text-slate-700 font-semibold px-2 py-0.5 rounded-full">
-                  {showOptionalFields ? "Hide" : "Show"}
-                </span>
-              </button>
-
-              {showOptionalFields && (
-                <div className="mt-3 space-y-4 bg-slate-50 p-4 rounded-xl border border-slate-200 animate-fade-in">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Part of Speech */}
-                    <div className="space-y-1">
-                      <label htmlFor="suggest-pos" className="text-sm font-bold text-slate-800">
-                        Word Category
-                      </label>
-                      <select
-                        id="suggest-pos"
-                        name="pos"
-                        value={pos}
-                        onChange={(e) => setPos(e.target.value)}
-                        className="w-full text-base font-medium px-3 py-2 rounded-xl border border-slate-300 bg-white text-slate-900 outline-none focus:border-amber-500 transition-colors"
-                      >
-                        <option value="noun">Noun (Pangngalan)</option>
-                        <option value="verb">Verb (Pandiwa)</option>
-                        <option value="adjective">Adjective (Pang-uri)</option>
-                        <option value="adverb">Adverb (Pang-abay)</option>
-                        <option value="phrase">Phrase / Idiom</option>
-                        <option value="pronoun">Pronoun</option>
-                        <option value="preposition">Preposition</option>
-                        <option value="conjunction">Conjunction</option>
-                        <option value="interjection">Interjection</option>
-                      </select>
-                    </div>
-
-                    {/* Pronunciation */}
-                    <div className="space-y-1">
-                      <label htmlFor="suggest-pronunciation" className="text-sm font-bold text-slate-800">
-                        Pronunciation Guide
-                      </label>
-                      <input
-                        id="suggest-pronunciation"
-                        name="pronunciation"
-                        type="text"
-                        value={pronunciation}
-                        onChange={(e) => setPronunciation(e.target.value)}
-                        placeholder="e.g. DAH-gah"
-                        className="w-full text-base font-medium px-3 py-2 rounded-xl border border-slate-300 bg-white text-slate-900 outline-none focus:border-amber-500 transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Example Sentences */}
-                  <div className="space-y-2 pt-1">
-                    <label className="text-sm font-bold text-slate-800 block">
-                      Example Sentence
-                    </label>
-                    <input
-                      id="suggest-example-butuanon"
-                      name="exampleButuanon"
-                      type="text"
-                      value={exampleButuanon}
-                      onChange={(e) => setExampleButuanon(e.target.value)}
-                      placeholder="Butuanon Example Sentence..."
-                      className="w-full text-base font-medium px-3 py-2 rounded-xl border border-slate-300 bg-white text-slate-900 outline-none focus:border-amber-500 transition-colors"
-                    />
-                    <input
-                      id="suggest-example-english"
-                      name="exampleEnglish"
-                      type="text"
-                      value={exampleEnglish}
-                      onChange={(e) => setExampleEnglish(e.target.value)}
-                      placeholder="English Translation..."
-                      className="w-full text-base font-medium px-3 py-2 rounded-xl border border-slate-300 bg-white text-slate-900 outline-none focus:border-amber-500 transition-colors"
-                    />
-                  </div>
-                </div>
               )}
             </div>
 

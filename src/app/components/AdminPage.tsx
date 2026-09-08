@@ -20,7 +20,9 @@ import {
   FileText,
   Mic,
   Square,
-  UploadCloud
+  UploadCloud,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { API_BASE_URL } from "../config";
@@ -41,8 +43,10 @@ export function AdminPage({ user }: AdminPageProps) {
   const [loadingContribs, setLoadingContribs] = useState(false);
   const [loadingDict, setLoadingDict] = useState(false);
   
-  // Search query for dictionary management
+  // Search query & pagination for dictionary management
   const [dictSearch, setDictSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   
   // Active playing audio tracking
   const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
@@ -564,6 +568,17 @@ export function AdminPage({ user }: AdminPageProps) {
     return item.butuanon.toLowerCase().includes(q) || item.english.toLowerCase().includes(q);
   });
 
+  // Reset to page 1 whenever search query or items per page changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [dictSearch, itemsPerPage]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredDict.length / itemsPerPage));
+  const validCurrentPage = Math.min(currentPage, totalPages);
+  const startIndex = (validCurrentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedDict = filteredDict.slice(startIndex, endIndex);
+
   return (
     <div style={{ fontFamily: "Poppins, sans-serif" }} className="max-w-6xl mx-auto px-4 py-8">
       <Toaster position="top-right" richColors />
@@ -644,7 +659,7 @@ export function AdminPage({ user }: AdminPageProps) {
       </div>
 
       {/* Navigation tabs */}
-      <div className="flex gap-2 p-1.5 rounded-2xl bg-[#EFE6D8] border border-[rgba(28,43,74,0.06)] max-w-lg mb-8 overflow-x-auto whitespace-nowrap scrollbar-none scroll-smooth">
+      <div className="flex gap-2 sm:gap-3 p-2 rounded-2xl bg-[#EFE6D8] border border-[rgba(28,43,74,0.06)] w-full max-w-4xl mb-8 overflow-x-auto whitespace-nowrap [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden scroll-smooth">
         <button
           onClick={() => { stopAudio(); setActiveTab("contributions"); }}
           style={{
@@ -652,10 +667,10 @@ export function AdminPage({ user }: AdminPageProps) {
             color: activeTab === "contributions" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "contributions" ? "700" : "500"
           }}
-          className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
+          className={`flex-1 py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 flex-shrink-0 ${activeTab === "contributions" ? "shadow-md" : "hover:bg-white/40"}`}
         >
-          <FileText size={14} />
-          Moderation Queue {pendingCount > 0 && <span className="bg-[#D97706] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">{pendingCount}</span>}
+          <FileText size={17} />
+          Moderation Queue {pendingCount > 0 && <span className="bg-[#D97706] text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full ml-0.5">{pendingCount}</span>}
         </button>
 
         <button
@@ -665,9 +680,9 @@ export function AdminPage({ user }: AdminPageProps) {
             color: activeTab === "dictionary" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "dictionary" ? "700" : "500"
           }}
-          className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
+          className={`flex-1 py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 flex-shrink-0 ${activeTab === "dictionary" ? "shadow-md" : "hover:bg-white/40"}`}
         >
-          <BookOpen size={14} />
+          <BookOpen size={17} />
           Manage Database
         </button>
 
@@ -678,9 +693,9 @@ export function AdminPage({ user }: AdminPageProps) {
             color: activeTab === "add" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "add" ? "700" : "500"
           }}
-          className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
+          className={`flex-1 py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 flex-shrink-0 ${activeTab === "add" ? "shadow-md" : "hover:bg-white/40"}`}
         >
-          <Plus size={14} />
+          <Plus size={17} />
           Publish Entry
         </button>
 
@@ -691,9 +706,9 @@ export function AdminPage({ user }: AdminPageProps) {
             color: activeTab === "stats" ? "var(--river-blue)" : "#6B7A99",
             fontWeight: activeTab === "stats" ? "700" : "500"
           }}
-          className="flex-1 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm flex-shrink-0"
+          className={`flex-1 py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 flex-shrink-0 ${activeTab === "stats" ? "shadow-md" : "hover:bg-white/40"}`}
         >
-          <Users size={14} />
+          <Users size={17} />
           System Stats
         </button>
       </div>
@@ -864,7 +879,7 @@ export function AdminPage({ user }: AdminPageProps) {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[rgba(28,43,74,0.06)]">
-                    {filteredDict.map((item) => (
+                    {paginatedDict.map((item) => (
                       <tr key={item.id} className="hover:bg-gray-50 transition-colors">
                         <td className="p-3.5 pl-5 font-bold" style={{ color: '#1C2B4A' }}>{item.butuanon}</td>
                         <td className="p-3.5 text-[#6B7A99] font-medium">{item.english}</td>
@@ -937,6 +952,88 @@ export function AdminPage({ user }: AdminPageProps) {
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Table Pagination Bar */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#FFFDF9] border-t border-[rgba(28,43,74,0.06)] text-xs">
+                {/* Left: Summary & items per page selection */}
+                <div className="flex items-center gap-4 text-[#6B7A99]">
+                  <span>
+                    Showing <strong className="text-[#1C2B4A]">{filteredDict.length === 0 ? 0 : startIndex + 1}</strong> to <strong className="text-[#1C2B4A]">{Math.min(endIndex, filteredDict.length)}</strong> of <strong className="text-[#1C2B4A]">{filteredDict.length}</strong> entries
+                  </span>
+                  
+                  <div className="flex items-center gap-1.5">
+                    <span className="hidden md:inline">Per page:</span>
+                    <select
+                      value={itemsPerPage}
+                      onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                      className="bg-[#F7F2EB] border border-[rgba(28,43,74,0.12)] rounded-lg px-2 py-1 text-xs font-semibold text-[#1C2B4A] outline-none cursor-pointer hover:border-[#D4AF37]"
+                    >
+                      <option value={10}>10</option>
+                      <option value={20}>20</option>
+                      <option value={50}>50</option>
+                      <option value={100}>100</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Right: Page navigation buttons */}
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={validCurrentPage === 1}
+                    className="p-1.5 px-2.5 rounded-lg border border-[rgba(28,43,74,0.1)] text-[#1C2B4A] hover:bg-slate-100 disabled:opacity-30 disabled:hover:bg-transparent transition-all flex items-center gap-1 font-semibold"
+                    title="Previous Page"
+                  >
+                    <ChevronLeft size={16} />
+                    <span className="hidden sm:inline">Previous</span>
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className="flex items-center gap-1 max-w-[200px] sm:max-w-none overflow-x-auto">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter(page => {
+                        return page === 1 || page === totalPages || Math.abs(page - validCurrentPage) <= 1;
+                      })
+                      .reduce<(number | string)[]>((acc, page, idx, array) => {
+                        if (idx > 0 && page - (array[idx - 1] as number) > 1) {
+                          acc.push("...");
+                        }
+                        acc.push(page);
+                        return acc;
+                      }, [])
+                      .map((item, idx) => {
+                        if (item === "...") {
+                          return <span key={`dots-${idx}`} className="px-1 text-[#8B9DC3]">...</span>;
+                        }
+                        const pageNum = item as number;
+                        const isActive = pageNum === validCurrentPage;
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            style={{
+                              backgroundColor: isActive ? "#1C2B4A" : "transparent",
+                              color: isActive ? "#FFFDF9" : "#6B7A99"
+                            }}
+                            className={`w-7 h-7 rounded-lg text-xs font-bold transition-all ${isActive ? "shadow-sm" : "hover:bg-slate-100"}`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                  </div>
+
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={validCurrentPage === totalPages}
+                    className="p-1.5 px-2.5 rounded-lg border border-[rgba(28,43,74,0.1)] text-[#1C2B4A] hover:bg-slate-100 disabled:opacity-30 disabled:hover:bg-transparent transition-all flex items-center gap-1 font-semibold"
+                    title="Next Page"
+                  >
+                    <span className="hidden sm:inline">Next</span>
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
               </div>
             </div>
           )}

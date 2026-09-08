@@ -30,7 +30,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: true,
+        enabled: false,
         suppressWarnings: true
       },
       includeAssets: ['favicon.png', 'icon-192.png', 'icon-512.png'],
@@ -69,6 +69,12 @@ export default defineConfig({
       // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
     },
+  },
+
+  server: {
+    watch: {
+      ignored: ['**/backend/**']
+    }
   },
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.

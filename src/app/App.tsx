@@ -15,7 +15,16 @@ import "../styles/fonts.css";
 type Page = "home" | "dictionary" | "translate" | "quiz" | "about" | "admin";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>("home");
+  // Helper to parse page name from current URL path
+  const getInitialPageFromUrl = (): Page => {
+    const path = window.location.pathname.replace(/^\//, "").toLowerCase();
+    if (["dictionary", "translate", "quiz", "about", "admin"].includes(path)) {
+      return path as Page;
+    }
+    return "home";
+  };
+
+  const [currentPage, setCurrentPage] = useState<Page>(getInitialPageFromUrl);
   const [user, setUser] = useState<any>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
@@ -23,6 +32,15 @@ export default function App() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [isIosPromptVisible, setIsIosPromptVisible] = useState(false);
+
+  // Sync URL state on popstate (browser back/forward button clicks)
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPage(getInitialPageFromUrl());
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   // Check if app is running in standalone (installed) mode
   const getIsInstalled = () => {
@@ -148,12 +166,21 @@ export default function App() {
     });
   };
 
-  function navigate(page: string) {
+  function navigate(page: string, updateUrl = true) {
+    let targetPage = page as Page;
     if (page === "admin" && !user?.isAdmin) {
-      setCurrentPage("home");
-    } else {
-      setCurrentPage(page as Page);
+      targetPage = "home";
     }
+
+    setCurrentPage(targetPage);
+
+    if (updateUrl) {
+      const newPath = targetPage === "home" ? "/" : `/${targetPage}`;
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({ page: targetPage }, "", newPath);
+      }
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
