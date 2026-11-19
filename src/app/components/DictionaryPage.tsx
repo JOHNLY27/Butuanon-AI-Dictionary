@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search, Volume2, ChevronDown, ChevronUp, ArrowLeftRight, BadgeCheck, Star, Plus, Sparkles } from "lucide-react";
 import { SuggestWordModal } from "./SuggestWordModal";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL, SUPABASE_URL, SUPABASE_KEY, isBackendUnreachable } from "../config";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -5508,6 +5508,76 @@ export function DictionaryPage() {
 
   useEffect(() => {
     setLoading(true);
+
+    const fallbackToLocal = () => {
+      const saved = localStorage.getItem("pending_contributions");
+      let contributions: any[] = [];
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          contributions = parsed.map((item: any) => ({
+            ...item,
+            verified: item.verified || "pending",
+          }));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      const allLocal = [...contributions, ...dictionaryEntries];
+      const filteredLocal = allLocal.filter((entry) => {
+        const q = search.toLowerCase();
+        const matchSearch =
+          !q ||
+          entry.butuanon.toLowerCase().includes(q) ||
+          entry.english.toLowerCase().includes(q);
+        const matchLetter = !activeLetter || entry.butuanon.toUpperCase().startsWith(activeLetter);
+        return matchSearch && matchLetter;
+      });
+
+      filteredLocal.sort((a, b) => a.butuanon.localeCompare(b.butuanon));
+      setWords(filteredLocal);
+      setLoading(false);
+    };
+
+    const fetchFromSupabase = async () => {
+      try {
+        let supabaseUrl = `${SUPABASE_URL}/rest/v1/dictionary?select=*&order=butuanon.asc`;
+        if (search) supabaseUrl += `&or=(butuanon.ilike.*${encodeURIComponent(search)}*,english.ilike.*${encodeURIComponent(search)}*)`;
+        if (activeLetter) supabaseUrl += `&butuanon=ilike.${encodeURIComponent(activeLetter)}*`;
+
+        const sbRes = await fetch(supabaseUrl, {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        if (sbRes.ok) {
+          const sbData = await sbRes.json();
+          const mapped = sbData.map((entry: any) => ({
+            ...entry,
+            audio: entry.audio_url || entry.audio || null,
+          }));
+          setWords(mapped);
+          setLoading(false);
+          return true;
+        }
+      } catch (sbErr) {
+        console.warn("Supabase direct fetch failed, falling back to local data.", sbErr);
+      }
+      fallbackToLocal();
+      return false;
+    };
+
+    // If on Vercel/cloud and backend is localhost, fetch directly from Supabase immediately
+    if (isBackendUnreachable()) {
+      fetchFromSupabase();
+      return;
+    }
+
+    // Otherwise (local dev), try backend first
     let url = `${API_BASE_URL}/api/dictionary`;
     const params = [];
     if (search) params.push(`q=${encodeURIComponent(search)}`);
@@ -5524,38 +5594,8 @@ export function DictionaryPage() {
         setLoading(false);
       })
       .catch((err) => {
-        console.warn("Backend connection failed, falling back to mock data.", err);
-
-        // Fallback local storage suggestions mapping + static entries filtering
-        const saved = localStorage.getItem("pending_contributions");
-        let contributions = [];
-        if (saved) {
-          try {
-            const parsed = JSON.parse(saved);
-            contributions = parsed.map((item: any) => ({
-              ...item,
-              verified: item.verified || "pending",
-            }));
-          } catch (e) {
-            console.error(e);
-          }
-        }
-
-        const allLocal = [...contributions, ...dictionaryEntries];
-        const filteredLocal = allLocal.filter((entry) => {
-          const q = search.toLowerCase();
-          const matchSearch =
-            !q ||
-            entry.butuanon.toLowerCase().includes(q) ||
-            entry.english.toLowerCase().includes(q);
-          const matchLetter = !activeLetter || entry.butuanon.toUpperCase().startsWith(activeLetter);
-          return matchSearch && matchLetter;
-        });
-
-        filteredLocal.sort((a, b) => a.butuanon.localeCompare(b.butuanon));
-
-        setWords(filteredLocal);
-        setLoading(false);
+        console.warn("Backend connection failed, trying Supabase...", err);
+        fetchFromSupabase();
       });
   }, [search, activeLetter, isModalOpen]);
 
@@ -5563,9 +5603,10 @@ export function DictionaryPage() {
     e.stopPropagation();
     setPlayingId(entry.id);
     const textToSpeak = direction === "but-en" ? entry.butuanon : entry.english;
+    const audioSrc = entry.audio || entry.audio_url;
 
-    if (entry.audio && typeof entry.audio === "string" && entry.audio.trim().length > 0) {
-      const audio = new Audio(entry.audio);
+    if (audioSrc && typeof audioSrc === "string" && audioSrc.trim().length > 0) {
+      const audio = new Audio(audioSrc);
       audio.play()
         .then(() => {
           audio.onended = () => setPlayingId(null);

@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import { 
-  Check, 
-  X, 
-  Edit2, 
-  Trash2, 
-  Plus, 
-  Play, 
-  Pause, 
-  Search, 
-  Award, 
-  Volume2, 
-  BookOpen, 
-  Users, 
-  Layers, 
-  AlertTriangle, 
-  Activity, 
+import {
+  Check,
+  X,
+  Edit2,
+  Trash2,
+  Plus,
+  Play,
+  Pause,
+  Search,
+  Award,
+  Volume2,
+  BookOpen,
+  Users,
+  Layers,
+  AlertTriangle,
+  Activity,
   Sparkles,
   CheckCircle,
   FileText,
@@ -25,7 +25,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL, SUPABASE_URL, SUPABASE_KEY, isBackendUnreachable } from "../config";
 
 interface AdminPageProps {
   user: any;
@@ -34,24 +34,24 @@ interface AdminPageProps {
 export function AdminPage({ user }: AdminPageProps) {
   // Navigation tabs: 'contributions' | 'dictionary' | 'add' | 'stats'
   const [activeTab, setActiveTab] = useState<"contributions" | "dictionary" | "add" | "stats">("contributions");
-  
+
   // Data lists
   const [contributions, setContributions] = useState<any[]>([]);
   const [dictionary, setDictionary] = useState<any[]>([]);
-  
+
   // Loading states
   const [loadingContribs, setLoadingContribs] = useState(false);
   const [loadingDict, setLoadingDict] = useState(false);
-  
+
   // Search query & pagination for dictionary management
   const [dictSearch, setDictSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  
+
   // Active playing audio tracking
   const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  
+
   // Action Modals State
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [reviewItem, setReviewItem] = useState<any | null>(null);
@@ -79,7 +79,7 @@ export function AdminPage({ user }: AdminPageProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [recordedAudioUrl, setRecordedAudioUrl] = useState<string | null>(null);
   const [isPlayingRecording, setIsPlayingRecording] = useState(false);
-  
+
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -171,20 +171,44 @@ export function AdminPage({ user }: AdminPageProps) {
     try {
       const audioResponse = await fetch(recordedAudioUrl);
       const audioBlob = await audioResponse.blob();
-      const formData = new FormData();
-      formData.append("audio", audioBlob, "pronunciation.webm");
 
-      const res = await fetch(`${API_BASE_URL}/api/admin/upload-audio`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        },
-        body: formData
-      });
+      let uploadedUrl: string | null = null;
 
-      if (!res.ok) throw new Error("Audio upload failed");
-      const data = await res.json();
-      const uploadedUrl = data.audio_url;
+      // Try backend first if not on cloud deployment
+      if (!isBackendUnreachable()) {
+        try {
+          const formData = new FormData();
+          formData.append("audio", audioBlob, "pronunciation.webm");
+          const res = await fetch(`${API_BASE_URL}/api/admin/upload-audio`, {
+            method: "POST",
+            headers: { "Authorization": `Bearer ${token}` },
+            body: formData
+          });
+          if (res.ok) {
+            const data = await res.json();
+            uploadedUrl = data.audio_url;
+          }
+        } catch (_) {
+          // Backend offline, fall through to Supabase direct upload
+        }
+      }
+
+      // Fallback: upload directly to Supabase Storage
+      if (!uploadedUrl) {
+        const fileName = `${Date.now()}_pronunciation.webm`;
+        const sbRes = await fetch(`${SUPABASE_URL}/storage/v1/object/pronunciations/${fileName}`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "audio/webm",
+            "x-upsert": "true"
+          },
+          body: audioBlob
+        });
+        if (!sbRes.ok) throw new Error("Supabase Storage upload failed");
+        uploadedUrl = `${SUPABASE_URL}/storage/v1/object/public/pronunciations/${fileName}`;
+      }
 
       if (target === "add") {
         setNewAudioUrl(uploadedUrl);
@@ -196,7 +220,7 @@ export function AdminPage({ user }: AdminPageProps) {
         setReviewItem({ ...reviewItem, audio_url: uploadedUrl });
         toast.success("Voice recording uploaded and attached to contribution!");
       }
-      
+
       // Clean up the recording state after successful upload
       deleteRecording();
     } catch (err) {
@@ -212,20 +236,50 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!file || !token) return;
     setIsUploading(true);
     try {
-      const formData = new FormData();
-      formData.append("audio", file, file.name);
+      let uploadedUrl: string | null = null;
 
-      const res = await fetch(`${API_BASE_URL}/api/admin/upload-audio`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        },
-        body: formData
-      });
+      // Try backend first if not on cloud deployment
+      if (!isBackendUnreachable()) {
+        try {
+          const formData = new FormData();
+          formData.append("audio", file, file.name);
+          const res = await fetch(`${API_BASE_URL}/api/admin/upload-audio`, {
+            method: "POST",
+            headers: { "Authorization": `Bearer ${token}` },
+            body: formData
+          });
+          if (res.ok) {
+            const data = await res.json();
+            uploadedUrl = data.audio_url;
+          }
+        } catch (_) {
+          // Backend offline, fall through to Supabase direct upload
+        }
+      }
 
-      if (!res.ok) throw new Error("Audio upload failed");
-      const data = await res.json();
-      const uploadedUrl = data.audio_url;
+      // Fallback: upload directly to Supabase Storage
+      if (!uploadedUrl) {
+        const ext = file.name.split(".").pop() || "mp3";
+        const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+        const mimeMap: Record<string, string> = {
+          mp3: "audio/mpeg", wav: "audio/wav", m4a: "audio/mp4",
+          ogg: "audio/ogg", aac: "audio/aac", webm: "audio/webm"
+        };
+        const mimeType = mimeMap[ext.toLowerCase()] || "audio/mpeg";
+
+        const sbRes = await fetch(`${SUPABASE_URL}/storage/v1/object/pronunciations/${fileName}`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": mimeType,
+            "x-upsert": "true"
+          },
+          body: file
+        });
+        if (!sbRes.ok) throw new Error("Supabase Storage upload failed");
+        uploadedUrl = `${SUPABASE_URL}/storage/v1/object/public/pronunciations/${fileName}`;
+      }
 
       if (target === "add") {
         setNewAudioUrl(uploadedUrl);
@@ -355,6 +409,33 @@ export function AdminPage({ user }: AdminPageProps) {
   const fetchContributions = async () => {
     if (!token) return;
     setLoadingContribs(true);
+
+    const fetchFromSupabase = async () => {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/contributions?select=*&order=created_at.desc`, {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          }
+        });
+        if (sbRes.ok) {
+          const data = await sbRes.json();
+          setContributions(data);
+          return true;
+        }
+      } catch (sbErr) {
+        console.error("Supabase contributions fetch error:", sbErr);
+      }
+      return false;
+    };
+
+    if (isBackendUnreachable()) {
+      await fetchFromSupabase();
+      setLoadingContribs(false);
+      return;
+    }
+
     try {
       const res = await fetch(`${API_BASE_URL}/api/admin/contributions`, {
         headers: {
@@ -365,11 +446,11 @@ export function AdminPage({ user }: AdminPageProps) {
         const data = await res.json();
         setContributions(data);
       } else {
-        toast.error("Failed to load contributions from API.");
+        await fetchFromSupabase();
       }
     } catch (err) {
-      console.error(err);
-      toast.error("Network error while loading contributions.");
+      console.warn("Backend offline, fetching contributions from Supabase directly...", err);
+      await fetchFromSupabase();
     } finally {
       setLoadingContribs(false);
     }
@@ -377,6 +458,40 @@ export function AdminPage({ user }: AdminPageProps) {
 
   const fetchDictionary = async () => {
     setLoadingDict(true);
+
+    const fetchFromSupabase = async () => {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?select=*&order=butuanon.asc`, {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          }
+        });
+        if (sbRes.ok) {
+          const sbData = await sbRes.json();
+          const mapped = sbData.map((item: any) => ({
+            ...item,
+            audio: item.audio_url || item.audio || null,
+          }));
+          setDictionary(mapped.filter((item: any) => item.verified !== "pending"));
+          return true;
+        } else {
+          toast.error("Failed to load dictionary entries.");
+        }
+      } catch (sbErr) {
+        console.error(sbErr);
+        toast.error("Network error while loading dictionary.");
+      }
+      return false;
+    };
+
+    if (isBackendUnreachable()) {
+      await fetchFromSupabase();
+      setLoadingDict(false);
+      return;
+    }
+
     try {
       const res = await fetch(`${API_BASE_URL}/api/dictionary`);
       if (res.ok) {
@@ -385,11 +500,11 @@ export function AdminPage({ user }: AdminPageProps) {
         const trueDictionary = data.filter((item: any) => item.verified !== "pending");
         setDictionary(trueDictionary);
       } else {
-        toast.error("Failed to load dictionary entries.");
+        await fetchFromSupabase();
       }
     } catch (err) {
-      console.error(err);
-      toast.error("Network error while loading dictionary.");
+      console.warn("Backend offline, fetching dictionary directly from Supabase...", err);
+      await fetchFromSupabase();
     } finally {
       setLoadingDict(false);
     }
@@ -439,61 +554,125 @@ export function AdminPage({ user }: AdminPageProps) {
     e.preventDefault();
     if (!reviewItem || !token) return;
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${reviewItem.id}/approve`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          butuanon: reviewItem.butuanon,
-          english: reviewItem.english,
-          pos: reviewItem.pos,
-          pronunciation: reviewItem.pronunciation,
-          definition: reviewItem.definition,
-          example_butuanon: reviewItem.example_butuanon || null,
-          example_english: reviewItem.example_english || null,
-          verified: reviewItem.verified || "community",
-          audio_url: reviewItem.audio_url || null
-        })
-      });
-
-      if (res.ok) {
-        toast.success(`Word "${reviewItem.butuanon}" approved and published successfully!`);
-        setIsReviewModalOpen(false);
-        setReviewItem(null);
-        fetchContributions();
-        fetchDictionary();
-      } else {
-        const errData = await res.json();
-        toast.error(errData.detail || "Failed to approve contribution.");
+    let success = false;
+    if (!isBackendUnreachable()) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${reviewItem.id}/approve`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            butuanon: reviewItem.butuanon,
+            english: reviewItem.english,
+            pos: reviewItem.pos,
+            pronunciation: reviewItem.pronunciation,
+            definition: reviewItem.definition,
+            example_butuanon: reviewItem.example_butuanon || null,
+            example_english: reviewItem.example_english || null,
+            verified: reviewItem.verified || "community",
+            audio_url: reviewItem.audio_url || null
+          })
+        });
+        if (res.ok) success = true;
+      } catch (_) {
+        // Backend offline
       }
-    } catch (err) {
-      console.error(err);
-      toast.error("Network error while approving word.");
+    }
+
+    if (!success) {
+      try {
+        // 1. Insert into dictionary table directly on Supabase
+        const dictRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+          },
+          body: JSON.stringify({
+            butuanon: reviewItem.butuanon,
+            english: reviewItem.english,
+            pos: reviewItem.pos,
+            pronunciation: reviewItem.pronunciation,
+            definition: reviewItem.definition,
+            example_butuanon: reviewItem.example_butuanon || null,
+            example_english: reviewItem.example_english || null,
+            verified: reviewItem.verified || "community",
+            rating: 5,
+            audio_url: reviewItem.audio_url || null
+          })
+        });
+
+        // 2. Mark contribution as approved on Supabase
+        await fetch(`${SUPABASE_URL}/rest/v1/contributions?id=eq.${reviewItem.id}`, {
+          method: "PATCH",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ status: "approved" })
+        });
+
+        if (dictRes.ok) success = true;
+      } catch (sbErr) {
+        console.error("Supabase direct approval failed:", sbErr);
+      }
+    }
+
+    if (success) {
+      toast.success(`Word "${reviewItem.butuanon}" approved and published successfully!`);
+      setIsReviewModalOpen(false);
+      setReviewItem(null);
+      fetchContributions();
+      fetchDictionary();
+    } else {
+      toast.error("Failed to approve contribution.");
     }
   };
 
   const handleReject = async (id: number) => {
     if (!token) return;
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${id}/reject`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      });
-
-      if (res.ok) {
-        toast.success("Contribution rejected.");
-        fetchContributions();
-      } else {
-        toast.error("Failed to reject contribution.");
+    let success = false;
+    if (!isBackendUnreachable()) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${id}/reject`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        if (res.ok) success = true;
+      } catch (_) {
+        // Backend offline
       }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error connecting to server.");
+    }
+
+    if (!success) {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/contributions?id=eq.${id}`, {
+          method: "PATCH",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ status: "rejected" })
+        });
+        if (sbRes.ok) success = true;
+      } catch (sbErr) {
+        console.error("Supabase direct reject failed:", sbErr);
+      }
+    }
+
+    if (success) {
+      toast.success("Contribution rejected.");
+      fetchContributions();
+    } else {
+      toast.error("Failed to reject contribution.");
     }
   };
 
@@ -502,48 +681,70 @@ export function AdminPage({ user }: AdminPageProps) {
     e.preventDefault();
     if (!newButuanon.trim() || !newEnglish.trim() || !token) return;
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/admin/dictionary`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          butuanon: newButuanon.trim(),
-          english: newEnglish.trim(),
-          pos: newPos,
-          pronunciation: newPronunciation.trim() || newButuanon.trim(),
-          definition: newDefinition.trim(),
-          example_butuanon: newExampleButuanon.trim() || null,
-          example_english: newExampleEnglish.trim() || null,
-          verified: newVerified,
-          rating: 5,
-          audio_url: newAudioUrl.trim() || null
-        })
-      });
+    const payload = {
+      butuanon: newButuanon.trim(),
+      english: newEnglish.trim(),
+      pos: newPos,
+      pronunciation: newPronunciation.trim() || newButuanon.trim(),
+      definition: newDefinition.trim(),
+      example_butuanon: newExampleButuanon.trim() || null,
+      example_english: newExampleEnglish.trim() || null,
+      verified: newVerified,
+      rating: 5,
+      audio_url: newAudioUrl.trim() || null
+    };
 
-      if (res.ok) {
-        toast.success("New vocabulary entry added directly!");
-        // Clear fields
-        setNewButuanon("");
-        setNewEnglish("");
-        setNewPos("noun");
-        setNewPronunciation("");
-        setNewDefinition("");
-        setNewExampleButuanon("");
-        setNewExampleEnglish("");
-        setNewAudioUrl("");
-        setNewVerified("native-speaker");
-        
-        fetchDictionary();
-        setActiveTab("dictionary");
-      } else {
-        toast.error("Failed to create entry.");
+    let success = false;
+    if (!isBackendUnreachable()) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/admin/dictionary`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) success = true;
+      } catch (_) {
+        // Backend offline
       }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error creating entry.");
+    }
+
+    if (!success) {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+          },
+          body: JSON.stringify(payload)
+        });
+        if (sbRes.ok) success = true;
+      } catch (sbErr) {
+        console.error("Supabase direct create failed:", sbErr);
+      }
+    }
+
+    if (success) {
+      toast.success("New vocabulary entry added directly!");
+      setNewButuanon("");
+      setNewEnglish("");
+      setNewPos("noun");
+      setNewPronunciation("");
+      setNewDefinition("");
+      setNewExampleButuanon("");
+      setNewExampleEnglish("");
+      setNewAudioUrl("");
+      setNewVerified("native-speaker");
+
+      fetchDictionary();
+      setActiveTab("dictionary");
+    } else {
+      toast.error("Failed to create entry.");
     }
   };
 
@@ -551,63 +752,104 @@ export function AdminPage({ user }: AdminPageProps) {
     e.preventDefault();
     if (!editItem || !token) return;
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${editItem.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          butuanon: editItem.butuanon,
-          english: editItem.english,
-          pos: editItem.pos,
-          pronunciation: editItem.pronunciation,
-          definition: editItem.definition,
-          example_butuanon: editItem.exampleButuanon || null,
-          example_english: editItem.exampleEnglish || null,
-          verified: editItem.verified || "community",
-          rating: editItem.rating || 5,
-          audio_url: editItem.audio || null
-        })
-      });
+    const payload = {
+      butuanon: editItem.butuanon,
+      english: editItem.english,
+      pos: editItem.pos,
+      pronunciation: editItem.pronunciation,
+      definition: editItem.definition,
+      example_butuanon: editItem.exampleButuanon || editItem.example_butuanon || null,
+      example_english: editItem.exampleEnglish || editItem.example_english || null,
+      verified: editItem.verified || "community",
+      rating: editItem.rating || 5,
+      audio_url: editItem.audio || editItem.audio_url || null
+    };
 
-      if (res.ok) {
-        toast.success(`Entry "${editItem.butuanon}" updated successfully.`);
-        setIsEditModalOpen(false);
-        setEditItem(null);
-        fetchDictionary();
-      } else {
-        toast.error("Failed to update dictionary entry.");
+    let success = false;
+    if (!isBackendUnreachable()) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${editItem.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) success = true;
+      } catch (_) {
+        // Backend offline
       }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error sending update request.");
+    }
+
+    if (!success) {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?id=eq.${editItem.id}`, {
+          method: "PATCH",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+          },
+          body: JSON.stringify(payload)
+        });
+        if (sbRes.ok) success = true;
+      } catch (sbErr) {
+        console.error("Supabase direct update failed:", sbErr);
+      }
+    }
+
+    if (success) {
+      toast.success(`Entry "${editItem.butuanon}" updated successfully.`);
+      setIsEditModalOpen(false);
+      setEditItem(null);
+      fetchDictionary();
+    } else {
+      toast.error("Failed to update dictionary entry.");
     }
   };
 
   const handleDeleteEntry = async () => {
     if (!deleteItemId || !token) return;
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${deleteItemId}`, {
-        method: "DELETE",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      });
-
-      if (res.ok) {
-        toast.success("Dictionary entry deleted permanently.");
-        setIsDeleteModalOpen(false);
-        setDeleteItemId(null);
-        fetchDictionary();
-      } else {
-        toast.error("Failed to delete entry.");
+    let success = false;
+    if (!isBackendUnreachable()) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${deleteItemId}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        if (res.ok) success = true;
+      } catch (_) {
+        // Backend offline
       }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error sending delete request.");
+    }
+
+    if (!success) {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?id=eq.${deleteItemId}`, {
+          method: "DELETE",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (sbRes.ok) success = true;
+      } catch (sbErr) {
+        console.error("Supabase direct delete failed:", sbErr);
+      }
+    }
+
+    if (success) {
+      toast.success("Dictionary entry deleted permanently.");
+      setIsDeleteModalOpen(false);
+      setDeleteItemId(null);
+      fetchDictionary();
+    } else {
+      toast.error("Failed to delete entry.");
     }
   };
 
@@ -648,7 +890,7 @@ export function AdminPage({ user }: AdminPageProps) {
             Good day, <strong>{user?.username}</strong>. Verify vocabulary suggestions, record audio, and manage the live database.
           </p>
         </div>
-        
+
         {/* Quick info chip */}
         <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.06)" }} className="flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-sm">
           <Activity size={18} style={{ color: "var(--golden-heritage)" }} className="animate-pulse" />
@@ -674,11 +916,11 @@ export function AdminPage({ user }: AdminPageProps) {
 
         {/* Stat 2 */}
         <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-          <div 
-            style={{ 
-              backgroundColor: pendingCount > 0 ? "rgba(245,158,11,0.12)" : "rgba(28,43,74,0.06)", 
-              color: pendingCount > 0 ? "#D97706" : "#6B7A99" 
-            }} 
+          <div
+            style={{
+              backgroundColor: pendingCount > 0 ? "rgba(245,158,11,0.12)" : "rgba(28,43,74,0.06)",
+              color: pendingCount > 0 ? "#D97706" : "#6B7A99"
+            }}
             className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${pendingCount > 0 ? "animate-pulse" : ""}`}
           >
             <AlertTriangle size={18} className="sm:w-5 sm:h-5" />
@@ -768,7 +1010,7 @@ export function AdminPage({ user }: AdminPageProps) {
       </div>
 
       {/* Tab Panels */}
-      
+
       {/* 1. CONTRIBUTIONS TAB */}
       {activeTab === "contributions" && (
         <div className="space-y-4">
@@ -793,9 +1035,9 @@ export function AdminPage({ user }: AdminPageProps) {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {contributions.filter(c => c.status === "pending").map((c) => (
-                <div 
-                  key={c.id} 
-                  style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} 
+                <div
+                  key={c.id}
+                  style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }}
                   className="rounded-3xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
@@ -805,7 +1047,7 @@ export function AdminPage({ user }: AdminPageProps) {
                         {c.pos}
                       </span>
                       <span style={{ color: "#6B7A99" }} className="text-[10px] font-medium">
-                        {new Date(c.created_at).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'})}
+                        {new Date(c.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                       </span>
                     </div>
 
@@ -861,7 +1103,7 @@ export function AdminPage({ user }: AdminPageProps) {
                       >
                         <X size={15} />
                       </button>
-                      
+
                       <button
                         onClick={() => {
                           setReviewItem({ ...c, verified: "community" });
@@ -889,7 +1131,7 @@ export function AdminPage({ user }: AdminPageProps) {
               <h2 style={{ color: "#1C2B4A" }} className="text-lg font-bold">Live Dictionary Database</h2>
               <p style={{ color: "#6B7A99" }} className="text-xs">Publish direct edits, change verification flags, or delete entries.</p>
             </div>
-            
+
             {/* Search Input */}
             <div className="relative w-full sm:w-72">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7A99]" />
@@ -944,18 +1186,18 @@ export function AdminPage({ user }: AdminPageProps) {
                         </td>
                         <td className="p-3.5 text-[#8B9DC3] hidden md:table-cell">{item.pronunciation}</td>
                         <td className="p-3.5 hidden sm:table-cell">
-                          <span 
-                            style={{ 
-                              backgroundColor: 
-                                item.verified === "native-speaker" ? "#FFF3EB" : 
-                                item.verified === "academic" ? "#F1F5F9" : "#ECFDF5",
-                              color: 
-                                item.verified === "native-speaker" ? "#9A3412" : 
-                                item.verified === "academic" ? "#1E293B" : "#065F46",
+                          <span
+                            style={{
+                              backgroundColor:
+                                item.verified === "native-speaker" ? "#FFF3EB" :
+                                  item.verified === "academic" ? "#F1F5F9" : "#ECFDF5",
+                              color:
+                                item.verified === "native-speaker" ? "#9A3412" :
+                                  item.verified === "academic" ? "#1E293B" : "#065F46",
                               borderColor:
-                                item.verified === "native-speaker" ? "#FDBA74" : 
-                                item.verified === "academic" ? "#CBD5E1" : "#6EE7B7",
-                            }} 
+                                item.verified === "native-speaker" ? "#FDBA74" :
+                                  item.verified === "academic" ? "#CBD5E1" : "#6EE7B7",
+                            }}
                             className="text-[10px] font-extrabold px-2.5 py-1 rounded-full border flex items-center gap-1 w-max"
                           >
                             {item.verified === "native-speaker" ? "🎯 Native Speaker" : item.verified === "academic" ? "📚 Academic Review" : "👥 Community"}
@@ -965,7 +1207,7 @@ export function AdminPage({ user }: AdminPageProps) {
                           {item.audio ? (
                             <button
                               onClick={() => playAudio(item.audio, `d_${item.id}`)}
-                              style={{ 
+                              style={{
                                 backgroundColor: playingAudioId === `d_${item.id}` ? "var(--golden-heritage)" : "rgba(28,43,74,0.05)",
                                 color: playingAudioId === `d_${item.id}` ? "#0F1D30" : "var(--river-blue)"
                               }}
@@ -1015,7 +1257,7 @@ export function AdminPage({ user }: AdminPageProps) {
                   <span>
                     Showing <strong className="text-[#1C2B4A]">{filteredDict.length === 0 ? 0 : startIndex + 1}</strong> to <strong className="text-[#1C2B4A]">{Math.min(endIndex, filteredDict.length)}</strong> of <strong className="text-[#1C2B4A]">{filteredDict.length}</strong> entries
                   </span>
-                  
+
                   <div className="flex items-center gap-1.5">
                     <span className="hidden md:inline">Per page:</span>
                     <select
@@ -1367,7 +1609,7 @@ export function AdminPage({ user }: AdminPageProps) {
                 <CheckCircle size={18} className="text-emerald-500" />
                 Review & Publish Contribution
               </h3>
-              <button 
+              <button
                 onClick={() => { setIsReviewModalOpen(false); setReviewItem(null); }}
                 className="p-1 rounded-full hover:bg-slate-100 text-[#8B9DC3] hover:text-black transition-all"
               >
@@ -1482,7 +1724,7 @@ export function AdminPage({ user }: AdminPageProps) {
                     <option value="community">👥 Community Validated</option>
                   </select>
                 </div>
-                
+
                 <div className="space-y-1">
                   <label className="text-[10px] font-bold text-[var(--river-blue)]">Pronunciation clip</label>
                   <div className="pt-1.5">
@@ -1536,7 +1778,7 @@ export function AdminPage({ user }: AdminPageProps) {
                 <Edit2 size={16} style={{ color: "var(--golden-heritage)" }} />
                 Modify Dictionary Entry
               </h3>
-              <button 
+              <button
                 onClick={() => { setIsEditModalOpen(false); setEditItem(null); }}
                 className="p-1 rounded-full hover:bg-slate-100 text-[#8B9DC3] hover:text-black transition-all"
               >
@@ -1704,7 +1946,7 @@ export function AdminPage({ user }: AdminPageProps) {
             <div style={{ backgroundColor: "rgba(239,68,68,0.08)", color: "#EF4444" }} className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
               <AlertTriangle size={28} />
             </div>
-            
+
             <h3 style={{ color: "#1C2B4A" }} className="font-extrabold text-base mb-2">Delete Vocabulary Entry?</h3>
             <p style={{ color: "#6B7A99" }} className="text-xs mb-6">
               Are you sure? This operation will remove the word from the database permanently. Standard users will no longer find this translation.
@@ -1719,7 +1961,7 @@ export function AdminPage({ user }: AdminPageProps) {
               >
                 No, Keep It
               </button>
-              
+
               <button
                 type="button"
                 onClick={handleDeleteEntry}

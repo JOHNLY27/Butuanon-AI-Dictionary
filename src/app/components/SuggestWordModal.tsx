@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL, SUPABASE_URL, SUPABASE_KEY, isBackendUnreachable } from "../config";
 
 interface SuggestWordModalProps {
   isOpen: boolean;
@@ -145,44 +145,94 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
     e.preventDefault();
     if (!butuanon.trim() || !english.trim() || !definition.trim()) return;
 
-    try {
-      const formData = new FormData();
-      formData.append("butuanon", butuanon.trim());
-      formData.append("english", english.trim());
-      formData.append("pos", pos);
-      formData.append("pronunciation", pronunciation.trim() || butuanon.trim());
-      formData.append("definition", definition.trim());
-      if (exampleButuanon.trim()) formData.append("exampleButuanon", exampleButuanon.trim());
-      if (exampleEnglish.trim()) formData.append("exampleEnglish", exampleEnglish.trim());
+    let submittedSuccessfully = false;
+
+    // Try backend if reachable
+    if (!isBackendUnreachable()) {
+      try {
+        const formData = new FormData();
+        formData.append("butuanon", butuanon.trim());
+        formData.append("english", english.trim());
+        formData.append("pos", pos);
+        formData.append("pronunciation", pronunciation.trim() || butuanon.trim());
+        formData.append("definition", definition.trim());
+        if (exampleButuanon.trim()) formData.append("exampleButuanon", exampleButuanon.trim());
+        if (exampleEnglish.trim()) formData.append("exampleEnglish", exampleEnglish.trim());
+
+        if (audioUrl) {
+          const audioResponse = await fetch(audioUrl);
+          const audioBlob = await audioResponse.blob();
+          formData.append("audio", audioBlob, "pronunciation.webm");
+        }
+
+        const res = await fetch(`${API_BASE_URL}/api/suggest`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (res.ok) {
+          submittedSuccessfully = true;
+        }
+      } catch (err) {
+        console.warn("Backend suggestion post failed, using Supabase direct fallback", err);
+      }
+    }
+
+    // Direct Supabase fallback if backend didn't handle it
+    if (!submittedSuccessfully) {
+      let supabaseAudioUrl: string | null = null;
 
       if (audioUrl) {
-        const audioResponse = await fetch(audioUrl);
-        const audioBlob = await audioResponse.blob();
-        formData.append("audio", audioBlob, "pronunciation.webm");
+        try {
+          const audioResponse = await fetch(audioUrl);
+          const audioBlob = await audioResponse.blob();
+          const cleanName = butuanon.trim().replace(/[^a-zA-Z0-9]/g, "_");
+          const fileName = `${Date.now()}_suggest_${cleanName}.webm`;
+
+          const sbUpload = await fetch(`${SUPABASE_URL}/storage/v1/object/pronunciations/${fileName}`, {
+            method: "POST",
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Authorization": `Bearer ${SUPABASE_KEY}`,
+              "Content-Type": "audio/webm",
+              "x-upsert": "true"
+            },
+            body: audioBlob
+          });
+
+          if (sbUpload.ok) {
+            supabaseAudioUrl = `${SUPABASE_URL}/storage/v1/object/public/pronunciations/${fileName}`;
+          }
+        } catch (uploadErr) {
+          console.warn("Supabase direct audio upload failed:", uploadErr);
+        }
       }
 
-      const res = await fetch(`${API_BASE_URL}/api/suggest`, {
-        method: "POST",
-        body: formData,
-      });
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/contributions`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            butuanon: butuanon.trim(),
+            english: english.trim(),
+            pos,
+            pronunciation: pronunciation.trim() || butuanon.trim(),
+            definition: definition.trim(),
+            example_butuanon: exampleButuanon.trim() || null,
+            example_english: exampleEnglish.trim() || null,
+            audio_url: supabaseAudioUrl,
+            status: "pending"
+          })
+        });
+      } catch (sbErr) {
+        console.warn("Supabase direct contribution save failed:", sbErr);
+      }
 
-      if (!res.ok) throw new Error("Suggest API returned non-200");
-
-      setIsSubmitted(true);
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.5 },
-        colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
-      });
-
-      setTimeout(() => {
-        if (onSubmitSuccess) onSubmitSuccess();
-      }, 1800);
-
-    } catch (err) {
-      console.warn("Backend suggestion post failed, saving to local storage fallback", err);
-      
+      // Also save to local storage for instant offline viewing
       let base64Audio = "";
       if (audioUrl) {
         base64Audio = await convertBlobToBase64(audioUrl);
@@ -197,7 +247,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
         definition: definition.trim(),
         exampleButuanon: exampleButuanon.trim(),
         exampleEnglish: exampleEnglish.trim(),
-        audio: base64Audio,
+        audio: supabaseAudioUrl || base64Audio,
         verified: "pending",
         rating: 0,
         timestamp: new Date().toISOString(),
@@ -207,19 +257,19 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
       const contributions = saved ? JSON.parse(saved) : [];
       contributions.unshift(newSuggestion);
       localStorage.setItem("pending_contributions", JSON.stringify(contributions));
-
-      setIsSubmitted(true);
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.5 },
-        colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
-      });
-
-      setTimeout(() => {
-        if (onSubmitSuccess) onSubmitSuccess();
-      }, 1800);
     }
+
+    setIsSubmitted(true);
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.5 },
+      colors: ["#D4AF37", "#0F1D30", "#FAF6EE"],
+    });
+
+    setTimeout(() => {
+      if (onSubmitSuccess) onSubmitSuccess();
+    }, 1800);
   };
 
   const resetForm = () => {
