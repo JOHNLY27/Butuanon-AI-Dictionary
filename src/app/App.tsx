@@ -216,7 +216,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer />
+      <Footer onNavigate={navigate} />
 
       <AuthModal
         isOpen={isAuthModalOpen}

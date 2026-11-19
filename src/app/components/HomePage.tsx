@@ -238,7 +238,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Word of the Day — prominent */}
-      <section style={{ backgroundColor: "var(--background)" }} className="py-16 px-4">
+      <section id="word-of-the-day" style={{ backgroundColor: "var(--background)" }} className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <div style={{ backgroundColor: "var(--golden-heritage)" }} className="w-1.5 h-6 rounded-full" />
