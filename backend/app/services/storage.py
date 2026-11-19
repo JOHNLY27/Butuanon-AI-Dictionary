@@ -23,12 +23,26 @@ def upload_audio_to_supabase(file_bytes: bytes, original_filename: str) -> str:
     unique_filename = f"{uuid.uuid4()}_{original_filename}"
     bucket_name = "pronunciations"
 
+    # Determine correct audio mime-type based on file extension
+    lower_fn = original_filename.lower()
+    content_type = "audio/webm"
+    if lower_fn.endswith(".mp3"):
+        content_type = "audio/mpeg"
+    elif lower_fn.endswith(".wav"):
+        content_type = "audio/wav"
+    elif lower_fn.endswith(".m4a") or lower_fn.endswith(".mp4"):
+        content_type = "audio/mp4"
+    elif lower_fn.endswith(".ogg"):
+        content_type = "audio/ogg"
+    elif lower_fn.endswith(".aac"):
+        content_type = "audio/aac"
+
     try:
         # Perform upload
         res = supabase_client.storage.from_(bucket_name).upload(
             path=unique_filename,
             file=file_bytes,
-            file_options={"content-type": "audio/webm"}
+            file_options={"content-type": content_type}
         )
         
         # Retrieve the public url for web playback

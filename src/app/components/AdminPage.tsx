@@ -207,6 +207,45 @@ export function AdminPage({ user }: AdminPageProps) {
     }
   };
 
+  const uploadAudioFile = async (e: React.ChangeEvent<HTMLInputElement>, target: "add" | "edit" | "review") => {
+    const file = e.target.files?.[0];
+    if (!file || !token) return;
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("audio", file, file.name);
+
+      const res = await fetch(`${API_BASE_URL}/api/admin/upload-audio`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (!res.ok) throw new Error("Audio upload failed");
+      const data = await res.json();
+      const uploadedUrl = data.audio_url;
+
+      if (target === "add") {
+        setNewAudioUrl(uploadedUrl);
+        toast.success(`Audio "${file.name}" uploaded and attached!`);
+      } else if (target === "edit" && editItem) {
+        setEditItem({ ...editItem, audio: uploadedUrl });
+        toast.success(`Audio "${file.name}" attached to dictionary entry!`);
+      } else if (target === "review" && reviewItem) {
+        setReviewItem({ ...reviewItem, audio_url: uploadedUrl });
+        toast.success(`Audio "${file.name}" attached to contribution!`);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to upload audio file to Supabase Storage.");
+    } finally {
+      setIsUploading(false);
+      e.target.value = "";
+    }
+  };
+
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -284,6 +323,21 @@ export function AdminPage({ user }: AdminPageProps) {
               </button>
             </>
           )}
+        </div>
+
+        <div className="pt-3 mt-3 border-t border-[rgba(28,43,74,0.08)] flex items-center gap-3 flex-wrap">
+          <span style={{ color: "#64748b" }} className="text-xs font-medium">Or upload audio file from PC:</span>
+          <label className="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-[rgba(28,43,74,0.15)] hover:border-[var(--golden-heritage)] hover:shadow-sm transition-all text-[#1C2B4A]">
+            <UploadCloud size={14} style={{ color: "var(--golden-heritage)" }} />
+            <span>{isUploading ? "Uploading file..." : "Choose Audio File (.mp3, .wav, .m4a, .webm)"}</span>
+            <input
+              type="file"
+              accept="audio/*,.mp3,.wav,.m4a,.webm,.ogg,.aac"
+              className="hidden"
+              disabled={isUploading}
+              onChange={(e) => uploadAudioFile(e, target)}
+            />
+          </label>
         </div>
       </div>
     );
