@@ -695,6 +695,7 @@ export function AdminPage({ user }: AdminPageProps) {
     };
 
     let success = false;
+    // 1. Try backend API if accessible
     if (!isBackendUnreachable()) {
       try {
         const res = await fetch(`${API_BASE_URL}/api/admin/dictionary`, {
@@ -711,22 +712,21 @@ export function AdminPage({ user }: AdminPageProps) {
       }
     }
 
-    if (!success) {
-      try {
-        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary`, {
-          method: "POST",
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Authorization": `Bearer ${SUPABASE_KEY}`,
-            "Content-Type": "application/json",
-            "Prefer": "return=representation"
-          },
-          body: JSON.stringify(payload)
-        });
-        if (sbRes.ok) success = true;
-      } catch (sbErr) {
-        console.error("Supabase direct create failed:", sbErr);
-      }
+    // 2. Always persist directly to Supabase so entries and audio are NEVER lost when backend sleeps
+    try {
+      const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary`, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=representation"
+        },
+        body: JSON.stringify(payload)
+      });
+      if (sbRes.ok) success = true;
+    } catch (sbErr) {
+      console.warn("Supabase direct create:", sbErr);
     }
 
     if (success) {
@@ -766,6 +766,7 @@ export function AdminPage({ user }: AdminPageProps) {
     };
 
     let success = false;
+    // 1. Try backend API if accessible
     if (!isBackendUnreachable()) {
       try {
         const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${editItem.id}`, {
@@ -782,22 +783,21 @@ export function AdminPage({ user }: AdminPageProps) {
       }
     }
 
-    if (!success) {
-      try {
-        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?id=eq.${editItem.id}`, {
-          method: "PATCH",
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Authorization": `Bearer ${SUPABASE_KEY}`,
-            "Content-Type": "application/json",
-            "Prefer": "return=representation"
-          },
-          body: JSON.stringify(payload)
-        });
-        if (sbRes.ok) success = true;
-      } catch (sbErr) {
-        console.error("Supabase direct update failed:", sbErr);
-      }
+    // 2. Always persist directly to Supabase so audio and updates are NEVER lost when backend sleeps
+    try {
+      const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?id=eq.${editItem.id}`, {
+        method: "PATCH",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=representation"
+        },
+        body: JSON.stringify(payload)
+      });
+      if (sbRes.ok) success = true;
+    } catch (sbErr) {
+      console.warn("Supabase direct update:", sbErr);
     }
 
     if (success) {
@@ -814,6 +814,7 @@ export function AdminPage({ user }: AdminPageProps) {
     if (!deleteItemId || !token) return;
 
     let success = false;
+    // 1. Try backend API if accessible
     if (!isBackendUnreachable()) {
       try {
         const res = await fetch(`${API_BASE_URL}/api/admin/dictionary/${deleteItemId}`, {
@@ -828,19 +829,18 @@ export function AdminPage({ user }: AdminPageProps) {
       }
     }
 
-    if (!success) {
-      try {
-        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?id=eq.${deleteItemId}`, {
-          method: "DELETE",
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Authorization": `Bearer ${SUPABASE_KEY}`
-          }
-        });
-        if (sbRes.ok) success = true;
-      } catch (sbErr) {
-        console.error("Supabase direct delete failed:", sbErr);
-      }
+    // 2. Always persist deletion to Supabase
+    try {
+      const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/dictionary?id=eq.${deleteItemId}`, {
+        method: "DELETE",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        }
+      });
+      if (sbRes.ok) success = true;
+    } catch (sbErr) {
+      console.warn("Supabase direct delete:", sbErr);
     }
 
     if (success) {
