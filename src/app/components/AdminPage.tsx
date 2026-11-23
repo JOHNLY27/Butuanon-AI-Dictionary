@@ -1510,7 +1510,6 @@ export function AdminPage({ user }: AdminPageProps) {
       {activeTab === "stats" && (
         <div className="space-y-6">
           <div className="border-b border-[rgba(28,43,74,0.06)] pb-3">
-            <h2 style={{ color: "#1C2B4A" }} className="text-lg font-bold">System Health & Metrics</h2>
             <h2 style={{ color: "var(--river-blue)" }} className="text-lg font-bold">System Health & Metrics</h2>
             <p style={{ color: "#6B7A99" }} className="text-xs">Database statistics and performance summaries.</p>
           </div>
