@@ -34,6 +34,7 @@ interface AdminPageProps {
 export function AdminPage({ user }: AdminPageProps) {
   // Navigation tabs: 'contributions' | 'dictionary' | 'add' | 'stats'
   const [activeTab, setActiveTab] = useState<"contributions" | "dictionary" | "add" | "stats">("contributions");
+  const [contribFilter, setContribFilter] = useState<"pending" | "approved" | "rejected">("pending");
 
   // Data lists
   const [contributions, setContributions] = useState<any[]>([]);
@@ -859,6 +860,8 @@ export function AdminPage({ user }: AdminPageProps) {
   const rejectedCount = contributions.filter(c => c.status === "rejected").length;
   const dictionaryCount = dictionary.length;
 
+  const filteredContributions = contributions.filter(c => c.status === contribFilter);
+
   const filteredDict = dictionary.filter(item => {
     const q = dictSearch.toLowerCase();
     return item.butuanon.toLowerCase().includes(q) || item.english.toLowerCase().includes(q);
@@ -903,8 +906,21 @@ export function AdminPage({ user }: AdminPageProps) {
 
       {/* Quick Statistics Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        {/* Stat 1 */}
-        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        {/* Stat 1: Total Dictionary */}
+        <div
+          onClick={() => {
+            stopAudio();
+            setActiveTab("dictionary");
+          }}
+          role="button"
+          tabIndex={0}
+          title="Click to view all dictionary words"
+          style={{
+            backgroundColor: "var(--card)",
+            border: activeTab === "dictionary" ? "2px solid var(--golden-heritage)" : "1px solid rgba(28,43,74,0.05)"
+          }}
+          className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 cursor-pointer hover:scale-[1.02] active:scale-[0.98] select-none"
+        >
           <div style={{ backgroundColor: "rgba(212,175,55,0.15)", color: "#0F1D30" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
             <Layers size={18} className="sm:w-5 sm:h-5" />
           </div>
@@ -914,8 +930,22 @@ export function AdminPage({ user }: AdminPageProps) {
           </div>
         </div>
 
-        {/* Stat 2 */}
-        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        {/* Stat 2: Pending Approvals */}
+        <div
+          onClick={() => {
+            stopAudio();
+            setContribFilter("pending");
+            setActiveTab("contributions");
+          }}
+          role="button"
+          tabIndex={0}
+          title="Click to view pending submissions awaiting approval"
+          style={{
+            backgroundColor: "var(--card)",
+            border: activeTab === "contributions" && contribFilter === "pending" ? "2px solid #D97706" : "1px solid rgba(28,43,74,0.05)"
+          }}
+          className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 cursor-pointer hover:scale-[1.02] active:scale-[0.98] select-none"
+        >
           <div
             style={{
               backgroundColor: pendingCount > 0 ? "rgba(245,158,11,0.12)" : "rgba(28,43,74,0.06)",
@@ -931,8 +961,22 @@ export function AdminPage({ user }: AdminPageProps) {
           </div>
         </div>
 
-        {/* Stat 3 */}
-        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        {/* Stat 3: Approved Suggestions */}
+        <div
+          onClick={() => {
+            stopAudio();
+            setContribFilter("approved");
+            setActiveTab("contributions");
+          }}
+          role="button"
+          tabIndex={0}
+          title="Click to view all approved suggestions"
+          style={{
+            backgroundColor: "var(--card)",
+            border: activeTab === "contributions" && contribFilter === "approved" ? "2px solid #10B981" : "1px solid rgba(28,43,74,0.05)"
+          }}
+          className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 cursor-pointer hover:scale-[1.02] active:scale-[0.98] select-none"
+        >
           <div style={{ backgroundColor: "rgba(16,185,129,0.08)", color: "#10B981" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
             <CheckCircle size={18} className="sm:w-5 sm:h-5" />
           </div>
@@ -942,8 +986,22 @@ export function AdminPage({ user }: AdminPageProps) {
           </div>
         </div>
 
-        {/* Stat 4 */}
-        <div style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }} className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        {/* Stat 4: Rejected Items */}
+        <div
+          onClick={() => {
+            stopAudio();
+            setContribFilter("rejected");
+            setActiveTab("contributions");
+          }}
+          role="button"
+          tabIndex={0}
+          title="Click to view all rejected items"
+          style={{
+            backgroundColor: "var(--card)",
+            border: activeTab === "contributions" && contribFilter === "rejected" ? "2px solid #EF4444" : "1px solid rgba(28,43,74,0.05)"
+          }}
+          className="p-4 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 cursor-pointer hover:scale-[1.02] active:scale-[0.98] select-none"
+        >
           <div style={{ backgroundColor: "rgba(239,68,68,0.08)", color: "#EF4444" }} className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0">
             <X size={18} className="sm:w-5 sm:h-5" />
           </div>
@@ -1014,9 +1072,59 @@ export function AdminPage({ user }: AdminPageProps) {
       {/* 1. CONTRIBUTIONS TAB */}
       {activeTab === "contributions" && (
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-[rgba(28,43,74,0.06)] pb-3">
-            <h2 style={{ color: "#1C2B4A" }} className="text-lg font-bold">Pending Word Suggestions</h2>
-            <span style={{ color: "#6B7A99" }} className="text-xs">{pendingCount} submissions awaiting approval</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[rgba(28,43,74,0.06)] pb-3">
+            <div>
+              <h2 style={{ color: "#1C2B4A" }} className="text-lg font-bold">
+                {contribFilter === "pending" && "Pending Word Suggestions"}
+                {contribFilter === "approved" && "Approved Suggestions"}
+                {contribFilter === "rejected" && "Rejected Items"}
+              </h2>
+              <span style={{ color: "#6B7A99" }} className="text-xs">
+                {contribFilter === "pending" && `${pendingCount} submission${pendingCount === 1 ? '' : 's'} awaiting moderation`}
+                {contribFilter === "approved" && `${approvedCount} contribution${approvedCount === 1 ? '' : 's'} approved & published`}
+                {contribFilter === "rejected" && `${rejectedCount} contribution${rejectedCount === 1 ? '' : 's'} declined during review`}
+              </span>
+            </div>
+
+            {/* Sub-filter tabs */}
+            <div className="flex items-center gap-1.5 p-1 bg-[#EAE2D5] rounded-xl self-start sm:self-auto">
+              <button
+                type="button"
+                onClick={() => setContribFilter("pending")}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  contribFilter === "pending"
+                    ? "bg-white text-[#D97706] shadow-sm"
+                    : "text-[#6B7A99] hover:text-[#1C2B4A]"
+                }`}
+              >
+                <AlertTriangle size={13} className={contribFilter === "pending" ? "text-[#D97706]" : "text-[#6B7A99]"} />
+                Pending ({pendingCount})
+              </button>
+              <button
+                type="button"
+                onClick={() => setContribFilter("approved")}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  contribFilter === "approved"
+                    ? "bg-white text-[#10B981] shadow-sm"
+                    : "text-[#6B7A99] hover:text-[#10B981]"
+                }`}
+              >
+                <CheckCircle size={13} className={contribFilter === "approved" ? "text-[#10B981]" : "text-[#6B7A99]"} />
+                Approved ({approvedCount})
+              </button>
+              <button
+                type="button"
+                onClick={() => setContribFilter("rejected")}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  contribFilter === "rejected"
+                    ? "bg-white text-[#EF4444] shadow-sm"
+                    : "text-[#6B7A99] hover:text-[#EF4444]"
+                }`}
+              >
+                <X size={13} className={contribFilter === "rejected" ? "text-[#EF4444]" : "text-[#6B7A99]"} />
+                Rejected ({rejectedCount})
+              </button>
+            </div>
           </div>
 
           {loadingContribs ? (
@@ -1024,17 +1132,39 @@ export function AdminPage({ user }: AdminPageProps) {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D4AF37] mb-4"></div>
               <span>Fetching community contributions database...</span>
             </div>
-          ) : contributions.filter(c => c.status === "pending").length === 0 ? (
+          ) : filteredContributions.length === 0 ? (
             <div style={{ backgroundColor: "var(--card)", border: "1px dashed rgba(28,43,74,0.12)" }} className="rounded-3xl p-12 text-center shadow-sm">
-              <CheckCircle size={40} className="text-[#10B981] mx-auto mb-3" />
-              <h3 style={{ color: "var(--river-blue)" }} className="text-base font-bold mb-1">Moderation Queue is Empty!</h3>
-              <p style={{ color: "#6B7A99" }} className="text-xs max-w-sm mx-auto">
-                No users have suggested words recently. All contributions have been approved or rejected.
-              </p>
+              {contribFilter === "pending" && (
+                <>
+                  <CheckCircle size={40} className="text-[#10B981] mx-auto mb-3" />
+                  <h3 style={{ color: "var(--river-blue)" }} className="text-base font-bold mb-1">Moderation Queue is Empty!</h3>
+                  <p style={{ color: "#6B7A99" }} className="text-xs max-w-sm mx-auto">
+                    No submissions are pending review. All contributions have been approved or processed.
+                  </p>
+                </>
+              )}
+              {contribFilter === "approved" && (
+                <>
+                  <CheckCircle size={40} className="text-[#10B981] mx-auto mb-3" />
+                  <h3 style={{ color: "var(--river-blue)" }} className="text-base font-bold mb-1">No Approved Suggestions Yet</h3>
+                  <p style={{ color: "#6B7A99" }} className="text-xs max-w-sm mx-auto">
+                    Approved community submissions will appear here with their published status.
+                  </p>
+                </>
+              )}
+              {contribFilter === "rejected" && (
+                <>
+                  <X size={40} className="text-[#EF4444] mx-auto mb-3" />
+                  <h3 style={{ color: "var(--river-blue)" }} className="text-base font-bold mb-1">No Rejected Items</h3>
+                  <p style={{ color: "#6B7A99" }} className="text-xs max-w-sm mx-auto">
+                    Suggestions declined during moderation will appear here.
+                  </p>
+                </>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {contributions.filter(c => c.status === "pending").map((c) => (
+              {filteredContributions.map((c) => (
                 <div
                   key={c.id}
                   style={{ backgroundColor: "var(--card)", border: "1px solid rgba(28,43,74,0.05)" }}
@@ -1043,9 +1173,26 @@ export function AdminPage({ user }: AdminPageProps) {
                   <div>
                     {/* Badge row */}
                     <div className="flex justify-between items-start mb-3">
-                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider bg-amber-100 text-[#0F1D30]">
-                        {c.pos}
-                      </span>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider bg-amber-100 text-[#0F1D30]">
+                          {c.pos}
+                        </span>
+                        {c.status === "pending" && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-[#D97706] border border-amber-200 flex items-center gap-1">
+                            <AlertTriangle size={10} /> Pending
+                          </span>
+                        )}
+                        {c.status === "approved" && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-[#10B981] border border-emerald-200 flex items-center gap-1">
+                            <CheckCircle size={10} /> Approved
+                          </span>
+                        )}
+                        {c.status === "rejected" && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 text-[#EF4444] border border-red-200 flex items-center gap-1">
+                            <X size={10} /> Rejected
+                          </span>
+                        )}
+                      </div>
                       <span style={{ color: "#6B7A99" }} className="text-[10px] font-medium">
                         {new Date(c.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                       </span>
@@ -1095,25 +1242,57 @@ export function AdminPage({ user }: AdminPageProps) {
 
                     {/* Action buttons */}
                     <div className="flex gap-2">
-                      <button
-                        onClick={() => handleReject(c.id)}
-                        style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.15)" }}
-                        className="p-1.5 rounded-xl hover:bg-red-50 transition-colors"
-                        title="Reject suggestion"
-                      >
-                        <X size={15} />
-                      </button>
+                      {c.status === "pending" && (
+                        <>
+                          <button
+                            onClick={() => handleReject(c.id)}
+                            style={{ color: "#EF4444", border: "1px solid rgba(239,68,68,0.15)" }}
+                            className="p-1.5 rounded-xl hover:bg-red-50 transition-colors"
+                            title="Reject suggestion"
+                          >
+                            <X size={15} />
+                          </button>
 
-                      <button
-                        onClick={() => {
-                          setReviewItem({ ...c, verified: "community" });
-                          setIsReviewModalOpen(true);
-                        }}
-                        style={{ backgroundColor: "#1C2B4A" }}
-                        className="flex items-center gap-1 text-white px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:opacity-90 transition-opacity"
-                      >
-                        <Check size={14} /> Review & Approve
-                      </button>
+                          <button
+                            onClick={() => {
+                              setReviewItem({ ...c, verified: "community" });
+                              setIsReviewModalOpen(true);
+                            }}
+                            style={{ backgroundColor: "#1C2B4A" }}
+                            className="flex items-center gap-1 text-white px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:opacity-90 transition-opacity"
+                          >
+                            <Check size={14} /> Review & Approve
+                          </button>
+                        </>
+                      )}
+
+                      {c.status === "approved" && (
+                        <button
+                          onClick={() => {
+                            setReviewItem({ ...c, verified: "community" });
+                            setIsReviewModalOpen(true);
+                          }}
+                          style={{ border: "1px solid rgba(28,43,74,0.12)", color: "#1C2B4A" }}
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold hover:bg-black/5 transition-colors"
+                          title="Edit contribution details"
+                        >
+                          <Edit2 size={13} /> Edit Details
+                        </button>
+                      )}
+
+                      {c.status === "rejected" && (
+                        <button
+                          onClick={() => {
+                            setReviewItem({ ...c, verified: "community" });
+                            setIsReviewModalOpen(true);
+                          }}
+                          style={{ backgroundColor: "#1C2B4A" }}
+                          className="flex items-center gap-1 text-white px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:opacity-90 transition-opacity"
+                          title="Re-open and review"
+                        >
+                          <Check size={14} /> Re-evaluate
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
