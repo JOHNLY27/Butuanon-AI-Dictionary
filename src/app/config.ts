@@ -10,3 +10,16 @@ export const isBackendUnreachable = (): boolean => {
   // If deployed to Vercel/cloud and API_BASE_URL still points to localhost, backend cannot be reached
   return window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1" && API_BASE_URL.includes("localhost");
 };
+
+// Administrator Emails
+export const ADMIN_EMAILS: string[] = [
+  "remitarjohnlydrick@gmail.com",
+  "johnlydrick@gmail.com",
+  "johnlydrick27@gmail.com",
+  "jemimahtortola27@gmail.com"
+];
+
+export const isAdminEmail = (email?: string | null): boolean => {
+  if (!email) return false;
+  return ADMIN_EMAILS.includes(email.trim().toLowerCase());
+};

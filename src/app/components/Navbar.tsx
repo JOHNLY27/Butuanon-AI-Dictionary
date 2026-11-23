@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, BookOpen } from "lucide-react";
+import { isAdminEmail } from "../config";
 
 interface NavbarProps {
   currentPage: string;
@@ -20,7 +21,8 @@ export function Navbar({ currentPage, onNavigate, user, onOpenAuth, onLogout }: 
     { id: "about", label: "About" },
   ];
 
-  if (user?.isAdmin) {
+  const isUserAdmin = user?.isAdmin || isAdminEmail(user?.email);
+  if (isUserAdmin) {
     links.push({ id: "admin", label: "Admin Panel" });
   }
 

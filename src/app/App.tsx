@@ -8,7 +8,7 @@ import { AboutPage } from "./components/AboutPage";
 import { QuizPage } from "./components/QuizPage";
 import { AuthModal } from "./components/AuthModal";
 import { AdminPage } from "./components/AdminPage";
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL, isAdminEmail } from "./config";
 import { X, Share } from "lucide-react";
 import "../styles/fonts.css";
 
@@ -57,6 +57,15 @@ export default function App() {
         console.error(e);
       }
     } else {
+      const cached = localStorage.getItem("auth_user");
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          parsed.isAdmin = parsed.isAdmin || isAdminEmail(parsed.email);
+          setUser(parsed);
+        } catch (_) {}
+      }
+
       const token = localStorage.getItem("auth_token");
       if (token) {
         fetch(`${API_BASE_URL}/api/auth/me`, {
@@ -75,8 +84,9 @@ export default function App() {
         })
         .then((data) => {
           if (data) {
-            setUser(data);
-            localStorage.setItem("auth_user", JSON.stringify(data));
+            const enhanced = { ...data, isAdmin: data.isAdmin || isAdminEmail(data.email) };
+            setUser(enhanced);
+            localStorage.setItem("auth_user", JSON.stringify(enhanced));
           }
         })
         .catch((err) => {
@@ -134,9 +144,10 @@ export default function App() {
 
   const handleLoginSuccess = (userData: any, token: string) => {
     localStorage.removeItem("guest_user");
-    setUser(userData);
+    const enhanced = { ...userData, isAdmin: userData.isAdmin || isAdminEmail(userData.email) };
+    setUser(enhanced);
     localStorage.setItem("auth_token", token);
-    localStorage.setItem("auth_user", JSON.stringify(userData));
+    localStorage.setItem("auth_user", JSON.stringify(enhanced));
   };
 
   const handlePlayAsGuest = () => {
@@ -168,7 +179,8 @@ export default function App() {
 
   function navigate(page: string, updateUrl = true) {
     let targetPage = page as Page;
-    if (page === "admin" && !user?.isAdmin) {
+    const isUserAdmin = user?.isAdmin || isAdminEmail(user?.email);
+    if (page === "admin" && !isUserAdmin) {
       targetPage = "home";
     }
 
@@ -208,7 +220,7 @@ export default function App() {
         )}
         {currentPage === "about" && <AboutPage />}
         {currentPage === "admin" && (
-          user?.isAdmin ? (
+          (user?.isAdmin || isAdminEmail(user?.email)) ? (
             <AdminPage user={user} />
           ) : (
             <HomePage onNavigate={navigate} />
