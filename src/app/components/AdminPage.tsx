@@ -70,6 +70,7 @@ export function AdminPage({ user }: AdminPageProps) {
   const [newExampleButuanon, setNewExampleButuanon] = useState("");
   const [newExampleEnglish, setNewExampleEnglish] = useState("");
   const [newVerified, setNewVerified] = useState("native-speaker");
+  const [newSource, setNewSource] = useState("Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo");
   const [newAudioUrl, setNewAudioUrl] = useState("");
 
   const token = localStorage.getItem("auth_token");
@@ -573,7 +574,8 @@ export function AdminPage({ user }: AdminPageProps) {
             example_butuanon: reviewItem.example_butuanon || null,
             example_english: reviewItem.example_english || null,
             verified: reviewItem.verified || "community",
-            audio_url: reviewItem.audio_url || null
+            audio_url: reviewItem.audio_url || null,
+            source: reviewItem.source?.trim() || null
           })
         });
         if (res.ok) success = true;
@@ -603,7 +605,8 @@ export function AdminPage({ user }: AdminPageProps) {
             example_english: reviewItem.example_english || null,
             verified: reviewItem.verified || "community",
             rating: 5,
-            audio_url: reviewItem.audio_url || null
+            audio_url: reviewItem.audio_url || null,
+            source: reviewItem.source?.trim() || null
           })
         });
 
@@ -692,7 +695,8 @@ export function AdminPage({ user }: AdminPageProps) {
       example_english: newExampleEnglish.trim() || null,
       verified: newVerified,
       rating: 5,
-      audio_url: newAudioUrl.trim() || null
+      audio_url: newAudioUrl.trim() || null,
+      source: newSource.trim() || null
     };
 
     let success = false;
@@ -763,7 +767,8 @@ export function AdminPage({ user }: AdminPageProps) {
       example_english: editItem.exampleEnglish || editItem.example_english || null,
       verified: editItem.verified || "community",
       rating: editItem.rating || 5,
-      audio_url: editItem.audio || editItem.audio_url || null
+      audio_url: editItem.audio || editItem.audio_url || null,
+      source: editItem.source !== undefined ? (editItem.source ? editItem.source.trim() : null) : null
     };
 
     let success = false;
@@ -1365,22 +1370,44 @@ export function AdminPage({ user }: AdminPageProps) {
                         </td>
                         <td className="p-3.5 text-[#8B9DC3] hidden md:table-cell">{item.pronunciation}</td>
                         <td className="p-3.5 hidden sm:table-cell">
-                          <span
-                            style={{
-                              backgroundColor:
-                                item.verified === "native-speaker" ? "#FFF3EB" :
-                                  item.verified === "academic" ? "#F1F5F9" : "#ECFDF5",
-                              color:
-                                item.verified === "native-speaker" ? "#9A3412" :
-                                  item.verified === "academic" ? "#1E293B" : "#065F46",
-                              borderColor:
-                                item.verified === "native-speaker" ? "#FDBA74" :
-                                  item.verified === "academic" ? "#CBD5E1" : "#6EE7B7",
-                            }}
-                            className="text-[10px] font-extrabold px-2.5 py-1 rounded-full border flex items-center gap-1 w-max"
-                          >
-                            {item.verified === "native-speaker" ? "🎯 Native Speaker" : item.verified === "academic" ? "📚 Academic Review" : "👥 Community"}
-                          </span>
+                          <div className="flex flex-col gap-1">
+                            <span
+                              style={{
+                                backgroundColor:
+                                  item.verified === "native-speaker" ? "#FFF3EB" :
+                                    item.verified === "academic" ? "#F1F5F9" : "#ECFDF5",
+                                color:
+                                  item.verified === "native-speaker" ? "#9A3412" :
+                                    item.verified === "academic" ? "#1E293B" : "#065F46",
+                                borderColor:
+                                  item.verified === "native-speaker" ? "#FDBA74" :
+                                    item.verified === "academic" ? "#CBD5E1" : "#6EE7B7",
+                              }}
+                              className="text-[10px] font-extrabold px-2.5 py-1 rounded-full border flex items-center gap-1 w-max"
+                            >
+                              {item.verified === "native-speaker" ? "🎯 Native Speaker" : item.verified === "academic" ? "📚 Academic Review" : "👥 Community"}
+                            </span>
+                            <span
+                              className="text-[9px] text-[#6B7A99] font-medium max-w-[210px] truncate"
+                              title={
+                                item.source
+                                  ? (item.verified === "academic" ? `Book Name: ${item.source}` : item.verified === "native-speaker" ? `Specialist Name: ${item.source}` : `Source: ${item.source}`)
+                                  : item.verified === "academic"
+                                    ? "Book Name: Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion"
+                                    : item.verified === "native-speaker"
+                                      ? "Specialist Name: Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"
+                                      : "Community Submission"
+                              }
+                            >
+                              {item.source
+                                ? (item.verified === "academic" ? `📖 Book: ${item.source}` : item.verified === "native-speaker" ? `🎯 Specialist: ${item.source}` : item.source)
+                                : item.verified === "academic"
+                                  ? "📖 Book: Madiyaw nga pag kani Butuan"
+                                  : item.verified === "native-speaker"
+                                    ? "🎯 Specialist: Mrs. Bella & Eden"
+                                    : "👥 Community Submission"}
+                            </span>
+                          </div>
                         </td>
                         <td className="p-3.5 text-center">
                           {item.audio ? (
@@ -1635,37 +1662,72 @@ export function AdminPage({ user }: AdminPageProps) {
               </div>
             </div>
 
-            {/* Extra Metadata (verified & audio URL) */}
+            {/* Extra Metadata (verified, source & audio URL) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="add-verified" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Verification Badge</label>
+                <label htmlFor="add-verified" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Verification Status</label>
                 <select
                   id="add-verified"
                   name="verified"
                   value={newVerified}
-                  onChange={(e) => setNewVerified(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setNewVerified(val);
+                    if (val === "academic" && (!newSource || newSource === "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo")) {
+                      setNewSource("Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion");
+                    } else if (val === "native-speaker" && (!newSource || newSource === "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion")) {
+                      setNewSource("Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo");
+                    }
+                  }}
                   style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
                   className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors cursor-pointer"
                 >
-                  <option value="native-speaker">🎯 Verified by Native Speaker (Fluent Butuanon Elders/People)</option>
-                  <option value="academic">📚 Academic Review (Verified by Books & Research)</option>
+                  <option value="native-speaker">🎯 Verified by Native Speaker</option>
+                  <option value="academic">📚 Academic Review</option>
                   <option value="community">👥 Community Validated</option>
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="add-audio-url" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Audio URL (Optional)</label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="add-source" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">
+                    {newVerified === "academic" ? "Book Name" : newVerified === "native-speaker" ? "Specialist Name" : "Source Attribution (Optional)"}
+                  </label>
+                  {newSource && (
+                    <button
+                      type="button"
+                      onClick={() => setNewSource("")}
+                      className="text-[10px] text-red-500 hover:underline font-semibold"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
                 <input
-                  id="add-audio-url"
-                  name="audioUrl"
-                  type="url"
-                  placeholder="Link to hosted audio mp3/webm..."
-                  value={newAudioUrl}
-                  onChange={(e) => setNewAudioUrl(e.target.value)}
+                  id="add-source"
+                  name="source"
+                  type="text"
+                  value={newSource}
+                  onChange={(e) => setNewSource(e.target.value)}
+                  placeholder={newVerified === "academic" ? "e.g. Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion" : "e.g. Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"}
                   style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
                   className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
+            </div>
+
+            <div className="space-y-1">
+              <label htmlFor="add-audio-url" style={{ color: "var(--river-blue)" }} className="text-xs font-semibold">Audio URL (Optional)</label>
+              <input
+                id="add-audio-url"
+                name="audioUrl"
+                type="url"
+                placeholder="Link to hosted audio mp3/webm..."
+                value={newAudioUrl}
+                onChange={(e) => setNewAudioUrl(e.target.value)}
+                style={{ backgroundColor: "var(--background)", color: "var(--charcoal)", borderColor: "rgba(28,43,74,0.08)" }}
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border outline-none focus:border-[#D4AF37] transition-colors"
+              />
             </div>
 
             {renderVoiceRecorder("add")}
@@ -1689,7 +1751,6 @@ export function AdminPage({ user }: AdminPageProps) {
       {activeTab === "stats" && (
         <div className="space-y-6">
           <div className="border-b border-[rgba(28,43,74,0.06)] pb-3">
-            <h2 style={{ color: "var(--river-blue)" }} className="text-lg font-bold">System Health & Metrics</h2>
             <p style={{ color: "#6B7A99" }} className="text-xs">Database statistics and performance summaries.</p>
           </div>
 
@@ -1890,36 +1951,70 @@ export function AdminPage({ user }: AdminPageProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Vetting Badge Category</label>
+                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Verification Status</label>
                   <select
                     value={reviewItem.verified}
-                    onChange={(e) => setReviewItem({ ...reviewItem, verified: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      let updatedSource = reviewItem.source;
+                      if (val === "academic" && (!updatedSource || updatedSource === "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo")) {
+                        updatedSource = "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion";
+                      } else if (val === "native-speaker" && (!updatedSource || updatedSource === "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion")) {
+                        updatedSource = "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo";
+                      }
+                      setReviewItem({ ...reviewItem, verified: val, source: updatedSource });
+                    }}
                     style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none cursor-pointer"
                   >
                     <option value="native-speaker">🎯 Verified by Native Speaker</option>
-                    <option value="academic">📚 Academic Review (Verified by Books)</option>
+                    <option value="academic">📚 Academic Review</option>
                     <option value="community">👥 Community Validated</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[var(--river-blue)]">Pronunciation clip</label>
-                  <div className="pt-1.5">
-                    {reviewItem.audio_url ? (
+                  <div className="flex items-center justify-between">
+                    <label className="text-[10px] font-bold text-[var(--river-blue)]">
+                      {reviewItem.verified === "academic" ? "Book Name" : reviewItem.verified === "native-speaker" ? "Specialist Name" : "Source Attribution (Optional)"}
+                    </label>
+                    {reviewItem.source && (
                       <button
                         type="button"
-                        onClick={() => playAudio(reviewItem.audio_url, `rev_${reviewItem.id}`)}
-                        style={{ backgroundColor: playingAudioId === `rev_${reviewItem.id}` ? "var(--golden-heritage)" : "rgba(212,175,55,0.15)", color: "#0F1D30" }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold transition-all"
+                        onClick={() => setReviewItem({ ...reviewItem, source: "" })}
+                        className="text-[9px] text-red-500 hover:underline font-semibold"
                       >
-                        {playingAudioId === `rev_${reviewItem.id}` ? <Pause size={10} fill="#0F1D30" /> : <Play size={10} fill="#0F1D30" />}
-                        Play Audio File
+                        Clear
                       </button>
-                    ) : (
-                      <span className="text-[10px] text-[#8B9DC3] italic">No audio recorded</span>
                     )}
                   </div>
+                  <input
+                    type="text"
+                    value={reviewItem.source ?? (reviewItem.verified === "academic" ? "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion" : reviewItem.verified === "native-speaker" ? "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo" : "")}
+                    onChange={(e) => setReviewItem({ ...reviewItem, source: e.target.value })}
+                    placeholder={reviewItem.verified === "academic" ? "e.g. Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion" : "e.g. Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"}
+                    style={{ backgroundColor: "var(--background)", borderColor: "rgba(28,43,74,0.08)" }}
+                    className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-[var(--river-blue)]">Pronunciation clip</label>
+                <div className="pt-1.5">
+                  {reviewItem.audio_url ? (
+                    <button
+                      type="button"
+                      onClick={() => playAudio(reviewItem.audio_url, `rev_${reviewItem.id}`)}
+                      style={{ backgroundColor: playingAudioId === `rev_${reviewItem.id}` ? "var(--golden-heritage)" : "rgba(212,175,55,0.15)", color: "#0F1D30" }}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold transition-all"
+                    >
+                      {playingAudioId === `rev_${reviewItem.id}` ? <Pause size={10} fill="#0F1D30" /> : <Play size={10} fill="#0F1D30" />}
+                      Play Audio File
+                    </button>
+                  ) : (
+                    <span className="text-[10px] text-[#8B9DC3] italic">No audio recorded</span>
+                  )}
                 </div>
               </div>
 
@@ -2058,15 +2153,52 @@ export function AdminPage({ user }: AdminPageProps) {
                   <label className="text-[10px] font-bold text-[#1C2B4A]">Verification Status</label>
                   <select
                     value={editItem.verified || "community"}
-                    onChange={(e) => setEditItem({ ...editItem, verified: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      let updatedSource = editItem.source;
+                      if (val === "academic" && (!updatedSource || updatedSource === "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo")) {
+                        updatedSource = "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion";
+                      } else if (val === "native-speaker" && (!updatedSource || updatedSource === "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion")) {
+                        updatedSource = "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo";
+                      }
+                      setEditItem({ ...editItem, verified: val, source: updatedSource });
+                    }}
                     style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none cursor-pointer"
                   >
                     <option value="native-speaker">🎯 Verified by Native Speaker</option>
-                    <option value="academic">📚 Academic Review (Verified by Books)</option>
+                    <option value="academic">📚 Academic Review</option>
                     <option value="community">👥 Community Validated</option>
                   </select>
                 </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <label className="text-[10px] font-bold text-[#1C2B4A]">
+                      {editItem.verified === "academic" ? "Book Name" : editItem.verified === "native-speaker" ? "Specialist Name" : "Source Attribution (Optional)"}
+                    </label>
+                    {editItem.source && (
+                      <button
+                        type="button"
+                        onClick={() => setEditItem({ ...editItem, source: "" })}
+                        className="text-[9px] text-red-500 hover:underline font-semibold"
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <input
+                    type="text"
+                    value={editItem.source ?? (editItem.verified === "academic" ? "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion" : editItem.verified === "native-speaker" ? "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo" : "")}
+                    onChange={(e) => setEditItem({ ...editItem, source: e.target.value })}
+                    placeholder={editItem.verified === "academic" ? "e.g. Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion" : "e.g. Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"}
+                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] font-bold text-[#1C2B4A]">Rating (0-5)</label>
                   <input
@@ -2079,18 +2211,17 @@ export function AdminPage({ user }: AdminPageProps) {
                     className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-[10px] font-bold text-[#1C2B4A]">Audio Stream Link</label>
-                <input
-                  type="text"
-                  placeholder="URL to pronunciation mp3/webm"
-                  value={editItem.audio || ""}
-                  onChange={(e) => setEditItem({ ...editItem, audio: e.target.value })}
-                  style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
-                  className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
-                />
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-[#1C2B4A]">Audio Stream Link</label>
+                  <input
+                    type="text"
+                    placeholder="URL to pronunciation mp3/webm"
+                    value={editItem.audio || ""}
+                    onChange={(e) => setEditItem({ ...editItem, audio: e.target.value })}
+                    style={{ backgroundColor: "#F7F2EB", borderColor: "rgba(28,43,74,0.08)" }}
+                    className="w-full text-xs px-3 py-2 rounded-xl border outline-none"
+                  />
+                </div>
               </div>
 
               {renderVoiceRecorder("edit")}

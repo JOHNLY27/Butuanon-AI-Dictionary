@@ -20,6 +20,7 @@ class ApproveContributionRequest(BaseModel):
     example_english: Optional[str] = None
     verified: Optional[str] = "community"
     audio_url: Optional[str] = None
+    source: Optional[str] = None
 
 class CreateDictionaryRequest(BaseModel):
     butuanon: str
@@ -32,6 +33,7 @@ class CreateDictionaryRequest(BaseModel):
     verified: Optional[str] = "native-speaker"
     rating: int = 0
     audio_url: Optional[str] = None
+    source: Optional[str] = None
 
 class UpdateDictionaryRequest(BaseModel):
     butuanon: str
@@ -44,6 +46,7 @@ class UpdateDictionaryRequest(BaseModel):
     verified: Optional[str] = None
     rating: int = 0
     audio_url: Optional[str] = None
+    source: Optional[str] = None
 
 # --- Contribution Endpoints ---
 
@@ -108,7 +111,8 @@ def approve_contribution(
         example_english=payload.example_english.strip() if payload.example_english else None,
         verified=payload.verified,
         rating=5, # Admin approved starts with a high rating
-        audio_url=payload.audio_url
+        audio_url=payload.audio_url,
+        source=payload.source.strip() if payload.source else None
     )
     db.add(entry)
 
@@ -165,7 +169,8 @@ def create_dictionary_entry(
         example_english=payload.example_english.strip() if payload.example_english else None,
         verified=payload.verified,
         rating=payload.rating,
-        audio_url=payload.audio_url
+        audio_url=payload.audio_url,
+        source=payload.source.strip() if payload.source else None
     )
     db.add(entry)
     db.commit()
@@ -195,6 +200,7 @@ def update_dictionary_entry(
     entry.example_english = payload.example_english.strip() if payload.example_english else None
     entry.verified = payload.verified
     entry.rating = payload.rating
+    entry.source = payload.source.strip() if payload.source else None
     
     if payload.audio_url is not None:
         entry.audio_url = payload.audio_url

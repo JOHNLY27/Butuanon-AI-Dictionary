@@ -16,6 +16,7 @@ class DictionaryEntry(Base):
     verified = Column(String(50), nullable=True)  # 'native-speaker', 'academic', 'community', or None
     rating = Column(Integer, default=0)
     audio_url = Column(Text, nullable=True)
+    source = Column(Text, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class Contribution(Base):
@@ -30,6 +31,7 @@ class Contribution(Base):
     example_butuanon = Column(String(500), nullable=True)
     example_english = Column(String(500), nullable=True)
     audio_url = Column(Text, nullable=True)
+    source = Column(Text, nullable=True)
     status = Column(String(50), default="pending")  # 'pending', 'approved', 'rejected'
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 

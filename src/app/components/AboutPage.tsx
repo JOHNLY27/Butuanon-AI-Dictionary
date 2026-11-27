@@ -146,6 +146,69 @@ export function AboutPage() {
           ))}
         </div>
 
+        {/* Primary Linguistic Sources & Attribution */}
+        <div
+          style={{ backgroundColor: "var(--card)", borderColor: "rgba(28,43,74,0.08)" }}
+          className="rounded-2xl border p-8 mb-8 shadow-sm"
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <div
+              style={{ backgroundColor: "rgba(212, 175, 55, 0.15)" }}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+            >
+              <Award size={18} style={{ color: "var(--river-blue)" }} />
+            </div>
+            <div>
+              <h2 style={{ color: "var(--river-blue)" }} className="text-lg font-bold">
+                Linguistic Sources & Attribution
+              </h2>
+              <p style={{ color: "#6B7A99" }} className="text-xs">
+                Honoring the published literature and native specialists behind our vocabulary database.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div
+              style={{
+                backgroundColor: "var(--background)",
+                borderColor: "rgba(28,43,74,0.08)",
+                borderLeftColor: "var(--river-blue)",
+              }}
+              className="rounded-xl border border-l-4 p-5"
+            >
+              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 uppercase tracking-wider inline-block mb-2">
+                📚 Academic Reference Book
+              </span>
+              <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold mb-1 italic">
+                "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion"
+              </h3>
+              <p style={{ color: "#6B7A99" }} className="text-xs leading-relaxed">
+                Primary literary source for academic review and orthography validation across hundreds of historical and everyday Butuanon lexicon entries.
+              </p>
+            </div>
+
+            <div
+              style={{
+                backgroundColor: "var(--background)",
+                borderColor: "rgba(28,43,74,0.08)",
+                borderLeftColor: "#9A3412",
+              }}
+              className="rounded-xl border border-l-4 p-5"
+            >
+              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 uppercase tracking-wider inline-block mb-2">
+                🎯 Native Speaker Specialists
+              </span>
+              <h3 style={{ color: "var(--river-blue)" }} className="text-sm font-bold mb-1">
+                Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo
+              </h3>
+              <p style={{ color: "#6B7A99" }} className="text-xs leading-relaxed">
+                Native Butuanon language specialists who verified native speaker vocabulary, idioms, phonetics, and conversational nuances.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Timeline */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-6">

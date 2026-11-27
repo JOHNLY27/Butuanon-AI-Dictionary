@@ -32,6 +32,7 @@ class DictionaryItem(BaseModel):
     verified: Optional[str] = None
     rating: int = 0
     audio: Optional[str] = None
+    source: Optional[str] = None
 
     class Config:
         from_attributes = True
@@ -68,7 +69,8 @@ def get_dictionary(
             exampleEnglish=c.example_english,
             verified="pending",
             rating=0,
-            audio=c.audio_url
+            audio=c.audio_url,
+            source=c.source
         ))
 
     # Map verified dictionary items
@@ -84,7 +86,8 @@ def get_dictionary(
             exampleEnglish=e.example_english,
             verified=e.verified,
             rating=e.rating,
-            audio=e.audio_url
+            audio=e.audio_url,
+            source=e.source
         ))
 
     # Apply search filtering in memory

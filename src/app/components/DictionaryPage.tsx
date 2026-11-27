@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, Volume2, ChevronDown, ChevronUp, ArrowLeftRight, BadgeCheck, Star, Plus, Sparkles } from "lucide-react";
+import { Search, Volume2, ChevronDown, ChevronUp, ArrowLeftRight, BadgeCheck, Star, Plus, Sparkles, BookOpen } from "lucide-react";
 import { SuggestWordModal } from "./SuggestWordModal";
 import { API_BASE_URL, SUPABASE_URL, SUPABASE_KEY, isBackendUnreachable } from "../config";
 
@@ -5376,7 +5376,7 @@ export const dictionaryEntries = [
 
 const VERIFIED_CONFIG: Record<
   NonNullable<VerifiedTag>,
-  { label: string; icon: string; bg: string; text: string; border: string }
+  { label: string; icon: string; bg: string; text: string; border: string; cttoPrefix: string; source: string }
 > = {
   "native-speaker": {
     label: "Verified by Native Speaker",
@@ -5384,6 +5384,8 @@ const VERIFIED_CONFIG: Record<
     bg: "#FFF3EB",
     text: "#9A3412",
     border: "#FDBA74",
+    cttoPrefix: "Specialists",
+    source: "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo",
   },
   academic: {
     label: "Academic Review",
@@ -5391,6 +5393,8 @@ const VERIFIED_CONFIG: Record<
     bg: "#F1F5F9",
     text: "#1E293B",
     border: "#CBD5E1",
+    cttoPrefix: "Book",
+    source: "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion",
   },
   community: {
     label: "Community Validated",
@@ -5398,6 +5402,8 @@ const VERIFIED_CONFIG: Record<
     bg: "#ECFDF5",
     text: "#065F46",
     border: "#6EE7B7",
+    cttoPrefix: "Community",
+    source: "Community Contributor",
   },
   pending: {
     label: "Pending Review",
@@ -5405,6 +5411,8 @@ const VERIFIED_CONFIG: Record<
     bg: "#FEF3C7",
     text: "#92400E",
     border: "#FDE68A",
+    cttoPrefix: "Status",
+    source: "Under Moderation",
   },
 };
 
@@ -5422,6 +5430,7 @@ function VerifiedBadge({ tag, rating }: { tag: VerifiedTag; rating: number }) {
       <span
         style={{ backgroundColor: cfg.bg, color: cfg.text, borderColor: cfg.border }}
         className="inline-flex items-center gap-1.5 text-xs px-2.5 py-0.5 rounded-full border font-bold shadow-2xs"
+        title={cfg.source ? `${cfg.cttoPrefix === "Book" ? "Book Name" : "Specialist Name"}: ${cfg.source}` : cfg.label}
       >
         <span className="text-[11px]">{cfg.icon}</span>
         {cfg.label}
@@ -5822,6 +5831,37 @@ export function DictionaryPage() {
                         {entry.english}
                       </p>
                       <VerifiedBadge tag={entry.verified} rating={entry.rating} />
+                      {/* Book / Specialist Attribution Line */}
+                      {entry.verified === "academic" && (
+                        <div className="flex items-center gap-1.5 mt-2 text-xs">
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 uppercase tracking-wider flex-shrink-0">
+                            Book Name
+                          </span>
+                          <span className="text-[11px] text-[#52607D] font-medium truncate" title={entry.source || "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion"}>
+                            {entry.source || "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion"}
+                          </span>
+                        </div>
+                      )}
+                      {entry.verified === "native-speaker" && (
+                        <div className="flex items-center gap-1.5 mt-2 text-xs">
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 uppercase tracking-wider flex-shrink-0">
+                            Specialist Name
+                          </span>
+                          <span className="text-[11px] text-[#52607D] font-medium truncate" title={entry.source || "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"}>
+                            {entry.source || "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"}
+                          </span>
+                        </div>
+                      )}
+                      {entry.verified === "community" && entry.source && (
+                        <div className="flex items-center gap-1.5 mt-2 text-xs">
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-900 uppercase tracking-wider flex-shrink-0">
+                            Contributor
+                          </span>
+                          <span className="text-[11px] text-[#52607D] font-medium truncate" title={entry.source}>
+                            {entry.source}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       <button
@@ -5891,7 +5931,7 @@ export function DictionaryPage() {
                           borderColor: "rgba(28,43,74,0.08)",
                           borderLeftColor: "var(--golden-heritage)",
                         }}
-                        className="rounded-xl border border-l-4 p-4 shadow-sm"
+                        className="rounded-xl border border-l-4 p-4 shadow-sm mb-4"
                       >
                         <p
                           style={{ color: "var(--river-blue)" }}
@@ -5903,6 +5943,76 @@ export function DictionaryPage() {
                           {entry.exampleEnglish}
                         </p>
                       </div>
+
+                      {/* Source Attribution */}
+                      <p
+                        style={{ color: "#6B7A99" }}
+                        className="text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5"
+                      >
+                        <BookOpen size={13} style={{ color: "var(--golden-heritage)" }} />
+                        Source Attribution
+                      </p>
+                      {entry.verified === "academic" ? (
+                        <div
+                          style={{
+                            backgroundColor: "var(--card)",
+                            borderColor: "rgba(28,43,74,0.08)",
+                            borderLeftColor: "#1C2B4A"
+                          }}
+                          className="rounded-xl border border-l-4 p-3.5 shadow-2xs mb-4"
+                        >
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-sm">📚</span>
+                            <span className="text-xs font-bold text-[#1C2B4A]">Academic Reference Book</span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 ml-auto uppercase font-semibold">
+                              Book Name
+                            </span>
+                          </div>
+                          <p className="text-xs font-semibold text-[#1C2B4A] italic">
+                            "{entry.source || "Madiyaw nga pag kani Butuan: The Butuan visitor's travel companion"}"
+                          </p>
+                          <p className="text-[11px] text-[#6B7A99] mt-0.5">
+                            Official literary resource documenting authentic Butuanon vocabulary and cultural heritage.
+                          </p>
+                        </div>
+                      ) : entry.verified === "native-speaker" ? (
+                        <div
+                          style={{
+                            backgroundColor: "var(--card)",
+                            borderColor: "rgba(28,43,74,0.08)",
+                            borderLeftColor: "#9A3412"
+                          }}
+                          className="rounded-xl border border-l-4 p-3.5 shadow-2xs mb-4"
+                        >
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-sm">🎯</span>
+                            <span className="text-xs font-bold text-[#9A3412]">Verified Native Speaker Specialist</span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 ml-auto uppercase font-semibold">
+                              Specialist Name
+                            </span>
+                          </div>
+                          <p className="text-xs font-bold text-[#1C2B4A]">
+                            {entry.source || "Mrs. Bella Cultura Hernandez & Eden Curilan Paquibo"}
+                          </p>
+                          <p className="text-[11px] text-[#6B7A99] mt-0.5">
+                            Native Butuanon language specialist, cultural consultant & phonetic guide.
+                          </p>
+                        </div>
+                      ) : (
+                        <div
+                          style={{
+                            backgroundColor: "var(--card)",
+                            borderColor: "rgba(28,43,74,0.08)",
+                            borderLeftColor: "#10B981"
+                          }}
+                          className="rounded-xl border border-l-4 p-3.5 shadow-2xs mb-4"
+                        >
+                          <p className="text-xs font-bold text-[#065F46]">Community Submission</p>
+                          <p className="text-xs text-[#1C2B4A] mt-0.5">
+                            {entry.source || "Contributed by community speakers."}
+                          </p>
+                        </div>
+                      )}
 
                       <div className="mt-4 flex justify-end">
                         <button
