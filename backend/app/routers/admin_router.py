@@ -226,6 +226,23 @@ def delete_dictionary_entry(
     db.commit()
     return {"message": "Dictionary entry deleted successfully.", "id": id}
 
+@router.delete("/contributions/{id}")
+def delete_contribution(
+    id: int,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    """
+    Permanently remove a rejected contribution from the database.
+    """
+    contribution = db.query(Contribution).filter(Contribution.id == id).first()
+    if not contribution:
+        raise HTTPException(status_code=404, detail="Contribution not found.")
+
+    db.delete(contribution)
+    db.commit()
+    return {"message": "Contribution permanently deleted.", "id": id}
+
 @router.post("/upload-audio")
 async def admin_upload_audio(
     audio: UploadFile = File(...),

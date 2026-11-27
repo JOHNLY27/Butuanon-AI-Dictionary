@@ -680,6 +680,45 @@ export function AdminPage({ user }: AdminPageProps) {
     }
   };
 
+  const handleDeleteContribution = async (id: number) => {
+    if (!window.confirm("Permanently delete this rejected contribution? This cannot be undone.")) return;
+    if (!token) return;
+    let success = false;
+    if (!isBackendUnreachable()) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/admin/contributions/${id}`, {
+          method: "DELETE",
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (res.ok) success = true;
+      } catch (_) {
+        // Backend offline
+      }
+    }
+
+    if (!success) {
+      try {
+        const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/contributions?id=eq.${id}`, {
+          method: "DELETE",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (sbRes.ok) success = true;
+      } catch (sbErr) {
+        console.error("Supabase direct delete contribution failed:", sbErr);
+      }
+    }
+
+    if (success) {
+      toast.success("Contribution permanently deleted.");
+      fetchContributions();
+    } else {
+      toast.error("Failed to delete contribution.");
+    }
+  };
+
   // Direct Dictionary CRUD Operations
   const handleCreateEntry = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1296,6 +1335,17 @@ export function AdminPage({ user }: AdminPageProps) {
                           title="Re-open and review"
                         >
                           <Check size={14} /> Re-evaluate
+                        </button>
+                      )}
+
+                      {c.status === "rejected" && (
+                        <button
+                          onClick={() => handleDeleteContribution(c.id)}
+                          style={{ backgroundColor: "#FEF2F2", color: "#DC2626", border: "1px solid #FECACA" }}
+                          className="flex items-center gap-1 px-3.5 py-1.5 rounded-xl text-xs font-semibold hover:bg-red-100 transition-colors"
+                          title="Permanently delete this rejected submission"
+                        >
+                          <Trash2 size={13} /> Delete Permanently
                         </button>
                       )}
                     </div>
