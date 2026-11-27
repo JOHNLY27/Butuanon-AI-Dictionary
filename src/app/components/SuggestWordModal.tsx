@@ -26,6 +26,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
   const [definition, setDefinition] = useState("");
   const [exampleButuanon, setExampleButuanon] = useState("");
   const [exampleEnglish, setExampleEnglish] = useState("");
+  const [contributorName, setContributorName] = useState("");
 
   // Recording states
   const [isRecording, setIsRecording] = useState(false);
@@ -158,6 +159,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
         formData.append("definition", definition.trim());
         if (exampleButuanon.trim()) formData.append("exampleButuanon", exampleButuanon.trim());
         if (exampleEnglish.trim()) formData.append("exampleEnglish", exampleEnglish.trim());
+        if (contributorName.trim()) formData.append("source", contributorName.trim());
 
         if (audioUrl) {
           const audioResponse = await fetch(audioUrl);
@@ -225,7 +227,8 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
             example_butuanon: exampleButuanon.trim() || null,
             example_english: exampleEnglish.trim() || null,
             audio_url: supabaseAudioUrl,
-            status: "pending"
+            status: "pending",
+            source: contributorName.trim() || null
           })
         });
       } catch (sbErr) {
@@ -248,6 +251,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
         exampleButuanon: exampleButuanon.trim(),
         exampleEnglish: exampleEnglish.trim(),
         audio: supabaseAudioUrl || base64Audio,
+        source: contributorName.trim() || null,
         verified: "pending",
         rating: 0,
         timestamp: new Date().toISOString(),
@@ -280,6 +284,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
     setDefinition("");
     setExampleButuanon("");
     setExampleEnglish("");
+    setContributorName("");
     deleteRecording();
     setIsSubmitted(false);
   };
@@ -287,7 +292,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
   return (
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) { resetForm(); onClose(); } }}>
       <DialogContent style={{ backgroundColor: "#FFFDF9", fontFamily: "Poppins, sans-serif" }} className="max-w-2xl max-h-[92vh] overflow-y-auto rounded-3xl border-2 border-[var(--golden-heritage)] p-6 sm:p-8 shadow-2xl">
-        
+
         {/* Header */}
         <DialogHeader className="mb-4 text-left border-b border-amber-200/60 pb-4">
           <div className="flex items-center gap-3">
@@ -319,7 +324,7 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
-            
+
             {/* Quick Guide Banner */}
             <div className="bg-amber-50 border-2 border-amber-300/80 rounded-2xl p-3.5 flex items-center gap-3 shadow-sm">
               <span className="text-xl shrink-0">💡</span>
@@ -469,6 +474,31 @@ export function SuggestWordModal({ isOpen, onClose, onSubmitSuccess }: SuggestWo
                   className="w-full text-base font-medium px-4 py-3 rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none transition-all placeholder:text-slate-400"
                 />
               </div>
+            </div>
+
+            {/* Optional Contributor Name */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 min-h-[28px]">
+                <label htmlFor="suggest-name" style={{ color: "var(--river-blue)" }} className="text-sm sm:text-base font-bold whitespace-nowrap">
+                  Your Name
+                </label>
+                <span className="text-[11px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full border border-slate-300 whitespace-nowrap">
+                  Optional
+                </span>
+              </div>
+              <input
+                id="suggest-name"
+                name="source"
+                type="text"
+                value={contributorName}
+                onChange={(e) => setContributorName(e.target.value)}
+                placeholder="e.g. Juan dela Cruz — leave blank to stay anonymous"
+                style={{ color: "#0F1D30" }}
+                className="w-full text-base font-medium px-4 py-3 rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none transition-all placeholder:text-slate-400"
+              />
+              <p className="text-[11px] text-slate-400 font-medium pl-1">
+                Your name will be shown on the word card when approved. Leave blank to remain anonymous.
+              </p>
             </div>
 
             {/* Voice Audio Recorder */}
